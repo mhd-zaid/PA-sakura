@@ -1,0 +1,178 @@
+#Différentes routes de notre projet
+
+/:
+  controller: Main 
+  action: index
+
+/login:
+  controller: Main
+  action: login
+
+/s-inscrire:
+  controller: User
+  action: register
+
+/modifier-utilisateur:
+  controller: User
+  action: edit
+
+/users:
+  controller: User
+  action: list
+
+/tableau-de-bord:
+  controller: Admin
+  action: dashboard
+
+
+### PROFIL ###
+
+/profil:
+  controller: Profil
+  action: index
+
+/profil-notification:
+  controller: Profil
+  action: manageNotification
+
+  
+/profil-langue:
+ controller: Profil
+ action: manageLanguage
+
+/profil-gestion-des-comptes:
+ controller: Profil
+ action: manageAccount
+
+/profil-securite:
+  controller: Profil
+  action: manageSecurity
+  
+/profil-contact:
+ controller: Profil
+ action: manageContact
+
+/profil-aide-et-support:
+ controller: Profil
+ action: help
+  
+/profil-conditions-generale-d-utilisation:
+ controller: Profil
+ action: condition
+
+ ### ARTICLE ###
+
+/article:
+  controller: Article
+  action: index
+
+/article-ajout:
+controller: Article
+action: addArticle
+  
+/article-edition/{id}:
+ controller: Article
+ action: editArticle
+ 
+/article/{id}:
+ controller: Article
+ action: showArticle
+
+### COMMENTAIRE ###
+
+/commentaire:
+  controller: Commentaire
+  action: index
+
+/commentaire-ajout:
+  controller: Commentaire
+  action: addComment
+
+/commentaire-mots-bannis:
+ controller: Commentaire
+ action: banWordComment
+ 
+/commentaire/{id}:
+ controller: Commentaire
+ action: showCommentaire 
+
+
+  ### EXTENSION ###
+
+/extension:
+  controller: Extension
+  action: index
+  
+  ### PAGE ###
+
+/page:
+  controller: Page
+  action: index
+
+/ajout-page:
+  controller: Page
+  action: addPage
+  
+/edition-Page/{id}:
+ controller: Page
+ action: editPage
+ 
+/page/{id}:
+ controller: Page
+ action: showPage
+
+  ### NAVIGATION ###
+
+/navigation:
+  controller: Navigation
+  action: index
+  
+# /ajout-menu-navigation:
+#   controller: Navigation
+#   action: notification
+  
+# /edition-menu-navigation/{id}:
+#  controller: Navigation
+#  action: editNavigation
+
+  ### THEME ###
+
+/theme:
+  controller: Commentaire
+  action: index
+
+/commentaire-ajout:
+  controller: Commentaire
+  action: addComment
+  
+/commentaire-edition/{id}:
+ controller: Commentaire
+ action: editComment
+
+  ### MEDIAS ###
+
+/media:
+  controller: Media
+  action: index
+
+/ajout-medias:
+  controller: Media
+  action: addComment
+  
+/medias/{id}:
+ controller: Media
+ action: showMedia
+
+  ### APPARENCES ###
+
+/apparence-theme:
+  controller: Apparence-Theme
+  action: editTheme
+
+/apparence-page:
+  controller: Apparence-Page
+  action: editPage
+
+/apparence-menu:
+  controller: Apparence-Menu
+  action: editMenu
