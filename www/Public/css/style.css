@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Inter ;
+}
+
+
+.header {
+  background-color: #cdc5f9;
+  width: 300px;
+  height: 100vh;
+  position: relative;
+}
+
+.center {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.element {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.element li {
+  padding-bottom: 3.5vh;
+  font-weight: bold;
+  font-size: 2vh;
+}
+
+.profil {
+  height: 150px;
+}
+
+.logo {
+  width: 2.5vw;
+  padding-right: 1vw;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+
+
+.logo {
+  width: 2.5vw;
+  padding-right: 1vw;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+.drop img{
+  width: 12vh;
+  height: 10vh;
+
+  border-radius: 999px;
+  margin-right: 10%;
+
+}
+
+.drop{
+  display: flex;
+  align-items: center;
+}
+
+.drop p{
+  white-space: nowrap;
+}
+
+#dropdown{
+  width: 100%;
+  font-size: 1.5vw;
+  text-align: center;
+  margin-top: 10%;
+}
+
+.deco{
+  float: right;
+}
