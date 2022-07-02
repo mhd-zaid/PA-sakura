@@ -12,7 +12,7 @@
   background-color: #cdc5f9;
   width: 300px;
   height: 100vh;
-  position: relative;
+  position: fixed;
 }
 
 .center {
