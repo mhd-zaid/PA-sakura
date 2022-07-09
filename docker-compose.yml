@@ -17,7 +17,7 @@ services:
     image: mysql:5.7
     container_name: mysql-sakura
     ports :
-      - "3306:3306"
+      - "3301:3301"
     environment:
       MYSQL_DATABASE: sakura
       MYSQL_ROOT_PASSWORD: passwordsql

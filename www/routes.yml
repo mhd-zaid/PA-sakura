@@ -66,9 +66,9 @@
   controller: Article
   action: index
 
-/article-ajout:
-controller: Article
-action: addArticle
+/article-edit:
+  controller : Article
+  action : add
   
 /article-edition/{id}:
  controller: Article

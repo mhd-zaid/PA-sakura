@@ -1,0 +1,72 @@
+.header-container {
+    position : absolute;
+    display : flex;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    left : 50%;
+    top : 0%
+  }
+  .header-mobile{
+    display : none;
+  }
+  .header-container > span {
+    font-size: 30px;
+    padding-right: 15px;
+    padding-top : 10px;
+  }  
+
+  .menu-article {
+    position : absolute;
+    display : flex;
+    justify-content: space-around;
+    flex-direction: row;
+    height: auto;
+    width: 50%;
+    left : 30%;
+    top : 20%
+  }
+  .centre {
+    display : flex;
+  }
+  .centre > span {
+    margin-right : 5px;
+  }
+  .centre > img {
+    padding-bottom : 16px;
+  }
+  .container {
+    position : absolute;
+    display : flex;
+    flex-wrap : wrap;
+    max-height: auto;
+    width: 75%;
+    left : 25%;
+    top :30%;
+  
+  }
+  .articles {
+    position : relative;
+    margin : 0 5px 5px 0;
+    width : auto;
+    height: auto;
+  }
+  .article-haut {
+    position : relative;
+    background-color : purple;
+    height: 75px;
+    width : 100px;
+    border-top-left-radius : 25px;
+    border-top-right-radius : 25px;
+    background-image: url("../img/Joseph_Joestar_origamigne_Migne_Huynh.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .article-bas {
+    position : relative;
+    background-color: #CDC5F9;
+    height: 75px;
+    width : 100px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }

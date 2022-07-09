@@ -8,11 +8,11 @@ class Main{
 	public function index(): void
 	{
 		//imagine : cnx à la bdd pour récupérer le pseudo du user
-		$pseudo = "Yves";
+		$pseudo = "jug";
 
 		$v = new View("Page/Home", "back");
 		$v->assign("pseudo",$pseudo);
-		$v->assign("lastname","SKRZYPCZYK");
+		$v->assign("lastname","zek");
 	}
 
 	public function login(): void

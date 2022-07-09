@@ -1,0 +1,199 @@
+.button {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: auto;
+  left: 80%;
+  top: 5%;
+}
+
+.button_style {
+  border-radius: 5px;
+  background-color: #bda7de;
+  padding: 15px 20px 15px 20px;
+  margin-left: 15px;
+  border: none;
+}
+
+.title {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/*** MENU ***/
+.menu {
+  position: absolute;
+  top: 15%;
+  left: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: auto;
+  width : auto;
+}
+
+.button-style {
+  background-color: #bda7de;
+  padding: 10px;
+  border: none;
+  margin-left : 5px;
+}
+
+.edit {
+  position: absolute;
+  height: auto;
+  width: auto;
+  left: 43%;
+  top: 33%;
+}
+
+.edit > button {
+  position: absolute;
+  top: 102%;
+  display: none;
+}
+
+#close-text-area {
+  display: none;
+  top: -20%;
+  left: 100%;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.modal-edit {
+  background-color: #ece9ff;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 35%; /* Could be more or less, depending on screen size */
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.modal-edit > textarea{
+  position : absolute;
+  top : 5%;
+  left : 5%;
+}
+/* Modal Content/Box */
+.modal-content {
+  background-color: #ece9ff;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 30%; /* Could be more or less, depending on screen size */
+  height: 30%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.modal-header {
+  position: relative;
+  top: 15%;
+  left: 25%;
+  transform: translateX(-50%);
+}
+
+.modal-button {
+  position: relative;
+  left: 30%;
+  top: 35%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: relative;
+  left: 90%;
+  top: 0%;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.choix-police {
+  position: absolute;
+  left: 45%;
+  top: 12%;
+  width : auto;
+  height : 50%;
+  display: flex;
+  flex-direction : column;
+  justify-content: space-between;
+}
+
+.choix-police > p {
+  margin-left: 10px;
+}
+.bold {
+  font-weight: bold;
+}
+.italic{
+  font-style : italic;
+}
+
+.underline{
+  text-decoration : underline;
+}
+
+.active{
+  color : blue;
+}
+
+.content{
+  position : absolute;
+  left : 27%;
+  top : 26%;
+  width : 70%;
+  height : 70%;
+  border : solid;
+}
+
+.content > p:hover{
+  font-weight : bold;
+  color : blue;
+  transition : all 0.3s;
+}
+
+@media screen and (max-width : 1200px){
+  .content{
+    left : 30%;
+    width : 60%;
+  }
+  .button_style{
+    padding : 5px;
+  }
+  
+}
+@media screen and (max-width : 1000px){
+  .content {
+    left : 50%;
+    width : 40%;
+  }
+}
+
+@media screen and (max-width : 800px){
+  .button {
+    left : 50%;
+    width : 40%;
+  }
+}
