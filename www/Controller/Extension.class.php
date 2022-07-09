@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Core\View;
+
 class Extension{
     public function index(){
-        echo "Afficher extension";
+        $v=new View("Page/Extension", "Back");
     }
 }
