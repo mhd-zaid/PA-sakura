@@ -137,6 +137,7 @@ nav ul li a img{
 
 #main-component{
   height: 100vh;
+  width: 100%;
   padding: 20px;
   margin-left: 275px;
 }
@@ -167,4 +168,205 @@ nav ul li a img{
   #header-topbar{
     visibility: visible
   }
+}
+
+/* ---------------------- NAVIGATION PAGE ------------------------------------ */
+.navigation-container{
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin-left: -120px;
+  overflow-x: hidden;
+}
+
+.navigation-container h1{
+  display: block;
+  padding-top: 163px;
+  margin-left: 136px;
+  width: 234px;
+  height: 48px;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.navigation-add-btn{
+  display: block;
+  margin-top: 83px;
+  margin-left: 928px;  
+}
+
+.navigation-add-btn button{
+  background-color: #CDC5F9;
+  border: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  width: 262px;
+  height: 64.8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+}
+.navigation-add-btn button span{
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-left: 10px;
+}
+
+.navigation-add-btn img{
+  width: 50px;
+  height: 50px;
+}
+
+.menu-container{
+  margin-top: 70px;
+  background-color: #BDA7DE;
+  width: 1050px;
+  margin-left: 136px;
+  height: 530px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom:100px ;
+}
+
+.menu-page{
+  background-color: #ffffff;
+  width: 374.63px;
+  height: 55.89px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.menu-page h3{
+  margin-left: 54px;
+}
+.menu-page img{
+  cursor: pointer;
+}
+.menu-page:last-child{
+  margin-bottom: 54px;
+}
+
+.menu-page-dropdown{
+  display:  none;
+  background-color: #ffffff;
+  width: 374.63px;
+  padding-bottom: 15px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.menu-page-dropdown .page img{
+  cursor: pointer;
+}
+.menu-page-dropdown .page{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+
+}
+
+.menu-page-dropdown .page >h3{
+  background-color: #BDA7DE;
+  width: 270px;
+  height: 55.89px;
+  margin-top: 15px;
+  text-align: center;
+}
+#drag-container div.hint {
+  border: 1px solid #BDA7DE;
+  background: #cdc5f9;
+}
+/****************** MODAL  *******************************************/
+.modal, .modal-msg {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 11; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+  background-color: #fefefe;
+  margin-top:150px;
+  margin-left: 387px;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 1050px; /* Could be more or less, depending on screen size */
+  min-height: 530px;
+}
+
+/* The Close Button */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-btn:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add-page{
+  display: flex;
+  align-items: center;
+}
+.add-page span{
+  margin-right: 20px;
+  font-weight: 700;
+  font-size: 30px;
+}
+.title-menu span{
+  font-weight: 700;
+  font-size: 30px;
+}
+.valid-modal-btn{
+  width: 200px;
+  height: 60px;
+  margin-left: 800px;
+  top: 285px;
+  background: #BDA7DE;
+  border-radius: 30px;
+  border: none;
+}
+.valid-modal-btn span{
+  font-weight: 700;
+  font-size: 30px;
+}
+.close-btn{
+  width: 235.43px;
+  height: 69px;
+  background: #BDA7DE;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 30px;
+  text-align: center;
+  color: #000000;
+  border: none;
+}
+.modal-msg .modal-content > div{
+  font-weight: 700;
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  text-transform: uppercase;
+  height: 100%;
 }

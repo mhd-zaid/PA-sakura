@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Core\View;
+
 class Navigation{
     public function index(){
-        echo "Afficher navigation";
+        $v = new View("Page/Navigation", "back");
     }
 }

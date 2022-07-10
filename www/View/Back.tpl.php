@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
     <link rel="stylesheet" type="text/css" href="../Public/src/scss/partials/_grid.scss" />
     <script s type="text/javascript" src="../Public/js/jquery-3.6.0.min.js"></script>
+    <script src="../Public/js/main.js"></script>
 </head>
 
 <body>
@@ -50,7 +51,7 @@
                 <li><a href="#"><img src="../Public/img/art.svg"/>ARTICLES</a></li>
                 <li><a href="#"><img src="../Public/img/media.svg"/>MEDIAS</a></li>
                 <li><a href="#"><img src="../Public/img/com.svg"/>COMMENTAIRES</a></li>
-                <li><a href="#"><img src="../Public/img/navi.svg"/>NAVIGATION</a></li>
+                <li><a href="/navigation"><img src="../Public/img/navi.svg"/>NAVIGATION</a></li>
                 <li><a href="#"><img src="../Public/img/appa.svg"/>APPARENCES</a></li>
                 <li><a href="#"><img src="../Public/img/ext.svg"/>EXTENSIONS</a></li>
                 <li><a href="#"><img src="../Public/img/stat.svg"/>ANALYTICS</a></li>
