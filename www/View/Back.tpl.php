@@ -25,13 +25,13 @@
 
     <div class="container">
 
-        <img id="logo-site" src="../Public/img/logo.svg" />
+    <img id="logo-site" src="../Public/img/sakura.svg" />
 
         <img id="btn-close" onclick="closeNav()" src="../Public/img/close.svg" />
 
         <div id="profil">
             <img src="../Public/img/Joseph_Joestar_origamigne_Migne_Huynh.jpg" />
-            <h3> Joestart Joseph</h3>
+            <h3> Joestar Joseph</h3>
         </div>
 
         <form action="/action_page.php">
@@ -46,19 +46,19 @@
 
         <nav>
             <ul>
-                <li><a href="#"><img src="../Public/img/navi.svg"/>DASHBOARD</a></li>
-                <li><a href="#"><img src="../Public/img/page.svg"/>PAGES</a></li>
-                <li><a href="#"><img src="../Public/img/art.svg"/>ARTICLES</a></li>
-                <li><a href="#"><img src="../Public/img/media.svg"/>MEDIAS</a></li>
-                <li><a href="#"><img src="../Public/img/com.svg"/>COMMENTAIRES</a></li>
-                <li><a href="/navigation"><img src="../Public/img/navi.svg"/>NAVIGATION</a></li>
-                <li><a href="#"><img src="../Public/img/appa.svg"/>APPARENCES</a></li>
-                <li><a href="#"><img src="../Public/img/ext.svg"/>EXTENSIONS</a></li>
-                <li><a href="#"><img src="../Public/img/stat.svg"/>ANALYTICS</a></li>
-                <li><a href="#"><img src="../Public/img/navi.svg"/>PARAMETRES</a></li>
+                <li><a href="#"><img src="../Public/img/dashboard.svg"/>Dashboard</a></li>
+                <li><a href="#"><img src="../Public/img/page.svg"/>Pages</a></li>
+                <li><a href="#"><img src="../Public/img/art.svg"/>Articles</a></li>
+                <li><a href="#"><img src="../Public/img/media.svg"/>Medias</a></li>
+                <li><a href="#"><img src="../Public/img/com.svg"/>Commentaires</a></li>
+                <li><a href="/navigation"><img src="../Public/img/navi.svg"/>Navigation</a></li>
+                <li><a href="#"><img src="../Public/img/appa.svg"/>Apparences</a></li>
+                <li><a href="#"><img src="../Public/img/ext.svg"/>Extensions</a></li>
+                <li><a href="#"><img src="../Public/img/stat.svg"/>Analytics</a></li>
+                <li><a href="#"><img src="../Public/img/settings.svg"/>Parametres</a></li>
             </ul>
         </nav>
-        <button id="button-signout"><img src="../Public/img/Vector.svg" /></button>
+        <button id="button-signout"><img src="../Public/img/Vector.svg"  /></button>
 
 
     </div>
