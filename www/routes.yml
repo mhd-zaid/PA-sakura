@@ -66,17 +66,17 @@
   controller: Article
   action: index
 
-/article-ajout:
-controller: Article
-action: addArticle
+/edi:
+  controller: Article
+  action: addArticle
   
-/article-edition/{id}:
- controller: Article
- action: editArticle
- 
-/article/{id}:
- controller: Article
- action: showArticle
+#/article-edition/{id}:
+# controller: Article
+# action: editArticle
+#
+#/article/{id}:
+# controller: Article
+# action: showArticle
 
 ### COMMENTAIRE ###
 
@@ -140,10 +140,6 @@ action: addArticle
 /theme:
   controller: Commentaire
   action: index
-
-/commentaire-ajout:
-  controller: Commentaire
-  action: addComment
   
 /commentaire-edition/{id}:
  controller: Commentaire

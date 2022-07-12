@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74c5b0b5-172c-4d3f-a988-ba92412c7018" name="Changes" comment="Mis à jour du back&#10;Ajout du dossier js et de la librairie">
+    <list default="true" id="74c5b0b5-172c-4d3f-a988-ba92412c7018" name="Changes" comment="Ajout PAge Article">
+      <change afterPath="$PROJECT_DIR$/Public/css/article.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/css/edit-article.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/js/scriptArticle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/Page/Article.view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/Page/EditArticle.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db_data/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/../db_data/ib_buffer_pool" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db_data/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/../db_data/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../db_data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/../db_data/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Main.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Main.class.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/Navigation.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Navigation.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/Article.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Article.class.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/View/Back.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Back.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Page/Extension.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Page/Extension.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.yml" beforeDir="false" afterPath="$PROJECT_DIR$/routes.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +30,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Controller/Main.class.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/css/article.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/css/edit-article.css" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Public/css/style.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/js/scriptArticle.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/Back.tpl.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Page/Article.view.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Page/EditArticle.view.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/View/Page/Home.view.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -46,6 +60,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Public/js" />
+      <recent name="$PROJECT_DIR$/View/Page" />
+      <recent name="$PROJECT_DIR$/Public/css" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -66,7 +82,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657362978210</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="MIS A JOUR DU HEADER">
+      <created>1657613440384</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657613440384</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,6 +109,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Mis à jour du back" />
     <MESSAGE value="Mis à jour du back&#10;Ajout du dossier js et de la librairie" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mis à jour du back&#10;Ajout du dossier js et de la librairie" />
+    <MESSAGE value="MIS A JOUR DU HEADER" />
+    <MESSAGE value="Ajout PAge Article" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout PAge Article" />
   </component>
 </project>
