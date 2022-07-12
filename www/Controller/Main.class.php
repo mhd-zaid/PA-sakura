@@ -11,8 +11,6 @@ class Main{
 		$pseudo = "Yves";
 
 		$v = new View("Page/Home", "Back");
-		$v->assign("pseudo",$pseudo);
-		$v->assign("lastname","SKRZYPCZYK");
 	}
 
 	public function login(): void

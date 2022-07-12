@@ -45,9 +45,9 @@
 
           </div>
           <footer class="modal-button-but">
-          <button class="button_style"><img id="logo-site" src="../Public/img/cros.svg" />
+          <button class="button_style"><img id="logo-site" src="../Public/img/close.svg" />
 </button>
-<button class="button_style"><img id="logo-site" src="../Public/img/plus.svg" />
+<button class="button_style"><img id="logo-site" src="../Public/img/close.svg" style="transform: rotate(45deg)"/>
 </button>
 </footer>
         </div>

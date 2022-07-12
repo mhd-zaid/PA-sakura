@@ -62,10 +62,9 @@
   /* Modal Content/Box */
   .modal-contente {
     background-color: #ece9ff;
-  
     border: 1px solid #888;
     position: absolute;
-    width: 30%;
+    width: 90%;
     height: fit-content;
     background: #c3b3db;
     left: 50%;
@@ -200,6 +199,7 @@
       padding: 1vh 0vw;
       width: 20%;
       border-radius: 50px;
+      margin-bottom: 20px ;
   }   
   .container-header {
       overflow:hidden;
@@ -209,7 +209,7 @@
       left: 0 !important;
       width: 100% !important;
       padding: 0 5% !important;
-  
+    top:120px;
   }
     
     }

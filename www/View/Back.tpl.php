@@ -50,14 +50,14 @@
             <ul>
                 <li><a href="#"><img src="../Public/img/dashboard.svg"/>Dashboard</a></li>
                 <li><a href="#"><img src="../Public/img/page.svg"/>Pages</a></li>
-                <li><a href="#"><img src="../Public/img/art.svg"/>Articles</a></li>
+                <li><a href="/article"><img src="../Public/img/art.svg"/>Articles</a></li>
                 <li><a href="#"><img src="../Public/img/media.svg"/>Medias</a></li>
-                <li><a href="#"><img src="../Public/img/com.svg"/>Commentaires</a></li>
+                <li><a href="/commentaire"><img src="../Public/img/com.svg"/>Commentaires</a></li>
                 <li><a href="/navigation"><img src="../Public/img/navi.svg"/>Navigation</a></li>
                 <li><a href="#"><img src="../Public/img/appa.svg"/>Apparences</a></li>
                 <li><a href="#"><img src="../Public/img/ext.svg"/>Extensions</a></li>
                 <li><a href="#"><img src="../Public/img/stat.svg"/>Analytics</a></li>
-                <li><a href="#"><img src="../Public/img/settings.svg"/>Parametres</a></li>
+                <li><a href="/profil"><img src="../Public/img/settings.svg"/>Parametres</a></li>
             </ul>
         </nav>
         <button id="button-signout"><img src="../Public/img/Vector.svg"  /></button>

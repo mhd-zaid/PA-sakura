@@ -9,6 +9,7 @@ body{
 }
 
 main{
+  height: 100vh;
   background-color: #ECE9FF;
 }
 
@@ -186,10 +187,10 @@ main .container {
 
 /* ---------------------- NAVIGATION PAGE ------------------------------------ */
 .navigation-container{
-  display: block;
-  width: 100%;
-  height: 100%;
-  margin-left: -120px;
+  position: absolute;
+  width: calc(100% - 275px);
+  height: 100vh;
+  left: 275px;
   overflow-x: hidden;
 }
 
@@ -206,7 +207,7 @@ main .container {
 .navigation-add-btn{
   display: block;
   margin-top: 83px;
-  margin-left: 928px;  
+  margin-left: 900px;
 }
 
 .navigation-add-btn button{
@@ -238,7 +239,7 @@ main .container {
   margin-top: 70px;
   background-color: #BDA7DE;
   width: 1050px;
-  margin-left: 136px;
+  margin-left: 110px;
   height: 530px;
   display: flex;
   flex-direction: column;
@@ -314,7 +315,7 @@ main .container {
 .modal-content {
   background-color: #fefefe;
   margin-top:150px;
-  margin-left: 387px;
+  margin-left: 385px;
   padding: 20px;
   border: 1px solid #888;
   width: 1050px; /* Could be more or less, depending on screen size */

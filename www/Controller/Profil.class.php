@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Core\View;
+
 class Profil{
     public function index(){
-        echo "Afficher profil";
+            $v = new View("Page/Profile", "Back");
+        
     }
 }

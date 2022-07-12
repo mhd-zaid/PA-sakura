@@ -42,6 +42,34 @@
                 <span id="title">Nouveautés</span>
             </div>
         </div>
+        <div class="articles">
+            <img src="../Public/img/Joseph_Joestar_origamigne_Migne_Huynh.jpg" width = "75px" height = "100px" />
+            <div class="article-bas">
+                <span id="date">Il y a trois jours</span>
+                <span id="title">Nouveautés</span>
+            </div>
+        </div>
+        <div class="articles">
+            <img src="../Public/img/Joseph_Joestar_origamigne_Migne_Huynh.jpg" width = "75px" height = "100px" />
+            <div class="article-bas">
+                <span id="date">Il y a trois jours</span>
+                <span id="title">Nouveautés</span>
+            </div>
+        </div>
+        <div class="articles">
+            <img src="../Public/img/Joseph_Joestar_origamigne_Migne_Huynh.jpg" width = "75px" height = "100px" />
+            <div class="article-bas">
+                <span id="date">Il y a trois jours</span>
+                <span id="title">Nouveautés</span>
+            </div>
+        </div>
+        <div class="articles">
+            <img src="../Public/img/Joseph_Joestar_origamigne_Migne_Huynh.jpg" width = "75px" height = "100px" />
+            <div class="article-bas">
+                <span id="date">Il y a trois jours</span>
+                <span id="title">Nouveautés</span>
+            </div>
+        </div>
     </div>
 </section>
 <script>
