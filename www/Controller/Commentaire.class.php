@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Controller;
+use App\Core\View;
 
 class Commentaire{
     public function index(){
-        echo "Afficher commentaire";
+        $v = new View("Page/Commentaire","Back");
     }
 }
