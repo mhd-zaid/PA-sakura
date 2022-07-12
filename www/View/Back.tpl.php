@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="../Public/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../Public/css/style_com.css" />
     <link rel="stylesheet" type="text/css" href="../Public/src/scss/partials/_grid.scss" />
     <script s type="text/javascript" src="../Public/js/jquery-3.6.0.min.js"></script>
     <script src="../Public/js/main.js"></script>
+
 </head>
 
 <body>
@@ -83,7 +85,9 @@
     function closeNav(){
         document.getElementById("header-sidebar").style.left= "-275px";
     }
+
 </script>
+
 
 </body>
 </html>
