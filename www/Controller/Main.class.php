@@ -10,7 +10,7 @@ class Main{
 		//imagine : cnx à la bdd pour récupérer le pseudo du user
 		$pseudo = "Yves";
 
-		$v = new View("Page/Home", "back");
+		$v = new View("Page/Home", "Back");
 		$v->assign("pseudo",$pseudo);
 		$v->assign("lastname","SKRZYPCZYK");
 	}

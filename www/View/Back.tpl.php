@@ -68,7 +68,7 @@
 <!-- Begin Page Content -->
 <main>
     <div class="container">
-        <section id="main-component">
+        <section>
             <?php require $this->view; ?>
         </section>
     </div>
