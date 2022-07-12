@@ -9,7 +9,6 @@ body{
 }
 
 main{
-  height: 100vh;
   background-color: #ECE9FF;
 }
 
@@ -154,7 +153,6 @@ nav ul li a img{
 }
 
 main .container {
-  padding: 20px;
   margin-left: 275px;
 }
 
