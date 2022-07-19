@@ -1,0 +1,102 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter&display=swap);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  padding: 0 30px;
+  display: flex;
+}
+
+.h1-section {
+  font-size: 4em;
+}
+
+p {
+  font-size: 1.5em;
+}
+
+.content {
+  height: 100px;
+  width: 100%;
+}
+
+#site-header .container {
+  display: flex;
+  background-color: #FFF;
+  justify-content: space-between;
+}
+
+#site-header .container nav {
+  display: flex;
+  align-items: center;
+}
+#site-header .container nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+#site-header .container nav ul li a {
+  padding: 1em;
+  display: block;
+  text-decoration: none;
+  color: #000;
+}
+
+main #hero {
+  background-color: #32F4FF;
+  display: flex;
+  height: 1040px;
+  align-items: center;
+}
+main #hero .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main #about-us {
+  background-color: #FF66C4;
+}
+main #about-us .container {
+  justify-content: center;
+  align-items: center;
+}
+main #about-us .container div {
+  background-color: #562135;
+  width: 37.813em;
+  height: 38.125em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+main #about-us .container div div {
+  text-align: center;
+  padding: 0 30px;
+}
+main #about-us .container div div p {
+  color: #FFF;
+}
+main #about-us #features {
+  background-color: #FFF;
+}
+main #about-us #contact {
+  background-color: #562135;
+}
+
+.cta-button {
+  width: 21em;
+  height: 4.875em;
+  border: none;
+}
+.cta-button--white {
+  background-color: #FFF;
+}
+.cta-button--pink {
+  background-color: #FF66C4;
+}

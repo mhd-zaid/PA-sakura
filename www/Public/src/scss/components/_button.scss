@@ -1,0 +1,14 @@
+.cta-button {
+    width : 21em;
+    height : 4.875em;
+    border : none;
+
+    &--white {
+        background-color : $white;
+    }
+
+    &--pink {
+        background-color : $pink;
+    }
+}
+
