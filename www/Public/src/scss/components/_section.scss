@@ -11,12 +11,30 @@ main {
         & .container {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-      
+            justify-content: space-between;      
         }
     }
     & #about-us{
         background-color: $pink;
+        & .container {
+            justify-content: center;
+            align-items : center;
+        }
+        & .container div {
+             background-color : $purple;
+             width : 37.813em;
+             height : 38.125em;
+             display : flex;
+             flex-direction : column;
+             justify-content : center;
+        & div {
+            text-align : center;
+            padding : 0 30px;
+            & p{
+                color : $white;
+            }
+        }
+        
     }
     & #features{
         background-color: $white;
@@ -24,4 +42,5 @@ main {
     & #contact{
         background-color: $purple;
     }
+}
 }

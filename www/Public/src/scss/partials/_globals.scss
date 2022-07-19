@@ -7,14 +7,17 @@ body{
   font-family: $font1;
 }
 
-// .container{
-//   margin: auto;
-//   position: relative;
-// }
+.container{
+  padding : 0 30px;
+  display : flex;
+}
 
 .h1-section {
   font-size: 4em;
 }
 
+p {
+  font-size : 1.5em;
+}
 
 
