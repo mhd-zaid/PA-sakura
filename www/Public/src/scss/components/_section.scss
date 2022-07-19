@@ -1,0 +1,27 @@
+main {
+    // background-color: $blue;
+    // & .container {
+    //     display: flex;
+    // }
+    & #hero{
+        background-color: $blue;
+        display: flex;
+        height: 1040px;
+        align-items: center;
+        & .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+      
+        }
+    }
+    & #about-us{
+        background-color: $pink;
+    }
+    & #features{
+        background-color: $white;
+    }
+    & #contact{
+        background-color: $purple;
+    }
+}

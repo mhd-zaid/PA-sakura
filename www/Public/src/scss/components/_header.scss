@@ -1,0 +1,29 @@
+
+#site-header .container {
+    display: flex;
+    background-color: $white;
+    justify-content: space-between;
+    
+}
+
+
+#site-header .container nav{
+    display: flex;
+    align-items: center;
+    & ul{
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+        
+        & li a {
+            padding: 1em;
+            display: block;
+            text-decoration: none;
+            color: $black;
+
+        }
+    }
+} 
+

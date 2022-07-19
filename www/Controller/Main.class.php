@@ -7,10 +7,7 @@ class Main{
 
 	public function index(): void
 	{
-		//imagine : cnx à la bdd pour récupérer le pseudo du user
-		$pseudo = "Yves";
-
-		$v = new View("Page/Home", "Back");
+		$v = new View("Front/Home", "Front");
 	}
 
 	public function login(): void
