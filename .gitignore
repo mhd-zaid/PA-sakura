@@ -1,7 +1,6 @@
 node_modules/
 db_data/
 server/
-dist/
 .idea/
 *.log
 .vscode/
