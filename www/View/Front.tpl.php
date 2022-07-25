@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Mon titre</title>
 	<meta name="description" content="Ceci est ma page">
-	<link rel="stylesheet" type="text/css" href="Public/src/scss/main.css">
+	<link rel="stylesheet" type="text/css" href="Public/css/main.css">
 </head>
 <body>
 	<header id="site-header">

@@ -1,15 +1,10 @@
 main {
-    // background-color: $blue;
-    // & .container {
-    //     display: flex;
-    // }
     & #hero{
         background-color: $blue;
         display: flex;
         height: 1040px;
         align-items: center;
         & .container {
-            display: flex;
             align-items: center;
             justify-content: space-between;      
         }
@@ -27,6 +22,7 @@ main {
              display : flex;
              flex-direction : column;
              justify-content : center;
+        }
         & div {
             text-align : center;
             padding : 0 30px;
@@ -38,9 +34,35 @@ main {
     }
     & #features{
         background-color: $white;
+        padding-bottom: 50px;
+        & p{
+            margin: 1px;
+            font-size: 1em;
+        }
+        & article{
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            width: 50%;
+        }
+        & article>div{
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        & article img{
+            height: 180px;
+            width: 400px;
+            object-fit: cover;
+        }
+        & .container{
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
     }
     & #contact{
+        padding-top: 50px;
         background-color: $purple;
     }
-}
 }

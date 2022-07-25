@@ -9,8 +9,19 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+.container {
+  padding: 0 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .h1-section {
   font-size: 4em;
+}
+
+p {
+  font-size: 1.5em;
 }
 
 .content {
@@ -65,9 +76,6 @@ main #hero {
 }
 
 main #hero .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -80,11 +88,105 @@ main #about-us {
   background-color: #FF66C4;
 }
 
+main #about-us .container {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main #about-us .container div {
+  background-color: #562135;
+  width: 37.813em;
+  height: 38.125em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main #about-us div {
+  text-align: center;
+  padding: 0 30px;
+}
+
+main #about-us div p {
+  color: #FFF;
+}
+
 main #features {
   background-color: #FFF;
+  padding-bottom: 50px;
+}
+
+main #features p {
+  margin: 1px;
+  font-size: 1em;
+}
+
+main #features article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 50px;
+  width: 50%;
+}
+
+main #features article > div {
+  width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main #features article img {
+  height: 180px;
+  width: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main #features .container {
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 main #contact {
+  padding-top: 50px;
   background-color: #562135;
+}
+
+.cta-button {
+  width: 21em;
+  height: 4.875em;
+  border: none;
+}
+
+.cta-button--white {
+  background-color: #FFF;
+}
+
+.cta-button--pink {
+  background-color: #FF66C4;
 }
 /*# sourceMappingURL=main.css.map */
