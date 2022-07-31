@@ -4,12 +4,12 @@
   controller: Main 
   action: index
 
-/login:
+/se-connecter:
   controller: Main
   action: login
 
 /s-inscrire:
-  controller: User
+  controller: Main
   action: register
 
 /modifier-utilisateur:

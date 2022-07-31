@@ -1,0 +1,25 @@
+#site-footer{
+    background-color: $black;
+    height: 100px;
+    & .container{
+        height: 100%;
+        justify-content: flex-end;
+        & div{
+            width: 250px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            & div{
+                background-color: $white;
+                height: 60px;
+                width: 60px;
+                border-radius: 20%;
+                justify-content: center;
+                & img{
+                    height: 50px;
+                    width: 50px;
+                }
+            }
+        }
+    }
+}

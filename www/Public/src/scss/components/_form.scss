@@ -1,0 +1,101 @@
+main{
+    & #form-register{
+        background-color: $blue;
+        height: calc(100vh - 80px);
+        padding: 5vh 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .container {
+            background-color: $white;
+            width: 40%;
+            height: 100%;
+            h1{
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            & > div{
+                width: 80%;
+                margin: auto;
+                & div p{
+                    width: 80%;
+                    & input{
+                        margin-top: inherit;
+                    }
+                }
+                & > p{
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    & #form-login{
+        background-color: $blue;
+        height: calc(100vh - 80px);
+        padding: 5vh 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .container {
+            background-color: $white;
+            width: 40%;
+            height: 100%;
+            h1{
+                letter-spacing: 2px;
+                text-align: center;
+            }
+            & div{
+                margin: auto;
+                width: 80%;
+                & >p{
+                    text-align: center;
+                    margin: 0px;
+                }
+            }
+        }
+    }
+
+    & #form-contact{
+        background-color: $purple;
+        height: 100vh;
+        padding: 5vh 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .container {
+            background-color: $white;
+            width: 60%;
+            height: 100%;
+            align-items: center;
+            h1{
+                letter-spacing: 2px;
+                // text-align: center;
+            }
+            & div{
+                margin: auto;
+                width: 80%;
+                & >p{
+                    // text-align: center;
+                    margin: 0px;
+                }
+            }
+        }
+    }
+
+    form{
+        word-wrap: break-word;
+        min-height: 100%;
+        & div{
+            display: flex;
+            text-align: start;
+            & :last-child{
+                flex-direction: row-reverse;
+            }
+            & p{
+                width: 40%;
+                margin-bottom: 12px;
+            }
+        }
+    }
+}

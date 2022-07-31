@@ -8,8 +8,11 @@ body{
 }
 
 .container{
-  padding : 0 30px;
+  // padding : 0 30px;
   display : flex;
+  margin: auto;
+  max-width: 90%;
+  position: relative;
 }
 
 .h1-section {
@@ -17,7 +20,8 @@ body{
 }
 
 p {
-  font-size : 1.5em;
+  // font-size : 1.5em;
+  font-size : 1em;
 }
 
 

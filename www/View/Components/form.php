@@ -1,28 +1,43 @@
-
-
-
 <form method="<?= $config["config"]["method"]??"GET" ?>" action="<?= $config["config"]["action"]??"" ?>">
+	<div>
 
+	<?php 
+		$firstElem=array_slice($config["inputs"], 0, 2);
+		$lastElem=array_slice($config["inputs"], 2, 4);
+	?>
+	
+	<?php 	
+		foreach ($firstElem as $name => $configInput):?>
+		<div>
+			<p><?= $configInput["label"] ?>
+			<input name="<?= $name ?>" 
+					class="<?= $configInput["class"]??"" ?>"
+					type="<?= $configInput["type"]??"text" ?>"
 
+					<?php if(!empty($configInput["required"])): ?>
+						required="required"
+					<?php endif;?>
 
-	<?php foreach ($config["inputs"] as $name => $configInput):?>
-
-		<input name="<?= $name ?>" 
-				placeholder="<?= $configInput["placeholder"]??"" ?>"
-				class="<?= $configInput["class"]??"" ?>"
-				type="<?= $configInput["type"]??"text" ?>"
-
-				<?php if(!empty($configInput["required"])): ?>
-					required="required"
-				<?php endif;?>
-
-			><br>
-
+			></p>
+			</div>
 	<?php endforeach;?>
+	</div>
 
+	<?php 	
+		foreach ($lastElem as $name => $configInput):?>
+			<p><?= $configInput["label"] ?></p>
+			<input name="<?= $name ?>" 
+					class="<?= $configInput["class"]??"" ?>"
+					type="<?= $configInput["type"]??"text" ?>"
 
-	<input type="submit" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
+					<?php if(!empty($configInput["required"])): ?>
+						required="required"
+					<?php endif;?>
 
-	<input type="reset" value="<?= $config["config"]["reset"]??"Annuler" ?>">
+			>
+	<?php endforeach;?>
+	<br>
+
+	<input type="submit" class="ipt-form-btn" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
 
 </form>

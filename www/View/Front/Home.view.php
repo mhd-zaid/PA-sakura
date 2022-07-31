@@ -1,4 +1,5 @@
 
+<link rel="stylesheet" type="text/css" href="Public/src/scss/main.css">
 <!-- SECTION HERO -->
 <section id="hero">
     <div class="container">
@@ -8,7 +9,6 @@
             <button class ="cta-button cta-button--white"><p>Créer votre site web</p></button>
         </div>
        <img src="Public/img/Front/image_JOJO.svg" alt="logo-hero">
-	<link rel="stylesheet" type="text/css" href="Public/src/scss/main.css">
     </div>
 </section>
 
@@ -16,12 +16,12 @@
 <section id="about-us">
     <div class="container">
         <div>
-           <!-- <img src="Public/img/Front/S.png" alt="S" width = 100px height = 100px> -->
-           <div>
-           <p>Sakura, inspiré des cerisiers ornementaux du Japon, est un CMS (Content Management System) permettant de créer des sites internets responsives (site vitrine, blog et portfolio) dans un environnement 100% manga. Ce CMS est gratuit.</p>
-           </div>
+            <!-- <img src="Public/img/Front/S.png" alt="S" width = 100px height = 100px> -->
+            <div>        
+                <p>Sakura, inspiré des cerisiers ornementaux du Japon, est un CMS (Content Management System) permettant de créer des sites internets responsives (site vitrine, blog et portfolio) dans un environnement 100% manga. Ce CMS est gratuit.</p>
+            </div>
         </div>
-       <img src="Public/img/Front/Conan.svg" alt="logo-hero">
+        <img src="Public/img/Front/Conan.svg" alt="logo-hero">
     </div>
 </section>
 
@@ -47,7 +47,7 @@
                 japonaise.</p>
             </div>
         </article>
-
+        
         <article class="feature">
             <div>
                 <img class="features-img" src="Public/img/Front/img_gestion_page_article.webp" alt="Gestion des pages et articles">
@@ -55,7 +55,7 @@
                 <p>Sakura facilite la gestion de vos contenus. 
                 Vous pouvez créer des articles, des 
                 pages, insérer des médias et les publier 
-                en un clic.</p>
+                en un simple clic.</p>
             </div>
         </article>
 
@@ -74,9 +74,15 @@
 </section>
 
 <!-- SECTION CONTACT -->
-<section id="contact">
+<section id="form-contact">
     <div class="container">
-    
+        <div>
+            <h1>Contact</h1>
+            <p>Une remarque ? une suggestion ? N’hésitez-pas à m’écrire</p><br>
+            <?php 
+                $this->includeComponent("form-login", $configForm);
+            ?><p>
+        </div>
     </div>
 </section>
 

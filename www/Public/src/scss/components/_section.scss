@@ -1,4 +1,5 @@
 main {
+    
     & #hero{
         background-color: $blue;
         display: flex;
@@ -9,60 +10,67 @@ main {
             justify-content: space-between;      
         }
     }
+
     & #about-us{
         background-color: $pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         & .container {
-            justify-content: center;
-            align-items : center;
+            align-items: center;
+            justify-content: space-between;    
+            & div{
+                background-color: $purple;
+                // width : 37.813em;
+                height : 38.125em;
+                padding: 0 30px;
+                display : flex;
+                flex-direction : column;
+                justify-content : center;
+                text-align : center;
+                // font-size: 1.5em;
+                & p{
+                    color : $white;
+                    font-size : 1.5em;
+                }
+            }  
         }
-        & .container div {
-             background-color : $purple;
-             width : 37.813em;
-             height : 38.125em;
-             display : flex;
-             flex-direction : column;
-             justify-content : center;
-        }
-        & div {
-            text-align : center;
-            padding : 0 30px;
-            & p{
-                color : $white;
-            }
-        }
-        
     }
+
     & #features{
         background-color: $white;
         padding-bottom: 50px;
-        & p{
-            margin: 1px;
-            font-size: 1em;
-        }
-        & article{
-            display: flex;
-            justify-content: center;
-            padding-top: 50px;
-            width: 50%;
-        }
-        & article>div{
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        & article img{
-            height: 180px;
-            width: 400px;
-            object-fit: cover;
-        }
+        display: flex;
+        justify-content: center;
+        align-items: center;
         & .container{
             justify-content: space-around;
             flex-wrap: wrap;
+            & article{
+                // display: flex;
+                // justify-content: center;
+                display : flex;
+                justify-content : center;
+                padding-top: 50px;
+                // width: 50%;
+                & div{
+                    width: 500px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align : center;
+                }
+                & img{
+                    height: 280px;
+                    width: 500px;
+                    object-fit: cover;
+                }
+                & p{
+                    margin: 1px;
+                    font-size: 1em;
+                }
+            }
         }
     }
-    & #contact{
-        padding-top: 50px;
-        background-color: $purple;
-    }
+    
 }

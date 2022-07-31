@@ -1,0 +1,25 @@
+form{
+    & .ipt-form-entry{
+        outline: none;
+        display: block;
+        width: 100%;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 10px 20px;
+        font-size: inherit;
+        line-height: inherit;
+    }
+    & input[type=submit]{
+        width: 100%;
+        background-color: $pink;
+        border-radius: 0%;
+        border: 0px;
+        color: $white;
+        padding: 15px;
+        font-weight: bold;
+    }
+    & input[type=textarea]{
+        word-wrap: break-word;
+        height: 100px;
+    }
+}
