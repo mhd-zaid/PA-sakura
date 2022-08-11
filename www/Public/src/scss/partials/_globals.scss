@@ -7,21 +7,31 @@ body{
   font-family: $font1;
 }
 
-.container{
+/* .container{
   // padding : 0 30px;
   display : flex;
-  margin: auto;
-  max-width: 90%;
-  position: relative;
-}
+
+ 
+} */
 
 .h1-section {
   font-size: 4em;
 }
 
+.h1-section-features {
+  font-size: 2em;
+}
+
 p {
   // font-size : 1.5em;
-  font-size : 1em;
+  font-size : 1.5em;
 }
+
+.link-article {
+  font-size: 1.5em;
+  color: $black;
+  font-weight: bold;
+}
+
 
 

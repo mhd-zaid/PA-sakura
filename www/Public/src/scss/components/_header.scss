@@ -1,12 +1,17 @@
-#site-header .container {
+#site-header {
+    height: 7.188em;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+& .container {
+    display: flex;
+    width: 90%;
     background-color: $white;
     justify-content: space-between;
-    
-}
 
-
-#site-header .container nav{
+    & nav{
     display: flex;
     align-items: center;
     & ul{
@@ -21,8 +26,17 @@
             display: block;
             text-decoration: none;
             color: $black;
+            font-size: 1.5em;
 
         }
+
+        & li a:hover {
+            border-bottom: 7px solid $pink;
+        }
+    
     }
 } 
 
+}
+
+}

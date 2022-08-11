@@ -1,7 +1,9 @@
 .cta-button {
-    width : 21em;
-    height : 4.875em;
+    width : 15em;
+    height : 4em;
     border : none;
+    font-size: 1.5em;
+    font-weight: bold;
 
     &--white {
         background-color : $white;
@@ -9,6 +11,7 @@
 
     &--pink {
         background-color : $pink;
+        color: $white;
     }
 }
 
