@@ -184,21 +184,24 @@ main #about-us {
   padding-top: 20em;
   padding-bottom: 20em; }
   main #about-us .container {
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-between; }
     main #about-us .container div:first-child {
       background-color: #562135;
       color: #FFF;
-      width: 50.5em;
+      width: 40.5em;
+      height: 50em;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       text-align: center;
       padding: 2em; }
+      main #about-us .container div:first-child div:first-child {
+        height: 20em; }
       main #about-us .container div:first-child img {
-        width: 30em; }
+        width: 25em; }
       main #about-us .container div:first-child p {
         font-weight: bold; }
 
@@ -217,8 +220,8 @@ main #features {
       display: flex;
       margin-bottom: 10em; }
       main #features .container article img {
-        width: 40em;
-        height: 33em;
+        width: 39em;
+        height: 32em;
         border: 1px solid #000; }
 
 .cta-button {

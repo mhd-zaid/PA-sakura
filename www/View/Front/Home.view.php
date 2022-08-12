@@ -7,7 +7,7 @@
         <div class="intro">
             <h1 class="h1-section">Créez votre site<br>personalisé avec <span style="color :#FF66C4">Sakura<span></h1>            
             <p>Intégrez vos influences de l’animation japonaise !</p>
-            <button class ="cta-button cta-button--white">Créer votre site web</button>
+            <button class ="cta-button cta-button--white">Créer votre site web</buttonpurple>
         </div>
        <img src="Public/img/Front/image_JOJO.svg" alt="logo-hero">
     </div>

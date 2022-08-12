@@ -35,23 +35,27 @@ main {
         padding-bottom: 20em;
     
     & .container {
-        width: 70%;
+        width: 80%;
         display: flex;
         justify-content: space-between;
 
     & div:first-child {
         background-color: $purple;
         color: $white;
-        width: 50.5em;
+        width: 40.5em;
+        height: 50em;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         text-align: center;
         padding: 2em;
-    & img {
-        width: 30em;
+    & div:first-child {
+        height: 20em;
     }
+   & img {
+        width: 25em;
+   }
     & p {
        font-weight: bold;
     }
@@ -77,8 +81,8 @@ main {
       
     
     & img {
-        width: 40em;
-        height: 33em;
+        width: 39em;
+        height: 32em;
         border: 1px solid $black;
     }
     }
