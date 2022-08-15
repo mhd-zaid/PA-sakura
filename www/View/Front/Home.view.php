@@ -37,7 +37,7 @@
         <article class="feature">
             <div>
                 <img class="features-img" src="Public/img/Front/responsive.jpg" alt="Responsive Design">
-                <h1 class="h1-section-features">Responsive design</h1>
+                <h1 class="h1-simple">Responsive design</h1>
                 <p>Offre une consultation confortable de votre<br>
                     site sur tous types d’appareils.</p>
             </div>
@@ -46,7 +46,7 @@
         <article class="feature">
             <div>
                 <img class="features-img" src="Public/img/Front/img_themes.webp" alt="Thèmes">
-                <h1 class="h1-section-features">Thèmes 100% mangas</h1>
+                <h1 class="h1-simple">Thèmes 100% mangas</h1>
                 <p>Découvrez une liste d’une dizaine de thèmes<br> 
                 pour votre site inspirés de l’animation<br>
                 japonaise.</p>
@@ -57,7 +57,7 @@
         <article class="feature">
             <div>
                 <img class="features-img" src="Public/img/Front/img_gestion_page_article.webp" alt="Gestion des pages et articles">
-                <h1 class="h1-section-features">Gestion des pages et articles</h1>
+                <h1 class="h1-simple">Gestion des pages et articles</h1>
                 <p>Sakura facilite la gestion de vos contenus.<br>
                 Vous pouvez créer des articles, des<br>
                 pages, insérer des médias et les publier<br>
@@ -68,7 +68,7 @@
         <article class="feature">
             <div>
                 <img class="features-img" src="Public/img/Front/img_statistiques.jpg" alt="Statistiques">
-                <h1 class="h1-section-features">Statistiques</h1>
+                <h1 class="h1-simple">Statistiques</h1>
                 <p>Possibilité de visualiser le trafic sur votre<br> 
                 site internet en temps réel, les pages<br>
                 vues, le taux de rebond ainsi que les<br>
@@ -83,7 +83,7 @@
 <section id="form-contact">
     <div class="container">
         <div>
-            <h1>Contact</h1>
+            <h1 class="h1-simple">Contact</h1>
             <p>Une remarque ? une suggestion ? N’hésitez-pas à m’écrire</p><br>
             <?php 
                 $this->includeComponent("form-login", $configForm);

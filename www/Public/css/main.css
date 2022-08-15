@@ -12,10 +12,13 @@ body {
 
  
 } */
+.container {
+  display: flex; }
+
 .h1-section {
   font-size: 4em; }
 
-.h1-section-features {
+.h1-simple {
   font-size: 2em; }
 
 p {
@@ -73,35 +76,17 @@ main #form-login {
 
 main #form-contact {
   background-color: #562135;
-  height: 100vh;
-  padding: 5vh 0;
+  height: 120vh;
+  padding: 3em 0;
   display: flex;
   align-items: center;
   justify-content: center; }
   main #form-contact .container {
     background-color: #FFF;
-    width: 60%;
-    height: 100%;
-    align-items: center; }
-    main #form-contact .container h1 {
-      letter-spacing: 2px; }
-    main #form-contact .container div {
-      margin: auto;
-      width: 80%; }
-      main #form-contact .container div > p {
-        margin: 0px; }
-
-main form {
-  word-wrap: break-word;
-  min-height: 100%; }
-  main form div {
-    display: flex;
-    text-align: start; }
-    main form div :last-child {
-      flex-direction: row-reverse; }
-    main form div p {
-      width: 40%;
-      margin-bottom: 12px; }
+    width: 50%;
+    height: 90%;
+    align-items: center;
+    justify-content: center; }
 
 .content {
   height: 100px;
@@ -113,7 +98,6 @@ main form {
   align-items: center;
   justify-content: center; }
   #site-header .container {
-    display: flex;
     width: 90%;
     background-color: #FFF;
     justify-content: space-between; }
@@ -131,8 +115,15 @@ main form {
           text-decoration: none;
           color: #000;
           font-size: 1.5em; }
-        #site-header .container nav ul li a:hover {
+        #site-header .container nav ul li > a:hover {
           border-bottom: 7px solid #FF66C4; }
+        #site-header .container nav ul li button {
+          margin-top: 0.5em;
+          border: none;
+          background-color: #FF66C4; }
+          #site-header .container nav ul li button a {
+            color: #FFF;
+            font-weight: bold; }
 
 #site-footer {
   background-color: #000;
@@ -162,7 +153,6 @@ main #hero {
   justify-content: center;
   align-items: center; }
   main #hero .container {
-    display: flex;
     justify-content: space-between;
     align-items: center;
     width: 80%; }
@@ -185,7 +175,6 @@ main #about-us {
   padding-bottom: 20em; }
   main #about-us .container {
     width: 80%;
-    display: flex;
     justify-content: space-between; }
     main #about-us .container div:first-child {
       background-color: #562135;
@@ -212,7 +201,6 @@ main #features {
   height: 150em;
   text-align: center; }
   main #features .container {
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     text-align: start; }
@@ -237,24 +225,11 @@ main #features {
     color: #FFF; }
 
 form .ipt-form-entry {
-  outline: none;
+  /*  outline: none; */
   display: block;
   width: 100%;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 10px 20px;
-  font-size: inherit;
-  line-height: inherit; }
-
-form input[type=submit] {
-  width: 100%;
-  background-color: #FF66C4;
-  border-radius: 0%;
-  border: 0px;
-  color: #FFF;
-  padding: 15px;
-  font-weight: bold; }
+  padding: 0.7em; }
 
 form input[type=textarea] {
   word-wrap: break-word;
-  height: 100px; }
+  height: 8em; }

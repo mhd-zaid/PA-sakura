@@ -252,14 +252,14 @@ class User extends DatabaseDriver
                 "inputs"=> [
                     "name"=>[
                                     "type"=>"text",
-                                    "label"=>"Nom",
+                                    "label"=>"Votre nom (obligatoire)",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
                                     "error"=>"Votre email ou mot de passe est incorrect"
                                 ],
                     "email"=>[
                                     "type"=>"email",
-                                    "label"=>"Email",
+                                    "label"=>"Votre e-mail (obligatoire)",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
                                 ],

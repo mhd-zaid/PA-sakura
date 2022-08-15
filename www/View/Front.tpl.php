@@ -15,8 +15,8 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/#about-us">Qui sommes-nous ?</a></li>
 					<li><a href="/#features">Fonctionnalités</a></li>
-					<li><a href="/#contact">Contact</a></li>
-					<li><a href="/se-connecter">Connexion</a></li>
+					<li><a href="/#form-contact">Contact</a></li>
+					<li><button><a href="/#se-connecter">Connexion</a></button></li>
 				</ul>
 			</nav>
 		</div>

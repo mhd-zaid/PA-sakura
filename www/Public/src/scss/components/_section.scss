@@ -6,7 +6,6 @@ main {
         justify-content: center;
         align-items: center;
         & .container {
-            display: flex;
             justify-content: space-between;
             align-items: center;
             width: 80%;
@@ -36,7 +35,6 @@ main {
     
     & .container {
         width: 80%;
-        display: flex;
         justify-content: space-between;
 
     & div:first-child {
@@ -70,7 +68,6 @@ main {
         height: 150em;
         text-align: center;
     & .container {
-        display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
         text-align: start;
@@ -88,5 +85,4 @@ main {
     }
     }
     }
-    
 }

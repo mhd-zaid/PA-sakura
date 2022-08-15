@@ -14,11 +14,15 @@ body{
  
 } */
 
+.container {
+  display: flex;
+}
+
 .h1-section {
   font-size: 4em;
 }
 
-.h1-section-features {
+.h1-simple{
   font-size: 2em;
 }
 
