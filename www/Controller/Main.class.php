@@ -21,7 +21,6 @@ class Main{
 	{
 		$user = new UserModel();
 		$loginForm = $user->loginForm();
-		
 
 		if( !empty($_POST) )
 		{
@@ -34,7 +33,6 @@ class Main{
 				$user->setLastname($_POST['lastname']);
 				$user->setEmail($_POST['email']);
 				$user->setPwd($_POST['pwd']);
-				$user->setAddress($_POST['address']);
 				$user->save();
 			}
 
@@ -60,8 +58,7 @@ class Main{
 				$user->setFirstname($_POST['firstname']);
 				$user->setLastname($_POST['lastname']);
 				$user->setEmail($_POST['email']);
-				$user->setPwd($_POST['pwd']);
-				$user->setAddress($_POST['address']);
+				$user->setPassword($_POST['password']);
 				$user->save();
 			}
 

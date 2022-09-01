@@ -10,8 +10,7 @@ class User extends DatabaseDriver
 	protected $firstname;
 	protected $lastname;
 	protected $email;
-    protected $pwd;
-    protected $address;
+    protected $password;
 	protected $status = 0;
 	private $date_created;
 	private $date_updated;
@@ -72,25 +71,6 @@ class User extends DatabaseDriver
         $this->lastname = mb_strtoupper(trim($lastname));
     }
 
-
-
-
-     /**
-     * @return mixed
-     */
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    /**
-     * @param mixed $address
-     */
-    public function setAddress(String $address): void
-    {
-        $this->address = mb_strtolower(trim($address));
-    }
-
     /**
      * @return mixed
      */
@@ -110,17 +90,17 @@ class User extends DatabaseDriver
     /**
      * @return mixed
      */
-    public function getPwd(): ?string
+    public function getPassword(): ?string
     {
-        return $this->pwd;
+        return $this->password;
     }
 
     /**
-     * @param mixed $pwd
+     * @param mixed $password
      */
-    public function setPwd(String $pwd): void
+    public function setPassword(String $password): void
     {
-        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
 
     }
 
@@ -193,21 +173,21 @@ class User extends DatabaseDriver
                                     "required"=>true,
                                     "error"=>"Votre email est incorrect"
                                 ],
-                    "pwd"=>[
-                                    "type"=>"Mot de passe",
+                    "password"=>[
+                                    "type"=>"password",
                                     "label"=>"Votre mot de passe",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
                                     "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
                                 ],
-                    // "pwdconfirm"=>[
-                    //                 "type"=>"password",
-                    //                 "label"=>"Confirmation",
-                    //                 "class"=>"ipt-form-entry",
-                    //                 "required"=>true,
-                    //                 "confirm"=>"pwd",
-                    //                 "error"=>"Votre mot de passe de confirmation ne correspond pas"
-                    //             ],
+                    "passwordconfirm"=>[
+                                    "type"=>"password",
+                                    "label"=>"Confirmation",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "confirm"=>"password",
+                                    "error"=>"Votre mot de passe de confirmation ne correspond pas"
+                                ],
 
                 ]
             ];
@@ -230,11 +210,12 @@ class User extends DatabaseDriver
                                     "required"=>true,
                                     "error"=>"Votre email ou mot de passe est incorrect"
                                 ],
-                    "pwd"=>[
+                    "password"=>[
                                     "type"=>"password",
                                     "label"=>"Mot de passe",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
+                                    "error"=>"Votre email ou mot de passe est incorrect"
                                 ],
                 ]
             ];
@@ -273,7 +254,5 @@ class User extends DatabaseDriver
             ];
 
     }
-
-
 
 }

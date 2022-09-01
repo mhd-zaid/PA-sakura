@@ -29,7 +29,6 @@ class User{
 				$user->setLastname($_POST['lastname']);
 				$user->setEmail($_POST['email']);
 				$user->setPwd($_POST['pwd']);
-				$user->setAddress($_POST['address']);
 				$user->save();
 			}
 
