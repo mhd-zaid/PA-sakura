@@ -21,6 +21,7 @@ class User{
 		if( !empty($_POST) )
 		{
 			$verificator = new Verificator($registerForm, $_POST);
+			
 
 			$configFormErrors = $verificator->getMsg();
 

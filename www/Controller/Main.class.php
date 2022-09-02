@@ -29,11 +29,7 @@ class Main{
 			$configFormErrors = $verificator->getMsg();
 
 			if(empty($configFormErrors)){
-				$user->setFirstname($_POST['firstname']);
-				$user->setLastname($_POST['lastname']);
-				$user->setEmail($_POST['email']);
-				$user->setPwd($_POST['pwd']);
-				$user->save();
+				$user->checkLogin($_POST['email'],password_hash($_POST['password'], PASSWORD_DEFAULT));
 			}
 
 		}
