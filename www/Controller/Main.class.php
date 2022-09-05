@@ -29,10 +29,11 @@ class Main{
 			$configFormErrors = $verificator->getMsg();
 
 			if(empty($configFormErrors)){
-				$user->checkLogin($_POST['email'],password_hash($_POST['password'], PASSWORD_DEFAULT));
+				$user->checkLogin($_POST['email'],$_POST['password']);
 			}
 
 		}
+		
 		$v = new View("Auth/Login", "Front");
 		$v->assign("configForm", $loginForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
@@ -62,5 +63,11 @@ class Main{
 		$v = new View("Auth/Register", "Front");
 		$v->assign("configForm", $registerForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
+	}
+
+	public function logout(){
+		session_start();
+		session_destroy();
+		header("Location /");
 	}
 }

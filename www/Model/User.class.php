@@ -257,9 +257,22 @@ class User extends DatabaseDriver
 
     public function checkLogin(String $email, String $pwd): void
     {
-        $sql = "SELECT * FROM $this->table WHERE email = '$email' AND password = '$pwd'";
-        $queryPrepared = $this->pdo->query($sql);
-        print_r($queryPrepared->fetchAll());
+        $sql = "SELECT * FROM $this->table WHERE email = '$email'";
+        $result = $this->pdo->query($sql);
+        if($result->rowCount() > 0){
+            $data = $result->fetch();
+            if(password_verify($pwd,$data['Password'])){
+                session_start();
+                $_SESSION['email'] = $data['Email'];
+                $_SESSION['firstname'] = $data['Firstname'];
+                $_SESSION['lastname'] = $data['Lastname'];
+                $_SESSION['statut'] = $data['Statut'];
+                header("Location: /tableau-de-bord");
+                die();
+            }else{
+                print_r("incorrect");
+            }
+        }
     }
 
 }

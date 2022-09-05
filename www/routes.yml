@@ -8,6 +8,9 @@
   controller: Main
   action: login
 
+/se-deconnecter:
+  controller: Main
+  action: logout
 /s-inscrire:
   controller: Main
   action: register

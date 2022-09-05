@@ -50,7 +50,12 @@ class User{
 
 	public function edit(): void
 	{
-		echo "Afficher edit user";
+		session_start();
+		if(!isset($_SESSION['email'])){
+			header("Location: /se-connecter");
+		}else{
+			echo "Afficher edit user";
+		}
 	}
 
 
@@ -58,7 +63,12 @@ class User{
 
 	public function list(): void
 	{
-		$v = new View("User/List", "Back");
+		session_start();
+		if(!isset($_SESSION['email'])){
+			header("Location: /se-connecter");
+		}else{
+			$v = new View("User/List", "Back");
+		}
 	}
 
 }

@@ -5,7 +5,6 @@
             <h1>Connectez vous à votre compte</h1><br>
             <?php 
                 $this->includeComponent("form-login", $configForm);
-                print_r($configFormErrors)
             ?>
             <div>
                 <p><a href="">Mot de passe oublié ?</a></p>
