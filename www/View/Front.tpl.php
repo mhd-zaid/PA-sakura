@@ -31,7 +31,29 @@
 
 	<footer id="site-footer">
 		<div class="container">
-		</div>
+				<div>
+					<div>
+						<a href="https://facebook.com" target="_blank"><img src="../Public/img/Front/icon_facebook.svg" alt=""></a>
+					</div>
+					<div>
+						<a href="https://instagram.com" target="_blank"><img src="../Public/img/Front/icon_instagram.svg" alt=""></a>
+					</div>
+					<div>
+						<a href="https://twitter.com" target="_blank"><img src="../Public/img/Front/icon_twitter.svg" alt=""></a>
+					</div>
+				</div>
+				<nav>
+				<ul>
+					<li><a href="/#hero">Home</a></li>
+					<li><a href="/#about-us">Qui sommes-nous ?</a></li>
+					<li><a href="/#features">Fonctionnalités</a></li>
+					<li><a href="/#form-contact">Contact</a></li>
+					<li><a href="#">Mentions légales</a></li>
+				</ul>
+			</nav>
+			<p>Sakura © 2022</p>
+			</div>
+			
 	</footer>
 
 </body>
