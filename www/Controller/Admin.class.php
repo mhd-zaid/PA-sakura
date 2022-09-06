@@ -12,7 +12,7 @@ class Admin{
 		if(!isset($_SESSION['email'])){
 			header("Location: /se-connecter");
 		}else{
-
+			print_r($_SESSION);
 			$v = new View("Dashboard/Home");
 		}
 	}

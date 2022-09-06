@@ -266,7 +266,12 @@ class User extends DatabaseDriver
                 $_SESSION['email'] = $data['Email'];
                 $_SESSION['firstname'] = $data['Firstname'];
                 $_SESSION['lastname'] = $data['Lastname'];
-                $_SESSION['statut'] = $data['Statut'];
+                $_SESSION['status'] = $data['Status'];
+                $header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
+                $playload = base64_encode(json_encode($_SESSION));
+                $secret = base64_encode('Za1234');
+                $signature = hash_hmac('sha256',$header.".".$playload,$secret);
+                setcookie("JWT",$header.".".$playload.".".$signature);
                 header("Location: /tableau-de-bord");
                 die();
             }else{
