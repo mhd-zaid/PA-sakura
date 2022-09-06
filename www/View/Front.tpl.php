@@ -12,13 +12,14 @@
 			<a href="/" id="logo-image"><img src="Public/img/Front/Logo.svg" alt="Sakura"></a>
 			<nav id="main-nav">
 				<ul>
-					<li><a href="/">Home</a></li>
+					<li><a href="/#hero">Home</a></li>
 					<li><a href="/#about-us">Qui sommes-nous ?</a></li>
 					<li><a href="/#features">Fonctionnalités</a></li>
 					<li><a href="/#form-contact">Contact</a></li>
 					<li><button><a href="/#se-connecter">Connexion</a></button></li>
 				</ul>
 			</nav>
+			<button id="menu-button"></button>
 		</div>
 	</header>
 
@@ -30,17 +31,6 @@
 
 	<footer id="site-footer">
 		<div class="container">
-			<div>
-				<div>
-					<a href="#"><img src="/Public/img/Front/icon_facebook.svg" alt="icon facebook"></a>
-				</div>
-				<div>
-					<a href="#"><img src="/Public/img/Front/icon_instagram.svg" alt="icon instagram"></a>
-				</div>
-				<div>
-					<a href="#"><img src="/Public/img/Front/icon_twitter.svg" alt="ucin twitter"></a>
-				</div>
-			</div>
 		</div>
 	</footer>
 

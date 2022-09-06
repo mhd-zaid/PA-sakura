@@ -9,7 +9,7 @@
             <p>Intégrez vos influences de l’animation japonaise !</p>
             <button class ="cta-button cta-button--white">Créer votre site web</buttonpurple>
         </div>
-       <img src="Public/img/Front/image_JOJO.svg" alt="logo-hero">
+       <img src="Public/img/Front/image_JOJO.svg" alt="logo-hero" class="jotaro">
     </div>
 </section>
 
@@ -25,7 +25,7 @@
             </p>
         </div>
         <div>
-            <img src="../../Public/img/Front/Conan.svg" alt="">
+            <img src="../../Public/img/Front/Conan.svg" alt="" class="conan">
         </div>
     </div>
 </section>

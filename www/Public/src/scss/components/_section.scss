@@ -1,88 +1,344 @@
-main { 
-    & #hero{
-        background-color: $blue;
-        height: 60em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        & .container {
-            justify-content: space-between;
+@media all and (max-device-width: 480px) {
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            width: 80%;
-            
-        & .intro {
+            & .container {
+                justify-content: space-between;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            & h1 {
+                margin-bottom: 0.2em;
+                font-size: 3.5em; // ADD media
+            }
+            & p {
+                margin-bottom: 2em;
+            }   
+            }
+            & .jotaro {
+                height: 25em;
+            }
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 40.5em;
+            height: 50em;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        & h1 {
-            margin-bottom: 0.2em;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 20em;
         }
+       & img {
+            width: 25em;
+            
+       }
         & p {
-            margin-bottom: 2em;
-        }   
+           font-weight: bold;
         }
         }
-    }
+        .conan {
+            display: none;
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $white;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+        & .container {
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: start;
+        
+        & article {
+            display: flex;
+            margin-bottom: 10em;
+          
+        
+        & img {
+            width: 39em;
+            height: 32em;
+            border: 1px solid $black;
+        }
+        }
+        }
 
-    & #about-us{
-        background-color: $pink;
-        justify-content: center;
-        align-items: center;   
-        height: 70em;
-        display: flex;
-        padding-top: 20em;
-        padding-bottom: 20em;
-    
-    & .container {
-        width: 80%;
-        justify-content: space-between;
+        & button {
+            align-self: center;
+        }
+        }
 
-    & div:first-child {
-        background-color: $purple;
-        color: $white;
-        width: 40.5em;
-        height: 50em;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-        padding: 2em;
-    & div:first-child {
-        height: 20em;
+        & #form-contact {
+            height: 80em;
+            
+            & .container {
+                width: auto;
+                padding: 5em;
+            }
+        }
     }
-   & img {
-        width: 25em;
-   }
-    & p {
-       font-weight: bold;
-    }
-    }
-    }
-           
-    }
-    & #features{
-        background-color: $white;
-        padding-top: 10em;
-        padding-bottom: 10em;
-        height: 150em;
-        text-align: center;
-    & .container {
-        flex-wrap: wrap;
-        justify-content: space-around;
-        text-align: start;
-    
-    & article {
-        display: flex;
-        margin-bottom: 10em;
-      
-    
-    & img {
-        width: 39em;
-        height: 32em;
-        border: 1px solid $black;
-    }
-    }
-    }
-    }
+   
 }
+
+@media all and (min-device-width: 481px) and (max-device-width: 1440px){
+
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & .container {
+                justify-content: space-between;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            & h1 {
+                margin-bottom: 0.2em;
+                font-size: 3.5em; // ADD media
+            }
+            & p {
+                margin-bottom: 2em;
+            }   
+            }
+            & .jotaro {
+                height: 25em;
+            }
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 40.5em;
+            height: 50em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 20em;
+        }
+       & img {
+            width: 25em;
+            
+       }
+        & p {
+           font-weight: bold;
+        }
+        }
+        .conan {
+            display: none;
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $white;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+        & .container {
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: start;
+        
+        & article {
+            display: flex;
+            margin-bottom: 10em;
+          
+        
+        & img {
+            width: 39em;
+            height: 32em;
+            border: 1px solid $black;
+        }
+        }
+        }
+
+        & button {
+            align-self: center;
+        }
+        }
+
+        & #form-contact {
+            height: 80em;
+            
+            & .container {
+                width: auto;
+                padding: 5em;
+            }
+        }
+    }
+   
+   
+}
+
+@media all and (min-device-width: 1281px) {
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & .container {
+                justify-content: space-between;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            & h1 {
+                margin-bottom: 0.2em;
+            }
+            & p {
+                margin-bottom: 2em;
+            }   
+            }
+
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 40.5em;
+            height: 50em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 20em;
+        }
+       & img {
+            width: 25em;
+            
+       }
+        & p {
+           font-weight: bold;
+        }
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: $white;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+        & .container {
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: start;
+        
+        & article {
+            display: flex;
+            margin-bottom: 10em;
+          
+        
+        & img {
+            width: 39em;
+            height: 32em;
+            border: 1px solid $black;
+        }
+        }
+        }
+
+        & button {
+            align-self: center;
+        }
+        }
+
+        & #form-contact {
+            height: 80em;
+            
+            & .container {
+                width: auto;
+                padding: 5em;
+            }
+        }
+    }
+   
+}
+

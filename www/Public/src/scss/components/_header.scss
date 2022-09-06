@@ -1,15 +1,17 @@
 #site-header {
-    height: 7.188em;
-    display: flex;
+    height: 7em;
     align-items: center;
     justify-content: center;
-   
-  
+    position: fixed;
+    width: 100%;
+
 
 & .container {
-    width: 90%;
+    height: 7em;
+    width: 100%;
     background-color: $white;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 
     & nav{
     display: flex;
@@ -51,4 +53,10 @@
 
 }
 
+@media screen and (max-device-width: 1280px) {
+    #main-nav {
+        display: none;
+    }
+}
+    
 }

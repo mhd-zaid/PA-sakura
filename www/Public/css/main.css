@@ -93,14 +93,17 @@ main #form-contact {
   width: 100%; }
 
 #site-header {
-  height: 7.188em;
-  display: flex;
+  height: 7em;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  position: fixed;
+  width: 100%; }
   #site-header .container {
-    width: 90%;
+    height: 7em;
+    width: 100%;
     background-color: #FFF;
-    justify-content: space-between; }
+    justify-content: space-around;
+    align-items: center; }
     #site-header .container nav {
       display: flex;
       align-items: center; }
@@ -124,93 +127,245 @@ main #form-contact {
           #site-header .container nav ul li button a {
             color: #FFF;
             font-weight: bold; }
+  @media screen and (max-device-width: 1280px) {
+    #site-header #main-nav {
+      display: none; } }
 
 #site-footer {
   background-color: #000;
-  height: 100px; }
-  #site-footer .container {
-    height: 100%;
-    justify-content: flex-end; }
-    #site-footer .container div {
-      width: 250px;
-      display: flex;
+  height: 6.25em; }
+
+@media all and (max-device-width: 480px) {
+  main #hero {
+    width: auto;
+    background-color: #32F4FF;
+    height: 60em;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    main #hero .container {
       justify-content: space-between;
-      align-items: center; }
-      #site-footer .container div div {
-        background-color: #FFF;
-        height: 60px;
-        width: 60px;
-        border-radius: 20%;
-        justify-content: center; }
-        #site-footer .container div div img {
-          height: 50px;
-          width: 50px; }
-
-main #hero {
-  background-color: #32F4FF;
-  height: 60em;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-  main #hero .container {
-    justify-content: space-between;
-    align-items: center;
-    width: 80%; }
-    main #hero .container .intro {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; }
-      main #hero .container .intro h1 {
-        margin-bottom: 0.2em; }
-      main #hero .container .intro p {
-        margin-bottom: 2em; }
-
-main #about-us {
-  background-color: #FF66C4;
-  justify-content: center;
-  align-items: center;
-  height: 70em;
-  display: flex;
-  padding-top: 20em;
-  padding-bottom: 20em; }
-  main #about-us .container {
-    width: 80%;
-    justify-content: space-between; }
-    main #about-us .container div:first-child {
-      background-color: #562135;
-      color: #FFF;
-      width: 40.5em;
-      height: 50em;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
-      text-align: center;
-      padding: 2em; }
-      main #about-us .container div:first-child div:first-child {
-        height: 20em; }
-      main #about-us .container div:first-child img {
-        width: 25em; }
-      main #about-us .container div:first-child p {
-        font-weight: bold; }
+      width: 80%; }
+      main #hero .container .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; }
+        main #hero .container .intro h1 {
+          margin-bottom: 0.2em;
+          font-size: 3.5em; }
+        main #hero .container .intro p {
+          margin-bottom: 2em; }
+      main #hero .container .jotaro {
+        height: 25em; }
+  main #about-us {
+    background-color: #FF66C4;
+    justify-content: center;
+    align-items: center;
+    height: 70em;
+    display: flex;
+    padding-top: 20em;
+    padding-bottom: 20em; }
+    main #about-us .container {
+      justify-content: center; }
+      main #about-us .container div:first-child {
+        background-color: #562135;
+        color: #FFF;
+        width: 40.5em;
+        height: 50em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        padding: 2em; }
+        main #about-us .container div:first-child div:first-child {
+          height: 20em; }
+        main #about-us .container div:first-child img {
+          width: 25em; }
+        main #about-us .container div:first-child p {
+          font-weight: bold; }
+      main #about-us .container .conan {
+        display: none; }
+  main #features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF;
+    padding-top: 10em;
+    padding-bottom: 10em;
+    height: fit-content; }
+    main #features .container {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: start; }
+      main #features .container article {
+        display: flex;
+        margin-bottom: 10em; }
+        main #features .container article img {
+          width: 39em;
+          height: 32em;
+          border: 1px solid #000; }
+    main #features button {
+      align-self: center; }
+  main #form-contact {
+    height: 80em; }
+    main #form-contact .container {
+      width: auto;
+      padding: 5em; } }
 
-main #features {
-  background-color: #FFF;
-  padding-top: 10em;
-  padding-bottom: 10em;
-  height: 150em;
-  text-align: center; }
-  main #features .container {
-    flex-wrap: wrap;
-    justify-content: space-around;
-    text-align: start; }
-    main #features .container article {
-      display: flex;
-      margin-bottom: 10em; }
-      main #features .container article img {
-        width: 39em;
-        height: 32em;
-        border: 1px solid #000; }
+@media all and (min-device-width: 481px) and (max-device-width: 1440px) {
+  main #hero {
+    width: auto;
+    background-color: #32F4FF;
+    height: 60em;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    main #hero .container {
+      justify-content: space-between;
+      align-items: center;
+      width: 80%; }
+      main #hero .container .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; }
+        main #hero .container .intro h1 {
+          margin-bottom: 0.2em;
+          font-size: 3.5em; }
+        main #hero .container .intro p {
+          margin-bottom: 2em; }
+      main #hero .container .jotaro {
+        height: 25em; }
+  main #about-us {
+    background-color: #FF66C4;
+    justify-content: center;
+    align-items: center;
+    height: 70em;
+    display: flex;
+    padding-top: 20em;
+    padding-bottom: 20em; }
+    main #about-us .container {
+      justify-content: center; }
+      main #about-us .container div:first-child {
+        background-color: #562135;
+        color: #FFF;
+        width: 40.5em;
+        height: 50em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        padding: 2em; }
+        main #about-us .container div:first-child div:first-child {
+          height: 20em; }
+        main #about-us .container div:first-child img {
+          width: 25em; }
+        main #about-us .container div:first-child p {
+          font-weight: bold; }
+      main #about-us .container .conan {
+        display: none; }
+  main #features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF;
+    padding-top: 10em;
+    padding-bottom: 10em;
+    height: fit-content; }
+    main #features .container {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: start; }
+      main #features .container article {
+        display: flex;
+        margin-bottom: 10em; }
+        main #features .container article img {
+          width: 39em;
+          height: 32em;
+          border: 1px solid #000; }
+    main #features button {
+      align-self: center; }
+  main #form-contact {
+    height: 80em; }
+    main #form-contact .container {
+      width: auto;
+      padding: 5em; } }
+
+@media all and (min-device-width: 1281px) {
+  main #hero {
+    width: auto;
+    background-color: #32F4FF;
+    height: 60em;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    main #hero .container {
+      justify-content: space-between;
+      align-items: center;
+      width: 80%; }
+      main #hero .container .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; }
+        main #hero .container .intro h1 {
+          margin-bottom: 0.2em; }
+        main #hero .container .intro p {
+          margin-bottom: 2em; }
+  main #about-us {
+    background-color: #FF66C4;
+    justify-content: center;
+    align-items: center;
+    height: 70em;
+    display: flex;
+    padding-top: 20em;
+    padding-bottom: 20em; }
+    main #about-us .container {
+      justify-content: center; }
+      main #about-us .container div:first-child {
+        background-color: #562135;
+        color: #FFF;
+        width: 40.5em;
+        height: 50em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        padding: 2em; }
+        main #about-us .container div:first-child div:first-child {
+          height: 20em; }
+        main #about-us .container div:first-child img {
+          width: 25em; }
+        main #about-us .container div:first-child p {
+          font-weight: bold; }
+  main #features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FFF;
+    padding-top: 10em;
+    padding-bottom: 10em;
+    height: fit-content; }
+    main #features .container {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: start; }
+      main #features .container article {
+        display: flex;
+        margin-bottom: 10em; }
+        main #features .container article img {
+          width: 39em;
+          height: 32em;
+          border: 1px solid #000; }
+    main #features button {
+      align-self: center; }
+  main #form-contact {
+    height: 80em; }
+    main #form-contact .container {
+      width: auto;
+      padding: 5em; } }
 
 .cta-button {
   width: 15em;
@@ -223,6 +378,26 @@ main #features {
   .cta-button--pink {
     background-color: #FF66C4;
     color: #FFF; }
+
+@media screen and (max-device-width: 1280px) {
+  #menu-button {
+    z-index: 10;
+    border: none;
+    background-color: #FFF; }
+  #menu-button::before {
+    content: "";
+    display: block;
+    width: 5em;
+    height: 30px;
+    background-image: url("../img/Front/menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer; } }
+
+@media screen and (min-device-width: 1281px) {
+  #menu-button {
+    display: none; } }
 
 form .ipt-form-entry {
   /*  outline: none; */
