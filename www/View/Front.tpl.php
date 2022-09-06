@@ -13,7 +13,7 @@
 			<nav id="main-nav">
 				<ul>
 					<li><a href="/#hero">Home</a></li>
-					<li><a href="/#about-us">Qui sommes-nous ?</a></li>
+					<li><a href="#about-us">Qui sommes-nous ?</a></li>
 					<li><a href="/#features">Fonctionnalités</a></li>
 					<li><a href="/#form-contact">Contact</a></li>
 					<li><button><a href="/#se-connecter">Connexion</a></button></li>
