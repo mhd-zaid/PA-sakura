@@ -1,5 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="Public/css/main.css">
+<link rel="stylesheet" type="text/css" href="../../Public/css/main.css">
 
 <!-- SECTION HERO -->
 <section id="hero">

@@ -120,7 +120,8 @@ main #form-contact {
           display: block;
           text-decoration: none;
           color: #000;
-          font-size: 1.5em; }
+          font-size: 1.5em;
+          border-bottom: 7px solid transparent; }
         #site-header .container nav ul li > a:hover {
           border-bottom: 7px solid #FF66C4; }
         #site-header .container nav ul li button {
@@ -130,51 +131,173 @@ main #form-contact {
           #site-header .container nav ul li button a {
             color: #FFF;
             font-weight: bold; }
-  @media screen and (max-device-width: 1280px) {
+  @media screen and (max-width: 1280px) {
     #site-header #main-nav {
       display: none; } }
 
-#site-footer {
-  background-color: #FFF;
-  height: 25em;
-  padding: 3em; }
-  #site-footer .container {
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-    width: 100%; }
-    #site-footer .container div {
-      display: flex;
-      justify-content: space-around;
-      width: 40%; }
-  #site-footer nav {
-    display: flex;
-    justify-content: center;
-    width: 100%; }
-    #site-footer nav ul {
-      display: flex;
-      justify-content: space-around;
-      width: 60%;
-      list-style: none; }
-      #site-footer nav ul li a {
-        text-decoration: none;
-        font-size: 1.5em;
-        color: gray; }
-  #site-footer p {
-    color: gray; }
-
-@media screen and (max-device-width: 1440px) {
+@media screen and (max-width: 1000px) {
   #site-footer {
-    height: 50em; }
+    background-color: #FFF;
+    height: 30em;
+    padding: 3em; }
+    #site-footer .container {
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      width: 100%; }
+      #site-footer .container > div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%; }
+        #site-footer .container > div img {
+          width: 2em; }
     #site-footer nav {
-      height: 50%; }
-      #site-footer nav ul {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around; } }
+      text-align: center; }
+      #site-footer nav a {
+        text-decoration: none;
+        color: gray;
+        font-size: 0.75em; }
+  .copyright {
+    color: gray;
+    font-size: 1.1em; } }
 
-@media all and (max-device-width: 480px) {
+@media screen and (min-width: 1001px) {
+  #site-footer {
+    background-color: #FFF;
+    height: 25em;
+    padding: 3em; }
+    #site-footer .container {
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      width: 100%; }
+      #site-footer .container > div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%; }
+        #site-footer .container > div img {
+          width: 2em; }
+    #site-footer nav {
+      text-align: center;
+      display: flex;
+      justify-content: space-around;
+      width: 90%; }
+      #site-footer nav a {
+        text-decoration: none;
+        color: gray;
+        font-size: 0.8em; }
+  .copyright {
+    color: gray;
+    font-size: 1.1em; } }
+
+@media screen and (max-width: 1000px) {
+  main #hero {
+    width: auto;
+    background-color: #32F4FF;
+    height: 60em;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    main #hero .container {
+      justify-content: center;
+      align-items: center;
+      width: 80%; }
+      main #hero .container .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center; }
+        main #hero .container .intro h1 {
+          margin-bottom: 0.2em;
+          font-size: 3.5em; }
+        main #hero .container .intro p {
+          margin-bottom: 2em; }
+        main #hero .container .intro button {
+          align-self: center;
+          width: 15.5em;
+          height: 4em;
+          font-size: 1em; }
+      main #hero .container .jotaro {
+        display: none; }
+  main #about-us {
+    background-color: #FF66C4;
+    justify-content: center;
+    align-items: center;
+    height: 70em;
+    display: flex;
+    padding-top: 20em;
+    padding-bottom: 20em; }
+    main #about-us .container {
+      justify-content: center; }
+      main #about-us .container div:first-child {
+        background-color: #562135;
+        color: #FFF;
+        width: 25.5em;
+        height: 40em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+        padding: 2em; }
+        main #about-us .container div:first-child div:first-child {
+          height: 15em; }
+        main #about-us .container div:first-child img {
+          width: 20em; }
+        main #about-us .container div:first-child p {
+          font-weight: bold; }
+      main #about-us .container .conan {
+        display: none; }
+  main #features {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    padding-top: 10em;
+    padding-bottom: 10em;
+    height: fit-content; }
+    main #features .container {
+      flex-wrap: wrap;
+      justify-content: space-around;
+      text-align: start; }
+      main #features .container article {
+        display: flex;
+        margin-bottom: 10em;
+        text-align: center; }
+        main #features .container article .h1-simple {
+          font-size: 1em; }
+        main #features .container article p {
+          font-size: 0.75em; }
+        main #features .container article a {
+          font-size: 1em; }
+        main #features .container article img {
+          width: 22em;
+          height: 17em;
+          border: 1px solid #000; }
+    main #features button {
+      align-self: center;
+      width: 15.5em;
+      height: 4em;
+      font-size: 1em; }
+  main #form-contact {
+    height: 60em; }
+    main #form-contact .container {
+      width: auto;
+      height: 40em;
+      padding: 3em; }
+      main #form-contact .container p {
+        font-size: 0.75em; }
+      main #form-contact .container button {
+        width: 15.5em;
+        height: 4em;
+        font-size: 1em; } }
+
+@media all and (min-width: 1001px) and (max-width: 1440px) {
   main #hero {
     width: auto;
     background-color: #32F4FF;
@@ -253,86 +376,7 @@ main #form-contact {
       width: auto;
       padding: 5em; } }
 
-@media all and (min-device-width: 481px) and (max-device-width: 1440px) {
-  main #hero {
-    width: auto;
-    background-color: #32F4FF;
-    height: 60em;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    main #hero .container {
-      justify-content: space-between;
-      align-items: center;
-      width: 80%; }
-      main #hero .container .intro {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; }
-        main #hero .container .intro h1 {
-          margin-bottom: 0.2em;
-          font-size: 3.5em; }
-        main #hero .container .intro p {
-          margin-bottom: 2em; }
-      main #hero .container .jotaro {
-        height: 25em; }
-  main #about-us {
-    background-color: #FF66C4;
-    justify-content: center;
-    align-items: center;
-    height: 70em;
-    display: flex;
-    padding-top: 20em;
-    padding-bottom: 20em; }
-    main #about-us .container {
-      justify-content: center; }
-      main #about-us .container div:first-child {
-        background-color: #562135;
-        color: #FFF;
-        width: 40.5em;
-        height: 50em;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        text-align: center;
-        padding: 2em; }
-        main #about-us .container div:first-child div:first-child {
-          height: 20em; }
-        main #about-us .container div:first-child img {
-          width: 25em; }
-        main #about-us .container div:first-child p {
-          font-weight: bold; }
-      main #about-us .container .conan {
-        display: none; }
-  main #features {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #FFF;
-    padding-top: 10em;
-    padding-bottom: 10em;
-    height: fit-content; }
-    main #features .container {
-      flex-wrap: wrap;
-      justify-content: space-around;
-      text-align: start; }
-      main #features .container article {
-        display: flex;
-        margin-bottom: 10em; }
-        main #features .container article img {
-          width: 39em;
-          height: 32em;
-          border: 1px solid #000; }
-    main #features button {
-      align-self: center; }
-  main #form-contact {
-    height: 80em; }
-    main #form-contact .container {
-      width: auto;
-      padding: 5em; } }
-
-@media all and (min-device-width: 1281px) {
+@media all and (min-width: 1441px) {
   main #hero {
     width: auto;
     background-color: #32F4FF;
@@ -418,7 +462,7 @@ main #form-contact {
     background-color: #FF66C4;
     color: #FFF; }
 
-@media screen and (max-device-width: 1280px) {
+@media screen and (max-width: 1280px) {
   #menu-button {
     z-index: 10;
     border: none;
@@ -434,9 +478,20 @@ main #form-contact {
     background-size: contain;
     cursor: pointer; } }
 
-@media screen and (min-device-width: 1281px) {
+@media screen and (min-width: 1281px) {
   #menu-button {
     display: none; } }
+
+@media screen and (max-width: 1000px) {
+  .cta-button {
+    width: 15.5em;
+    height: 4em;
+    font-size: 0.75em; }
+    .cta-button--white {
+      background-color: #FFF; }
+    .cta-button--pink {
+      background-color: #FF66C4;
+      color: #FFF; } }
 
 form .ipt-form-entry {
   /*  outline: none; */

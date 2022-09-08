@@ -29,6 +29,7 @@
             text-decoration: none;
             color: $black;
             font-size: 1.5em;
+            border-bottom: 7px solid transparent;
     
 
         }
@@ -53,7 +54,7 @@
 
 }
 
-@media screen and (max-device-width: 1280px) {
+@media screen and (max-width: 1280px) {
     #main-nav {
         display: none;
     }

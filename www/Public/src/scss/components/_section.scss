@@ -1,4 +1,159 @@
-@media all and (max-device-width: 480px) {
+
+@media screen and (max-width: 1000px) {
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & .container {
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+            & h1 {
+                margin-bottom: 0.2em;
+                font-size: 3.5em; // ADD media
+            }
+            & p {
+                margin-bottom: 2em;
+            } 
+            
+            & button {
+                align-self: center;
+                width: 15.5em;
+                height: 4em;
+                font-size: 1em;
+            }
+            }
+            & .jotaro {
+                display: none;
+            }
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 25.5em;
+            height: 40em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 15em;
+        }
+       & img {
+            width: 20em;
+            
+       }
+        & p {
+           font-weight: bold;
+         
+        }
+        }
+        .conan {
+            display: none;
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: $white;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+        & .container {
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: start;
+        
+        & article {
+            display: flex;
+            margin-bottom: 10em;
+            text-align: center;
+
+            & .h1-simple {
+                font-size: 1em;
+            }
+
+            & p {
+                font-size: 0.75em;
+            }
+
+            & a {
+                font-size: 1em;
+            }
+          
+        
+        & img {
+            width: 22em;
+            height: 17em;
+            border: 1px solid $black;
+        }
+        }
+        }
+
+        & button {
+            align-self: center;
+            width: 15.5em;
+            height: 4em;
+            font-size: 1em;
+        }
+        }
+
+        & #form-contact {
+            height: 60em;
+            
+            & .container {
+                width: auto;
+                height: 40em;
+                padding: 3em;
+
+                & p {
+                    font-size: 0.75em;
+                }
+
+                & button {
+                    width: 15.5em;
+                    height: 4em;
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+   
+}
+
+@media all and (min-width: 1001px) and (max-width: 1440px){
+
     main { 
         & #hero{
             width: auto;
@@ -112,127 +267,10 @@
         }
     }
    
-}
-
-@media all and (min-device-width: 481px) and (max-device-width: 1440px){
-
-    main { 
-        & #hero{
-            width: auto;
-            background-color: $blue;
-            height: 60em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            & .container {
-                justify-content: space-between;
-                align-items: center;
-                width: 80%;
-                
-            & .intro {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-            & h1 {
-                margin-bottom: 0.2em;
-                font-size: 3.5em; // ADD media
-            }
-            & p {
-                margin-bottom: 2em;
-            }   
-            }
-            & .jotaro {
-                height: 25em;
-            }
-            }
-        }
-    
-        & #about-us{
-            background-color: $pink;
-            justify-content: center;
-            align-items: center;   
-            height: 70em;
-            display: flex;
-            padding-top: 20em;
-            padding-bottom: 20em;
-        
-        & .container {
-            justify-content: center;
-    
-        & div:first-child {
-            background-color: $purple;
-            color: $white;
-            width: 40.5em;
-            height: 50em;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: center;
-            padding: 2em;
-        & div:first-child {
-            height: 20em;
-        }
-       & img {
-            width: 25em;
-            
-       }
-        & p {
-           font-weight: bold;
-        }
-        }
-        .conan {
-            display: none;
-        }
-        }
-        
-               
-        }
-        & #features{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: $white;
-            padding-top: 10em;
-            padding-bottom: 10em;
-            height: fit-content;
-        & .container {
-            flex-wrap: wrap;
-            justify-content: space-around;
-            text-align: start;
-        
-        & article {
-            display: flex;
-            margin-bottom: 10em;
-          
-        
-        & img {
-            width: 39em;
-            height: 32em;
-            border: 1px solid $black;
-        }
-        }
-        }
-
-        & button {
-            align-self: center;
-        }
-        }
-
-        & #form-contact {
-            height: 80em;
-            
-            & .container {
-                width: auto;
-                padding: 5em;
-            }
-        }
-    }
-   
    
 }
 
-@media all and (min-device-width: 1281px) {
+@media all and (min-width: 1441px) {
     main { 
         & #hero{
             width: auto;
