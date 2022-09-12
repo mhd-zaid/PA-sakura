@@ -32,64 +32,71 @@ p {
   color: #000;
   font-weight: bold; }
 
-main #form-register {
-  background-color: #32F4FF;
-  height: calc(100vh - 80px);
-  padding: 5vh 0;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  main #form-register .container {
-    background-color: #FFF;
-    width: 40%;
-    height: 100%; }
-    main #form-register .container h1 {
-      letter-spacing: 2px;
-      text-align: center; }
-    main #form-register .container > div {
-      width: 80%;
-      margin: auto; }
-      main #form-register .container > div div p {
-        width: 80%; }
-        main #form-register .container > div div p input {
-          margin-top: inherit; }
-      main #form-register .container > div > p {
-        text-align: center; }
-
-main #form-login {
-  background-color: #32F4FF;
-  height: calc(100vh - 80px);
-  padding: 5vh 0;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  main #form-login .container {
-    background-color: #FFF;
-    width: 40%;
-    height: 100%; }
-    main #form-login .container h1 {
-      letter-spacing: 2px;
-      text-align: center; }
-    main #form-login .container div {
-      margin: auto;
-      width: 80%; }
-      main #form-login .container div > p {
-        text-align: center;
-        margin: 0px; }
-
-main #form-contact {
+#section-contact {
   background-color: #562135;
-  height: 120vh;
-  padding: 3em 0;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: center; }
-  main #form-contact .container {
+  height: 70em; }
+  #section-contact .container {
+    justify-content: center;
     background-color: #FFF;
-    width: 50%;
-    height: 90%;
-    align-items: center;
-    justify-content: center; }
+    height: auto;
+    width: 40em;
+    padding: 5em; }
+    #section-contact .container p {
+      font-size: 1.5em; }
+    #section-contact .container button {
+      width: 15.5em;
+      height: 4em;
+      font-size: 1em; }
+
+#section-login {
+  background-color: #32F4FF;
+  display: flex;
+  height: 70em;
+  justify-content: center;
+  align-items: center; }
+  #section-login .container {
+    margin-top: 7em;
+    background-color: #FFF;
+    width: 35em;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    #section-login .container div:first-child {
+      text-align: start; }
+    #section-login .container div {
+      padding-top: 3em;
+      text-align: center; }
+      #section-login .container div p a {
+        text-decoration: none;
+        color: #562135; }
+
+#section-register {
+  background-color: #32F4FF;
+  display: flex;
+  height: 90em;
+  justify-content: center;
+  align-items: center; }
+  #section-register .container {
+    background-color: #FFF;
+    width: 35em;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    #section-register .container div h1 {
+      margin-bottom: 3em;
+      text-align: center; }
+    #section-register .container div input {
+      margin-top: 2em; }
+    #section-register .container a {
+      text-decoration: none;
+      color: #562135; }
 
 .content {
   height: 100px;
@@ -216,11 +223,8 @@ main #form-contact {
           font-size: 3.5em; }
         main #hero .container .intro p {
           margin-bottom: 2em; }
-        main #hero .container .intro button {
-          align-self: center;
-          width: 15.5em;
-          height: 4em;
-          font-size: 1em; }
+        main #hero .container .intro .cta-button {
+          align-self: center; }
       main #hero .container .jotaro {
         display: none; }
   main #about-us {
@@ -254,30 +258,30 @@ main #form-contact {
         display: none; }
   main #features {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background-color: #FFF;
+    justify-content: center;
     padding-top: 10em;
     padding-bottom: 10em;
-    height: fit-content; }
+    height: fit-content;
+    align-items: center; }
     main #features .container {
-      flex-wrap: wrap;
-      justify-content: space-around;
-      text-align: start; }
-      main #features .container article {
+      width: 100%;
+      flex-direction: column; }
+      main #features .container div {
         display: flex;
+        justify-content: space-around; }
+      main #features .container article {
         margin-bottom: 10em;
         text-align: center; }
         main #features .container article .h1-simple {
-          font-size: 1em; }
+          font-size: 1.5em; }
         main #features .container article p {
-          font-size: 0.75em; }
+          font-size: 1em; }
         main #features .container article a {
           font-size: 1em; }
         main #features .container article img {
-          width: 22em;
-          height: 17em;
+          width: 20em;
+          height: 13em;
           border: 1px solid #000; }
     main #features button {
       align-self: center;
@@ -285,17 +289,11 @@ main #form-contact {
       height: 4em;
       font-size: 1em; }
   main #form-contact {
-    height: 60em; }
-    main #form-contact .container {
-      width: auto;
-      height: 40em;
-      padding: 3em; }
-      main #form-contact .container p {
-        font-size: 0.75em; }
-      main #form-contact .container button {
-        width: 15.5em;
-        height: 4em;
-        font-size: 1em; } }
+    height: 60em;
+    background-color: #562135;
+    display: flex;
+    justify-content: center;
+    align-items: center; } }
 
 @media all and (min-width: 1001px) and (max-width: 1440px) {
   main #hero {
@@ -351,32 +349,34 @@ main #form-contact {
         display: none; }
   main #features {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     background-color: #FFF;
+    justify-content: center;
     padding-top: 10em;
     padding-bottom: 10em;
-    height: fit-content; }
+    height: fit-content;
+    align-items: center; }
     main #features .container {
-      flex-wrap: wrap;
-      justify-content: space-around;
-      text-align: start; }
-      main #features .container article {
+      width: 100%;
+      flex-direction: column; }
+      main #features .container div {
         display: flex;
+        justify-content: space-around; }
+      main #features .container article {
         margin-bottom: 10em; }
         main #features .container article img {
-          width: 39em;
-          height: 32em;
+          width: 28em;
+          height: 21em;
           border: 1px solid #000; }
     main #features button {
       align-self: center; }
   main #form-contact {
-    height: 80em; }
-    main #form-contact .container {
-      width: auto;
-      padding: 5em; } }
+    height: 80em;
+    background-color: #562135;
+    display: flex;
+    justify-content: center;
+    align-items: center; } }
 
-@media all and (min-width: 1441px) {
+@media screen and (min-width: 1441px) {
   main #hero {
     width: auto;
     background-color: #32F4FF;
@@ -425,18 +425,20 @@ main #form-contact {
           font-weight: bold; }
   main #features {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     background-color: #FFF;
+    justify-content: center;
     padding-top: 10em;
     padding-bottom: 10em;
-    height: fit-content; }
+    height: fit-content;
+    align-items: center; }
     main #features .container {
-      flex-wrap: wrap;
-      justify-content: space-around;
+      width: 100%;
+      flex-direction: column;
       text-align: start; }
-      main #features .container article {
+      main #features .container div {
         display: flex;
+        justify-content: space-around; }
+      main #features .container article {
         margin-bottom: 10em; }
         main #features .container article img {
           width: 39em;
@@ -445,10 +447,18 @@ main #form-contact {
     main #features button {
       align-self: center; }
   main #form-contact {
-    height: 80em; }
+    height: 80em;
+    background-color: #562135;
+    padding: 3em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
     main #form-contact .container {
-      width: auto;
-      padding: 5em; } }
+      height: auto;
+      padding: 5em;
+      background-color: #FFF; }
+      main #form-contact .container p {
+        font-size: 1em; } }
 
 .cta-button {
   width: 15em;
@@ -486,7 +496,7 @@ main #form-contact {
   .cta-button {
     width: 15.5em;
     height: 4em;
-    font-size: 0.75em; }
+    font-size: 1em; }
     .cta-button--white {
       background-color: #FFF; }
     .cta-button--pink {

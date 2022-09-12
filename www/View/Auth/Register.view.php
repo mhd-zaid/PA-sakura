@@ -1,6 +1,5 @@
-<link rel="stylesheet" type="text/css" href="Public/src/scss/main.css">
 <!-- SECTION HERO -->
-<section id="form-register">
+<section id="section-register">
     <div class="container">
         <div>
             <h1>Créer votre compte</h1>
@@ -9,8 +8,8 @@
                 $this->includeComponent("form", $configForm);
             ?>
             <br>
-            <p><a href="/se-connecter">Se connecter</a></p>
         </div>
+        <p><a href="/se-connecter">Se connecter</a></p>
     </div>
 </section>
 

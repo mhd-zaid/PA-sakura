@@ -38,6 +38,6 @@
 	<?php endforeach;?>
 	<br>
 
-	<input type="submit" class="ipt-form-btn" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
+	<input type="submit" class="cta-button cta-button--pink" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
 
 </form>

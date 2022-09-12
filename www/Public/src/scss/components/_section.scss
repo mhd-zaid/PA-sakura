@@ -26,11 +26,8 @@
                 margin-bottom: 2em;
             } 
             
-            & button {
+            & .cta-button {
                 align-self: center;
-                width: 15.5em;
-                height: 4em;
-                font-size: 1em;
             }
             }
             & .jotaro {
@@ -83,41 +80,45 @@
         }
         & #features{
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             background-color: $white;
+            justify-content: center;
             padding-top: 10em;
             padding-bottom: 10em;
             height: fit-content;
+            align-items: center;
         & .container {
-            flex-wrap: wrap;
-            justify-content: space-around;
-            text-align: start;
+            width: 100%;
+            flex-direction: column;
+
+            & div {
+                display: flex;
+                justify-content: space-around;
+            }
+        
         
         & article {
-            display: flex;
             margin-bottom: 10em;
             text-align: center;
 
             & .h1-simple {
-                font-size: 1em;
+                font-size: 1.5em;
             }
 
             & p {
-                font-size: 0.75em;
+                font-size: 1em;
             }
 
             & a {
                 font-size: 1em;
             }
-          
+            
         
-        & img {
-            width: 22em;
-            height: 17em;
-            border: 1px solid $black;
-        }
+        
+            & img {
+                width: 20em;
+                height: 13em;
+                border: 1px solid $black;
+            }
         }
         }
 
@@ -131,22 +132,11 @@
 
         & #form-contact {
             height: 60em;
-            
-            & .container {
-                width: auto;
-                height: 40em;
-                padding: 3em;
+            background-color: $purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-                & p {
-                    font-size: 0.75em;
-                }
-
-                & button {
-                    width: 15.5em;
-                    height: 4em;
-                    font-size: 1em;
-                }
-            }
         }
     }
    
@@ -228,25 +218,28 @@
         }
         & #features{
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             background-color: $white;
+            justify-content: center;
             padding-top: 10em;
             padding-bottom: 10em;
             height: fit-content;
+            align-items: center;
         & .container {
-            flex-wrap: wrap;
-            justify-content: space-around;
-            text-align: start;
+            width: 100%;
+            flex-direction: column;
+        
+
+            & div {
+                display: flex;
+                justify-content: space-around;
+            }
         
         & article {
-            display: flex;
             margin-bottom: 10em;
-          
         
         & img {
-            width: 39em;
-            height: 32em;
+            width: 28em;
+            height: 21em;
             border: 1px solid $black;
         }
         }
@@ -259,18 +252,18 @@
 
         & #form-contact {
             height: 80em;
-            
-            & .container {
-                width: auto;
-                padding: 5em;
-            }
+            background-color: $purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
    
    
 }
 
-@media all and (min-width: 1441px) {
+
+@media screen and (min-width: 1441px) {
     main { 
         & #hero{
             width: auto;
@@ -339,19 +332,23 @@
         }
         & #features{
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             background-color: $white;
+            justify-content: center;
             padding-top: 10em;
             padding-bottom: 10em;
             height: fit-content;
+            align-items: center;
         & .container {
-            flex-wrap: wrap;
-            justify-content: space-around;
+            width: 100%;
+            flex-direction: column;
             text-align: start;
+
+            & div {
+                display: flex;
+                justify-content: space-around;
+            }
         
         & article {
-            display: flex;
             margin-bottom: 10em;
           
         
@@ -370,13 +367,26 @@
 
         & #form-contact {
             height: 80em;
+            background-color: $purple;
+            padding: 3em 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             
             & .container {
-                width: auto;
+                height: auto;
                 padding: 5em;
+                background-color: $white;
+
+                
+                & p {
+                    font-size: 1em;
+                }
             }
         }
     }
-   
+
 }
+
+   
 

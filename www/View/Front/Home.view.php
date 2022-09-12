@@ -1,6 +1,3 @@
-
-<link rel="stylesheet" type="text/css" href="../../Public/css/main.css">
-
 <!-- SECTION HERO -->
 <section id="hero">
     <div class="container">
@@ -33,54 +30,54 @@
 <!-- SECTION FEATURES -->
 <section id="features">
     <div class="container">
-        
-        <article class="feature">
-            <div>
-                <img class="features-img" src="Public/img/Front/responsive.jpg" alt="Responsive Design">
-                <h1 class="h1-simple">Responsive design</h1>
-                <p>Offre une consultation confortable de votre<br>
-                    site sur tous types d’appareils.</p>
-            </div>
-        </article>
-
-        <article class="feature">
-            <div>
-                <img class="features-img" src="Public/img/Front/img_themes.webp" alt="Thèmes">
+        <div>
+            <article class="feature">
+                <div>
+                    <img class="features-img" src="Public/img/Front/responsive.jpg" alt="Responsive Design">
+                </div>
+                 <h1 class="h1-simple">Responsive design</h1>
+                <p>Offre une consultation de votre<br>site sur tous types d'appareils</p>
+            </article>
+                     
+            <article class="feature">
+                <div>
+                    <img class="features-img" src="Public/img/Front/img_themes.webp" alt="Thèmes">
+                </div>
                 <h1 class="h1-simple">Thèmes 100% mangas</h1>
-                <p>Découvrez une liste d’une dizaine de thèmes<br> 
-                pour votre site inspirés de l’animation<br>
+                <p>Découvrez une liste d’une dizaine<br> de thèmes
+                pour votre site inspirés de<br> l’animation
                 japonaise.</p>
-                <a href="" class="link-article">Trouvez votre thème</a>
-            </div>
-        </article>
-        
-        <article class="feature">
-            <div>
-                <img class="features-img" src="Public/img/Front/img_gestion_page_article.webp" alt="Gestion des pages et articles">
+            </article>
+        </div>
+        <div>
+            <article class="feature">
+                <div>
+                    <img class="features-img" src="Public/img/Front/img_gestion_page_article.webp" alt="Gestion des pages et articles">
+                </div>
                 <h1 class="h1-simple">Gestion des pages et articles</h1>
                 <p>Sakura facilite la gestion de vos contenus.<br>
                 Vous pouvez créer des articles, des<br>
                 pages, insérer des médias et les publier<br>
                 en un simple clic.</p>
-            </div>
-        </article>
+            </article>
 
-        <article class="feature">
-            <div>
-                <img class="features-img" src="Public/img/Front/img_statistiques.jpg" alt="Statistiques">
+            <article class="feature">
+                <div>
+                    <img class="features-img" src="Public/img/Front/img_statistiques.jpg" alt="Statistiques">
+                </div>
                 <h1 class="h1-simple">Statistiques</h1>
                 <p>Possibilité de visualiser le trafic sur votre<br> 
                 site internet en temps réel, les pages<br>
                 vues, le taux de rebond ainsi que les<br>
                 sources du trafic.</p>
-            </div>
-        </article> 
+            </article> 
+        </div>
     </div>
-    <button class="cta-button cta-button--pink">Créer votre site web</button>
+    
 </section>
 
 <!-- SECTION CONTACT -->
-<section id="form-contact">
+<section id="section-contact">
     <div class="container">
         <div>
             <h1 class="h1-simple">Contact</h1>
@@ -92,4 +89,15 @@
     </div>
 </section>
 
+
+<div>
+    <div>
+        <img src="" alt="">
+        <img src="" alt="">
+    </div>
+    <div>
+        <img src="" alt="">
+        <img src="" alt="">
+    </div>
+</div>
 
