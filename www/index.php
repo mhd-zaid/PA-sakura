@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Vendor\PHPMailer\PHPMailer;
 
 spl_autoload_register(function ( $class ){
 

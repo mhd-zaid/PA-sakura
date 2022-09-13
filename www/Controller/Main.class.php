@@ -1,10 +1,14 @@
 <?php
 namespace App\Controller;
 
+
 use App\Core\View;
 use App\Model\User as UserModel;
 use App\Core\Verificator;
 use App\Vendor\PHPMailer\PHPMailer;
+use App\Vendor\PHPMailer\SMTP;
+use App\Vendor\PHPMailer\Exception;
+
 
 class Main{
 
@@ -16,7 +20,31 @@ class Main{
 		$v = new View("Front/Home", "Front");
 		$v->assign("configForm", $contactForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
-		$mail = new PHPMailer();
+
+		$mail = new PHPMailer(true);
+		try {
+			$mail->SMTPDebug = 2;                      
+			$mail->isSMTP();                                            
+			$mail->Host       = 'smtp-mail.outlook.com';                    
+			$mail->SMTPAuth   = true;                                   
+			$mail->Username   = 'email@email.fr';                     
+			$mail->Password   = 'secret';
+			$mail->SMTPSecure = 'STARTTLS';                                       
+			$mail->Port       = 587;              
+		
+			$mail->setFrom('email@email.fr', 'Name');
+			$mail->addAddress('destinateur@gmail.com');  
+
+			$mail->isHTML(true);                   
+			$mail->Subject = 'Here is the subject';
+			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+			$mail->send();
+			echo 'Message has been sent';
+		} catch (Exception $th) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+		
+		
 		
 	}
 
