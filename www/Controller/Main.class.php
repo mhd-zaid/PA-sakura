@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\User as UserModel;
 use App\Core\Verificator;
+use App\Vendor\PHPMailer\PHPMailer;
 
 class Main{
 
@@ -15,6 +16,8 @@ class Main{
 		$v = new View("Front/Home", "Front");
 		$v->assign("configForm", $contactForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
+		$mail = new PHPMailer();
+		
 	}
 
 	public function login(): void
