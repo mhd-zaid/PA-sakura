@@ -468,9 +468,15 @@ p {
   font-weight: bold; }
   .cta-button--white {
     background-color: #FFF; }
+    .cta-button--white a {
+      text-decoration: none;
+      color: #000; }
   .cta-button--pink {
     background-color: #FF66C4;
     color: #FFF; }
+    .cta-button--pink a {
+      text-decoration: none;
+      color: #FFF; }
 
 @media screen and (max-width: 1280px) {
   #menu-button {
