@@ -15,6 +15,10 @@
   controller: Main
   action: register
 
+/confirm-mail:
+  controller: Main
+  action: confirmMail
+
 /modifier-utilisateur:
   controller: User
   action: edit

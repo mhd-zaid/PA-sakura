@@ -19,33 +19,7 @@ class Main{
 		
 		$v = new View("Front/Home", "Front");
 		$v->assign("configForm", $contactForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
-
-		$mail = new PHPMailer(true);
-		try {
-			$mail->SMTPDebug = 2;                      
-			$mail->isSMTP();                                            
-			$mail->Host       = 'smtp-mail.outlook.com';                    
-			$mail->SMTPAuth   = true;                                   
-			$mail->Username   = 'email@email.fr';                     
-			$mail->Password   = 'secret';
-			$mail->SMTPSecure = 'STARTTLS';                                       
-			$mail->Port       = 587;              
-		
-			$mail->setFrom('email@email.fr', 'Name');
-			$mail->addAddress('destinateur@gmail.com');  
-
-			$mail->isHTML(true);                   
-			$mail->Subject = 'Here is the subject';
-			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-			$mail->send();
-			echo 'Message has been sent';
-		} catch (Exception $th) {
-			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-		}
-		
-		
-		
+		$v->assign("configFormErrors", $configFormErrors??[]);		
 	}
 
 	public function login(): void
@@ -83,11 +57,14 @@ class Main{
 			$configFormErrors = $verificator->getMsg();
 
 			if(empty($configFormErrors)){
+
+
 				$user->setFirstname($_POST['firstname']);
 				$user->setLastname($_POST['lastname']);
 				$user->setEmail($_POST['email']);
 				$user->setPassword($_POST['password']);
 				$user->save();
+				sendMail($user->getEmail());
 			}
 
 		}
@@ -101,5 +78,31 @@ class Main{
 		session_destroy();
 		header("Location: /");
 		die();
+	}
+
+	public function sendMail($userMail){
+		$mail = new PHPMailer();
+		try {
+			$mail->SMTPDebug = 2;                      
+			$mail->isSMTP();                                            
+			$mail->Host       = 'smtp.outlook.com';                    
+			$mail->SMTPAuth   = true;                                   
+			$mail->Username   = 'pa.sakura@outlook.fr';                     
+			$mail->Password   = 'sakura12345@';
+			$mail->SMTPSecure = 'STARTTLS';                                       
+			$mail->Port       = 587;              
+		
+			$mail->From = "pa.sakura@outlook.fr";
+			$mail->FromName = "sakura";
+			$mail->addAddress($userMail);  
+
+			$mail->isHTML(true);                   
+			$mail->Subject = 'Here is the subject';
+			$mail->Body    = new View("Mail/confirm", "Front");
+			$mail->send();
+			echo 'Message has been sent';
+		} catch (Exception $th) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
 	}
 }
