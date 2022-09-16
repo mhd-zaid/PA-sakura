@@ -1,0 +1,79 @@
+.cta-button {
+    width : 15em;
+    height : 4em;
+    border : none;
+    font-size: 1.5em;
+    font-weight: bold;
+
+    &--white {
+        background-color : $white;
+
+        & a {
+            text-decoration: none;
+            color: $black;
+        }
+    }
+
+    &--pink {
+        background-color : $pink;
+        color: $white;
+
+
+        & a {
+            text-decoration: none;
+            color: $white;
+        }
+    }
+
+  
+}
+
+@media screen and (max-width: 1280px) {
+    #menu-button{
+    
+        z-index: 10;
+        border: none;
+        background-color: $white;
+    }
+    
+    
+    #menu-button::before{
+        content: "";
+        display: block;
+        width: 5em;
+        height: 30px;
+        background-image: url("../img/Front/menu.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    #menu-button{
+    
+        display: none;
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+    .cta-button {
+        width: 15.5em;
+        height: 4em;
+        font-size: 1em;
+
+        &--white {
+            background-color : $white;
+        }
+    
+        &--pink {
+            background-color : $pink;
+            color: $white;
+        }
+    }
+}
+
+
+

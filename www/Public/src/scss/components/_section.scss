@@ -1,0 +1,392 @@
+
+@media screen and (max-width: 1000px) {
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & .container {
+                justify-content: center;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-align: center;
+            & h1 {
+                margin-bottom: 0.2em;
+                font-size: 3.5em; // ADD media
+            }
+            & p {
+                margin-bottom: 2em;
+            } 
+            
+            & .cta-button {
+                align-self: center;
+            }
+            }
+            & .jotaro {
+                display: none;
+            }
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 25.5em;
+            height: 40em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 15em;
+        }
+       & img {
+            width: 20em;
+            
+       }
+        & p {
+           font-weight: bold;
+         
+        }
+        }
+        .conan {
+            display: none;
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            background-color: $white;
+            justify-content: center;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+            align-items: center;
+        & .container {
+            width: 100%;
+            flex-direction: column;
+
+            & div {
+                display: flex;
+                justify-content: space-around;
+            }
+        
+        
+        & article {
+            margin-bottom: 10em;
+            text-align: center;
+
+            & .h1-simple {
+                font-size: 1.5em;
+            }
+
+            & p {
+                font-size: 1em;
+            }
+
+            & a {
+                font-size: 1em;
+            }
+            
+        
+        
+            & img {
+                width: 20em;
+                height: 13em;
+                border: 1px solid $black;
+            }
+        }
+        }
+
+        & button {
+            align-self: center;
+            width: 15.5em;
+            height: 4em;
+            font-size: 1em;
+        }
+        }
+
+        & #form-contact {
+            height: 60em;
+            background-color: $purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+    }
+   
+}
+
+@media all and (min-width: 1001px) and (max-width: 1440px){
+
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & .container {
+                justify-content: space-between;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            & h1 {
+                margin-bottom: 0.2em;
+                font-size: 3.5em; // ADD media
+            }
+            & p {
+                margin-bottom: 2em;
+            }   
+            }
+            & .jotaro {
+                height: 25em;
+            }
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 40.5em;
+            height: 50em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 20em;
+        }
+       & img {
+            width: 25em;
+            
+       }
+        & p {
+           font-weight: bold;
+        }
+        }
+        .conan {
+            display: none;
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            background-color: $white;
+            justify-content: center;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+            align-items: center;
+        & .container {
+            width: 100%;
+            flex-direction: column;
+        
+
+            & div {
+                display: flex;
+                justify-content: space-around;
+            }
+        
+        & article {
+            margin-bottom: 10em;
+        
+        & img {
+            width: 28em;
+            height: 21em;
+            border: 1px solid $black;
+        }
+        }
+        }
+
+        & button {
+            align-self: center;
+        }
+        }
+
+        & #form-contact {
+            height: 80em;
+            background-color: $purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+   
+   
+}
+
+
+@media screen and (min-width: 1441px) {
+    main { 
+        & #hero{
+            width: auto;
+            background-color: $blue;
+            height: 60em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & .container {
+                justify-content: space-between;
+                align-items: center;
+                width: 80%;
+                
+            & .intro {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            & h1 {
+                margin-bottom: 0.2em;
+            }
+            & p {
+                margin-bottom: 2em;
+            }   
+            }
+
+            }
+        }
+    
+        & #about-us{
+            background-color: $pink;
+            justify-content: center;
+            align-items: center;   
+            height: 70em;
+            display: flex;
+            padding-top: 20em;
+            padding-bottom: 20em;
+        
+        & .container {
+            justify-content: center;
+    
+        & div:first-child {
+            background-color: $purple;
+            color: $white;
+            width: 40.5em;
+            height: 50em;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            padding: 2em;
+        & div:first-child {
+            height: 20em;
+        }
+       & img {
+            width: 25em;
+            
+       }
+        & p {
+           font-weight: bold;
+        }
+        }
+        }
+        
+               
+        }
+        & #features{
+            display: flex;
+            background-color: $white;
+            justify-content: center;
+            padding-top: 10em;
+            padding-bottom: 10em;
+            height: fit-content;
+            align-items: center;
+        & .container {
+            width: 100%;
+            flex-direction: column;
+            text-align: start;
+
+            & div {
+                display: flex;
+                justify-content: space-around;
+            }
+        
+        & article {
+            margin-bottom: 10em;
+          
+        
+        & img {
+            width: 39em;
+            height: 32em;
+            border: 1px solid $black;
+        }
+        }
+        }
+
+        & button {
+            align-self: center;
+        }
+        }
+
+        // & #form-contact {
+        //     height: 80em;
+        //     background-color: $purple;
+        //     padding: 3em 0;
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+            
+        //     & .container {
+        //         height: auto;
+        //         padding: 5em;
+        //         background-color: $white;
+
+                
+        //         & p {
+        //             font-size: 1em;
+        //         }
+        //     }
+        // }
+    }
+
+}
+
+   
+

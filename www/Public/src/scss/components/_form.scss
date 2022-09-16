@@ -1,0 +1,108 @@
+    #section-contact {
+        background-color: $purple;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70em;
+        & .container {
+            justify-content: center;
+            background-color: $white;
+            height: auto;
+            width: 40em;
+            padding: 5em;
+
+            & p {
+                font-size: 1.5em;
+            }
+
+            & button {
+                width: 15.5em;
+                height: 4em;
+                font-size: 1em;
+            }
+        }
+    }
+
+    #section-login {
+        background-color: $blue;
+        display: flex;
+        height: 70em;
+        justify-content: center;
+        align-items: center;
+        & .container {
+            margin-top: 7em;
+            background-color: $white;
+            width: 35em;
+            height: 75%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            & div:first-child {
+                text-align: start;
+            }
+
+
+            & div{
+               padding-top: 3em;
+               text-align: center;
+
+               & p a {
+                    text-decoration: none;
+                    color: $purple;
+               }
+            }
+        }
+
+    }
+
+    #section-register {
+        background-color: $blue;
+        display: flex;
+        height: 90em;
+        justify-content: center;
+        align-items: center;
+        & .container {
+       
+            background-color: $white;
+            width: 35em;
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        
+            & div {
+                & h1 {
+                    margin-bottom: 3em;
+                    text-align: center;
+                }
+                & input {
+                    margin-top: 2em;
+                }
+            }
+
+            & a {
+                text-decoration: none;
+                color: $purple;
+            }
+
+
+        }
+
+    }
+
+// @media screen and (min-width: 1001px) {
+    
+//         #form-contact{
+        
+//             & .container {
+//                 background-color: $white;
+//                 padding: 5em;
+//             }
+//         }
+//     }
+
+
+

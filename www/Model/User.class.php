@@ -164,14 +164,13 @@ class User extends DatabaseDriver
                 "config" => [
                                 "method"=>"POST",
                                 "class"=>"form-register",
-                                "reset"=>"RAZ",
-                                "submit"=>"Nous rejoindre"
+                                "submit"=>"S'inscrire"
                             ],
                 "inputs"=> [
                     "firstname"=>[
                                     "type"=>"text",
-                                    "placeholder"=>"Votre prénom",
-                                    "class"=>"input-text",
+                                    "label"=>"Prénom",
+                                    "class"=>"ipt-form-entry",
                                     "min"=>2,
                                     "max"=>25,
                                     "required"=>true,
@@ -180,51 +179,100 @@ class User extends DatabaseDriver
 
                     "lastname"=>[
                                     "type"=>"text",
-                                    "placeholder"=>"Votre nom",
-                                    "class"=>"input-text",
+                                    "label"=>"Nom",
+                                    "class"=>"ipt-form-entry",
                                     "min"=>2,
                                     "max"=>75,
                                     "required"=>true,
                                     "error"=>"Votre nom doit faire entre 2 et 75 caractères"
                                 ],
-
-                    "address"=>[
-                                    "type"=>"text",
-                                    "placeholder"=>"Votre adresse",
-                                    "class"=>"input-text",
-                                    "min"=>2,
-                                    "max"=>255,
-                                    "error"=>"Votre adresse doit faire plus de 2 caractères"
-                                ],
                     "email"=>[
                                     "type"=>"email",
-                                    "placeholder"=>"Votre email",
-                                    "class"=>"input-email",
+                                    "label"=>"Email",
+                                    "class"=>"ipt-form-entry",
                                     "required"=>true,
                                     "error"=>"Votre email est incorrect"
                                 ],
                     "pwd"=>[
-                                    "type"=>"password",
-                                    "placeholder"=>"Votre mot de passe",
-                                    "class"=>"input-pwd",
+                                    "type"=>"Mot de passe",
+                                    "label"=>"Votre mot de passe",
+                                    "class"=>"ipt-form-entry",
                                     "required"=>true,
                                     "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
                                 ],
-                    "pwdconfirm"=>[
-                                    "type"=>"password",
-                                    "placeholder"=>"Confirmation",
-                                    "class"=>"input-pwd",
-                                    "required"=>true,
-                                    "confirm"=>"pwd",
-                                    "error"=>"Votre mot de passe de confirmation ne correspond pas"
-                                ],
+                    // "pwdconfirm"=>[
+                    //                 "type"=>"password",
+                    //                 "label"=>"Confirmation",
+                    //                 "class"=>"ipt-form-entry",
+                    //                 "required"=>true,
+                    //                 "confirm"=>"pwd",
+                    //                 "error"=>"Votre mot de passe de confirmation ne correspond pas"
+                    //             ],
 
                 ]
             ];
 
     }
 
+    public function loginForm(){
 
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Se connecter"
+                            ],
+                "inputs"=> [
+                    "email"=>[
+                                    "type"=>"email",
+                                    "label"=>"Adresse e-mail",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"Votre email ou mot de passe est incorrect"
+                                ],
+                    "pwd"=>[
+                                    "type"=>"password",
+                                    "label"=>"Mot de passe",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                ],
+                ]
+            ];
+
+    }
+
+    public function contactForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Envoyer"
+                            ],
+                "inputs"=> [
+                    "name"=>[
+                                    "type"=>"text",
+                                    "label"=>"Votre nom (obligatoire)",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"Votre email ou mot de passe est incorrect"
+                                ],
+                    "email"=>[
+                                    "type"=>"email",
+                                    "label"=>"Votre e-mail (obligatoire)",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                ],
+                    "message"=>[
+                                    "type"=>"textarea",
+                                    "label"=>"Message",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                ],
+                ]
+            ];
+
+    }
 
 
 
