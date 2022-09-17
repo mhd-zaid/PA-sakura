@@ -139,8 +139,27 @@ p {
             color: #FFF;
             font-weight: bold; }
   @media screen and (max-width: 1280px) {
+    #site-header #menu-button, #site-header .logo-site {
+      z-index: 20; }
+    #site-header #menu-button {
+      transition-duration: 0.3s;
+      transform: translateX(0px); }
     #site-header #main-nav {
-      display: none; } }
+      position: fixed;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      height: 101vh;
+      background-color: #FFF;
+      transition: left 1s;
+      justify-content: center; }
+      #site-header #main-nav ul {
+        z-index: 20;
+        flex-direction: column;
+        align-items: center; } }
+
+.visible {
+  left: 0% !important; }
 
 @media screen and (max-width: 1000px) {
   #site-footer {
@@ -445,20 +464,7 @@ p {
           height: 32em;
           border: 1px solid #000; }
     main #features button {
-      align-self: center; }
-  main #form-contact {
-    height: 80em;
-    background-color: #562135;
-    padding: 3em 0;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    main #form-contact .container {
-      height: auto;
-      padding: 5em;
-      background-color: #FFF; }
-      main #form-contact .container p {
-        font-size: 1em; } }
+      align-self: center; } }
 
 .cta-button {
   width: 15em;

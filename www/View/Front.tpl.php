@@ -5,11 +5,17 @@
 	<title>Mon titre</title>
 	<meta name="description" content="Ceci est ma page">
 	<link rel="stylesheet" type="text/css" href="Public/css/main.css">
+	<script type="text/javascript" src="Public/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="Public/js/main.js"></script>
+        
 </head>
 <body>
 	<header id="site-header">
 		<div class="container">
-			<a href="/" id="logo-image"><img src="Public/img/Front/Logo.svg" alt="Sakura"></a>
+			<div class="logo-site">
+				<a href="/" id="logo-image"><img src="Public/img/Front/Logo.svg" alt="Sakura"></a>
+			</div>
+			<button id="menu-button"></button>
 			<nav id="main-nav">
 				<ul>
 					<li><a href="/#hero">Home</a></li>
@@ -19,7 +25,6 @@
 					<li><button><a href="/se-connecter">Connexion</a></button></li>
 				</ul>
 			</nav>
-			<button id="menu-button"></button>
 		</div>
 	</header>
 

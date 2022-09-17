@@ -6,58 +6,81 @@
     width: 100%;
 
 
-& .container {
-    height: 7em;
-    width: 100%;
-    background-color: $white;
-    justify-content: space-around;
-    align-items: center;
+    & .container {
+        height: 7em;
+        width: 100%;
+        background-color: $white;
+        justify-content: space-around;
+        align-items: center;
 
-    & nav{
-    display: flex;
-    align-items: center;
-    & ul{
+        & nav{
         display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        
-        
-        & li a {
-            padding: 1em;
-            display: block;
-            text-decoration: none;
-            color: $black;
-            font-size: 1.5em;
-            border-bottom: 7px solid transparent;
-    
+        align-items: center;
+            & ul{
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                
+                
+                & li a {
+                    padding: 1em;
+                    display: block;
+                    text-decoration: none;
+                    color: $black;
+                    font-size: 1.5em;
+                    border-bottom: 7px solid transparent;
+            
 
+                }
+
+                & li > a:hover {
+                    border-bottom: 7px solid $pink;
+                }
+
+                & li button {
+                    margin-top: 0.5em;
+                    border: none;
+                    background-color: $pink;
+
+                    & a {
+                        color: $white;
+                        font-weight: bold;
+                    }
+                }
+
+            }
+        } 
+    }
+
+    @media screen and (max-width: 1280px) {
+        #menu-button, .logo-site{
+            z-index: 20;
         }
-
-        & li > a:hover {
-            border-bottom: 7px solid $pink;
+        #menu-button{
+            transition-duration: 0.3s;
+            transform: translateX(0px);
         }
-
-        & li button {
-            margin-top: 0.5em;
-            border: none;
-            background-color: $pink;
-
-            & a {
-                color: $white;
-                font-weight: bold;
+        #main-nav {
+            // display: none;
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 101vh;
+            background-color: #FFF;
+            transition: left 1s;
+            justify-content: center;
+            & ul{
+                z-index: 20;
+                flex-direction: column;
+                align-items: center;
             }
         }
-
     }
-} 
-
-}
-
-@media screen and (max-width: 1280px) {
-    #main-nav {
-        display: none;
-    }
-}
     
+}
+
+.visible{
+    left: 0% !important;
 }
