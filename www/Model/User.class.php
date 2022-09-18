@@ -12,6 +12,7 @@ class User extends DatabaseDriver
 	protected $email;
     protected $password;
 	protected $status = 0;
+    protected $token = null;
 	private $date_created;
 	private $date_updated;
 
@@ -118,6 +119,22 @@ class User extends DatabaseDriver
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param int $token
+     */
+    public function setToken(string $token = null): void
+    {
+        $this->token = $token;
     }
 
     /**
@@ -254,6 +271,54 @@ class User extends DatabaseDriver
             ];
 
     }
+    public function forgotPasswdForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-forgot-passwd",
+                                "submit"=>"Continuer"
+                            ],
+                "inputs"=> [
+                    "email"=>[
+                                    "type"=>"email",
+                                    "label"=>"Adresse e-mail",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"Votre email ou mot de passe est incorrect"
+                                ],
+                ]
+            ];
+
+    }
+    public function resetPasswdForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-reset-passwd",
+                                "submit"=>"Continuer"
+                            ],
+                "inputs"=> [
+                    "password"=>[
+                        "type"=>"password",
+                        "label"=>"Votre mot de passe",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                    ],
+                    "passwordconfirm"=>[
+                        "type"=>"password",
+                        "label"=>"Confirmation",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "confirm"=>"password",
+                        "error"=>"Votre mot de passe de confirmation ne correspond pas"
+                    ],
+                ]
+            ];
+
+    }
 
     public function checkLogin(String $email, String $pwd): void
     {
@@ -277,6 +342,53 @@ class User extends DatabaseDriver
             }else{
                 print_r("incorrect");
             }
+        }
+    }
+
+    public function checkForgotPasswd(string $email): bool{
+        $sql = "SELECT * FROM $this->table WHERE email = '$email'";
+        $result = $this->pdo->query($sql);
+        if($result->rowCount() > 0){
+            $data = $result->fetch();
+            $header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
+            $playload = base64_encode(json_encode(array_diff($data,[$data['Password']],[$data['Token']])));
+            $secret = base64_encode('Za1234');
+            $signature = hash_hmac('sha256',$header.".".$playload,$secret);
+            $token = $header.".".$playload.".".$signature;
+            setcookie("JWT",$token,time()+(60*5));
+            setcookie("Email",$email,time()+(60*5));
+            $this->setId($data['Id']);
+            $this->setFirstname($data['Firstname']);
+            $this->setLastname($data['Lastname']);
+            $this->setEmail($data['Email']);
+            $this->setStatus($data['Status']);
+            $this->password = $data['Password'];
+            $this->setToken($token);
+            $this->save();
+                return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function checkToken(string $email,string $token,string $password): bool
+    {
+        $email = str_replace('%40','@',$email);
+        $sql = "SELECT * FROM $this->table WHERE email = '$email' AND token = '$token'";
+        $result = $this->pdo->query($sql);
+        if($result->rowCount() > 0 ){
+            $data = $result->fetch();
+            $this->setId($data['Id']);
+            $this->setFirstname($data['Firstname']);
+            $this->setLastname($data['Lastname']);
+            $this->setEmail($data['Email']);
+            $this->setStatus($data['Status']);
+            $this->setPassword($password);
+            $this->setToken($token);
+            $this->save();
+            return true;
+        }else{
+            return false;
         }
     }
 

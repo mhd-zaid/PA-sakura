@@ -19,6 +19,14 @@
   controller: Main
   action: confirmMail
 
+/forgot-passwd:
+  controller: Main
+  action: forgotPasswd
+
+/reset-passwd:
+  controller: Main
+  action: resetPasswd
+
 /modifier-utilisateur:
   controller: User
   action: edit

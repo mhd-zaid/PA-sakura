@@ -64,7 +64,7 @@ class Main{
 				$user->setEmail($_POST['email']);
 				$user->setPassword($_POST['password']);
 				$user->save();
-				sendMail($user->getEmail());
+				$this->sendMail($user->getEmail());
 			}
 
 		}
@@ -73,11 +73,66 @@ class Main{
 		$v->assign("configFormErrors", $configFormErrors??[]);
 	}
 
-	public function logout(){
+	public function logout(): void
+	{
 		session_start();
 		session_destroy();
 		header("Location: /");
 		die();
+	}
+
+	public function forgotPasswd(): void
+	{
+		$user = new UserModel();
+		$forgotPasswdForm = $user->forgotPasswdForm();
+		if( !empty($_POST) )
+		{
+			$verificator = new Verificator($forgotPasswdForm, $_POST);
+
+			$configFormErrors = $verificator->getMsg();
+
+			if(empty($configFormErrors)){
+				if($user->checkForgotPasswd($_POST['email'])){
+					$this->sendMail($_POST['email']);
+				}else{
+					print_r("l'email n'existe pas");
+				}
+			}
+
+		}
+		$v = new View("Auth/ForgotPasswd", "Front");
+		$v->assign("configForm", $forgotPasswdForm);
+		$v->assign("configFormErrors", $configFormErrors??[]);
+	}
+
+	public function resetPasswd(){
+		if(!empty($_COOKIE['JWT'])&& !empty($_COOKIE['Email'])){
+			$user = new UserModel();
+			$resetPasswdForm = $user->resetPasswdForm();
+
+			if( !empty($_POST) )
+			{
+				$verificator = new Verificator($resetPasswdForm, $_POST);
+
+				$configFormErrors = $verificator->getMsg();
+				if(empty($configFormErrors)){
+					if($user->checkToken($_COOKIE['Email'],$_COOKIE['JWT'],$_POST['password'])){
+						header("Location: /se-connecter");
+						die();
+					}else{
+						header("Location: /forgot-passwd");
+						die();
+					}
+				}
+			}
+				$v = new View("Auth/ResetPasswd", "Front");
+				$v->assign("configForm", $resetPasswdForm);
+				$v->assign("configFormErrors", $configFormErrors??[]);
+		}else{
+			header("Location: /forgot-passwd");
+			die();
+		}
+		
 	}
 
 	public function sendMail($userMail){
@@ -98,7 +153,7 @@ class Main{
 
 			$mail->isHTML(true);                   
 			$mail->Subject = 'Here is the subject';
-			$mail->Body    = new View("Mail/confirm", "Front");
+			$mail->Body    = file_get_contents("View/Mail/forgotPasswd.view.php");
 			$mail->send();
 			echo 'Message has been sent';
 		} catch (Exception $th) {
