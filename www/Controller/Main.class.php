@@ -63,8 +63,9 @@ class Main{
 				$user->setLastname($_POST['lastname']);
 				$user->setEmail($_POST['email']);
 				$user->setPassword($_POST['password']);
+				$user->setVerifyKey($_POST['firstname']);
 				$user->save();
-				$this->sendMail($user->getEmail());
+				$this->sendMailVerification($user,$user->getVerifyKey());
 			}
 
 		}
@@ -159,5 +160,37 @@ class Main{
 		} catch (Exception $th) {
 			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}
+	}
+
+	public function sendMailVerification($user, $verify_key){
+		$mail = new PHPMailer();
+		try {
+			$mail->SMTPDebug = 2;                      
+			$mail->isSMTP();                                            
+			$mail->Host       = 'smtp.outlook.com';                    
+			$mail->SMTPAuth   = true;                                   
+			$mail->Username   = 'pa.sakura@outlook.fr';                     
+			$mail->Password   = 'sakura12345@';
+			$mail->SMTPSecure = 'STARTTLS';                                       
+			$mail->Port       = 587;              
+		
+			$mail->From = "pa.sakura@outlook.fr";
+			$mail->FromName = "sakura";
+			$mail->addAddress($user->getEmail());  
+
+			$mail->isHTML(true);                   
+			$mail->Subject = 'Here is the subject';
+			$mail->Body    = "<a href='http://localhost/confirm-mail?verify_key=$verify_key'>Verify email</a>";
+			$mail->send();
+			echo 'Message has been sent';
+		} catch (Exception $th) {
+			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}
+	}
+
+	public function confirmMail(){
+		$user = new UserModel();
+		$user->checkVerifyKey($_GET['verify_key']);
+		echo 'Email vérifié';
 	}
 }

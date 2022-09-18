@@ -15,6 +15,7 @@ class User extends DatabaseDriver
     protected $token = null;
 	private $date_created;
 	private $date_updated;
+    protected $verify_key;
 
 
 	public function __construct()
@@ -153,6 +154,21 @@ class User extends DatabaseDriver
         return $this->date_updated;
     }
 
+     /**
+     * @return mixed
+     */
+    public function getVerifyKey(): ?string
+    {
+        return $this->verify_key;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setVerifyKey(String $u): void
+    {
+        $this->verify_key = md5(time().$u);
+    }
 
 
     public function registerForm(){
@@ -326,6 +342,10 @@ class User extends DatabaseDriver
         $result = $this->pdo->query($sql);
         if($result->rowCount() > 0){
             $data = $result->fetch();
+            if($data['Status'] == 0){
+                echo 'Compte inconnu ou email pas verifie';
+                die();
+            }
             if(password_verify($pwd,$data['Password'])){
                 session_start();
                 $_SESSION['email'] = $data['Email'];
@@ -389,6 +409,19 @@ class User extends DatabaseDriver
             return true;
         }else{
             return false;
+        }
+    }
+
+    public function checkVerifyKey($verify_key):void
+    {
+        $sql = "SELECT * FROM $this->table where status=0 AND verify_key= '$verify_key'";
+        $result = $this->pdo->query($sql);
+        if($result->rowCount() > 0){
+            $sql_update = "UPDATE $this->table SET status=1 where verify_key='$verify_key'";
+            $this->pdo->query($sql_update);
+        } else{
+            echo "Le compte n'existe pas ou est déjà validé";
+            die();
         }
     }
 
