@@ -15,6 +15,11 @@ body {
 
  
 } */
+.container-fluid {
+  margin: auto;
+  max-width: 90%;
+  position: relative; }
+
 .container {
   display: flex; }
 
@@ -98,9 +103,106 @@ p {
       text-decoration: none;
       color: #562135; }
 
+.grid {
+  overflow: hidden; }
+
+.row {
+  display: flex;
+  flex-wrap: wrap; }
+
+.col {
+  height: 100px;
+  padding: 15px; }
+  .col-md-1 {
+    width: 8.33333%; }
+  .col-md-2 {
+    width: 16.66667%; }
+  .col-md-3 {
+    width: 25%; }
+  .col-md-4 {
+    width: 33.33333%; }
+  .col-md-5 {
+    width: 41.66667%; }
+  .col-md-6 {
+    width: 50%; }
+  .col-md-7 {
+    width: 58.33333%; }
+  .col-md-8 {
+    width: 66.66667%; }
+  .col-md-9 {
+    width: 75%; }
+  .col-md-10 {
+    width: 83.33333%; }
+  .col-md-11 {
+    width: 91.66667%; }
+  .col-md-12 {
+    width: 100%; }
+
+@media (max-width: 576px) {
+  .col-sm-1 {
+    width: 8.33333%; }
+  .col-sm-2 {
+    width: 16.66667%; }
+  .col-sm-3 {
+    width: 25%; }
+  .col-sm-4 {
+    width: 33.33333%; }
+  .col-sm-5 {
+    width: 41.66667%; }
+  .col-sm-6 {
+    width: 50%; }
+  .col-sm-7 {
+    width: 58.33333%; }
+  .col-sm-8 {
+    width: 66.66667%; }
+  .col-sm-9 {
+    width: 75%; }
+  .col-sm-10 {
+    width: 83.33333%; }
+  .col-sm-11 {
+    width: 91.66667%; }
+  .col-sm-12 {
+    width: 100%; } }
+
+@media (min-width: 992px) {
+  .col-1 {
+    width: 8.33333%; }
+  .col-2 {
+    width: 16.66667%; }
+  .col-3 {
+    width: 25%; }
+  .col-4 {
+    width: 33.33333%; }
+  .col-5 {
+    width: 41.66667%; }
+  .col-6 {
+    width: 50%; }
+  .col-7 {
+    width: 58.33333%; }
+  .col-8 {
+    width: 66.66667%; }
+  .col-9 {
+    width: 75%; }
+  .col-10 {
+    width: 83.33333%; }
+  .col-11 {
+    width: 91.66667%; }
+  .col-12 {
+    width: 100%; } }
+
 .content {
   height: 100px;
   width: 100%; }
+  .content--gray {
+    background-color: gray; }
+  .content--purple {
+    background-color: #562135; }
+  .content--black {
+    background-color: #000; }
+  .content--pink {
+    background-color: #FF66C4; }
+  .content--blue {
+    background-color: #32F4FF; }
 
 #site-header {
   height: 7em;
@@ -467,22 +569,42 @@ p {
       align-self: center; } }
 
 .cta-button {
-  width: 15em;
-  height: 4em;
-  border: none;
-  font-size: 1.5em;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 1em;
+  border: 0px;
   font-weight: bold; }
-  .cta-button--white {
-    background-color: #FFF; }
-    .cta-button--white a {
-      text-decoration: none;
-      color: #000; }
-  .cta-button--pink {
-    background-color: #FF66C4;
-    color: #FFF; }
-    .cta-button--pink a {
-      text-decoration: none;
-      color: #FFF; }
+
+.btn--edit {
+  color: #FFF;
+  background: #FF66C4; }
+  .btn--edit:hover {
+    background: #ff99d8;
+    transition: all 0.3s ease; }
+  .btn--edit:active {
+    background: #ffe6f5; }
+
+.btn--action {
+  color: #FFF;
+  background: #FF66C4;
+  border-radius: 15px; }
+  .btn--action:hover {
+    background: #ff99d8;
+    transition: all 0.3s ease; }
+  .btn--action:active {
+    background: #ffe6f5; }
+
+.btn--elmt {
+  color: #FF66C4;
+  background: #FFF;
+  border-radius: 5px;
+  border: 1px solid #FF66C4; }
+  .btn--elmt:hover {
+    background: white;
+    transition: all 0.3s ease; }
+  .btn--elmt:active {
+    background: white; }
 
 @media screen and (max-width: 1280px) {
   #menu-button {
@@ -504,17 +626,6 @@ p {
   #menu-button {
     display: none; } }
 
-@media screen and (max-width: 1000px) {
-  .cta-button {
-    width: 15.5em;
-    height: 4em;
-    font-size: 1em; }
-    .cta-button--white {
-      background-color: #FFF; }
-    .cta-button--pink {
-      background-color: #FF66C4;
-      color: #FFF; } }
-
 form .ipt-form-entry {
   /*  outline: none; */
   display: block;
@@ -524,3 +635,15 @@ form .ipt-form-entry {
 form input[type=textarea] {
   word-wrap: break-word;
   height: 8em; }
+
+.edit-element {
+  background-color: #FFF;
+  border: 1px solid #000;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px; }
+  .edit-element p {
+    margin: 0; }

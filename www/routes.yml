@@ -162,13 +162,23 @@
   ### APPARENCES ###
 
 /apparence-theme:
-  controller: Apparence-Theme
+  controller: Apparence
   action: editTheme
 
 /apparence-page:
-  controller: Apparence-Page
+  controller: Apparence
   action: editPage
 
 /apparence-menu:
-  controller: Apparence-Menu
+  controller: Apparence
   action: editMenu
+
+  ### GRID & COMPONENTS ###
+
+/grid:
+  controller: WebCreator
+  action: grid
+
+/components:
+  controller: WebCreator
+  action: components

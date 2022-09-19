@@ -1,31 +1,52 @@
+// .cta-button {
+//     // display: block;
+//     color: grey;
+//     padding:5px 10px;
+//     font-size: 1em;
+//     &--rounded{
+//         border-radius: 5px;
+//         border: 0px;
+//     }
+// }
+
+@mixin button-bg($bg) {
+    background: $bg;
+    &:hover {
+      background:lighten($bg,10%);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      background:lighten($bg,25%);
+    } 
+  }
+
 .cta-button {
-    width : 15em;
-    height : 4em;
-    border : none;
-    font-size: 1.5em;
+    text-decoration:none;
+    padding:5px 10px;
+    border-radius:3px;
+    font-size:1em;
+    border: 0px;
     font-weight: bold;
+}
 
-    &--white {
-        background-color : $white;
-
-        & a {
-            text-decoration: none;
-            color: $black;
-        }
-    }
-
-    &--pink {
-        background-color : $pink;
+.btn{
+    &--edit {
         color: $white;
-
-
-        & a {
-            text-decoration: none;
-            color: $white;
-        }
+        @include button-bg($pink);
     }
 
-  
+    &--action {
+        color: $white;
+        @include button-bg($pink);
+        border-radius: 15px;
+    }
+
+    &--elmt{
+        color: $pink;
+        @include button-bg($white);
+        border-radius: 5px;
+        border: 1px solid $pink;
+    }
 }
 
 @media screen and (max-width: 1280px) {
@@ -57,23 +78,4 @@
     }
     
 }
-
-@media screen and (max-width: 1000px) {
-    .cta-button {
-        width: 15.5em;
-        height: 4em;
-        font-size: 1em;
-
-        &--white {
-            background-color : $white;
-        }
-    
-        &--pink {
-            background-color : $pink;
-            color: $white;
-        }
-    }
-}
-
-
 

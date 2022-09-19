@@ -18,6 +18,14 @@ body{
  
 } */
 
+.container-fluid{
+  // display : flex;
+  margin: auto;
+  max-width: 90%;
+  position: relative;
+
+}
+
 .container {
   display: flex;
 }
