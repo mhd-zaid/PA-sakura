@@ -5,9 +5,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\User as UserModel;
 use App\Core\Verificator;
-use App\Vendor\PHPMailer\PHPMailer;
-use App\Vendor\PHPMailer\SMTP;
-use App\Vendor\PHPMailer\Exception;
+use App\Core\SendMail;
 
 
 class Main{
@@ -63,9 +61,13 @@ class Main{
 				$user->setLastname($_POST['lastname']);
 				$user->setEmail($_POST['email']);
 				$user->setPassword($_POST['password']);
-				$user->setVerifyKey($_POST['firstname']);
+				$token = $this->getJWT([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
+				$user->setToken($token);
 				$user->save();
-				$this->sendMailVerification($user,$user->getVerifyKey());
+				setcookie("JWT",$user->getToken(),time()+(60*5));
+				$servername = $_SERVER['HTTP_HOST'];
+				$token = $_COOKIE["JWT"];
+				new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirm-mail?verify_key=$token'>Verify email</a>");
 			}
 
 		}
@@ -94,7 +96,7 @@ class Main{
 
 			if(empty($configFormErrors)){
 				if($user->checkForgotPasswd($_POST['email'])){
-					$this->sendMail($_POST['email']);
+					new sendMail($_POST['email'],"CHANGEMENT DE MDP",file_get_contents("View/Mail/forgotPasswd.view.php"));
 				}else{
 					print_r("l'email n'existe pas");
 				}
@@ -117,7 +119,7 @@ class Main{
 
 				$configFormErrors = $verificator->getMsg();
 				if(empty($configFormErrors)){
-					if($user->checkToken($_COOKIE['Email'],$_COOKIE['JWT'],$_POST['password'])){
+					if($user->checkTokenPasswd($_COOKIE['Email'],$_COOKIE['JWT'],$_POST['password'])){
 						header("Location: /se-connecter");
 						die();
 					}else{
@@ -136,61 +138,18 @@ class Main{
 		
 	}
 
-	public function sendMail($userMail){
-		$mail = new PHPMailer();
-		try {
-			$mail->SMTPDebug = 2;                      
-			$mail->isSMTP();                                            
-			$mail->Host       = 'smtp.outlook.com';                    
-			$mail->SMTPAuth   = true;                                   
-			$mail->Username   = 'pa.sakura@outlook.fr';                     
-			$mail->Password   = 'sakura12345@';
-			$mail->SMTPSecure = 'STARTTLS';                                       
-			$mail->Port       = 587;              
-		
-			$mail->From = "pa.sakura@outlook.fr";
-			$mail->FromName = "sakura";
-			$mail->addAddress($userMail);  
-
-			$mail->isHTML(true);                   
-			$mail->Subject = 'Here is the subject';
-			$mail->Body    = file_get_contents("View/Mail/forgotPasswd.view.php");
-			$mail->send();
-			echo 'Message has been sent';
-		} catch (Exception $th) {
-			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-		}
-	}
-
-	public function sendMailVerification($user, $verify_key){
-		$mail = new PHPMailer();
-		try {
-			$mail->SMTPDebug = 2;                      
-			$mail->isSMTP();                                            
-			$mail->Host       = 'smtp.outlook.com';                    
-			$mail->SMTPAuth   = true;                                   
-			$mail->Username   = 'pa.sakura@outlook.fr';                     
-			$mail->Password   = 'sakura12345@';
-			$mail->SMTPSecure = 'STARTTLS';                                       
-			$mail->Port       = 587;              
-		
-			$mail->From = "pa.sakura@outlook.fr";
-			$mail->FromName = "sakura";
-			$mail->addAddress($user->getEmail());  
-
-			$mail->isHTML(true);                   
-			$mail->Subject = 'Here is the subject';
-			$mail->Body    = "<a href='http://localhost/confirm-mail?verify_key=$verify_key'>Verify email</a>";
-			$mail->send();
-			echo 'Message has been sent';
-		} catch (Exception $th) {
-			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-		}
-	}
-
 	public function confirmMail(){
 		$user = new UserModel();
-		$user->checkVerifyKey($_GET['verify_key']);
+		$user->checkTokenEmail($_COOKIE['JWT']);
 		echo 'Email vérifié';
+	}
+
+	public function getJWT(array $data){
+		$header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
+		$playload = base64_encode(json_encode($data));
+		$secret = base64_encode('Za1234');
+		$signature = hash_hmac('sha256',$header.".".$playload,$secret);
+
+		return $header.".".$playload.".".$signature;
 	}
 }

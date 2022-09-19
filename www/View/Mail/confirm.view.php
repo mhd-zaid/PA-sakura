@@ -1,2 +1,2 @@
 <!DOCTYPE html>
-<a href="localhost/confirm-mail">Confirmez votre mail</a>
+<a href='http://<?php $_SERVER['HTTP_HOST']?>/confirm-mail?verify_key=<?php $_COOKIE['JWT'] ?>'>Verify email</a>

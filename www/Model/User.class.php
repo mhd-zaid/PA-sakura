@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
+use App\Core\SendMail;
 
 class User extends DatabaseDriver
 {
@@ -153,23 +154,6 @@ class User extends DatabaseDriver
     {
         return $this->date_updated;
     }
-
-     /**
-     * @return mixed
-     */
-    public function getVerifyKey(): ?string
-    {
-        return $this->verify_key;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setVerifyKey(String $u): void
-    {
-        $this->verify_key = md5(time().$u);
-    }
-
 
     public function registerForm(){
 
@@ -342,10 +326,6 @@ class User extends DatabaseDriver
         $result = $this->pdo->query($sql);
         if($result->rowCount() > 0){
             $data = $result->fetch();
-            if($data['Status'] == 0){
-                echo 'Compte inconnu ou email pas verifie';
-                die();
-            }
             if(password_verify($pwd,$data['Password'])){
                 session_start();
                 $_SESSION['email'] = $data['Email'];
@@ -356,15 +336,32 @@ class User extends DatabaseDriver
                 $playload = base64_encode(json_encode($_SESSION));
                 $secret = base64_encode('Za1234');
                 $signature = hash_hmac('sha256',$header.".".$playload,$secret);
-                setcookie("JWT",$header.".".$playload.".".$signature);
-                header("Location: /tableau-de-bord");
-                die();
+                if($data['Status'] == 0){
+                    echo "Compte pas verifie, un email à été envoyer à ".$_POST['email'];
+                    $this->setToken($this->getJWT([$data['Firstname'],$data['Lastname'],$data['Email']]));
+                    setcookie("JWT",$user->getToken(),time()+(60*5));
+                    $servername = $_SERVER['HTTP_HOST'];
+                    $token = $_COOKIE["JWT"];
+                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirm-mail?verify_key=$token'>Verify email</a>");
+                    die();
+                }else{
+                    setcookie("JWT",$header.".".$playload.".".$signature,time()+(60*60*2));
+                    header("Location: /tableau-de-bord");
+                    die();
+                }
             }else{
                 print_r("incorrect");
             }
         }
     }
+    public function getJWT(array $data){
+		$header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
+		$playload = base64_encode(json_encode($data));
+		$secret = base64_encode('Za1234');
+		$signature = hash_hmac('sha256',$header.".".$playload,$secret);
 
+		return $header.".".$playload.".".$signature;
+	}
     public function checkForgotPasswd(string $email): bool{
         $sql = "SELECT * FROM $this->table WHERE email = '$email'";
         $result = $this->pdo->query($sql);
@@ -391,7 +388,7 @@ class User extends DatabaseDriver
         }
     }
 
-    public function checkToken(string $email,string $token,string $password): bool
+    public function checkTokenPasswd(string $email,string $token,string $password): bool
     {
         $email = str_replace('%40','@',$email);
         $sql = "SELECT * FROM $this->table WHERE email = '$email' AND token = '$token'";
@@ -412,12 +409,12 @@ class User extends DatabaseDriver
         }
     }
 
-    public function checkVerifyKey($verify_key):void
+    public function checkTokenEmail($token):void
     {
-        $sql = "SELECT * FROM $this->table where status=0 AND verify_key= '$verify_key'";
+        $sql = "SELECT * FROM $this->table where status=0 AND token= '$token'";
         $result = $this->pdo->query($sql);
         if($result->rowCount() > 0){
-            $sql_update = "UPDATE $this->table SET status=1 where verify_key='$verify_key'";
+            $sql_update = "UPDATE $this->table SET status=1 where token='$token'";
             $this->pdo->query($sql_update);
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
