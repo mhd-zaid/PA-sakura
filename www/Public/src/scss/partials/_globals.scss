@@ -9,14 +9,14 @@ html {
 body{
   margin: 0;
   font-family: $font1;
+  // height: 100%; ///// 
 }
 
-/* .container{
-  // padding : 0 30px;
-  display : flex;
-
- 
-} */
+.container-fluid{
+  margin: auto;
+  max-width: 90%;
+  position: relative;
+}
 
 .container {
   display: flex;

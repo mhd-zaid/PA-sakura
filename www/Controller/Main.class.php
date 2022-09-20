@@ -70,4 +70,9 @@ class Main{
 		$v->assign("configForm", $registerForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
 	}
+
+	public function admin(): void
+	{
+		$v = new View("Back/Home", "Back");
+	}
 }

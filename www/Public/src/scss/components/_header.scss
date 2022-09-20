@@ -84,3 +84,66 @@
 .visible{
     left: 0% !important;
 }
+
+
+#main-nav-back {
+    display: flex;
+    flex-direction: column;
+    background-color: $nightblue;
+    width: 20em;
+    height: 100vh;
+    align-items: center;
+
+    & img:first-child {
+        width: 5em;
+        // margin-bottom: 1.5em;
+    }
+
+    & .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        color: $white;
+        font-weight: bold;
+
+
+        & ul:first-child {
+            padding: 0;
+            list-style: none;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            & img{
+                width: 3em;
+                margin-right: 2em;
+            }
+            & li{
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.5em;
+                
+            }
+        }
+
+        & ul:last-child {
+            padding: 0;
+            list-style: none;
+            width: 80%;
+
+            & img{
+                width: 3em;
+                margin-right: 2em;
+            }
+            & li{
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.5em;
+                
+            }
+        }
+        
+
+    }
+
+}
