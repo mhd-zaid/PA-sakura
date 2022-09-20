@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\Core\DatabaseDriver;
 use App\Core\SendMail;
+use App\Core\Jwt;
 
 class User extends DatabaseDriver
 {
@@ -338,11 +339,12 @@ class User extends DatabaseDriver
                 $signature = hash_hmac('sha256',$header.".".$playload,$secret);
                 if($data['Status'] == 0){
                     echo "Compte pas verifie, un email à été envoyer à ".$_POST['email'];
-                    $this->setToken($this->getJWT([$data['Firstname'],$data['Lastname'],$data['Email']]));
-                    setcookie("JWT",$user->getToken(),time()+(60*5));
+                    $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
+                    $this->setToken($token->getToken());
+                    setcookie("JWT",$this->getToken(),time()+(60*5));
                     $servername = $_SERVER['HTTP_HOST'];
                     $token = $_COOKIE["JWT"];
-                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirm-mail?verify_key=$token'>Verify email</a>");
+                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verify email</a>");
                     die();
                 }else{
                     setcookie("JWT",$header.".".$playload.".".$signature,time()+(60*60*2));
@@ -354,14 +356,7 @@ class User extends DatabaseDriver
             }
         }
     }
-    public function getJWT(array $data){
-		$header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
-		$playload = base64_encode(json_encode($data));
-		$secret = base64_encode('Za1234');
-		$signature = hash_hmac('sha256',$header.".".$playload,$secret);
 
-		return $header.".".$playload.".".$signature;
-	}
     public function checkForgotPasswd(string $email): bool{
         $sql = "SELECT * FROM $this->table WHERE email = '$email'";
         $result = $this->pdo->query($sql);

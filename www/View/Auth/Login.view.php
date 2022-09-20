@@ -7,7 +7,7 @@
                 $this->includeComponent("form-login", $configForm);
             ?>
             <br>
-            <p><a href="/forgot-passwd">Mot de passe oublié ?</a></p>
+            <p><a href="/mot-de-passe-oublie">Mot de passe oublié ?</a></p>
             <br>
             <p><a href="/s-inscrire">Créer un nouveau compte</a></p>
         </div>

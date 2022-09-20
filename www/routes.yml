@@ -5,33 +5,33 @@
   action: index
 
 /se-connecter:
-  controller: Main
+  controller: User
   action: login
 
 /se-deconnecter:
-  controller: Main
+  controller: User
   action: logout
 /s-inscrire:
-  controller: Main
+  controller: User
   action: register
 
-/confirm-mail:
-  controller: Main
+/confirmation-mail:
+  controller: User
   action: confirmMail
 
-/forgot-passwd:
-  controller: Main
+/mot-de-passe-oublie:
+  controller: User
   action: forgotPasswd
 
-/reset-passwd:
-  controller: Main
+/reinitialisation-mot-de-passe:
+  controller: User
   action: resetPasswd
 
 /modifier-utilisateur:
   controller: User
   action: edit
 
-/users:
+/utilisateurs:
   controller: User
   action: list
 
