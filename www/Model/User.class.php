@@ -338,22 +338,22 @@ class User extends DatabaseDriver
                 $secret = base64_encode('Za1234');
                 $signature = hash_hmac('sha256',$header.".".$playload,$secret);
                 if($data['Status'] == 0){
-                    echo "Compte pas verifie, un email à été envoyer à ".$_POST['email'];
                     $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
                     $this->setToken($token->getToken());
                     setcookie("JWT",$this->getToken(),time()+(60*5));
                     $servername = $_SERVER['HTTP_HOST'];
                     $token = $_COOKIE["JWT"];
-                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verify email</a>");
-                    die();
+                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
                 }else{
                     setcookie("JWT",$header.".".$playload.".".$signature,time()+(60*60*2));
                     header("Location: /tableau-de-bord");
                     die();
                 }
             }else{
-                print_r("incorrect");
+                print_r("Mot de passe ou email incorrect");
             }
+        }else{
+            print_r('Mot de passe ou email incorrect');
         }
     }
 
@@ -414,6 +414,19 @@ class User extends DatabaseDriver
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
             die();
+        }
+    }
+
+    public function checkEmailExist($email):Int
+    {
+        $sql = "SELECT * FROM $this->table where Email='$email'";
+        $result = $this->pdo->query($sql);
+        if($result->rowCount() > 0){
+            print_r("Cet email est déjà associé à un compte");
+
+            return 0;
+        }else{
+            return 1;
         }
     }
 

@@ -24,6 +24,8 @@ class User{
 
 			if(empty($configFormErrors)){
 				$user->checkLogin($_POST['email'],$_POST['password']);
+			}else{
+				echo 'Email ou mot de passe incorrect';
 			}
 
 		}
@@ -46,19 +48,21 @@ class User{
 			$configFormErrors = $verificator->getMsg();
 
 			if(empty($configFormErrors)){
-
-
-				$user->setFirstname($_POST['firstname']);
-				$user->setLastname($_POST['lastname']);
-				$user->setEmail($_POST['email']);
-				$user->setPassword($_POST['password']);
-				$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
-				$user->setToken($token->getToken());
-				$user->save();
-				setcookie("JWT",$user->getToken(),time()+(60*5));
-				$servername = $_SERVER['HTTP_HOST'];
-				$token = $_COOKIE["JWT"];
-				new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verify email</a>");
+				
+				$emailExist = $user->checkEmailExist($_POST['email']);
+				if($emailExist){
+					$user->setFirstname($_POST['firstname']);
+					$user->setLastname($_POST['lastname']);
+					$user->setEmail($_POST['email']);
+					$user->setPassword($_POST['password']);
+					$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
+					$user->setToken($token->getToken());
+					$user->save();
+					setcookie("JWT",$user->getToken(),time()+(60*5));
+					$servername = $_SERVER['HTTP_HOST'];
+					$token = $_COOKIE["JWT"];
+					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
+				}	
 			}
 
 		}
@@ -88,7 +92,7 @@ class User{
 			if(empty($configFormErrors)){
 				if($user->checkForgotPasswd($_POST['email'])){
 					$servername = $_SERVER['HTTP_HOST'];
-					new sendMail($_POST['email'],"CHANGEMENT DE MDP","<a href='http://$servername/reinitialisation-mot-de-passe'>Réinitialisez votre mot de passe</a>");
+					new sendMail($_POST['email'],"CHANGEMENT DE MDP","<a href='http://$servername/reinitialisation-mot-de-passe'>Nouveau mot de passe</a>","Un email à été envoyer pour la réinitialisation du mot de passe","Une erreur s'est produite, merci de réesayer plus tard");
 				}else{
 					print_r("l'email n'existe pas");
 				}

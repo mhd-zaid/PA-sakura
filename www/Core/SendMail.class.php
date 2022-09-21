@@ -6,10 +6,10 @@ use App\Vendor\PHPMailer\SMTP;
 use App\Vendor\PHPMailer\Exception;
 
 class SendMail{
-    public function __construct(string $email, string $subject, string $html){
+    public function __construct(string $email, string $subject, string $html, $succes, $fail){
             $mail = new PHPMailer();
             try {
-                $mail->SMTPDebug = 2;                      
+                $mail->SMTPDebug = 0;                      
                 $mail->isSMTP();                                            
                 $mail->Host       = 'smtp.outlook.com';                    
                 $mail->SMTPAuth   = true;                                   
@@ -26,9 +26,9 @@ class SendMail{
                 $mail->Subject = $subject;
                 $mail->Body    = $html;
                 $mail->send();
-                echo 'Message has been sent';
+                echo $succes;
             } catch (Exception $th) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                echo $fail;
             }
         }
     }
