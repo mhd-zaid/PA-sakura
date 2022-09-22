@@ -33,36 +33,38 @@
 
 <div id="main-component">
 
-<header id="header-back1">
+<header id="header-back">
 
 	<div class="row">
-        <div class="col col-4">
-            <ul>
-				<li class="menu-deroulant">  <a href=""> Mes sites </a> <img id="icon-profil" class="icon" src="Public\img\Back\arrowDown1.svg" alt=""></li>
-					<ul>
-						<li class="sous-menu"> <a href=""> Site numéro 1 </a></li>
-						<li class="sous-menu"> <a href=""> Site numéro 2 </a></li>
-					</ul>
-			</ul>
+        <div class="dropdownSite col col-2">
+            <button class="dropbtnSite"> Mes sites
+            </button>
+            <div class="dropdownSite-content" id="myDropdownSite">
+                <a href="#">Site 1</a>
+                <a href="#">Site 2</a>
+            </div>
         </div>
-        <div class="col col-5">
-            <p>Aide</p>
-            <a href="#" class="cta-button-back  btn-pink">Nouveau site</a>
+        <div class="helpLink col col-1">
+            <a href="#">Aide</a>
         </div>
-        <div class="col col-1">
-            <img class="icon" src="Public/img/Back/notification1.svg" alt="">
+        <div class="newSiteLink col col-6">
+        <a href="#" class="cta-button-back  btn-pink">Nouveau site</a>
         </div>
-        <div class="dropdown" class="col col-2">
-            <div class="dropdownMenu">
-                <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">
-                <button class="dropbtn">Toto Tutu
-                    <img id="icon-profil" class="icon" src="Public\img\Back\arrowDown1.svg" alt="">
-                </button>
-                <div class="dropdownMenu-content" id="myDropdownMenu">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
+        <div class="notificationLink col col-1">
+            <a href="">
+                <img class="icon" src="Public/img/Back/notification1.svg" alt="">
+            </a>
+        </div>
+        <div class="dropdownMenu col col-2">
+            <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">
+            <button class="dropbtnMenu"> Daniel Casanova
+            </button>
+            <div class="dropdownMenu-content" id="myDropdownMenu">
+                <a href="#">Paramètre du compte</a>
+                <a href="#">Assistance</a>
+                <a href="#">Centre de messagerie</a>
+                <a href="#">Créer un nouveau site</a>
+                <a href="#">Se déconnecter</a>
             </div>
         </div>
 	</div>
