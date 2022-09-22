@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4c89f073-36fe-4890-b199-c24cebb061ac" name="Changes" comment="" />
+    <list default="true" id="4c89f073-36fe-4890-b199-c24cebb061ac" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/www/Public/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/www/Public/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Public/src/scss/components/_header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/Public/src/scss/components/_header.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/Public/src/scss/partials/_globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/www/Public/src/scss/partials/_globals.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/View/Back.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/View/Back.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/View/Back/Home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/View/Back/Home.view.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,14 +21,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -32,6 +38,7 @@
       <option name="presentableId" value="Default" />
       <updated>1658147075509</updated>
       <workItem from="1658147078240" duration="465000" />
+      <workItem from="1663786812433" duration="13000" />
     </task>
     <servers />
   </component>

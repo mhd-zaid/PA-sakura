@@ -24,8 +24,25 @@
             color: $white;
         }
     }
+}
 
-  
+.cta-button-back{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: grey;
+    border-radius: 1000px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-align: center;
+    transition: all 0.3s;
+    align-self: center;
+}
+
+.btn-pink{
+    background-color: $pink;
 }
 
 @media screen and (max-width: 1280px) {

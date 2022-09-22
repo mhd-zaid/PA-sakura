@@ -7,7 +7,11 @@ html {
 
 body {
   margin: 0;
-  font-family: "Inter", sans-serif; }
+  font-family: "Inter", sans-serif;
+  height: 100%; }
+
+#body-back {
+  display: flex; }
 
 .container-fluid {
   margin: auto;
@@ -26,10 +30,12 @@ body {
 p {
   font-size: 1.5em; }
 
-.link-article {
-  font-size: 1.5em;
-  color: #000;
-  font-weight: bold; }
+.icon {
+  width: 2.5em;
+  height: 2.5em; }
+
+.show {
+  visibility: visible; }
 
 #section-contact {
   background-color: #562135;
@@ -102,7 +108,8 @@ p {
 
 .row {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  width: 100%; }
 
 .col {
   height: 100px;
@@ -281,12 +288,82 @@ p {
       list-style: none;
       width: 80%; }
       #main-nav-back .container ul:last-child img {
-        width: 3em;
+        width: 2em;
         margin-right: 2em; }
       #main-nav-back .container ul:last-child li {
         display: flex;
         align-items: center;
         margin-bottom: 1.5em; }
+
+#header-back {
+  display: flex;
+  height: 75px;
+  background-color: #0F056B;
+  position: relative; }
+  #header-back .container {
+    width: 100%;
+    padding: 10px;
+    align-items: center; }
+    #header-back .container p {
+      color: white; }
+    #header-back .container #header-profil {
+      right: 0;
+      display: flex;
+      color: #FFF;
+      align-items: center; }
+
+#header-back1 {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  background-color: #0F056B;
+  position: relative;
+  color: #FFF; }
+  #header-back1 div div ul li a {
+    text-decoration: none;
+    color: white; }
+  #header-back1 div div ul li #icon-profil {
+    width: 15px; }
+  #header-back1 div div ul .menu-deroulant > a:after {
+    font-size: 15px;
+    margin-left: 7px;
+    display: inline-block; }
+  #header-back1 :first-child {
+    display: flex;
+    align-items: center; }
+  #header-back1 :nth-child(2) {
+    display: flex;
+    align-items: center; }
+    #header-back1 :nth-child(2) p {
+      margin-right: 50px; }
+  #header-back1 :nth-child(3) {
+    display: flex;
+    align-items: center; }
+  #header-back1 .dropdown {
+    height: 75px;
+    padding: 0 15 0 15;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0F056B;
+    background-color: #0F056B; }
+    #header-back1 .dropdown:hover {
+      background-color: #16079c;
+      transition: all 0.3s ease; }
+    #header-back1 .dropdown:active {
+      background-color: #200be5; }
+    #header-back1 .dropdown #icon-profil {
+      width: 15px; }
+    #header-back1 .dropdown #photo-profil {
+      vertical-align: middle;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #FFF;
+      margin-right: 10px; }
+
+#main-component {
+  width: 100%; }
 
 @media screen and (max-width: 1000px) {
   #site-footer {
@@ -610,6 +687,23 @@ p {
     .cta-button--pink a {
       text-decoration: none;
       color: #FFF; }
+
+.cta-button-back {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: grey;
+  border-radius: 1000px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-align: center;
+  transition: all 0.3s;
+  align-self: center; }
+
+.btn-pink {
+  background-color: #FF66C4; }
 
 @media screen and (max-width: 1280px) {
   #menu-button {

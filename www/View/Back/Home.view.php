@@ -1,5 +1,5 @@
-<!-- <section>
-    <div class="row">
-        <h1>Welcome Admin</h1>
+<section class="row">
+    <div class="col">
+        Welcome Admin
     </div>
-</section> -->
+</section>

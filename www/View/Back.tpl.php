@@ -9,7 +9,7 @@
 	<script type="text/javascript" src="Public/js/main.js"></script>
         
 </head>
-<body>
+<body id="body-back">
 <nav id="main-nav-back">
 	<img src="Public/img/Back/mini-logo.png" alt="logo-site">
 	<div class="container">
@@ -30,31 +30,52 @@
 		</ul>
 	</div>
 </nav>
-<!-- <header>
-	<div class="container">
-		<div>
-			<select name="" id=""></select>
-			<a href=""></a>
-			<button></button>
-		</div>
-		<div>
-			<img src="" alt="">
-			<img src="" alt="">
-			<select name="" id=""></select>
-		</div>
-	
+
+<div id="main-component">
+
+<header id="header-back1">
+	<div class="row">
+        <div class="col col-4">
+            <ul>
+				<li class="menu-deroulant">  <a href=""> Mes sites </a> <img id="icon-profil" class="icon" src="Public\img\Back\arrowDown1.svg" alt=""></li>
+					<ul>
+						<li class="sous-menu"> <a href=""> Site numéro 1 </a></li>
+						<li class="sous-menu"> <a href=""> Site numéro 2 </a></li>
+					</ul>
+			</ul>
+        </div>
+        <div class="col col-5">
+            <p>Aide</p>
+            <a href="#" class="cta-button-back  btn-pink">Nouveau site</a>
+        </div>
+        <div class="col col-1">
+            <img class="icon" src="Public/img/Back/notification1.svg" alt="">
+        </div>
+        <div class="dropdown" class="col col-2">
+            <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">
+            <p>Toto Tutu</p>
+            <img id="icon-profil" class="icon" src="Public\img\Back\arrowDown1.svg" alt="">
+            <!-- <div id="myDropdown" class="dropdown-content">
+                <p>Toto Tutu</p>
+                <hr>
+                <a href="#">Paramètre du compte</a>
+                <a href="#">Assistance</a>
+                <hr>
+                <a href="#">Centre de messagerie</a>
+                <a href="#">Créer un nouveau site</a>
+                <hr>
+                <p>Se déconnecter</p>
+            </div> -->
+        </div>
 	</div>
-</header> -->
+</header>
 
-	
+<main class="container-fluid">
 
-	<main class="container-fluid">
+<?php require $this->view; ?>
 
-	<?php require $this->view; ?>
+</main>
 
-	</main>
-
-
-
+</div>
 </body>
 </html>
