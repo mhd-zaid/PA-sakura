@@ -60,7 +60,7 @@
                 <li><a href="/profil"><img src="../Public/img/settings.svg"/>Parametres</a></li>
             </ul>
         </nav>
-        <button id="button-signout"><img src="../Public/img/Vector.svg"  /></button>
+        <a href="/se-deconnecter"><button id="button-signout"><img src="../Public/img/Vector.svg" /></button></a>
 
 
     </div>

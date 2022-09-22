@@ -1,7 +1,8 @@
-node_modules/
-db_data/
-server/
-.idea/
+node_modules
+db_data
+server
+site
+.idea
 *.log
 .vscode/
 *.sw*
