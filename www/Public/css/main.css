@@ -339,28 +339,41 @@ p {
   #header-back1 :nth-child(3) {
     display: flex;
     align-items: center; }
-  #header-back1 .dropdown {
-    height: 75px;
-    padding: 0 15 0 15;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0F056B;
-    background-color: #0F056B; }
-    #header-back1 .dropdown:hover {
-      background-color: #16079c;
-      transition: all 0.3s ease; }
-    #header-back1 .dropdown:active {
-      background-color: #200be5; }
-    #header-back1 .dropdown #icon-profil {
-      width: 15px; }
-    #header-back1 .dropdown #photo-profil {
-      vertical-align: middle;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      border: 1px solid #FFF;
-      margin-right: 10px; }
+  #header-back1 :last-child .dropdownMenu {
+    float: left;
+    overflow: hidden; }
+  #header-back1 :last-child .dropdownMenu .dropbtn {
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0; }
+  #header-back1 :last-child a:hover, #header-back1 :last-child .dropdownMenu:hover .dropbtn, #header-back1 :last-child .dropbtn:focus, #header-back1 :last-child #photo-profil:hover {
+    background-color: red; }
+  #header-back1 :last-child .dropdownMenu-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1; }
+  #header-back1 :last-child .dropdownMenu-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left; }
+  #header-back1 :last-child .dropdownMenu-content a:hover {
+    background-color: #ddd; }
+  #header-back1 :last-child .show {
+    display: block; }
+  #header-back1 :last-child #icon-profil {
+    height: 25px;
+    width: 25px; }
 
 #main-component {
   width: 100%; }

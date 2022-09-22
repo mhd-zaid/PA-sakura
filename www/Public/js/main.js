@@ -1,15 +1,17 @@
 $().ready(function (){
 
     $('#menu-button').on('click', function(){
-      console.log("Action du menu");
       var menu = document.getElementById('main-nav');
       menu.classList.toggle("visible");
+    })
+    $('.dropbtn').on('click', function(){
+      myFunction()
     })
     
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
       if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var dropdowns = document.getElementsByClassName("dropdownMenu-content");
         var i;
         for (i = 0; i < dropdowns.length; i++) {
           var openDropdown = dropdowns[i];
@@ -48,7 +50,7 @@ $().ready(function (){
 });
 
 function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+  document.getElementById("myDropdownMenu").classList.toggle("show");
 }
 
 function dropdown() {

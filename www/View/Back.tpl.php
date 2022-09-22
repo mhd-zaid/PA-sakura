@@ -34,6 +34,7 @@
 <div id="main-component">
 
 <header id="header-back1">
+
 	<div class="row">
         <div class="col col-4">
             <ul>
@@ -52,22 +53,20 @@
             <img class="icon" src="Public/img/Back/notification1.svg" alt="">
         </div>
         <div class="dropdown" class="col col-2">
-            <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">
-            <p>Toto Tutu</p>
-            <img id="icon-profil" class="icon" src="Public\img\Back\arrowDown1.svg" alt="">
-            <!-- <div id="myDropdown" class="dropdown-content">
-                <p>Toto Tutu</p>
-                <hr>
-                <a href="#">Paramètre du compte</a>
-                <a href="#">Assistance</a>
-                <hr>
-                <a href="#">Centre de messagerie</a>
-                <a href="#">Créer un nouveau site</a>
-                <hr>
-                <p>Se déconnecter</p>
-            </div> -->
+            <div class="dropdownMenu">
+                <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">
+                <button class="dropbtn">Toto Tutu
+                    <img id="icon-profil" class="icon" src="Public\img\Back\arrowDown1.svg" alt="">
+                </button>
+                <div class="dropdownMenu-content" id="myDropdownMenu">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </div>
         </div>
 	</div>
+
 </header>
 
 <main class="container-fluid">
