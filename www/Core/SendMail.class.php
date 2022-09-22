@@ -6,7 +6,7 @@ use App\Vendor\PHPMailer\SMTP;
 use App\Vendor\PHPMailer\Exception;
 
 class SendMail{
-    public function __construct(string $email, string $subject, string $html, $succes, $fail){
+    public function __construct(string $email, string $subject, string $html, string $succes, string $fail){
             $mail = new PHPMailer();
             try {
                 $mail->SMTPDebug = 0;                      
