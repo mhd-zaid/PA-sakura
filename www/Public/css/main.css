@@ -3,6 +3,7 @@
   box-sizing: border-box; }
 
 html {
+  height: 100%;
   scroll-behavior: smooth; }
 
 body {
@@ -571,40 +572,62 @@ p {
 .cta-button {
   text-decoration: none;
   padding: 5px 10px;
-  border-radius: 3px;
+  border-radius: 0px;
   font-size: 1em;
   border: 0px;
   font-weight: bold; }
 
-.btn--edit {
+.btn--pink {
   color: #FFF;
   background: #FF66C4; }
-  .btn--edit:hover {
+  .btn--pink:hover {
     background: #ff99d8;
     transition: all 0.3s ease; }
-  .btn--edit:active {
+  .btn--pink:active {
     background: #ffe6f5; }
 
-.btn--action {
+.btn--pink-rounded {
   color: #FFF;
   background: #FF66C4;
   border-radius: 15px; }
-  .btn--action:hover {
+  .btn--pink-rounded:hover {
     background: #ff99d8;
     transition: all 0.3s ease; }
-  .btn--action:active {
+  .btn--pink-rounded:active {
     background: #ffe6f5; }
 
-.btn--elmt {
+.btn--white {
   color: #FF66C4;
   background: #FFF;
-  border-radius: 5px;
   border: 1px solid #FF66C4; }
-  .btn--elmt:hover {
+  .btn--white:hover {
     background: white;
     transition: all 0.3s ease; }
-  .btn--elmt:active {
+  .btn--white:active {
     background: white; }
+
+.btn--white-rounded {
+  color: #FF66C4;
+  background: #FFF;
+  border-radius: 15px;
+  border: 1px solid #FF66C4; }
+  .btn--white-rounded:hover {
+    background: white;
+    transition: all 0.3s ease; }
+  .btn--white-rounded:active {
+    background: white; }
+
+.btn--article {
+  color: #0F056B;
+  background-color: #FFF;
+  font-weight: bold;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.btn-category {
+  pointer-events: none; }
 
 @media screen and (max-width: 1280px) {
   #menu-button {
@@ -647,3 +670,61 @@ form input[type=textarea] {
   padding: 10px; }
   .edit-element p {
     margin: 0; }
+
+.article {
+  background-color: #0F056B;
+  height: 100%;
+  padding: 0px;
+  color: #FFF; }
+
+.article-dashboard .article-container {
+  padding: 15px; }
+  .article-dashboard .article-container .article-label {
+    font-size: 1em; }
+  .article-dashboard .article-container span {
+    float: right; }
+
+.article-article .article-publication {
+  height: 100%; }
+  .article-article .article-publication .article-img, .article-article .article-publication .article-desc, .article-article .article-publication .article-date-comment {
+    height: 100%; }
+  .article-article .article-publication .article-date-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end; }
+  .article-article .article-publication .article-label {
+    font-size: 1em; }
+
+.article-article .article-action {
+  background-color: #0F056B;
+  height: 50px;
+  padding: 10px; }
+
+.row:has(> .article-dashboard) {
+  height: 375px; }
+  .row:has(> .article-dashboard) img {
+    width: 100%;
+    height: 150px; }
+
+.row:has(> .article-article) {
+  height: 200px; }
+  .row:has(> .article-article) img {
+    width: 100%;
+    height: 100%; }
+
+@media screen and (max-width: 715px) {
+  .article-date-comment {
+    align-items: flex-start; }
+  .row:has(> .article-article) {
+    height: auto; } }
+
+.badge {
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  padding: 5px;
+  display: inline-block;
+  margin-left: 5px; }
+
+.like-comment-share {
+  margin-top: 10px; }

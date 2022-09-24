@@ -23,30 +23,46 @@
 .cta-button {
     text-decoration:none;
     padding:5px 10px;
-    border-radius:3px;
+    border-radius:0px;
     font-size:1em;
     border: 0px;
     font-weight: bold;
 }
 
 .btn{
-    &--edit {
+    &--pink {
         color: $white;
         @include button-bg($pink);
     }
-
-    &--action {
+    &--pink-rounded {
         color: $white;
         @include button-bg($pink);
         border-radius: 15px;
     }
-
-    &--elmt{
+    &--white{
         color: $pink;
         @include button-bg($white);
-        border-radius: 5px;
         border: 1px solid $pink;
     }
+    &--white-rounded{
+        color: $pink;
+        @include button-bg($white);
+        border-radius: 15px;
+        border: 1px solid $pink;
+    }
+    &--article{
+        color: $nightblue;
+        background-color: $white;
+        font-weight: bold;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.btn-category{
+    pointer-events: none;
 }
 
 @media screen and (max-width: 1280px) {
