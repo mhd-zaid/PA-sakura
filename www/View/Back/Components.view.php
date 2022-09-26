@@ -2,30 +2,30 @@
     <h1> Hello Components </h1>
 </section>
 
-<section>
-    <div class="grid">
-        <!-- <div class="row">
-            <div class="col col-sm-12 col-md-12 col-4">
-                <h3>Bouton</h3>
-            </div>
-            <div class="col col-sm-12 col-md-12 col-8">
-                <button class="cta-button btn--edit">Bouton</button>
-                <button class="cta-button btn--action">Bouton</button>
-                <button class="cta-button btn--elmt">Bouton</button>
-            </div>    
-        </div> 
+<section class="grid">
+    <!-- <div class="grid"> -->
         <div class="row">
-            <div class="col col-sm-12 col-md-12 col-4">
-                <h3>Edit Element</h3>
-            </div>
-            <div>
-                <div class="edit-element">
-                <iconify-icon icon="subway:title"></iconify-icon>
-                    <p>Titre</p>
+            <article class="col col-10 col-sm-12 article article-article">
+                <div class="row article-publication">
+                    <div class="col col-3 article-img">
+                        <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
+                    </div>
+                    <div class="col col-6">
+                        <p class="article-label">Nom de l'article</p>
+                        <p class="article-label">Nom de l'auteur</p>
+                    </div>
+                    <div class="col col-3 ">
+                        <p class="article-label">date de publication</p>
+                    </div>
                 </div>
-            </div> 
-        </div> -->
+            </article>
+        </div>
+    <!-- </div> -->
+</section>
 
+
+<section class="grid grid-dashboard">
+    <!-- <div class="grid"> -->
         <div class="row">
             <article class="col col-4 col-md-4 col-sm-8 article article-dashboard">
                 <header>
@@ -52,12 +52,10 @@
                 </div> 
             </article>
         </div>
-        <br>
-        
-    </div>
+    <!-- </div> -->
 </section>
 
-<section>
+<section class="grid grid-article-article">
         <div class="row">
             <article class="col col-10 col-sm-12 article article-article">
                 <div class="row article-publication">
@@ -94,3 +92,20 @@
             </article>
         </div>
 </section>
+
+<section class="grid grid-article-elmt">
+        <div class="row">
+            <article >
+                <div class="col col-2 ">
+                    <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
+                </div>
+                <div class="col col-4">
+                    <p class="article-label">Nom de l'article</p>
+                    <p class="article-label">Augue pellentesque fusce convallis interdum porta commodo arcu. </p>
+                    <button class="cta-button btn--pink-rounded btn-category">Catégorie</button>
+                </div>
+            </article>
+        </div>
+</section>
+
+<section>

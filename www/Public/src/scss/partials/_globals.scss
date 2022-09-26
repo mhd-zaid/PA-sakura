@@ -3,7 +3,6 @@
 }
 
 html {
-  height: 100%;
   scroll-behavior: smooth;
 }
 
@@ -12,12 +11,9 @@ body{
   font-family: $font1;
 }
 
-/* .container{
-  // padding : 0 30px;
-  display : flex;
-
- 
-} */
+section{
+  margin-bottom: 25px;
+}
 
 .container-fluid{
   // display : flex;
@@ -50,6 +46,4 @@ p {
   color: $black;
   font-weight: bold;
 }
-
-
 

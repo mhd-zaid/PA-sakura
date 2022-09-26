@@ -3,19 +3,15 @@
   box-sizing: border-box; }
 
 html {
-  height: 100%;
   scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: "Inter", sans-serif; }
 
-/* .container{
-  // padding : 0 30px;
-  display : flex;
+section {
+  margin-bottom: 25px; }
 
- 
-} */
 .container-fluid {
   margin: auto;
   max-width: 90%;
@@ -192,6 +188,9 @@ p {
     width: 100%; } }
 
 .content {
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
   height: 100px;
   width: 100%; }
   .content--gray {
@@ -712,6 +711,9 @@ form input[type=textarea] {
   .row:has(> .article-article) img {
     width: 100%;
     height: 100%; }
+
+.grid-article-article {
+  height: 250px; }
 
 @media screen and (max-width: 715px) {
   .article-date-comment {
