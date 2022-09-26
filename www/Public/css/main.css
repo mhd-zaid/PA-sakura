@@ -26,6 +26,9 @@ section {
 .h1-simple {
   font-size: 2em; }
 
+img {
+  object-fit: cover; }
+
 p {
   font-size: 1.5em; }
 
@@ -102,13 +105,14 @@ p {
 
 .grid {
   overflow: hidden; }
+  .grid-article-elmt {
+    height: 200px; }
 
 .row {
   display: flex;
   flex-wrap: wrap; }
 
 .col {
-  height: 100px;
   padding: 15px; }
   .col-md-1 {
     width: 8.33333%; }
@@ -191,7 +195,6 @@ p {
   text-align: center;
   font-weight: bold;
   font-size: 2em;
-  height: 100px;
   width: 100%; }
   .content--gray {
     background-color: gray; }
@@ -700,6 +703,21 @@ form input[type=textarea] {
   height: 50px;
   padding: 10px; }
 
+.article-elmt {
+  background-color: #FFF;
+  border: 1px solid #000;
+  color: #000; }
+  .article-elmt img {
+    max-width: 100%;
+    max-height: 100%; }
+  .article-elmt .article-label {
+    font-size: 1em; }
+
+.row:has(> .article-elmt) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; }
+
 .row:has(> .article-dashboard) {
   height: 375px; }
   .row:has(> .article-dashboard) img {
@@ -711,9 +729,6 @@ form input[type=textarea] {
   .row:has(> .article-article) img {
     width: 100%;
     height: 100%; }
-
-.grid-article-article {
-  height: 250px; }
 
 @media screen and (max-width: 715px) {
   .article-date-comment {

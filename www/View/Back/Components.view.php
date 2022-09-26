@@ -95,17 +95,17 @@
 
 <section class="grid grid-article-elmt">
         <div class="row">
-            <article >
-                <div class="col col-2 ">
-                    <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
-                </div>
-                <div class="col col-4">
-                    <p class="article-label">Nom de l'article</p>
-                    <p class="article-label">Augue pellentesque fusce convallis interdum porta commodo arcu. </p>
-                    <button class="cta-button btn--pink-rounded btn-category">Catégorie</button>
+            <article class="col col-3 article article-elmt">
+                <div class="row">
+                    <div class="col col-4 article-elmt-img">
+                        <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
+                    </div>
+                    <div class="col col-8">
+                        <p class="article-label">Nom de l'article</p>
+                        <p class="article-label">Augue pellentesque fusce convallis interdum porta commodo arcu. </p>
+                        <button class="cta-button btn--pink-rounded btn-category">Catégorie</button>
+                    </div>
                 </div>
             </article>
         </div>
 </section>
-
-<section>

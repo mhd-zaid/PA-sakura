@@ -39,6 +39,26 @@
     }
 }
 
+.article-elmt{
+    background-color: $white;
+    border: 1px solid $black;
+    color: $black;
+    & img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    & .article-label{
+        font-size: 1em;
+    }
+}
+
+.row:has(> .article-elmt){
+    & img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
 .row:has(> .article-dashboard){
     height:375px;
     & img{
@@ -54,18 +74,6 @@
     }
 }
 
-.grid-article-article{
-    height: 250px;
-}
-.grid-article-dashboard{
-    
-}
-.grid-article-page{
-
-}
-.grid-article-elmt{
-
-}
 
 @media screen and (max-width: 715px){
     .article-date-comment{
