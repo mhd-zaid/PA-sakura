@@ -3,6 +3,9 @@
     &-article-elmt{
       height: 200px;
     }
+    &-article-article{
+      height: 250px;
+    }
   }
   
   .row{
@@ -42,3 +45,43 @@
       }
     }
   }
+
+// .col {
+//   padding: calc($gutter/2);
+//   $columns: 12;
+//   @for $i from 1 through $columns {
+//     &-#{$i} {
+//       width: calc(((100 / $columns) * $i) * 1%);
+//     }
+//     @media (max-width: $extra-small-screen) {
+//       &-xs-#{$i} {
+//         width: calc(((100 / $columns) * $i) * 1%);
+//       }
+//     }
+//     @media (min-width: $small-screen) {
+//       &-sm-#{$i} {
+//         width: calc(((100 / $columns) * $i) * 1%);
+//       }
+//     }
+//     @media (min-width: $medium-screen) {
+//       &-md-#{$i} {
+//         width: calc(((100 / $columns) * $i) * 1%);
+//       }
+//     }
+//     @media (min-width: $large-screen) {
+//       &-lg-#{$i} {
+//         width: calc(((100 / $columns) * $i) * 1%);
+//       }
+//     }
+//     @media (min-width: $extra-large-screen) {
+//       &-xl-#{$i} {
+//         width: calc(((100 / $columns) * $i) * 1%);
+//       }
+//     }
+//     @media (min-width: $extra-extra-large-screen) {
+//       &-xxl-#{$i} {
+//         width: calc(((100 / $columns) * $i) * 1%);
+//       }
+//     }
+//   }
+// }

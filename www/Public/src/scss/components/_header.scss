@@ -87,11 +87,12 @@
 
 
 #main-nav-back {
+    position: sticky;
     display: flex;
     flex-direction: column;
     background-color: $nightblue;
     width: 20em;
-    height: 100vh;
+    height: 100%;
     align-items: center;
 
     & img:first-child {
