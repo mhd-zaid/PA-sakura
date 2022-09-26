@@ -84,3 +84,216 @@
 .visible{
     left: 0% !important;
 }
+
+
+#main-nav-back {
+    display: flex;
+    flex-direction: column;
+    background-color: $nightblue;
+    width: 20em;
+    height: 100vh;
+    align-items: center;
+
+    & img:first-child {
+        width: 5em;
+        // margin-bottom: 1.5em;
+    }
+
+    & .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        color: $white;
+        font-weight: bold;
+
+
+        & ul:first-child {
+            padding: 0;
+            list-style: none;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            & img{
+                width: 3em;
+                margin-right: 2em;
+            }
+            & li{
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.5em;
+                
+            }
+        }
+
+        & ul:last-child {
+            padding: 0;
+            list-style: none;
+            width: 80%;
+
+            & img{
+                width: 2em;
+                margin-right: 2em;
+            }
+            & li{
+                display: flex;
+                align-items: center;
+                margin-bottom: 1.5em;
+                
+            }
+        }
+        
+
+    }
+
+}
+
+#header-back{
+    display: flex;
+    align-items: center;
+    height: 75px;
+    background-color: $nightblue;
+    position: relative;
+    color: $white;
+    & :first-child{
+        display: flex;
+        align-items: center;
+        & .dropdownSite {
+            float: left;
+            overflow: hidden;
+            height: 100%;
+        }
+        & button{
+            font-size: 24px;
+        }
+        & .dropbtnSite{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+          
+        & .dropdownSite .dropbtnSite {
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+          }
+          
+        & .dropdownSite-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            border-radius: 7px;
+            background-color: $nightblue;
+            color: $white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+          }
+          
+        & .dropdownSite-content a {
+            float: none;
+            color: $white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+          }
+          
+        & .dropdownSite-content a:hover {
+            @include object-bg($nightblue);
+          }
+          
+        & .show {
+            display: block;
+          }
+    }
+    & .helpLink{
+        display: flex;
+        align-items: center;
+        & p{
+            margin-right: 50px;
+        }
+        & a{
+            color: $white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: x-large;
+        }
+    }
+    & .newSiteLink{
+        display: flex;
+        align-items: center;
+    }
+
+    & .notificationLink{
+        display: flex;
+        align-items: center;
+    }
+
+    & :last-child{
+        display: flex;
+        align-items: center;
+        & .dropdownMenu {
+            float: left;
+            overflow: hidden;
+            height: 100%;
+          }
+          
+        & .dropdownMenu .dropbtnMenu {
+            cursor: pointer;
+            font-size: 16px;  
+            border: none;
+            outline: none;
+            color: white;
+            background-color: inherit;
+            font-family: inherit;
+            margin: 0;
+          }
+          
+        & .dropdownMenu-content {
+            display: none;
+            position: absolute;
+            top: 80px;
+            border-radius: 7px;
+            background-color: $nightblue;
+            color: $white;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+          }
+          
+        & .dropdownMenu-content a {
+            float: none;
+            color: $white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+          }
+          
+        & .dropdownMenu-content a:hover {
+            @include object-bg($nightblue);
+          }
+          
+        & .show {
+            display: block;
+          }
+        & #icon-profil{
+            height: 25px;
+            width: 25px;
+        }
+    }
+    
+}
+
+#main-component{
+    width: 100%;
+}

@@ -1,4 +1,4 @@
-#Différentes routes de notre projet
+#Main
 
 /:
   controller: Main 
@@ -11,6 +11,10 @@
 /s-inscrire:
   controller: Main
   action: register
+
+/home:
+  controller: Main
+  action: admin
 
 /modifier-utilisateur:
   controller: User

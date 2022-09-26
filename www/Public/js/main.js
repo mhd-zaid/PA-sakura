@@ -1,36 +1,49 @@
 $().ready(function (){
 
     $('#menu-button').on('click', function(){
-      console.log("Action du menu");
       var menu = document.getElementById('main-nav');
       menu.classList.toggle("visible");
     })
+    $('.dropdownMenu').on('click', function(){
+      console.log("ouverture du menu");
+      var dropdown = document.getElementById("myDropdownMenu");
+      dropdown.classList.toggle("show");
+    })
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtnMenu')) {
+        var dropdowns = document.getElementsByClassName("dropdownMenu-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
 
-    // $('.dropdown-img').on('click',function(){
-    //     dropdown();
-    // });
-    // $('.navigation-add-btn').on('click',function(){
-    //     addMenu();
-    // });
-    // dragAndDrop(document.getElementById('drag-container'))
-    // window.onclick = function(event) {
-    //     var modal = $('.modal')
-    //     if (event.target.className == 'modal') {
-    //         $('.input-page').remove();
-    //         modal.css('display',"none");
-          
-    //     }
-    // }
-    // $('.add-page-btn').on('click',function(){
-    //     addPage();
-    // })
-    // $('.valid-modal-btn').on('click',function(){
-    //     closeModal()
-    //     showModal($('.modal-msg'));
-    // })
-    // $('.close-btn').on('click',function(){
-    //     $('.modal-msg').css('display','none');
-    // })
+    $('.dropdownSite').on('click', function(){
+      console.log("ouverture du menu");
+      var dropdown = document.getElementById("myDropdownSite");
+      dropdown.classList.toggle("show");
+    })
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtnSite')) {
+        var dropdowns = document.getElementsByClassName("dropdownSite-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
 });
 
 function dropdown() {
