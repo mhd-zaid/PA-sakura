@@ -5,3 +5,4 @@ site
 *.log
 .vscode/
 *.sw*
+db_data
