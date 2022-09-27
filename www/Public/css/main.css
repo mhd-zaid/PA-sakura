@@ -10,9 +10,6 @@ body {
   font-family: "Inter", sans-serif;
   height: 100%; }
 
-section {
-  margin-bottom: 25px; }
-
 #body-back {
   display: flex; }
 
@@ -440,6 +437,8 @@ p {
   width: 85%;
   margin-left: 15%;
   margin-top: 100px; }
+  #main-component section {
+    margin-bottom: 25px; }
 
 @media screen and (max-width: 1000px) {
   #site-footer {
@@ -753,6 +752,24 @@ p {
   font-size: 1em;
   border: 0px;
   font-weight: bold; }
+
+#main-front .cta-button {
+  width: 15em;
+  height: 4em;
+  border: none;
+  font-size: 1.5em;
+  font-weight: bold; }
+  #main-front .cta-button--white {
+    background-color: #FFF; }
+    #main-front .cta-button--white a {
+      text-decoration: none;
+      color: #000; }
+  #main-front .cta-button--pink {
+    background-color: #FF66C4;
+    color: #FFF; }
+    #main-front .cta-button--pink a {
+      text-decoration: none;
+      color: #FFF; }
 
 .btn--pink {
   color: #FFF;
