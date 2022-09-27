@@ -70,11 +70,11 @@
   controller: Article
   action: index
 
-/edi:
+/article-add:
   controller: Article
   action: addArticle
-  
-#/article-edition/{id}:
+
+# /article-edition/{id}:
 # controller: Article
 # action: editArticle
 #

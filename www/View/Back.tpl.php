@@ -45,13 +45,8 @@
         <div class="helpLink col col-1">
             <a href="#">Aide</a>
         </div>
-        <div class="newSiteLink col col-6">
+        <div class="newSiteLink col col-7">
         <a href="#" class="cta-button-back  btn-pink">Nouveau site</a>
-        </div>
-        <div class="notificationLink col col-1">
-            <a href="">
-                <img class="icon" src="Public/img/Back/notification1.svg" alt="">
-            </a>
         </div>
         <div class="dropdownMenu col col-2">
             <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">

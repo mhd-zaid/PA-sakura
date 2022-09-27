@@ -27,10 +27,13 @@ body {
 .h1-simple {
   font-size: 2em; }
 
+.h1-section-back {
+  font-size: 2.5em; }
+
 img {
   object-fit: cover; }
 
-p {
+#main-front p {
   font-size: 1.5em; }
 
 .icon {
@@ -39,6 +42,20 @@ p {
 
 .show {
   visibility: visible; }
+
+.flex-row {
+  display: flex; }
+  .flex-row-center {
+    justify-content: center; }
+
+.flex-col {
+  display: flex;
+  flex-direction: column; }
+  .flex-col-center {
+    justify-content: center; }
+
+.center-text {
+  text-align: center; }
 
 #section-contact {
   background-color: #562135;
@@ -436,7 +453,7 @@ p {
 #main-component {
   width: 85%;
   margin-left: 15%;
-  margin-top: 100px; }
+  margin-top: 4em; }
   #main-component section {
     margin-bottom: 25px; }
 
@@ -746,6 +763,8 @@ p {
       align-self: center; } }
 
 .cta-button {
+  width: 10em;
+  height: 3em;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 0px;
@@ -954,3 +973,56 @@ form input[type=textarea] {
 
 .like-comment-share {
   margin-top: 10px; }
+
+.ck-editor__editable[role="textbox"] {
+  /* editing area */
+  height: 30em; }
+
+.pagination {
+  display: inline-block; }
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd; }
+
+.pagination a.active {
+  background-color: #FF66C4;
+  color: white;
+  border: 1px solid #FF66C4; }
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd; }
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
+.choices-parameters {
+  list-style: none; }
+
+.box-parameters {
+  display: flex;
+  background-color: red;
+  border-radius: 10px;
+  align-items: center; }
+
+.filter {
+  font-weight: bold;
+  font-size: 1em;
+  width: fit-content;
+  border-bottom: 0.5em solid transparent;
+  padding-bottom: 0.5em; }
+  .filter:hover {
+    border-bottom: 0.5em solid #FF66C4;
+    color: #FF66C4; }
+
+.selected {
+  border-bottom: 0.5em solid #FF66C4;
+  color: #FF66C4; }

@@ -18,10 +18,10 @@
 <section class="grid">
     <div class="row">
         <div class="col col-3">
-            <button class="cta-button btn--pink">Catégorie</button>
+            <button class="cta-button btn--pink">CRUD</button>
         </div>
         <div class="col col-3">
-            <button class="cta-button btn--pink-rounded">Catégorie</button>
+            <button class="cta-button btn--pink-rounded">Nouveau site</button>
         </div>
         <div class="col col-3">
             <button class="cta-button btn--white">Catégorie</button>
