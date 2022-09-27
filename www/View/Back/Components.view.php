@@ -1,4 +1,17 @@
 <section>
+    <h1>Components élèments d'édition</h1>
+</section>
+
+<section class="grid">
+    <div class="row">
+        <div class="col col-1 edit-element">
+            <img src="Public\img\Back\title.svg" alt="">
+            <p>Titre</p>
+        </div>
+    </div>
+</section>
+
+<section>
     <h1>Components bouton</h1>
 </section>
 
