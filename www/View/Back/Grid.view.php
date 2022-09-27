@@ -1,8 +1,7 @@
-<section class="container-fluid">
+<section>
     <h1> Hello Grid </h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quia repellendus vero, consectetur unde dolore recusandae nam aliquid, sit voluptas ducimus debitis consequuntur obcaecati velit est dolorem culpa! Commodi, exercitationem!</p>
 </section>
-<section class="container-fluid">
 <div class="grid">
 
 <!--GEAY-->

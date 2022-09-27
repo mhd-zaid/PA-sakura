@@ -9,7 +9,7 @@
     <script src="../Public/js/main.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
 </head>
-<body id="body-back">
+<body>
 <nav id="main-nav-back">
 	<img src="Public/img/Back/mini-logo.png" alt="logo-site">
 	<div class="container">
@@ -31,11 +31,9 @@
 	</div>
 </nav>
 
-<div id="main-component">
-
 <header id="header-back">
 
-	<div class="row">
+    <div class="row">
         <div class="dropdownSite col col-2">
             <button class="dropbtnSite"> Mes sites
             </button>
@@ -67,9 +65,12 @@
                 <a href="#">Se déconnecter</a>
             </div>
         </div>
-	</div>
+    </div>
 
 </header>
+
+<div id="main-component">
+
 
 <main class="container-fluid">
 

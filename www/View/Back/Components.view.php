@@ -1,5 +1,26 @@
 <section>
-    <h1> Hello Components </h1>
+    <h1>Components bouton</h1>
+</section>
+
+<section class="grid">
+    <div class="row">
+        <div class="col col-3">
+            <button class="cta-button btn--pink">Catégorie</button>
+        </div>
+        <div class="col col-3">
+            <button class="cta-button btn--pink-rounded">Catégorie</button>
+        </div>
+        <div class="col col-3">
+            <button class="cta-button btn--white">Catégorie</button>
+        </div>
+        <div class="col col-3">
+            <button class="cta-button btn--white-rounded">Catégorie</button>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h1>Components article</h1>
 </section>
 
 <section class="grid">
