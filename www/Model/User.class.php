@@ -17,7 +17,6 @@ class User extends DatabaseDriver
     protected $token = null;
 	private $date_created;
 	private $date_updated;
-    protected $verify_key;
 
 
 	public function __construct()

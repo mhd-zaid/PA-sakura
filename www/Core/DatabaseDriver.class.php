@@ -60,6 +60,3 @@ abstract class DatabaseDriver
 	}
 
 }
-
-
-
