@@ -27,7 +27,7 @@ abstract class DatabaseDriver
 		}
 
 		$CalledClassExploded = explode("\\", get_called_class());
-		$this->table = strtolower("esgi_".end($CalledClassExploded));
+		$this->table = strtolower("sakura_".end($CalledClassExploded));
 	}
 
 
@@ -60,6 +60,3 @@ abstract class DatabaseDriver
 	}
 
 }
-
-
-

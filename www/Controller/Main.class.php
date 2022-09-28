@@ -1,9 +1,9 @@
 <?php
 namespace App\Controller;
 
+
 use App\Core\View;
 use App\Model\User as UserModel;
-use App\Core\Verificator;
 
 class Main{
 
@@ -14,14 +14,7 @@ class Main{
 		
 		$v = new View("Front/Home", "Front");
 		$v->assign("configForm", $contactForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
-	}
-
-	public function login(): void
-	{
-		$user = new UserModel();
-		$loginForm = $user->loginForm();
-		
+		$v->assign("configFormErrors", $configFormErrors??[]);		
 
 		if( !empty($_POST) )
 		{

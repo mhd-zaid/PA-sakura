@@ -23,7 +23,7 @@
 			<li><a href="/home"><img src="Public/img/Back/appearance-1.svg" alt="Apparence">Apparence</a></li>
 			<li><a href="/home"><img src="Public/img/Back/analytics-1.svg" alt="Statistiques">Statistiques</a></li>
 			<li><a href="/home"><img src="Public/img/Back/extension-1.svg" alt="Extension">Extension</a></li>
-            <li><a href="/home"><img src="Public/img/Back/settings-1.svg" alt="Paramètres">Paramètres</a></li>
+            <li><a href="/parametres"><img src="Public/img/Back/settings-1.svg" alt="Paramètres">Paramètres</a></li>
 		</ul>
 		<ul>
 			<li><img src="Public/img/Back/logout1.svg" alt="Se déconnecter">Se déconnecter</li>
