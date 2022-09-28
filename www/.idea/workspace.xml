@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="74c5b0b5-172c-4d3f-a988-ba92412c7018" name="Changes" comment="Ajout PAge Article">
+      <change afterPath="$PROJECT_DIR$/Public/css/profile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/account.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/arrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/file.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/language.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/notification-alarm.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/phone.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/question-mark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/security.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/img/profile/worldwide.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/js/profileDesktop.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Public/js/profileMobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/View/Page/Profile.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/Main.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Main.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/Profil.class.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/Profil.class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Public/css/style_com.css" beforeDir="false" afterPath="$PROJECT_DIR$/Public/css/style_com.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Back.tpl.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Back.tpl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Page/Article.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Page/Article.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Page/Commentaire.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Page/Commentaire.view.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/View/Page/Home.view.php" beforeDir="false" afterPath="$PROJECT_DIR$/View/Page/Home.view.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/.gitignore" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/workspace.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controller/Extension.class.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Controller/Main.class.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/css/article.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/css/edit-article.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/css/style.css" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Public/js/scriptArticle.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Back.tpl.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Page/Article.view.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Page/EditArticle.view.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/View/Page/Home.view.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/routes.yml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2BhbcBZNpQhauUSgX6GcgHjKL3x" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mkamissoko/Documents/PA-sakura/www/Controller&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Controller" />
+      <recent name="$PROJECT_DIR$/Public/img" />
+      <recent name="$PROJECT_DIR$/Public/js" />
+      <recent name="$PROJECT_DIR$/Public/css" />
+      <recent name="$PROJECT_DIR$/View/Page" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/View/Page" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="74c5b0b5-172c-4d3f-a988-ba92412c7018" name="Changes" comment="" />
+      <created>1657361342139</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1657361342139</updated>
+      <workItem from="1657361343562" duration="58000" />
+      <workItem from="1657361403255" duration="1961000" />
+    </task>
+    <task id="LOCAL-00001" summary="Mis à jour du back&#10;Ajout du dossier js et de la librairie">
+      <created>1657362978210</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1657362978210</updated>
+    </task>
+    <task id="LOCAL-00002" summary="MIS A JOUR DU HEADER">
+      <created>1657613440384</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1657613440384</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ajout PAge Article">
+      <created>1657624637224</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1657624637224</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Ajout PAge Article">
+      <created>1657624661771</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1657624661771</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Mis à jour du back" />
+    <MESSAGE value="Mis à jour du back&#10;Ajout du dossier js et de la librairie" />
+    <MESSAGE value="MIS A JOUR DU HEADER" />
+    <MESSAGE value="Ajout PAge Article" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout PAge Article" />
+  </component>
+</project>

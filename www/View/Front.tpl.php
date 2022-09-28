@@ -28,7 +28,7 @@
 		</div>
 	</header>
 
-	<main>
+	<main id="main-front">
 
 	<?php require $this->view; ?>
 

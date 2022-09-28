@@ -1,4 +1,4 @@
-#Différentes routes de notre projet
+#Main
 
 /:
   controller: Main 
@@ -15,6 +15,9 @@
   controller: User
   action: register
 
+/home:
+  controller: Main
+  action: admin
 /confirmation-mail:
   controller: User
   action: confirmMail
@@ -75,17 +78,21 @@
  controller: Profil
  action: condition
 
+### Parameters ####
+/parametres:
+  controller: Parameters
+  action: index
  ### ARTICLE ###
 
 /article:
   controller: Article
   action: index
 
-/edi:
+/article-add:
   controller: Article
   action: addArticle
-  
-#/article-edition/{id}:
+
+# /article-edition/{id}:
 # controller: Article
 # action: editArticle
 #
@@ -99,7 +106,7 @@
   controller: Commentaire
   action: index
 
-/commentaire-ajout:
+/commentaire-add:
   controller: Commentaire
   action: addComment
 
@@ -124,11 +131,11 @@
   controller: Page
   action: index
 
-/ajout-page:
+/page-add:
   controller: Page
   action: addPage
   
-/edition-Page/{id}:
+/page-edit/{id}:
  controller: Page
  action: editPage
  
@@ -177,13 +184,23 @@
   ### APPARENCES ###
 
 /apparence-theme:
-  controller: Apparence-Theme
+  controller: Apparence
   action: editTheme
 
 /apparence-page:
-  controller: Apparence-Page
+  controller: Apparence
   action: editPage
 
 /apparence-menu:
-  controller: Apparence-Menu
+  controller: Apparence
   action: editMenu
+
+  ### GRID & COMPONENTS ###
+
+/grid:
+  controller: WebCreator
+  action: grid
+
+/components:
+  controller: WebCreator
+  action: components

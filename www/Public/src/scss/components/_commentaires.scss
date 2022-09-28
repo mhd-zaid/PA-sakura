@@ -1,0 +1,56 @@
+.commentaire{
+    background-color: $nightblue;
+    height: 100%;
+    padding: 0px;
+    color: $white;
+}
+
+.commentaire-commentaire{
+    & .commentaire-publication{
+        height: 100%;
+        & .commentaire-date-comment{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        & .commentaire-label{
+            font-size: 1em;
+            text-align: left;
+            
+        }
+    }
+    & .commentaire-action{
+        background-color: $nightblue;
+        height: 50px;
+        padding: 10px;
+    }
+}
+
+.row:has(> .commentaire-commentaire){
+    height:200px;
+    & img{
+        width: 100%;
+        height: 70%;
+    }
+    & p{
+        margin: 10px;
+        text-align: center;
+    }
+    & .commentaire-date-comment{
+        height: 100%;
+    }
+    & .commentaire-checkbox{
+        height: 100%;
+    }
+}
+
+
+@media screen and (max-width: 715px){
+    .commentaire-date-comment{
+        align-items: flex-start;
+    }
+    .row:has(> .commentaire-commentaire){
+        height:auto;
+    }
+}

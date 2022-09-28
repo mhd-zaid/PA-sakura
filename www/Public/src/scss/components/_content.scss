@@ -1,20 +1,22 @@
 .content{
-  height: 100px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
   width: 100%;
 
-  // &--green{
-  //   background-color: $green;
-  // }
-  // &--purple{
-  //   background-color: $purple;
-  // }
-  // &--yellow{
-  //   background-color: $yellow;
-  // }
-  // &--blue{
-  //   background-color: $blue;
-  // }
-  // &--red{
-  //   background-color: $red;
-  // }
+  &--gray{
+    background-color: $gray;
+  }
+  &--purple{
+    background-color: $purple;
+  }
+  &--black{
+    background-color: $black;
+  }
+  &--pink{
+    background-color: $pink;
+  }
+  &--blue{
+    background-color: $blue;
+  }
 }

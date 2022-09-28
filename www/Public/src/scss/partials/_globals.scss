@@ -9,14 +9,18 @@ html {
 body{
   margin: 0;
   font-family: $font1;
+  height: 100%; ///// 
 }
 
-/* .container{
-  // padding : 0 30px;
-  display : flex;
+#body-back{
+  display: flex;
+}
 
- 
-} */
+.container-fluid{
+  margin: auto;
+  max-width: 90%;
+  position: relative;
+}
 
 .container {
   display: flex;
@@ -30,17 +34,61 @@ body{
   font-size: 2em;
 }
 
-
-p {
-  // font-size : 1.5em;
-  font-size : 1.5em;
+.h1-section-back{
+  font-size: 2.5em;
 }
 
-.link-article {
-  font-size: 1.5em;
-  color: $black;
-  font-weight: bold;
+img{
+  object-fit: cover;
+}
+
+#main-front{
+  & p {
+    font-size : 1.5em;
+  }
+}
+
+.photo-profil{
+  object-fit: contain;
+}
+
+.icon{
+  width: 2.5em;
+  height: 2.5em;
+}
+
+.show{
+  visibility: visible;
+}
+
+.flex-row{
+  display: flex;
+  &-center{
+    justify-content: center;
+  }
+
 }
 
 
+.flex-col{
+  display: flex;
+  flex-direction:column ;
+  &-center{
+    justify-content: center;
+  }
+}
 
+.center-text{
+  text-align: center;
+}
+
+@mixin object-bg($bg) {
+  background-color: $bg;
+  &:hover {
+    background-color:lighten($bg,10%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background-color:lighten($bg,25%);
+  } 
+}
