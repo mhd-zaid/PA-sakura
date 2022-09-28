@@ -7,6 +7,7 @@
     <div>
 
         <div class="row">
+            <div class="col-12">
             <div class="box-parameters">
                 <div class="col-12">
                     <h2> Général</h2>
@@ -19,6 +20,7 @@
                         <li class="choices-parameters">Langue</li>
                         <li class="choices-parameters">Sécurité</li>
                     </ul>
+                    </div>
                 </div>
             </div>
         </div>

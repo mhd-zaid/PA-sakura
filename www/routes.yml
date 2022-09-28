@@ -64,6 +64,10 @@
  controller: Profil
  action: condition
 
+### Parameters ####
+/parametres:
+  controller: Parameters
+  action: index
  ### ARTICLE ###
 
 /article:
