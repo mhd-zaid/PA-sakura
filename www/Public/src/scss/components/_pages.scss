@@ -1,0 +1,70 @@
+.page{
+    background-color: $nightblue;
+    height: 100%;
+    padding: 0px;
+    color: $white;
+}
+
+.page-dashboard{
+    & .page-container{
+        padding: 15px;
+        & .page-label{
+            font-size: 1em;
+        }
+        & span{
+            float: right;}
+    }
+}
+
+.page-page{
+    & .page-publication{
+        height: 100%;
+        & .page-img, .page-desc, .page-date-comment{
+            height: 100%;
+        }
+        & .page-date-comment{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        & .page-label{
+            font-size: 1em;
+        }
+    }
+    & .page-action{
+        background-color: $nightblue;
+        height: 50px;
+        padding: 10px;
+    }
+}
+
+.page-elmt{
+    background-color: $white;
+    border: 1px solid $black;
+    color: $black;
+    & img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    & .page-label{
+        font-size: 1em;
+    }
+}
+.row:has(> .page-page){
+    height:200px;
+    & img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+@media screen and (max-width: 715px){
+    .page-date-comment{
+        align-items: flex-start;
+    }
+    .row:has(> .page-page){
+        height:auto;
+    }
+}

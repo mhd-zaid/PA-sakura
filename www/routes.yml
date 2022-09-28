@@ -88,7 +88,7 @@
   controller: Commentaire
   action: index
 
-/commentaire-ajout:
+/commentaire-add:
   controller: Commentaire
   action: addComment
 
@@ -113,11 +113,11 @@
   controller: Page
   action: index
 
-/ajout-page:
+/page-add:
   controller: Page
   action: addPage
   
-/edition-Page/{id}:
+/page-edit/{id}:
  controller: Page
  action: editPage
  

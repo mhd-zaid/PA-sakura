@@ -76,6 +76,24 @@
         justify-content: center;
         align-items: center;
     }
+    &--page{
+        color: $nightblue;
+        background-color: $white;
+        font-weight: bold;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &--commentaire{
+        color: $nightblue;
+        background-color: $white;
+        font-weight: bold;
+        height: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .btn-category{
@@ -86,10 +104,10 @@
     text-decoration: none;
     color: white;
     display: inline-block;
-    padding: 0.5em 1em;
+    font-size: 1.3em;
+    padding: 0.4em;
     background-color: grey;
     border-radius: 1000px;
-    text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-align: center;

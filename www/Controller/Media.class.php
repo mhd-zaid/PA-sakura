@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Controller;
+use App\Core\View;
 
 class Media{
     public function index(){
-        echo "Afficher media";
+        $v = new View("Page/Media","Back");
     }
 }

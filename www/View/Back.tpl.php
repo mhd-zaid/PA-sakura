@@ -14,16 +14,16 @@
 	<img src="Public/img/Back/mini-logo.png" alt="logo-site">
 	<div class="container">
 		<ul>
-			<li><img src="Public/img/Back/dashboard-1.svg" alt="Dashboard">Dashboard</li>
-			<li><img src="Public/img/Back/page-1.svg" alt="Pages">Pages</li>
-			<li><img src="Public/img/Back/article-1.svg" alt="Articles">Articles</li>
-			<li><img src="Public/img/Back/media1.svg" alt="Medias">Medias</li>
-			<li><img src="Public/img/Back/comments1.svg" alt="Commentaires">Commentaires</li>
-			<li><img src="Public/img/Back/navigation-1.svg" alt="Navigation">Navigation</li>
-			<li><img src="Public/img/Back/appearance-1.svg" alt="Apparence">Apparence</li>
-			<li><img src="Public/img/Back/analytics-1.svg" alt="Statistiques">Statistiques</li>
-			<li><img src="Public/img/Back/extension-1.svg" alt="Extension">Extension</li>
-            <li><img src="Public/img/Back/settings-1.svg" alt="Paramètres">Paramètres</li>
+			<li><a href="/home"><img src="Public/img/Back/dashboard-1.svg" alt="Dashboard">Dashboard</a></li>
+			<li><a href="/page"><img src="Public/img/Back/page-1.svg" alt="Pages">Pages</a></li>
+			<li><a href="/article"><img src="Public/img/Back/article-1.svg" alt="Articles">Articles</a></li>
+			<li><a href="/media"><img src="Public/img/Back/media1.svg" alt="Medias">Medias</a></li>
+			<li><a href="/commentaire"><img src="Public/img/Back/comments1.svg" alt="Commentaires">Commentaires</a></li>
+			<li><a href="/home"><img src="Public/img/Back/navigation-1.svg" alt="Navigation">Navigation</a></li>
+			<li><a href="/home"><img src="Public/img/Back/appearance-1.svg" alt="Apparence">Apparence</a></li>
+			<li><a href="/home"><img src="Public/img/Back/analytics-1.svg" alt="Statistiques">Statistiques</a></li>
+			<li><a href="/home"><img src="Public/img/Back/extension-1.svg" alt="Extension">Extension</a></li>
+            <li><a href="/home"><img src="Public/img/Back/settings-1.svg" alt="Paramètres">Paramètres</a></li>
 		</ul>
 		<ul>
 			<li><img src="Public/img/Back/logout1.svg" alt="Se déconnecter">Se déconnecter</li>
@@ -45,11 +45,11 @@
         <div class="helpLink col col-1">
             <a href="#">Aide</a>
         </div>
-        <div class="newSiteLink col col-7">
+        <div class="newSiteLink col col-6">
         <a href="#" class="cta-button-back  btn-pink">Nouveau site</a>
         </div>
-        <div class="dropdownMenu col col-2">
-            <img id="photo-profil" class="icon" src="Public\img\Back\avatar.svg" alt="">
+        <div class="dropdownMenu col col-3">
+            <img class="photo-profil icon" src="Public\img\Back\avatar.svg" alt="">
             <button class="dropbtnMenu"> Daniel Casanova
             </button>
             <div class="dropdownMenu-content" id="myDropdownMenu">
