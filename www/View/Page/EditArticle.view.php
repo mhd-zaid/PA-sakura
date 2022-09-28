@@ -4,21 +4,29 @@
     <div class="row">
         <div class="col col-12">
             <h1 class="h1-section-back">Création d'un article</h1>
-            <div id="editor">
-            </div>
+            <form action="" method="POST">
+            <textarea class="ckeditor" id="editor" name="editor"></textarea>
         </div>
     </div>
     <div class="row">
         <div class="col col-12">
-            <button class="cta-button btn--pink">Ajouter</button>
+            <button type="submit" name="submit" class="cta-button btn--pink" id="add">Ajouter</button>
+</form>
         </div>
     </div>
 </section>
 
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+   ClassicEditor
+    .create( document.querySelector( '#editor' ) )
+    .then( editor => {
+        theEditor = editor; // Save for later use.
+    } )
+    .catch( error => {
+        console.error( error );
+    } )
+        // const add = document.getElementById("add");
+        // add.onclick = function(){
+        //     console.log(theEditor.getData());
+        // }
 </script>

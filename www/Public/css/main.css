@@ -164,6 +164,97 @@ img {
     width: 8.33333%; }
   .col-offset-1 {
     margin-left: 8.33333%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-2 {
+    width: 16.66667%; }
+  .col-offset-2 {
+    margin-left: 16.66667%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-3 {
+    width: 25%; }
+  .col-offset-3 {
+    margin-left: 25%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-4 {
+    width: 33.33333%; }
+  .col-offset-4 {
+    margin-left: 33.33333%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-5 {
+    width: 41.66667%; }
+  .col-offset-5 {
+    margin-left: 41.66667%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-6 {
+    width: 50%; }
+  .col-offset-6 {
+    margin-left: 50%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-7 {
+    width: 58.33333%; }
+  .col-offset-7 {
+    margin-left: 58.33333%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-8 {
+    width: 66.66667%; }
+  .col-offset-8 {
+    margin-left: 66.66667%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-9 {
+    width: 75%; }
+  .col-offset-9 {
+    margin-left: 75%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-10 {
+    width: 83.33333%; }
+  .col-offset-10 {
+    margin-left: 83.33333%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-11 {
+    width: 91.66667%; }
+  .col-offset-11 {
+    margin-left: 91.66667%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+  .col-md-12 {
+    width: 100%; }
+  .col-offset-12 {
+    margin-left: 100%; }
+  .col-rounded {
+    background-color: #FFF;
+    border-radius: 15px; }
+
+.row {
+  display: flex;
+  flex-wrap: wrap; }
+
+.col {
+  padding: 15px; }
+  .col-md-1 {
+    width: 8.33333%; }
+  .col-offset-1 {
+    margin-left: 8.33333%; }
   .col-md-2 {
     width: 16.66667%; }
   .col-offset-2 {
@@ -493,6 +584,10 @@ img {
         background-color: #200be5; }
     #header-back :first-child .show {
       display: block; }
+    #header-back :first-child #visit {
+      color: #FFF;
+      text-decoration: none;
+      font-size: 1.5rem; }
   #header-back .helpLink {
     display: flex;
     align-items: center; }
@@ -1260,6 +1355,8 @@ form input[type=textarea] {
 
 .list-parameters {
   align-items: center; }
+  .list-parameters hr {
+    width: 80%; }
   .list-parameters .box-parameters {
     display: flex;
     border-radius: 10px;
@@ -1278,6 +1375,10 @@ form input[type=textarea] {
       text-decoration: none; }
     .list-parameters .choices-parameters img {
       margin-right: 3%; }
+
+.language-language form > label {
+  display: flex;
+  font-size: 1.5em; }
 
 .language-language form > label {
   display: flex;
@@ -1388,45 +1489,6 @@ form input[type=textarea] {
   top: 75px;
   right: 0;
   align-items: center; }
-  #parameters-users-nav hr {
-    width: 80%; }
-  #parameters-users-nav .grid {
-    width: 90%; }
-    #parameters-users-nav .grid #user-notes {
-      background-color: #FDFFA0;
-      color: #000;
-      border-radius: 15px;
-      padding: 15px; }
-    #parameters-users-nav .grid .user-label {
-      font-weight: bold;
-      letter-spacing: 2px; }
-    #parameters-users-nav .grid #user-edit {
-      text-decoration: none;
-      color: #FFF;
-      display: flex;
-      align-items: center; }
-    #parameters-users-nav .grid #user-lastConnection {
-      font-weight: bold;
-      letter-spacing: 3px; }
-    #parameters-users-nav .grid .row:has(> #user-edit) {
-      justify-content: flex-end;
-      align-items: center; }
-    #parameters-users-nav .grid .photo-profil {
-      width: 60%; }
-
-.parametres-compte p {
-  font-size: 1.2rem;
-  margin-right: 2rem; }
-
-.parametres-compte a {
-  color: #000; }
-
-td.details-control {
-  background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
-
-tr.details td.details-control {
-  cursor: pointer;
-  background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
 
 .language-language form > label {
   display: flex;
