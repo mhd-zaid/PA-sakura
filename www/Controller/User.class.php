@@ -57,11 +57,11 @@ class User{
 					$user->setPassword($_POST['password']);
 					$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
 					$user->setToken($token->getToken());
+					$token = $user->getToken();
 					$user->save();
-					setcookie("JWT",$user->getToken(),time()+(60*5));
 					$servername = $_SERVER['HTTP_HOST'];
-					$token = $_COOKIE["JWT"];
-					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
+					$email = $_POST['email'];
+					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
 				}	
 			}
 
@@ -90,11 +90,13 @@ class User{
 			$configFormErrors = $verificator->getMsg();
 
 			if(empty($configFormErrors)){
-				if($user->checkForgotPasswd($_POST['email'])){
+				if(!empty($user->checkForgotPasswd($_POST['email']))){
 					$servername = $_SERVER['HTTP_HOST'];
-					new sendMail($_POST['email'],"CHANGEMENT DE MDP","<a href='http://$servername/reinitialisation-mot-de-passe'>Nouveau mot de passe</a>","Un email à été envoyer pour la réinitialisation du mot de passe","Une erreur s'est produite, merci de réesayer plus tard");
+					$email = $_POST['email'];
+					$token = $user->checkForgotPasswd($_POST['email']);
+					new sendMail($_POST['email'],"CHANGEMENT DE MDP","<a href='http://$servername/reinitialisation-mot-de-passe?token=$token&email=$email'>Nouveau mot de passe</a>","Un email à été envoyer pour la réinitialisation du mot de passe","Une erreur s'est produite, merci de réesayer plus tard");
 				}else{
-					print_r("l'email n'existe pas");
+					echo("l'email n'existe pas");
 				}
 			}
 
@@ -105,7 +107,7 @@ class User{
 	}
 
 	public function resetPasswd(){
-		if(!empty($_COOKIE['JWT'])&& !empty($_COOKIE['Email'])){
+		if(!empty($_GET['token'])&& !empty($_GET['email'])){
 			$user = new UserModel();
 			$resetPasswdForm = $user->resetPasswdForm();
 
@@ -115,7 +117,7 @@ class User{
 
 				$configFormErrors = $verificator->getMsg();
 				if(empty($configFormErrors)){
-					if($user->checkTokenPasswd($_COOKIE['Email'],$_COOKIE['JWT'],$_POST['password'])){
+					if($user->checkTokenPasswd($_GET['email'],$_GET['token'],$_POST['password'])){
 						header("Location: /se-connecter");
 						die();
 					}else{
@@ -136,7 +138,7 @@ class User{
 
 	public function confirmMail(){
 		$user = new UserModel();
-		$user->checkTokenEmail($_COOKIE['JWT']);
+		$user->checkTokenEmail($_GET['verify_key'],$_GET['email']);
 		echo 'Email vérifié';
 	}
 
