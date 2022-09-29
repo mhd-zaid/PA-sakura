@@ -9,7 +9,7 @@ class View{
 	private $view;
 	private $data = [];
 
-	public function __construct(String $view, String $template = "back")
+	public function __construct(String $view, String $template = "Back")
 	{
 		$this->setTempalte($template);
 		$this->setView($view);
