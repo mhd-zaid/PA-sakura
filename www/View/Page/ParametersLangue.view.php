@@ -1,6 +1,6 @@
 <div class="container-fluid container-fluid-parameters">
     <h1>Paramètres > Langues</h1>
-    <section class="grid language-language">
+    <section class="grid grid-rounded language-language">
         <div class="row">
             <div class="col">
                 <h1 class="h1-section">&nbsp;&nbsp;&nbsp;Langues</h1>

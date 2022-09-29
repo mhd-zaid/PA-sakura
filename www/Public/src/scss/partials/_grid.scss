@@ -15,10 +15,11 @@
     &-medias-medias{
       height: 250px;
     }
-    &-parameters{
-      
+    &-rounded{
+      background-color: $white;
+      border-radius: 15px;
     }
-  }
+}
   
   .row{
     display: flex;
