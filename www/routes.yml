@@ -106,6 +106,9 @@
 /parametres-compte:
   controller: Parameters
   action: parametersAccount
+/parametres-support:
+  controller: Parameters
+  action: parametersSupport
  ### ARTICLE ###
 
 /article:
