@@ -11,6 +11,8 @@ class Parameters{
     }
     public function parametersSupport(){
             $v = new View("Page/ParametersSupport", "Back");
-        
+    }
+    public function parametersLangue(){
+            $v = new View("Page/ParametersLangue", "Back");
     }
 }

@@ -9,6 +9,13 @@
     align-items: center;
 }
 
+.language-language{
+    & form>label{
+        display: flex;
+        font-size: 1.5em;
+    }
+}
+
 #parameters-nav{
     position: fixed;
     display: flex;

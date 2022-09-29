@@ -85,6 +85,9 @@
 /parametres-support:
   controller: Parameters
   action: parametersSupport
+/parametres-langue:
+  controller: Parameters
+  action: parametersLangue
  ### ARTICLE ###
 
 /article:
