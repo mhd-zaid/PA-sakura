@@ -112,7 +112,7 @@
 
 /commentaire-mots-bannis:
  controller: Commentaire
- action: banWordComment
+ action: motsbannis
  
 /commentaire/{id}:
  controller: Commentaire
