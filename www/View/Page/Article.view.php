@@ -45,9 +45,9 @@
                     </div>
                 </div>
                 <div class="row article-action">
-                    <button class="col col-4 col-sm-4 btn--article article-publish">Publier</button>
-                    <button class="col col-4 col-sm-4 btn--article article-delete">Supprimer</button>
-                    <button class="col col-4 col-sm-4 btn--article article-unpublish">Retirer</button>
+                    <button class="col-4 col-sm-4 btn--article article-publish">Publier</button>
+                    <button class="col-4 col-sm-4 btn--article article-delete">Supprimer</button>
+                    <button class="col-4 col-sm-4 btn--article article-unpublish">Retirer</button>
                 </div>
             </article>
         </div>
@@ -55,7 +55,7 @@
 
 <section class="grid grid-article-article">
         <div class="row">
-            <article class="col col-12 col-sm-12 article article-article">
+            <article class="col col-12 col-sm-12 article article-article flex-col">
                 <div class="row article-publication">
                     <div class="col col-3 col-sm-12 article-img">
                         <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">

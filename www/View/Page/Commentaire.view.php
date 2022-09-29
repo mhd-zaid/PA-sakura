@@ -1,23 +1,45 @@
 <section class="grid">
+    <!-- <div class="flex-col">
+        <h1 class="h1-section-back">Commentaires</h1>
+        <p class="p-section-back">Créer ou modifier vos commentaires</p>
+        
+        <div class="flex-row flex-row-align-center">
+            
+        <iconify-icon icon="bi:search"></iconify-icon>
+        <p>rechercher</p>
+        <input type="text" id="recherche">
+        </div>
+    </div> -->
     <div class="row">
-        <h1 class="h1-section-back">Liste des commentaires</h1>
+        <h1 class="h1-section-back">Commentaires</h1>
     </div>
     <div class="row">
-        <p>Recherche <span><input type="text"></span> </p>
+        <p class="p-section-back">Créer ou modifier vos commentaires</p>
     </div>
-    <div class="row">
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Publiés</p></div>
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Brouillons</p> </div>
-        <div class="col col-6 flex-col flex-col-center"><p class="filter">Corbeille</p></div>
+    <div class="flex-row flex-row-align-center">
+        <div class="col col-1">
+            <iconify-icon icon="bi:search"></iconify-icon>
+        </div>
         <div class="col col-2">
-            <button class="cta-button btn--pink">Ajouter</button>
+            <p>Rechercher</p>
+        </div>
+        <div class="col">
+            <input type="text" id="recherche">
         </div>
     </div>
+    <div class="row">
+        <div class="col-2 col"><p class="filter">En attente</p></div>
+        <div class="col-2 col"><p class="filter">Publiés</p></div>
+        <div class="col-2 col"><p class="filter">Supprimé</p></div>
+        <div class="col-2 col"><p class="filter">Signalement</p> </div>
+        <button class="cta-button btn--pink">Mots bannis</button>
+    </div>
+   
 </section>
 
 <section class="grid grid-commentaire-commentaire">
         <div class="row">
-            <article class="col col-12 col-sm-12 commentaire commentaire-commentaire">
+            <article class="col col-12 col-sm-12 commentaire commentaire-commentaire flex-col">
                 <div class="row commentaire-publication">
                     <div class="col col-1 col-sm-12  flex-col flex-col-center" >
                         <input type="checkbox" id="comment" name="comment">

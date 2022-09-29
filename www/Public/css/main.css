@@ -50,6 +50,8 @@ img {
   display: flex; }
   .flex-row-center {
     justify-content: center; }
+  .flex-row-align-center {
+    align-items: center; }
 
 .flex-col {
   display: flex;
@@ -808,6 +810,7 @@ img {
       color: #FFF; }
 
 .btn--pink {
+  border-radius: 0px;
   color: #FFF;
   background: #FF66C4; }
   .btn--pink:hover {
