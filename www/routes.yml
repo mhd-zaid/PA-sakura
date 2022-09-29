@@ -82,6 +82,15 @@
 /parametres:
   controller: Parameters
   action: index
+
+/parametres-gestion-compte: 
+  controller: Parameters
+  action: AccountManagement
+
+/parametres-gestion-utilisateurs:
+  controller: UsersManagement
+  action: index
+
  ### ARTICLE ###
 
 /article:
