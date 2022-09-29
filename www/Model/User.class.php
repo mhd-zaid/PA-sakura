@@ -429,4 +429,12 @@ class User extends DatabaseDriver
         }
     }
 
+    public function getUsers(){
+        $sql = "SELECT * FROM ".$this->table;
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+
+        return $data;
+    }
+
 }
