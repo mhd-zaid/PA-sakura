@@ -21,6 +21,9 @@ body {
   .container-fluid-parameters {
     margin: 0;
     width: 75%; }
+    .container-fluid-parameters .grid {
+      background-color: #FFF;
+      border-radius: 15px; }
 
 .container {
   display: flex; }
@@ -1427,6 +1430,10 @@ td.details-control {
 tr.details td.details-control {
   cursor: pointer;
   background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
+
+.language-language form > label {
+  display: flex;
+  font-size: 1.5em; }
 
 #parameters-nav {
   position: fixed;

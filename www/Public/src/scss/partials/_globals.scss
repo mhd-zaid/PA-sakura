@@ -24,6 +24,10 @@ body{
   &-parameters{
     margin: 0;
     width: 75%;
+    & .grid{
+      background-color: $white;
+      border-radius: 15px;
+    }
   }
 }
 
