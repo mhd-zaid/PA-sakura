@@ -1166,14 +1166,29 @@ form input[type=textarea] {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px; }
 
-.choices-parameters {
-  list-style: none; }
+.title-parameter p {
+  font-size: 20px; }
 
-.box-parameters {
-  display: flex;
-  background-color: red;
-  border-radius: 10px;
+.list-parameters {
   align-items: center; }
+  .list-parameters .box-parameters {
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    margin-bottom: 2%; }
+    .list-parameters .box-parameters .box-title {
+      display: flex;
+      justify-content: center; }
+  .list-parameters .choices-parameters {
+    list-style: none;
+    margin-bottom: 2%; }
+    .list-parameters .choices-parameters a {
+      color: black;
+      display: flex;
+      align-items: center;
+      text-decoration: none; }
+    .list-parameters .choices-parameters img {
+      margin-right: 3%; }
 
 .filter {
   font-weight: bold;
