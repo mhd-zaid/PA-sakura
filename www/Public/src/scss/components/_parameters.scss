@@ -1,10 +1,37 @@
-.choices-parameters{
-    list-style:none;
+.title-parameter {
+    & p {
+        font-size: 20px;
+    }
 }
 
-.box-parameters{
-    display: flex;
-    background-color: red;
-    border-radius: 10px;
+.list-parameters {
     align-items: center;
+
+    .box-parameters {
+        display: flex;
+        border-radius: 10px;
+        align-items: center;
+        margin-bottom: 2%;
+
+        & .box-title {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    & .choices-parameters {
+        list-style: none;
+        margin-bottom: 2%;
+
+        & a {
+            color: black;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        & img {
+            margin-right: 3%;
+        }
+    }
 }
