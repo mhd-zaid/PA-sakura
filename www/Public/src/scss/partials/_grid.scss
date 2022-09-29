@@ -36,13 +36,21 @@
     &-offset-#{$i}{
       margin-left: ((100 / $columns) * $i) * 1%;
     }
-    &-parameters{
-      
+    &-rounded{
+      background-color: $white;
+      border-radius: 15px;
     }
   }
 }
 
 @media (max-width: $small-screen) {
+}
+  
+  .row{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
   .col{
     $columns:12;
     @for $i from 1 through $columns {
