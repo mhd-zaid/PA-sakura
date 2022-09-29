@@ -18,6 +18,9 @@ body {
   margin: auto;
   max-width: 90%;
   position: relative; }
+  .container-fluid-parameters {
+    margin: 0;
+    width: 75%; }
 
 .container {
   display: flex; }
