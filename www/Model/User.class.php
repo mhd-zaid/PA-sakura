@@ -339,10 +339,9 @@ class User extends DatabaseDriver
                 if($data['Status'] == 0){
                     $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
                     $this->setToken($token->getToken());
-                    setcookie("JWT",$this->getToken(),time()+(60*5));
+                    $token = $this->getToken();
                     $servername = $_SERVER['HTTP_HOST'];
-                    $token = $_COOKIE["JWT"];
-                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
+                    new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
                 }else{
                     setcookie("JWT",$header.".".$playload.".".$signature,time()+(60*60*2));
                     header("Location: /tableau-de-bord");
@@ -356,7 +355,7 @@ class User extends DatabaseDriver
         }
     }
 
-    public function checkForgotPasswd(string $email): bool{
+    public function checkForgotPasswd(string $email): ?string{
         $sql = "SELECT * FROM $this->table WHERE email = '$email'";
         $result = $this->pdo->query($sql);
         if($result->rowCount() > 0){
@@ -367,7 +366,6 @@ class User extends DatabaseDriver
             $signature = hash_hmac('sha256',$header.".".$playload,$secret);
             $token = $header.".".$playload.".".$signature;
             setcookie("JWT",$token,time()+(60*5));
-            setcookie("Email",$email,time()+(60*5));
             $this->setId($data['Id']);
             $this->setFirstname($data['Firstname']);
             $this->setLastname($data['Lastname']);
@@ -376,9 +374,9 @@ class User extends DatabaseDriver
             $this->password = $data['Password'];
             $this->setToken($token);
             $this->save();
-                return true;
+                return $this->getToken();
         }else{
-            return false;
+            return null;
         }
     }
 
@@ -403,12 +401,14 @@ class User extends DatabaseDriver
         }
     }
 
-    public function checkTokenEmail($token):void
+    public function checkTokenEmail(string $token,string $email):void
     {
-        $sql = "SELECT * FROM $this->table where status=0 AND token= '$token'";
+        $sql = "SELECT Token FROM $this->table where status=0 AND email= '$email'";
         $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            $sql_update = "UPDATE $this->table SET status=1 where token='$token'";
+        $data = $result->fetch();
+        
+        if($result->rowCount() > 0 && $data['Token']==$token){
+            $sql_update = "UPDATE $this->table SET status=1 where email='$email'";
             $this->pdo->query($sql_update);
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
