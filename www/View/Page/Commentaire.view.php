@@ -32,7 +32,7 @@
         <div class="col-2 col"><p class="filter">Publiés</p></div>
         <div class="col-2 col"><p class="filter">Supprimé</p></div>
         <div class="col-2 col"><p class="filter">Signalement</p> </div>
-        <button class="cta-button btn--pink">Mots bannis</button>
+        <div class="col-2 col"><button class="cta-button btn--pink">Mots bannis</button></div>
     </div>
    
 </section>
