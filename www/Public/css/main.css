@@ -21,12 +21,15 @@ body {
   .container-fluid-parameters {
     margin: 0;
     width: 75%; }
+    .container-fluid-parameters .grid {
+      background-color: #FFF;
+      border-radius: 15px; }
 
 .container {
   display: flex; }
 
 .h1-section {
-  font-size: 4em; }
+  font-size: 3em; }
 
 .h1-simple {
   font-size: 2em; }
@@ -1196,6 +1199,10 @@ form input[type=textarea] {
       text-decoration: none; }
     .list-parameters .choices-parameters img {
       margin-right: 3%; }
+
+.language-language form > label {
+  display: flex;
+  font-size: 1.5em; }
 
 #parameters-nav {
   position: fixed;
