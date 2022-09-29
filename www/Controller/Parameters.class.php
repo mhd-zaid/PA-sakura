@@ -9,4 +9,8 @@ class Parameters{
             $v = new View("Page/Parameters", "Back");
         
     }
+    public function parametersSupport(){
+            $v = new View("Page/ParametersSupport", "Back");
+        
+    }
 }

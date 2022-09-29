@@ -82,6 +82,9 @@
 /parametres:
   controller: Parameters
   action: index
+/parametres-support:
+  controller: Parameters
+  action: parametersSupport
  ### ARTICLE ###
 
 /article:
