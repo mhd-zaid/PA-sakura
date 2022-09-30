@@ -171,3 +171,11 @@
         }
     }
 }
+
+td.details-control {
+    background: url('https://api.iconify.design/akar-icons/edit.svg') no-repeat center center / contain;
+}
+tr.details td.details-control {
+    cursor: pointer;
+    background: url('https://api.iconify.design/akar-icons/edit.svg') no-repeat center center / contain;
+}

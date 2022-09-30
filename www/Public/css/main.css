@@ -1320,6 +1320,13 @@ form input[type=textarea] {
     #parameters-users-nav .grid .photo-profil {
       width: 60%; }
 
+td.details-control {
+  background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
+
+tr.details td.details-control {
+  cursor: pointer;
+  background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
+
 .filter {
   font-weight: bold;
   font-size: 1em;
