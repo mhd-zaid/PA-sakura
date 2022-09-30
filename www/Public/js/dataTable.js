@@ -1,7 +1,7 @@
 
 $(document).ready( function () {
     console.log("DataTable is ready !");
-    var table = $('#table_id').DataTable({
+    var table = $('#table_users').DataTable({
         scrollY: 400,
         select: true
     });
@@ -27,4 +27,56 @@ $(document).ready( function () {
             select.append( $('<option value="'+d+'">'+d+'</option>') );
         } );
     });
+    // editor = new $.fn.dataTable.Editor({
+    //     ajax : "userData.php",
+    //     table : "table_users",
+    //     fields : [
+    //         {
+    //             label: "Nom:",
+    //             name: "nom"
+    //         },
+    //         {
+    //             label: "Email:",
+    //             name: "email"
+    //         },
+    //         {
+    //             label: "Note:",
+    //             name: "note"
+    //         },
+    //         {
+    //             label: "Rôle:",
+    //             name: "role"
+    //         },
+    //         {
+    //             label: "Date de création:",
+    //             name: "date_creat"
+    //         },
+    //         {
+    //             label: "Date de modification:",
+    //             name: "date_modif"
+    //         }
+    //     ]
+    // });
+    // $('#table_users').DataTable( {
+    //     dom: "Bfrtip",
+    //     ajax: {
+    //         url: "userData.php",
+    //         type: 'POST'
+    //     },
+    //     columns: [
+    //         { data: "nom" },
+    //         { data: "email" },
+    //         { data: "note" },
+    //         { data: "role" },
+    //         { data: "date_creat" },
+    //         { data: "date_modif" }
+    //     ],
+    //     select: true,
+    //     buttons: [
+    //         { extend: "create", editor: editor },
+    //         { extend: "edit",   editor: editor },
+    //         { extend: "remove", editor: editor }
+    //     ]
+    // } );
+    // }
 })
