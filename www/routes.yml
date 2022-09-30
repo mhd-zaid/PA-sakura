@@ -112,6 +112,9 @@
 /parametres-langue:
   controller: Parameters
   action: parametersLangue
+/parametres-users:
+  controller: Parameters
+  action: parametersUsers
  ### ARTICLE ###
 
 /article:

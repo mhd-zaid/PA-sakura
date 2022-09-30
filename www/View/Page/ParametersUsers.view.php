@@ -8,10 +8,10 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="cta-button btn--pink">Ajouter</a>
+            <button class="cta-button btn--pink">Ajouter</button>
         </div>
         <div class="col">
-            <a class="cta-button btn--pink">Supprimer</a>
+            <button class="cta-button btn--pink">Supprimer</button>
         </div>
     </div>
 </section>
