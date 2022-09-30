@@ -1,4 +1,3 @@
-
 <div class="container-fluid container-fluid-parameters">
     <section class="grid">
         <div class="row">
@@ -19,29 +18,22 @@
 
 <section class="grid">
     <div class="row">
-        <div class="col">
+        <div class="col col-12">
         <table id="table_users" class="display hover order-column">
         <thead>
             <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Prénom</th>
                 <th>Nom</th>
-                <th>Email</th>
+                <!-- <th>Email</th>
                 <th>Note</th>
                 <th>Rôle</th>
                 <th>Date de création</th>
-                <th>Date de modification</th>
+                <th>Date de modification</th> -->
             </tr>
         </thead>
-        <!-- <tfoot>
-            <tr>
-                <th>Nom</th>
-                <th>Email</th>
-                <th>Note</th>
-                <th>Rôle</th>
-                <th>Date de création</th>
-                <th>Date de modification</th>
-            </tr>
-        </tfoot> -->
-        <tbody>
+        <!-- <tbody>
             <tr>
                 <td class="">Daniel Casanova</td>
                 <td class="">dcasanova@hotmail.fr</td>
@@ -82,7 +74,7 @@
                 <td class="">27/08/2022</td>
                 <td class="">27/08/2022</td>
             </tr>
-        </tbody>
+        </tbody> -->
     </table>
         </div>
     </div>
