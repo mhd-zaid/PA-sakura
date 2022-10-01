@@ -1563,6 +1563,13 @@ tr.details td.details-control {
     #parameters-users-nav .grid .photo-profil {
       width: 60%; }
 
+.parametres-compte img {
+  width: 100px; }
+
+.parametres-compte p {
+  font-size: 1.2rem;
+  margin-right: 2rem; }
+
 td.details-control {
   background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
 
