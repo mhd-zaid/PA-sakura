@@ -2,16 +2,16 @@
     <section class="grid">
         <div class="row">
             <div class="col">
-            <h1 class="h1-section-back">Paramètres > Gestion des utilisateurs</h1>
+            <h1 class="h1-section-back">Paramètres&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Gestion des utilisateurs</h1>
             <h1 class="h-section-back">Gérer les utilisateurs de vos sites ici</h1>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <button class="cta-button btn--pink">Ajouter</button>
+            <a class="cta-button btn--pink">Ajouter</a>
         </div>
         <div class="col">
-            <button class="cta-button btn--pink">Supprimer</button>
+            <a class="cta-button btn--pink">Supprimer</a>
         </div>
     </div>
 </section>
