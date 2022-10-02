@@ -7,9 +7,9 @@
             </div>
         </div>
         <div class="row"><div class="col"></div>
-            <div class="col col-2 flex-col flex-col-center center-text">
-                <img src="Public/img/Back/mini-logo.png" alt="">
-                <p>Modifier</p>
+            <div class="col col-2 flex-col flex-col-center flex-col-align-center">
+                <img src="Public/img/Back/mini-logo.svg" alt="">
+                <a href="#">Modifier</a>
             </div>
             <div class="col col-9">
                 <div class="row flex-row flex-row-align-center">
@@ -52,6 +52,38 @@
             </div>
             <div class="col">
                 <p>France</p>
+            </div>
+        </div>
+    </section>
+    <section class="grid grid-rounded parametres-compte">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <p><b>Mon site</b></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col col-2">
+                <img class="plain" src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
+            </div>
+            <div class="col">
+                <p><b>AnimeOnline</b></p>
+                <p>Rôle : <b>Administrateur</b></p>
+                <div class="row">
+                    <div class="col">
+                        <iconify-icon icon="entypo:publish" width="32"></iconify-icon>
+                    </div>
+                    <div class="flex-col flex-col-center">
+                        <a href="">Mettre en ligne</a>
+                    </div>
+                    <div class="col">
+                        <iconify-icon icon="fluent:delete-32-regular" width="32"></iconify-icon>
+                    </div>
+                    <div class="flex-col flex-col-center">
+                        <a href="#">Supprimer</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
