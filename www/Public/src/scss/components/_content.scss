@@ -4,19 +4,19 @@
   font-size: 2em;
   width: 100%;
 
-  &--gray{
-    background-color: $gray;
-  }
-  &--purple{
-    background-color: $purple;
-  }
-  &--black{
-    background-color: $black;
+  &--blue{
+    background-color: $nightblue;
+    color: $white;
   }
   &--pink{
     background-color: $pink;
+    color: $white;
   }
-  &--blue{
-    background-color: $blue;
+  &--black{
+    background-color: $black;
+    color: $white;
+  }
+  &--grey{
+    background-color: $skygrey;
   }
 }

@@ -47,6 +47,11 @@ img{
   object-fit: cover;
 }
 
+.plain{
+  height: 100%;
+  width: 100%;
+}
+
 #main-front{
   & p {
     font-size : 1.5em;
@@ -83,6 +88,9 @@ img{
   &-center{
     justify-content: center;
   }
+  &-align-center{
+    align-items: center;
+   }
 }
 
 .center-text{

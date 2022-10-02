@@ -37,6 +37,10 @@ body {
 img {
   object-fit: cover; }
 
+.plain {
+  height: 100%;
+  width: 100%; }
+
 #main-front p {
   font-size: 1.5em; }
 
@@ -62,6 +66,8 @@ img {
   flex-direction: column; }
   .flex-col-center {
     justify-content: center; }
+  .flex-col-align-center {
+    align-items: center; }
 
 .center-text {
   text-align: center; }
@@ -236,16 +242,17 @@ img {
   font-weight: bold;
   font-size: 2em;
   width: 100%; }
-  .content--gray {
-    background-color: gray; }
-  .content--purple {
-    background-color: #562135; }
-  .content--black {
-    background-color: #000; }
-  .content--pink {
-    background-color: #FF66C4; }
   .content--blue {
-    background-color: #32F4FF; }
+    background-color: #0F056B;
+    color: #FFF; }
+  .content--pink {
+    background-color: #FF66C4;
+    color: #FFF; }
+  .content--black {
+    background-color: #000;
+    color: #FFF; }
+  .content--grey {
+    background-color: #F4F4F4; }
 
 #site-header {
   height: 7em;
@@ -1320,12 +1327,12 @@ form input[type=textarea] {
     #parameters-users-nav .grid .photo-profil {
       width: 60%; }
 
-.parametres-compte img {
-  width: 100px; }
-
 .parametres-compte p {
   font-size: 1.2rem;
   margin-right: 2rem; }
+
+.parametres-compte a {
+  color: #000; }
 
 td.details-control {
   background: url("https://api.iconify.design/akar-icons/edit.svg") no-repeat center center/contain; }
