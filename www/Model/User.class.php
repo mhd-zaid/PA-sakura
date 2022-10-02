@@ -15,6 +15,7 @@ class User extends DatabaseDriver
     protected $password;
 	protected $status = 0;
     protected $token = null;
+    protected $role = 1;
 	private $date_created;
 	private $date_updated;
 
@@ -121,6 +122,22 @@ class User extends DatabaseDriver
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRole(): int
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param int $role
+     */
+    public function setRole(int $role): void
+    {
+        $this->role = $role;
     }
 
     /**
@@ -270,7 +287,7 @@ class User extends DatabaseDriver
                                     "type"=>"radio",
                                     "label"=>"Administrateur",
                                     "class"=>"ipt-form-entry",
-                                    "value"=>"Administrateur",
+                                    "value"=>"1",
                                     "elemName"=>"userRole"
                                 ],
 
@@ -278,7 +295,7 @@ class User extends DatabaseDriver
                                     "type"=>"radio",
                                     "label"=>"Editeur",
                                     "class"=>"ipt-form-entry",
-                                    "value"=>"Editeur",
+                                    "value"=>"2",
                                     "elemName"=>"userRole"
                                 ],
                                 
@@ -286,7 +303,7 @@ class User extends DatabaseDriver
                                     "type"=>"radio",
                                     "label"=>"Lecteur",
                                     "class"=>"ipt-form-entry",
-                                    "value"=>"Lecteur",
+                                    "value"=>"3",
                                     "elemName"=>"userRole"
                                 ],
 

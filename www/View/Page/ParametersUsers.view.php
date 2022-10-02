@@ -8,7 +8,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="cta-button btn--pink">Ajouter</a>
+            <a href="/parametres-new-user" class="cta-button btn--pink">Ajouter</a>
         </div>
         <div class="col">
             <a class="cta-button btn--pink">Supprimer</a>

@@ -45,11 +45,12 @@ class Parameters{
 					$user->setPassword($_POST['password']);
 					$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
 					$user->setToken($token->getToken());
+					$token = $user->getToken();
+                    $user->setRole(intval($_POST['userRole']));
 					$user->save();
-					setcookie("JWT",$user->getToken(),time()+(60*5));
 					$servername = $_SERVER['HTTP_HOST'];
-					$token = $_COOKIE["JWT"];
-					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
+					$email = $_POST['email'];
+					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
 				}	
 			// }
 
