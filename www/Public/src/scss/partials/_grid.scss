@@ -1,63 +1,71 @@
 .grid{
-    overflow: hidden;
-    &-article-elmt{
-      height: 225px;
-    }
-    &-article-article{
-      height: 250px;
-    }
-    &-page-page{
-      height: 250px;
-    }
-    &-commentaire-commentaire{
-      height: 250px;
-    }
-    &-medias-medias{
-      height: 250px;
-    }
-    &-rounded{
-      background-color: $white;
-      border-radius: 15px;
-    }
+  overflow: hidden;
+  &-article-elmt{
+    height: 225px;
+  }
+  &-article-article{
+    height: 250px;
+  }
+  &-page-page{
+    height: 250px;
+  }
+  &-commentaire-commentaire{
+    height: 250px;
+  }
+  &-medias-medias{
+    height: 250px;
+  }
+  &-rounded{
+    background-color: $white;
+    border-radius: 15px;
+  }
 }
   
-  .row{
-    display: flex;
-    flex-wrap: wrap;
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col{
+  padding: 15px;
+  $columns:12;
+  @for $i from 1 through $columns {
+    &-md-#{$i} {
+      width: ((100 / $columns) * $i) * 1%;
+    };
+    &-offset-#{$i}{
+      margin-left: ((100 / $columns) * $i) * 1%;
+    }
   }
-  
+}
+
+@media (max-width: $small-screen) {
   .col{
-    padding: 15px;
     $columns:12;
     @for $i from 1 through $columns {
-      &-md-#{$i} {
+      &-sm-#{$i} {
         width: ((100 / $columns) * $i) * 1%;
-      }
+      };
+      &-offset-#{$i}{
+        margin-left: ((100 / $columns) * $i) * 1%;
+      };
     }
   }
-  
-  @media (max-width: $small-screen) {
-    .col{
-      $columns:12;
-      @for $i from 1 through $columns {
-        &-sm-#{$i} {
-          width: ((100 / $columns) * $i) * 1%;
-        }
-      }
-    }
-  
-  }
-  
-  @media (min-width: $large-screen) {
-    .col{
-      $columns:12;
-      @for $i from 1 through $columns {
-        &-#{$i} {
-          width: ((100 / $columns) * $i) * 1%;
-        }
-      }
+}
+
+@media (min-width: $large-screen) {
+  .col{
+    $columns:12;
+    @for $i from 1 through $columns {
+      &-#{$i} {
+        width: ((100 / $columns) * $i) * 1%;
+      };
+      &-offset-#{$i}{
+        margin-left: ((100 / $columns) * $i) * 1%;
+      };
     }
   }
+}
 
 // .col {
 //   padding: calc($gutter/2);
