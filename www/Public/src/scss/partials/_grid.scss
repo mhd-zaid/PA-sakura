@@ -46,11 +46,25 @@
 @media (max-width: $small-screen) {
 }
   
-  .row{
-    display: flex;
-    flex-wrap: wrap;
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col{
+  padding: 15px;
+  $columns:12;
+  @for $i from 1 through $columns {
+    &-md-#{$i} {
+      width: ((100 / $columns) * $i) * 1%;
+    };
+    &-offset-#{$i}{
+      margin-left: ((100 / $columns) * $i) * 1%;
+    }
   }
-  
+}
+
+@media (max-width: $small-screen) {
   .col{
     $columns:12;
     @for $i from 1 through $columns {
