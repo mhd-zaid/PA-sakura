@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col col-12 center-text">
                 <img class="photo-profil" src="Public\img\Back\avatar.svg" alt="">
-                <p>Daniel Casanova</p>
+                <p id="user-name">Daniel Casanova</p>
                 <button class="cta-button btn--pink-rounded btn-category">Admin</button>
             </div>
         </div>

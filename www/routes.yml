@@ -88,6 +88,15 @@
 /parametres-langue:
   controller: Parameters
   action: parametersLangue
+/parametres-users:
+  controller: Parameters
+  action: parametersUsers
+/parametres-new-user:
+  controller: Parameters
+  action: parametersAddUser
+/parametres-compte:
+  controller: Parameters
+  action: parametersAccount
  ### ARTICLE ###
 
 /article:
