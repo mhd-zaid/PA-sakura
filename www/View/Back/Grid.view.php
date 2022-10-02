@@ -1,6 +1,9 @@
 <section>
     <h1> Hello Grid </h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quia repellendus vero, consectetur unde dolore recusandae nam aliquid, sit voluptas ducimus debitis consequuntur obcaecati velit est dolorem culpa! Commodi, exercitationem!</p>
+</section>
+<section>
+    <h1>Exemple n°1</h1>
+    <p>Grid responsive</p>
 </section>
 <div class="grid">
 
@@ -65,6 +68,72 @@
 </div>
 </section>
 
+<section>
+    <h1>Exemple n°2</h1>
+    <p>Grid séparée en 12 Collone</p>
+</section>
+
+<section>
+    <div class="row">
+        <div class="col col-1">
+            <div class="content content--black">1</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">2</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">3</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">4</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">5</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">6</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">7</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">8</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">9</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">10</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">11</div>
+        </div>
+        <div class="col col-1">
+            <div class="content content--black">12</div>
+        </div>
+    </div>
+</section>
+<section>
+    <h1>Exemple n°3</h1>
+    <p>Grid offset</p>
+</section>
+<section>
+    <div class="row">
+        <div class="col col-1">
+            <div class="content content--gray">COL 1</div>
+        </div>
+        <div class="col col-2 col-offset-2">
+            <div class="content content--pink">COL 2</div>
+        </div>
+        <div class="col col-4 col-offset-1">
+            <div class="content content--blue">COL 4</div>
+        </div>
+    </div>
+</section>
+<section>
+    <h1>Exemple n°4</h1>
+    <p>Grid unique</p>
+</section>
 <section>
     <div class="row">
         <div class="col col-1">
