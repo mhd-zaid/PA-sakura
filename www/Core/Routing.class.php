@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Model\User;
+
 class Routing{
 
 	private $routeFile = "routes.yml";
@@ -19,6 +21,25 @@ class Routing{
 		
 	}
 
+	public function getSecurity(string $uri):void
+	{
+		$user = new User();
+		if($this->routes[$uri]['security']){
+			if(!empty($_COOKIE['JWT']) && !empty($_COOKIE['Email'])){
+				$checked = $user->checkToken($_COOKIE['JWT'],$_COOKIE['Email']);
+				print_r($checked);
+				if($checked)
+				{
+					//header("Location: /$uri");
+				}else{
+					//header("Location: /se-connecter");
+				}
+				
+			}
+		}
+		//header("Location: /se-connecter");
+		
+	}
 
 	public function setAction(string $uri): array
 	{
@@ -27,9 +48,11 @@ class Routing{
 			|| empty($this->routes[$uri]["action"])){
 			die("Page 404");
 		}
+
 		$this->controller = $this->routes[$uri]["controller"];//Main
 		$this->action = $this->routes[$uri]["action"]; //index
-
+		
+		$this->getSecurity($uri);
 		return [$this->controller,$this->action];
 	}
 

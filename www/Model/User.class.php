@@ -445,18 +445,22 @@ class User extends DatabaseDriver
                 $_SESSION['firstname'] = $data['Firstname'];
                 $_SESSION['lastname'] = $data['Lastname'];
                 $_SESSION['status'] = $data['Status'];
-                $header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
-                $playload = base64_encode(json_encode($_SESSION));
-                $secret = base64_encode('Za1234');
-                $signature = hash_hmac('sha256',$header.".".$playload,$secret);
+                $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
+                $this->setId($data['Id']);
+                $this->setFirstname($data['Firstname']);
+                $this->setLastname($data['Lastname']);
+                $this->setEmail($data['Email']);
+                $this->setStatus($data['Status']);
+                $this->password = $data['Password'];
+                $this->setToken($token->getToken());
+                $token = $this->getToken();
                 if($data['Status'] == 0){
-                    $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
-                    $this->setToken($token->getToken());
-                    $token = $this->getToken();
                     $servername = $_SERVER['HTTP_HOST'];
                     new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
                 }else{
-                    setcookie("JWT",$header.".".$playload.".".$signature,time()+(60*60*2));
+                    setcookie("JWT",$token,time()+(60*60*2));
+                    setcookie("Email",$data['Email'],time()+(60*60*2));
+                    $this->save();
                     header("Location: /tableau-de-bord");
                     die();
                 }
@@ -512,6 +516,19 @@ class User extends DatabaseDriver
         }else{
             return false;
         }
+    }
+
+    public function checkToken(string $token,string $email):string
+    {
+        $sql = "SELECT Token FROM $this->table where token='$token' AND email= '$email'";
+        $result = $this->pdo->query($sql);
+        print_r($result);
+        echo '<br>';
+        $data = $result->fetch();
+        if($result->rowCount() > 0){
+            return "true";
+        }
+        return "false";
     }
 
     public function checkTokenEmail(string $token,string $email):void
