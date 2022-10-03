@@ -37,13 +37,8 @@
 <header id="header-back">
 
     <div class="row">
-        <div class="dropdownSite col col-2">
-            <button class="dropbtnSite"> Mes sites
-            </button>
-            <div class="dropdownSite-content" id="myDropdownSite">
-                <a href="#">Site 1</a>
-                <a href="#">Site 2</a>
-            </div>
+        <div class="col col-2">
+            <a href="#"> Visiterle site</button>
         </div>
         <div class="helpLink col col-1">
             <a href="#">Aide</a>
@@ -57,9 +52,8 @@
             </button>
             <div class="dropdownMenu-content" id="myDropdownMenu">
                 <a href="#">Paramètre du compte</a>
+                <a href="#">Gérer les utilisateurs</a>
                 <a href="#">Assistance</a>
-                <a href="#">Centre de messagerie</a>
-                <a href="#">Créer un nouveau site</a>
                 <a href="#">Se déconnecter</a>
             </div>
         </div>

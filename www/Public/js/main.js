@@ -24,26 +24,6 @@ $().ready(function (){
       }
     }
 
-    $('.dropdownSite').on('click', function(){
-      console.log("ouverture du menu");
-      var dropdown = document.getElementById("myDropdownSite");
-      dropdown.classList.toggle("show");
-    })
-    
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) {
-      if (!event.target.matches('.dropbtnSite')) {
-        var dropdowns = document.getElementsByClassName("dropdownSite-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
-
 });
 
 function dropdown() {
