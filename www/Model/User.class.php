@@ -332,6 +332,8 @@ class User extends DatabaseDriver
                                 "class"=>"form-register",
                                 "submit"=>"Modifier"
                             ],
+                "user"=>$this->getUser($_GET['id']),
+                            
                 "inputs"=> [
                     "firstname"=>[
                                     "type"=>"text",
@@ -340,7 +342,8 @@ class User extends DatabaseDriver
                                     "min"=>2,
                                     "max"=>25,
                                     "required"=>true,
-                                    "error"=>"Le prénom doit faire entre 2 et 25 caractères"
+                                    "error"=>"Le prénom doit faire entre 2 et 25 caractères",
+                                    "value"=>$this->firstname
                                 ],
 
                     "lastname"=>[
@@ -652,16 +655,9 @@ class User extends DatabaseDriver
             return 1;
         }
     }
-
-    public function getUsers(){
-        $sql = "SELECT * FROM ".$this->table;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
-    }
     
     public function getUser($id){
-        $sql = "SELECT * FROM ".$this->table." WHERE iD =".$id;
+        $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data;

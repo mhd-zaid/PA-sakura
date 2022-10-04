@@ -90,10 +90,10 @@ class Parameters{
 			// }
 
 		}
-        $user->getUser(1);
+        $users = $user->getUser($_GET['id']);
         $v = new View("Page/ParametersEditUsers", "Back");
         $v->assign("configForm", $userUpdateForm);
-        $v->assign("user", $user);
+        $v->assign("user", $users);
         $v->assign("configFormErrors", $configFormErrors??[]);
     }
 }

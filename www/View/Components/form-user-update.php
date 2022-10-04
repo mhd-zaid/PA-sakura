@@ -14,9 +14,11 @@
 					<input name="<?= $name ?>" 
 							class="<?= $configInput["class"]??"" ?>"
 							type="<?= $configInput["type"]??"text" ?>"
+							value="<?= $config["user"][ucfirst($name)] ?>"
 							<?php if(!empty($configInput["required"])): ?>
 								required="required"
 							<?php endif;?>
+
 					>
 				</div>
 			</div>
@@ -31,6 +33,11 @@
 						class="<?= $configInput["class"]??"" ?>"
 						type="<?= $configInput["type"]??"text" ?>"
 						value="<?= $configInput["value"]??"" ?>"
+						<?php 
+						if($configInput["value"]==$config["user"]['Role']){
+							echo 'checked';
+						}
+						?>
 
 						<?php if(!empty($configInput["required"])): ?>
 							required="required"
