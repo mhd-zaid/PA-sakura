@@ -32,36 +32,33 @@ class Main{
 			}
 
 		}
-		$v = new View("Auth/Login", "Front");
-		$v->assign("configForm", $loginForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
 	}
 
 	public function register(): void
 	{
-		$user = new UserModel();
-		$registerForm = $user->registerForm();
+		// $user = new UserModel();
+		// $registerForm = $user->registerForm();
 		
 
-		if( !empty($_POST) )
-		{
-			$verificator = new Verificator($registerForm, $_POST);
+		// if( !empty($_POST) )
+		// {
+		// 	$verificator = new Verificator($registerForm, $_POST);
 
-			$configFormErrors = $verificator->getMsg();
+		// 	$configFormErrors = $verificator->getMsg();
 
-			if(empty($configFormErrors)){
-				$user->setFirstname($_POST['firstname']);
-				$user->setLastname($_POST['lastname']);
-				$user->setEmail($_POST['email']);
-				$user->setPwd($_POST['pwd']);
-				$user->setAddress($_POST['address']);
-				$user->save();
-			}
+		// 	if(empty($configFormErrors)){
+		// 		$user->setFirstname($_POST['firstname']);
+		// 		$user->setLastname($_POST['lastname']);
+		// 		$user->setEmail($_POST['email']);
+		// 		$user->setPwd($_POST['pwd']);
+		// 		$user->setAddress($_POST['address']);
+		// 		$user->save();
+		// 	}
 
-		}
-		$v = new View("Auth/Register", "Front");
-		$v->assign("configForm", $registerForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
+		// }
+		// $v = new View("Auth/Register", "Front");
+		// $v->assign("configForm", $registerForm);
+		// $v->assign("configFormErrors", $configFormErrors??[]);
 	}
 
 	public function admin(): void
