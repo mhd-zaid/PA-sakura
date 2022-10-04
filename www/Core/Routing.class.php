@@ -32,7 +32,7 @@ class Routing{
 					header("Location: /se-connecter");
 				}
 			}else{
-				heotaader("Location: /se-connecter");
+				header("Location: /se-connecter");
 			}
 		}
 	}
