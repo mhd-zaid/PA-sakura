@@ -27,18 +27,14 @@ class Routing{
 		if($this->routes[$uri]['security']){
 			if(!empty($_COOKIE['JWT']) && !empty($_COOKIE['Email'])){
 				$checked = $user->checkToken($_COOKIE['JWT'],$_COOKIE['Email']);
-				print_r($checked);
-				if($checked)
+				if(!$checked)
 				{
-					//header("Location: /$uri");
-				}else{
-					//header("Location: /se-connecter");
+					header("Location: /se-connecter");
 				}
-				
+			}else{
+				heotaader("Location: /se-connecter");
 			}
 		}
-		//header("Location: /se-connecter");
-		
 	}
 
 	public function setAction(string $uri): array

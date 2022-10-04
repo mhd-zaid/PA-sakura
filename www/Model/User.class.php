@@ -522,13 +522,12 @@ class User extends DatabaseDriver
     {
         $sql = "SELECT Token FROM $this->table where token='$token' AND email= '$email'";
         $result = $this->pdo->query($sql);
-        print_r($result);
-        echo '<br>';
         $data = $result->fetch();
         if($result->rowCount() > 0){
-            return "true";
+            return true;
+        }else{
+            return false;
         }
-        return "false";
     }
 
     public function checkTokenEmail(string $token,string $email):void
