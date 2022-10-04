@@ -129,7 +129,8 @@
 /parametres-users:
   controller: Parameters
   action: parametersUsers
-/parametres-new-user:
+  
+/parametres-add-user:
   controller: Parameters
   action: parametersAddUser
   security: 1
@@ -152,11 +153,6 @@
 /parametres-users:
   controller: Parameters
   action: parametersUsers
-  security: 1
-
-/parametres-new-user:
-  controller: Parameters
-  action: parametersAddUser
   security: 1
 
 /parametres-compte:

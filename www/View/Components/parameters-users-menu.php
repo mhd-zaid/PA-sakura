@@ -2,7 +2,10 @@
     <div class="grid">
         <!-- <div class="container"> -->
         <div class="row">
-            <a href="#" id="user-edit" >Modifier&nbsp;&nbsp;&nbsp;<span><iconify-icon icon="akar-icons:edit" style="color: white; font-size: 32px;"></iconify-icon></span></a>
+            <a href="/parametres-edit-user" id="user-edit" >Modifier&nbsp;&nbsp;&nbsp;<span><iconify-icon icon="akar-icons:edit" style="color: white; font-size: 32px;"></iconify-icon></span></a>
+        </div>
+        <div class="row">
+            <button class="cta-button btn--pink-rounded" >Modifier&nbsp;&nbsp;&nbsp;<span><iconify-icon icon="akar-icons:edit" style="color: white; font-size: 32px;"></iconify-icon></span></button>
         </div>
         <div class="row">
             <div class="col col-12 center-text">

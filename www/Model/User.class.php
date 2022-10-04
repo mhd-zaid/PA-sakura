@@ -230,12 +230,107 @@ class User extends DatabaseDriver
     
     
     public function userRegisterForm(){
-
+        
         return [
                 "config" => [
                                 "method"=>"POST",
                                 "class"=>"form-register",
                                 "submit"=>"Ajouter l'utilisateur"
+                            ],
+                "inputs"=> [
+                    "firstname"=>[
+                                    "type"=>"text",
+                                    "label"=>"Prénom",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>25,
+                                    "required"=>true,
+                                    "error"=>"Le prénom doit faire entre 2 et 25 caractères"
+                                ],
+
+                    "lastname"=>[
+                                    "type"=>"text",
+                                    "label"=>"Nom",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>75,
+                                    "required"=>true,
+                                    "error"=>"Le nom doit faire entre 2 et 75 caractères"
+                                ],
+
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"Email",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "error"=>"L'email est incorrect"
+                                ],
+
+                    "password"=>[
+                                    "type"=>"password",
+                                    "label"=>"Votre mot de passe",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"Le mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                                ],
+                                
+                    "passwordconfirm"=>[
+                                    "type"=>"password",
+                                    "label"=>"Confirmation",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "confirm"=>"password",
+                                    "error"=>"Votre Le de passe de confirmation ne correspond pas"
+                                ],
+
+                    "administrateur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Administrateur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"1",
+                                    "elemName"=>"userRole"
+                                ],
+
+                    "editeur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Editeur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"2",
+                                    "elemName"=>"userRole"
+                                ],
+                                
+                    "lecteur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Lecteur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"3",
+                                    "elemName"=>"userRole"
+                                ],
+
+                    "note"=>[
+                                    "type"=>"text",
+                                    "label"=>"Note (facultatif)",
+                                    "class"=>"ipt-form-entry",
+                                ],
+
+                    "message"=>[
+                                    "type"=>"text",
+                                    "label"=>"Message d'invitation (facultatif)",
+                                    "class"=>"ipt-form-entry",
+                                ],
+
+                ]
+            ];
+
+    }
+    
+    public function userUpdateForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Modifier"
                             ],
                 "inputs"=> [
                     "firstname"=>[
@@ -562,7 +657,13 @@ class User extends DatabaseDriver
         $sql = "SELECT * FROM ".$this->table;
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
-
+        return $data;
+    }
+    
+    public function getUser($id){
+        $sql = "SELECT * FROM ".$this->table." WHERE iD =".$id;
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
         return $data;
     }
 

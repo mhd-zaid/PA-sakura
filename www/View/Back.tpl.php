@@ -38,15 +38,12 @@
 
     <div class="row">
         <div class="col col-2">
-            <a href="#"> Visiterle site</button>
+            <a href="#" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
         </div>
         <div class="helpLink col col-1">
             <a href="#">Aide</a>
         </div>
-        <div class="newSiteLink col col-6">
-        <a href="#" class="cta-button-back  btn-pink">Nouveau site</a>
-        </div>
-        <div class="dropdownMenu col col-3">
+        <div class="dropdownMenu col col-3 col-offset-6">
             <img class="photo-profil icon" src="Public\img\Back\avatar.svg" alt="">
             <button class="dropbtnMenu"> Daniel Casanova
             </button>

@@ -41,26 +41,10 @@ $columns = array(
     ),
     array( 'db' => 'id',  'dt' => 'id' ),
     array( 'db' => 'firstname',  'dt' => 'firstname' ),
-    array( 'db' => 'lastname',   'dt' => 'lastname' )
-
-    // array( 'db' => 'id', 'dt' => 1 ),
-    // array( 'db' => 'firstname',  'dt' => 2 ),
-    // array( 'db' => 'lastname',   'dt' => 3 )
-
-    // array(
-    //     'db'        => 'date_creat',
-    //     'dt'        => 4,
-    //     'formatter' => function( $d, $row ) {
-    //         return date( 'jS M y', strtotime($d));
-    //     }
-    // ),
-    // array(
-    //     'db'        => 'date_modif',
-    //     'dt'        => 5,
-    //     'formatter' => function( $d, $row ) {
-    //         return date( 'jS M y', strtotime($d));
-    //     }
-    // )
+    array( 'db' => 'lastname',   'dt' => 'lastname' ),
+    array( 'db' => 'email',   'dt' => 'email' ),
+    array( 'db' => 'role',   'dt' => 'role' ),
+    array( 'db' => 'password',   'dt' => 'password' ),
 );
  
 // SQL server connection information

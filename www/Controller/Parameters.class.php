@@ -60,5 +60,41 @@ class Parameters{
         $v->assign("configForm", $userRegisterForm);
         $v->assign("configFormErrors", $configFormErrors??[]);
     }
+    public function parametersEditUser(){
+        $user = new UserModel();
+		$userUpdateForm = $user->userUpdateForm();
+
+        if( !empty($_POST) )
+		{
+			// $verificator = new Verificator($userRegisterForm, $_POST);
+
+			// $configFormErrors = $verificator->getMsg();
+
+			// if(empty($configFormErrors)){
+				
+				$emailExist = $user->checkEmailExist($_POST['email']);
+				if($emailExist){
+					$user->setFirstname($_POST['firstname']);
+					$user->setLastname($_POST['lastname']);
+					$user->setEmail($_POST['email']);
+					$user->setPassword($_POST['password']);
+					$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
+					$user->setToken($token->getToken());
+					$token = $user->getToken();
+                    $user->setRole(intval($_POST['userRole']));
+					$user->save();
+					$servername = $_SERVER['HTTP_HOST'];
+					$email = $_POST['email'];
+					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
+				}	
+			// }
+
+		}
+        $user->getUser(1);
+        $v = new View("Page/ParametersEditUsers", "Back");
+        $v->assign("configForm", $userUpdateForm);
+        $v->assign("user", $user);
+        $v->assign("configFormErrors", $configFormErrors??[]);
+    }
 }
 
