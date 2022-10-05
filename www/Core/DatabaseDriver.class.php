@@ -55,8 +55,13 @@ abstract class DatabaseDriver
 		$queryPrepared = $this->pdo->prepare($sql);
 		$queryPrepared->execute($columns);
 
-
-
 	}
 
+	public function delete(int $id):void
+	{
+		$sql = "DELETE FROM $this->table where id=$id";
+		$queryPrepared = $this->pdo->prepare($sql);
+		$queryPrepared->execute();
+
+	}
 }

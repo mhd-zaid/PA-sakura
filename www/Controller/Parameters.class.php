@@ -30,13 +30,7 @@ class Parameters{
 		$userRegisterForm = $user->userRegisterForm();
 
         if( !empty($_POST) )
-		{
-			// $verificator = new Verificator($userRegisterForm, $_POST);
-
-			// $configFormErrors = $verificator->getMsg();
-
-			// if(empty($configFormErrors)){
-				
+		{				
 				$emailExist = $user->checkEmailExist($_POST['email']);
 				if($emailExist){
 					$user->setFirstname($_POST['firstname']);
@@ -54,8 +48,6 @@ class Parameters{
 					$email = $_POST['email'];
 					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
 				}	
-			// }
-
 		}
 
         $v = new View("Page/ParametersNewUsers", "Back");
@@ -81,15 +73,7 @@ class Parameters{
 				header('Location: /parametres-users');
 			}
 			if(isset($_POST['delete'])){
-				$user->setId($_GET['id']);
-				$user->setFirstname($userInformation['Firstname']);
-				$user->setLastname($userInformation['Lastname']);
-				$user->setEmail($userInformation['Email']);
-				$user->setPassword($userInformation['Password']);
-				$user->setToken($userInformation['Token']);
-				$user->setRole(intval($_POST['userRole']));
-				$user->setStatus($userInformation['Status']);
-				$user->save();
+				$user->delete($_GET['id']);
 				header('Location: /parametres-users');
 			}
 		}
