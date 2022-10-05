@@ -1,7 +1,7 @@
 <form method="<?= $config["config"]["method"]??"GET" ?>" action="<?= $config["config"]["action"]??"" ?>">
 	<div>
 		<?php 
-			$textElem=array_slice($config["inputs"], 0, 5);
+			$textElem=array_slice($config["inputs"], 0, 2);
 			$radioElem=array_slice($config["inputs"], 5,3);
 		?>
 		
@@ -15,6 +15,7 @@
 							class="<?= $configInput["class"]??"" ?>"
 							type="<?= $configInput["type"]??"text" ?>"
 							value="<?= $config["user"][ucfirst($name)] ?>"
+							<?php echo "disabled"; ?>
 							<?php if(!empty($configInput["required"])): ?>
 								required="required"
 							<?php endif;?>
