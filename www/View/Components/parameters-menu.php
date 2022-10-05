@@ -4,7 +4,7 @@
         <h1>Général</h1>
 		<ul>
             <li class="choices-parameters"><a href="/parametres-gestion-compte"><img src="Public/img/Back/account1.svg" alt="Account">Gestion du compte</a></li>
-            <li class="choices-parameters"><a href="/parametres-gestion-utilisateurs"><img src="Public/img/Back/site1.svg" alt="Utilisateurs">Gestions des utilisateurs</a></li>
+            <li class="choices-parameters"><a href="/parametres-users"><img src="Public/img/Back/site1.svg" alt="Utilisateurs">Gestions des utilisateurs</a></li>
             <li class="choices-parameters"><a href="/parametres"><img src="Public/img/Back/lang1.svg" alt="Language">Langue</a></li>
             <li class="choices-parameters"><a href="/home"><img src="Public/img/Back/security1.svg" alt="Shield">Sécurité</a></li>
 		</ul>
