@@ -14,7 +14,7 @@
 /se-deconnecter:
   controller: User
   action: logout
-  security: 1
+  security: 0
 
 /s-inscrire:
   controller: User
@@ -44,17 +44,17 @@
 /modifier-utilisateur:
   controller: User
   action: edit
-  security: 1
+  security: 0
 
 /utilisateurs:
   controller: User
   action: list
-  security: 1
+  security: 0
 
 /tableau-de-bord:
   controller: Admin
   action: dashboard
-  security: 1
+  security: 0
 
 
 ### PROFIL ###
@@ -62,115 +62,120 @@
 /profil:
   controller: Profil
   action: index
-  security: 1
+  security: 0
 
 /profil-notification:
   controller: Profil
   action: manageNotification
-  security: 1
+  security: 0
 
   
 /profil-langue:
  controller: Profil
  action: manageLanguage
- security: 1
+ security: 0
 
 /profil-gestion-des-comptes:
  controller: Profil
  action: manageAccount
- security: 1
+ security: 0
 
 /profil-securite:
   controller: Profil
   action: manageSecurity
-  security: 1
+  security: 0
   
 /profil-contact:
  controller: Profil
  action: manageContact
- security: 1
+ security: 0
 
 /profil-aide-et-support:
  controller: Profil
  action: help
- security: 1
+ security: 0
   
 /profil-conditions-generale-d-utilisation:
  controller: Profil
  action: condition
- security: 1
+ security: 0
 
 ### Parameters ####
 /parametres:
   controller: Parameters
   action: index
-  security: 1
+  security: 0
 
 /parametres-gestion-compte: 
   controller: Parameters
   action: AccountManagement
-  security: 1
+  security: 0
 
 /parametres-gestion-utilisateurs:
   controller: UsersManagement
   action: index
-  security: 1
+  security: 0
 
 /parametres-support:
   controller: Parameters
   action: parametersSupport
-  security: 1
+  security: 0
 
 /parametres-langue:
   controller: Parameters
   action: parametersLangue
-  security: 1
+  security: 0
 
 /parametres-users:
   controller: Parameters
   action: parametersUsers
-  
+
 /parametres-add-user:
   controller: Parameters
   action: parametersAddUser
-  security: 1
+  security: 0
+
+/parametres-edit-user:
+  controller: Parameters
+  action: parametersEditUser
+  security: 0
 
 /parametres-compte:
   controller: Parameters
   action: parametersAccount
-  security: 1
+  security: 0
 
 /parametres-support:
   controller: Parameters
   action: parametersSupport
-  security: 1
+  security: 0
 
 /parametres-langue:
   controller: Parameters
   action: parametersLangue
-  security: 1
+  security: 0
 
 /parametres-users:
   controller: Parameters
   action: parametersUsers
-  security: 1
+  security: 0
 
 /parametres-compte:
   controller: Parameters
   action: parametersAccount
-  security: 1
+  security: 0
 
  ### ARTICLE ###
 
 /article:
   controller: Article
   action: index
-  security: 1
+  security: 0
 
 /article-add:
   controller: Article
   action: addArticle
-  security: 1
+  security: 0
 
 # /article-edition/{id}:
 # controller: Article
@@ -185,22 +190,22 @@
 /commentaire:
   controller: Commentaire
   action: index
-  security: 1
+  security: 0
 
 /commentaire-add:
   controller: Commentaire
   action: addComment
-  security: 1
+  security: 0
 
 /commentaire-mots-bannis:
  controller: Commentaire
  action: motsbannis
- security: 1
+ security: 0
  
 /commentaire/{id}:
  controller: Commentaire
  action: showCommentaire 
- security: 1
+ security: 0
 
 
   ### EXTENSION ###
@@ -208,36 +213,36 @@
 /extension:
   controller: Extension
   action: index
-  security: 1
+  security: 0
   
   ### PAGE ###
 
 /page:
   controller: Page
   action: index
-  security: 1
+  security: 0
 
 /page-add:
   controller: Page
   action: addPage
-  security: 1
+  security: 0
   
 /page-edit/{id}:
  controller: Page
  action: editPage
- security: 1
+ security: 0
  
 /page/{id}:
  controller: Page
  action: showPage
- security: 1
+ security: 0
 
   ### NAVIGATION ###
 
 /navigation:
   controller: Navigation
   action: index
-  security: 1
+  security: 0
   
 # /ajout-menu-navigation:
 #   controller: Navigation
@@ -252,55 +257,55 @@
 /theme:
   controller: Commentaire
   action: index
-  security: 1
+  security: 0
   
 /commentaire-edition/{id}:
  controller: Commentaire
  action: editComment
- security: 1
+ security: 0
 
   ### MEDIAS ###
 
 /media:
   controller: Media
   action: index
-  security: 1
+  security: 0
 
 /ajout-medias:
   controller: Media
   action: addComment
-  security: 1
+  security: 0
   
 /medias/{id}:
  controller: Media
  action: showMedia
- security: 1
+ security: 0
 
   ### APPARENCES ###
 
 /apparence-theme:
   controller: Apparence
   action: editTheme
-  security: 1
+  security: 0
 
 /apparence-page:
   controller: Apparence
   action: editPage
-  security: 1
+  security: 0
 
 /apparence-menu:
   controller: Apparence
   action: editMenu
-  security: 1
+  security: 0
 
   ### GRID & COMPONENTS ###
 
 /grid:
   controller: WebCreator
   action: grid
-  security: 1
+  security: 0
 
 /components:
   controller: WebCreator
   action: components
-  security: 1
+  security: 0
