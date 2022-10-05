@@ -53,7 +53,10 @@
 
 	<div class="row">
 		<div class="col">
-			<input type="submit" class="cta-button btn--pink" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
+			<input type="submit" name="update" class="cta-button btn--pink" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
+		</div>
+		<div class="col">
+			<input type="submit" name="delete" class="cta-button btn--pink" value="<?= $config["config"]["delete"]??"Envoyer" ?>">
 		</div>
 	</div>
 </form>

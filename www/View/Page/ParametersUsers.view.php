@@ -10,9 +10,6 @@
         <div class="col">
             <a href="/parametres-new-user" class="cta-button btn--pink">Ajouter</a>
         </div>
-        <div class="col">
-            <a class="cta-button btn--pink">Supprimer</a>
-        </div>
     </div>
 </section>
 

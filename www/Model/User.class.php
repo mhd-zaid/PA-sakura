@@ -330,7 +330,8 @@ class User extends DatabaseDriver
                 "config" => [
                                 "method"=>"POST",
                                 "class"=>"form-register",
-                                "submit"=>"Modifier"
+                                "submit"=>"Modifier",
+                                "delete"=>"Supprimer"
                             ],
                 "user"=>$this->getUser($_GET['id']),
                             

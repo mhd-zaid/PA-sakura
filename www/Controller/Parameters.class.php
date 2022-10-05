@@ -68,16 +68,30 @@ class Parameters{
         $userInformation = $user->getUser($_GET['id']);
         if( !empty($_POST) )
 		{
-			$user->setId($_GET['id']);
-			$user->setFirstname($userInformation['Firstname']);
-			$user->setLastname($userInformation['Lastname']);
-			$user->setEmail($userInformation['Email']);
-			$user->setPassword($userInformation['Password']);
-			$user->setToken($userInformation['Token']);
-			$user->setRole(intval($_POST['userRole']));
-			$user->setStatus($userInformation['Status']);
-			$user->save();
-			header('Location: /parametres-users');
+			if(isset($_POST['update'])){
+				$user->setId($_GET['id']);
+				$user->setFirstname($userInformation['Firstname']);
+				$user->setLastname($userInformation['Lastname']);
+				$user->setEmail($userInformation['Email']);
+				$user->setPassword($userInformation['Password']);
+				$user->setToken($userInformation['Token']);
+				$user->setRole(intval($_POST['userRole']));
+				$user->setStatus($userInformation['Status']);
+				$user->save();
+				header('Location: /parametres-users');
+			}
+			if(isset($_POST['delete'])){
+				$user->setId($_GET['id']);
+				$user->setFirstname($userInformation['Firstname']);
+				$user->setLastname($userInformation['Lastname']);
+				$user->setEmail($userInformation['Email']);
+				$user->setPassword($userInformation['Password']);
+				$user->setToken($userInformation['Token']);
+				$user->setRole(intval($_POST['userRole']));
+				$user->setStatus($userInformation['Status']);
+				$user->save();
+				header('Location: /parametres-users');
+			}
 		}
         $v = new View("Page/ParametersEditUsers", "Back");
         $v->assign("configForm", $userUpdateForm);
