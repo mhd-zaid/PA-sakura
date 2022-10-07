@@ -422,6 +422,65 @@ class User extends DatabaseDriver
             ];
 
     }
+    
+    public function profilUpdateForm(){
+
+        return [
+            "config" => [
+                            "method"=>"POST",
+                            "class"=>"form-register",
+                            "submit"=>"Modifier"
+                        ],
+
+            "profil"=>$this->getUserByEmail($_COOKIE['Email']), 
+    
+            "inputs"=> [
+                "firstname"=>[
+                                "type"=>"text",
+                                "label"=>"Prénom",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Votre prénom doit faire entre 2 et 25 caractères"
+                            ],
+
+                "lastname"=>[
+                                "type"=>"text",
+                                "label"=>"Nom",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>75,
+                                "required"=>true,
+                                "error"=>"Votre nom doit faire entre 2 et 75 caractères"
+                            ],
+                "email"=>[
+                                "type"=>"email",
+                                "label"=>"Email",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "error"=>"Votre email est incorrect"
+                            ],
+                "password"=>[
+                                "type"=>"password",
+                                "label"=>"Votre mot de passe",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                            ],
+                "passwordconfirm"=>[
+                                "type"=>"password",
+                                "label"=>"Confirmation",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "confirm"=>"password",
+                                "error"=>"Votre mot de passe de confirmation ne correspond pas"
+                            ],
+
+            ]
+        ];
+
+    }
 
     public function loginForm(){
 
@@ -666,6 +725,13 @@ class User extends DatabaseDriver
         if($id == null && $email != null) {
             $sql = "SELECT * FROM ".$this->table." WHERE email = '$email'";
         }
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+        return $data;
+    }
+    
+    public function getUserByEmail($email){
+        $sql = "SELECT * FROM ".$this->table." WHERE Email ='$email'";
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data;

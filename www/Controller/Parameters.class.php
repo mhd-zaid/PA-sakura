@@ -25,6 +25,14 @@ class Parameters{
     public function parametersAccount(){
         $v = new View("Page/ParametersAccount", "Back");
     }
+    public function parametersAccountManagement(){
+		$profil = new UserModel();
+		$profilUpdateForm = $profil->profilUpdateForm();
+       
+        $v = new View("Page/ParametersAccountManagement", "Back");
+        $v->assign("configForm", $profilUpdateForm);
+        $v->assign("configFormErrors", $configFormErrors??[]);
+    }
     public function parametersAddUser(){
         $user = new UserModel();
 		$userRegisterForm = $user->userRegisterForm();
