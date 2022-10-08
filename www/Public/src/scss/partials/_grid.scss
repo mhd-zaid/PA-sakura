@@ -15,7 +15,11 @@
     &-medias-medias{
       height: 250px;
     }
-  }
+    &-rounded{
+      background-color: $white;
+      border-radius: 15px;
+    }
+}
   
   .row{
     display: flex;

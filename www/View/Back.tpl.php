@@ -66,7 +66,6 @@
 
 <div id="main-component">
 
-
 <main class="container-fluid">
 
 <?php require $this->view; ?>

@@ -48,6 +48,7 @@
 
 .btn{
     &--pink {
+        border-radius: 0px;
         color: $white;
         @include button-bg($pink);
     }

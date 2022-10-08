@@ -8,21 +8,38 @@ class Parameters
 {
     public function index()
     {
-        session_start();
-        if (!isset($_SESSION['email'])) {
-        header("Location: /se-connecter");
-        } else {
+        // session_start();
+        // if (!isset($_SESSION['email'])) {
+        // header("Location: /se-connecter");
+        // } else {
         $v = new View("Page/Parameters", "Back");
-        }
+        // }
     }
 
-    public function AccountManagement()
+    //     public function AccountManagement()
+    //     {
+    //         session_start();
+    //         if (!isset($_SESSION['email'])) {
+    //         header("Location: /se-connecter");
+    //         } else {
+    //         $v = new View("Page/AccountManagement", "Back");
+    //         }
+    //     }
+    // }
+    public function parametersSupport()
     {
-        session_start();
-        if (!isset($_SESSION['email'])) {
-        header("Location: /se-connecter");
-        } else {
-        $v = new View("Page/AccountManagement", "Back");
-        }
+        $v = new View("Page/ParametersSupport", "Back");
+    }
+    public function parametersLangue()
+    {
+        $v = new View("Page/ParametersLangue", "Back");
+    }
+    public function parametersCGU()
+    {
+        $v = new View("Page/ParametersCGU", "Back");
+    }
+    public function parametersNotifications()
+    {
+        $v = new View("Page/ParametersNotifications", "Back");
     }
 }

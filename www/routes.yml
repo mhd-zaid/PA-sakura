@@ -91,6 +91,21 @@
   controller: UsersManagement
   action: index
 
+/parametres-support:
+  controller: Parameters
+  action: parametersSupport
+
+/parametres-langue:
+  controller: Parameters
+  action: parametersLangue
+
+/parametres-cgu:
+  controller: Parameters
+  action: parametersCGU
+
+/parametres-notifications:
+  controller: Parameters
+  action: parametersNotifications
  ### ARTICLE ###
 
 /article:
@@ -121,7 +136,7 @@
 
 /commentaire-mots-bannis:
  controller: Commentaire
- action: banWordComment
+ action: motsbannis
  
 /commentaire/{id}:
  controller: Commentaire

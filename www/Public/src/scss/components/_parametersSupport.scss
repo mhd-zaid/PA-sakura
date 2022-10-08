@@ -1,0 +1,24 @@
+.mail-support {
+    height: 50vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    & p{
+        font-size: 30px;
+    }
+
+    // .box-mail-support {
+    .mail {
+        display: flex;
+        align-items: center;
+        align-content: center;
+
+        & img {
+            width: 6em;
+            top: 2em;
+        }
+    }
+
+    // }
+
+}

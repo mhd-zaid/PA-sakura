@@ -42,7 +42,7 @@
             <h3> Besoin d'aide</h3>
             <ul class="flex-col">
                 <li class="choices-parameters"><a href="/parametres"><img src="Public/img/Back/Parameters/Support.svg" alt="Support">Support</a></li>
-                <li class="choices-parameters"><a href="/parametres"><img src="Public/img/Back/Parameters/CGU.svg" alt="CGU">CGU</a></li>
+                <li class="choices-parameters"><a href="/parametres-CGU"><img src="Public/img/Back/Parameters/CGU.svg" alt="CGU">CGU</a></li>
             </ul>
         </div>
     </div>
