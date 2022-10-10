@@ -61,16 +61,7 @@ class Parameters{
         if( !empty($_POST) )
 		{
 			if(isset($_POST['update'])){
-				$user->setId($_GET['id']);
-				$user->setFirstname($userInformation['Firstname']);
-				$user->setLastname($userInformation['Lastname']);
-				$user->setEmail($userInformation['Email']);
-				$user->setPassword($userInformation['Password']);
-				$user->setToken($userInformation['Token']);
-				$user->setRole(intval($_POST['userRole']));
-				$user->setStatus($userInformation['Status']);
-				$user->save();
-				header('Location: /parametres-users');
+				$user->updateUserRole($userInformation);
 			}
 			if(isset($_POST['delete'])){
 				$user->delete($_GET['id']);

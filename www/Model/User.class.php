@@ -552,6 +552,7 @@ class User extends DatabaseDriver
                 $this->setStatus($data['Status']);
                 $this->password = $data['Password'];
                 $this->setToken($token->getToken());
+                $this->setRole(intval($data['Role']));
                 $token = $this->getToken();
                 if($data['Status'] == 0){
                     $servername = $_SERVER['HTTP_HOST'];
@@ -662,6 +663,19 @@ class User extends DatabaseDriver
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data;
+    }
+
+    public function updateUserRole(array $userInformation){
+                $this->setId($_GET['id']);
+				$this->setFirstname($userInformation['Firstname']);
+				$this->setLastname($userInformation['Lastname']);
+				$this->setEmail($userInformation['Email']);
+				$this->password = $userInformation['Password'];
+				$this->setToken($userInformation['Token']);
+				$this->setRole(intval($_POST['userRole']));
+				$this->setStatus($userInformation['Status']);
+				$this->save();
+				header('Location: /parametres-users');
     }
 
 }
