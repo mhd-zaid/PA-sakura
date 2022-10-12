@@ -309,3 +309,9 @@
   controller: WebCreator
   action: components
   security: 0
+
+### DATA TABLE
+/datatable:
+  controller: DataTable
+  action: serverProcessing
+  security: 0

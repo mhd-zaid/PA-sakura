@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Vendor\DataTable;
+
+use \PDO;
 /*
  * Helper functions for building a DataTables server-side processing SQL query
  *

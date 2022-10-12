@@ -54,7 +54,7 @@ $(document).ready(function () {
   var table = $("#table_users").DataTable({
     processing: true,
     serverSide: true,
-    ajax: "http://localhost/Vendor/DataTable/server_processing.php",
+    ajax: "/datatable?table=user",
     columns: [
       {
         class: "details-control",
