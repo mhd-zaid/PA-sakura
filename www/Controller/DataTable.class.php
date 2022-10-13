@@ -3,8 +3,6 @@
 namespace App\Controller;
 
 use App\Vendor\DataTable\SSP;
-use App\Model\User;
-use App\Model\Article;
 
 class DataTable {
     // DB table to use
@@ -33,10 +31,11 @@ class DataTable {
     * server-side, there is no need to edit below this line.
     */
     public function serverProcessing(){
-        //$class = new User();
         $this->table .=  $_GET['table'];
-        print_r($this->table);
-        $vars = get_class_vars($this->table);
+        $class = "App\Model\\".ucfirst($_GET['table']);
+        $object = new $class();
+        $vars = get_class_vars($class);
+        $column = [];
         $this->columns = array(
             array(
                 'db' => 'id',
@@ -49,13 +48,18 @@ class DataTable {
                 }
             ),
             array( 'db' => 'id',  'dt' => 'id' ),
+
             array( 'db' => 'firstname',  'dt' => 'firstname' ),
+
             array( 'db' => 'lastname',   'dt' => 'lastname' ),
+
             array( 'db' => 'email',   'dt' => 'email' ),
+
             array( 'db' => 'role',   'dt' => 'role' ),
+
             array( 'db' => 'password',   'dt' => 'password' ),
         );
-       $json = json_encode(SSP::simple( $_GET, $this->sql_details, $this->table, $this->primaryKey, $this->columns));
-        echo SSP::simple( $_GET, $this->sql_details, $this->table, $this->primaryKey, $this->columns);
+        echo json_encode(SSP::simple( $_GET, $this->sql_details, $this->table, $this->primaryKey, $this->columns));
+    }
     
 }
