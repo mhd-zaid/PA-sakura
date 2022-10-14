@@ -29,7 +29,25 @@ class Parameters{
 		$profil = new UserModel();
 		$profilUpdateForm = $profil->profilUpdateForm();
        
-        $v = new View("Page/ParametersAccountManagement", "Back");
+		if( !empty($_POST) )
+		{				
+			$verificator = new Verificator($profilUpdateForm, $_POST);
+			$verificator->verificatorLogin($profilUpdateForm, $_POST);
+			$configFormErrors = $verificator->getMsg();
+			if(empty($configFormErrors)){
+				$profil->setId($profilUpdateForm['profil']['Id']);
+                $profil->setFirstname($_POST['firstname']);
+                $profil->setLastname($_POST['lastname']);
+                $profil->setEmail($_POST['email']);
+                $profil->setStatus($profilUpdateForm['profil']['Status']);
+                $profil->setPassword($_POST['password']);
+                $profil->setToken($profilUpdateForm['profil']['Token']);
+				$profil->save();
+				header("Location: /tableau-de-bord");
+			}
+		}
+
+		$v = new View("Page/ParametersAccountManagement", "Back");
         $v->assign("configForm", $profilUpdateForm);
         $v->assign("configFormErrors", $configFormErrors??[]);
     }

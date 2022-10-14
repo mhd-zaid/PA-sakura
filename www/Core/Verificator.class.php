@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Core;
+use App\Model\User;
 
 class Verificator
 {
@@ -16,6 +17,9 @@ class Verificator
 		}
 
 
+	}
+
+	public function verificatorLogin($configForm, $data):void{
 		foreach($configForm["inputs"] as $name=>$configInput){
 
 			if(!empty($configInput["required"]) && empty($data[$name])){
@@ -38,11 +42,13 @@ class Verificator
 			if(!empty($configInput["confirm"]) && !self::checkConfirm($data[$name], $data[$configInput["confirm"]]) ){
 				$this->msg[]=$configInput["error"];		
 			}
+			else if(!empty($configInput["pass"]) && !self::checkLogin($configForm['profil']['Password'],$data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
 			else if($configInput["type"]=="password" && !empty($configInput["required"]) && !self::checkPassword($data[$name])){
 				$this->msg[]=$configInput["error"];		
 			}
 		}
-
 	}
 
 	public function getMsg(): array
@@ -56,6 +62,10 @@ class Verificator
 		return strlen($string)>=$min;
 	}
 
+	public static function checkLogin(string $pwd, string $type):bool{
+		$user = new User();
+		return $user->isGoodPassword($pwd,$type);
+	}
 
 	public static function checkMaxLength(String $string, Int $max): bool
 	{

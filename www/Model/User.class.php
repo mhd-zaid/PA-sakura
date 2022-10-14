@@ -476,7 +476,14 @@ class User extends DatabaseDriver
                                 "confirm"=>"password",
                                 "error"=>"Votre mot de passe de confirmation ne correspond pas"
                             ],
-
+                "confirmationpassword" =>[
+                                "type"=>"password",
+                                "label"=>"Tapez votre mot de passe pour tout changement",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "pass"=>"pass",
+                                "error"=>"Mauvais mot de passe"
+                ],
             ]
         ];
 
@@ -631,6 +638,14 @@ class User extends DatabaseDriver
         }
     }
 
+    public function isGoodPassword(string $pwd, string $entered):bool{
+        if(password_verify($entered,$pwd)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
     public function checkForgotPasswd(string $email): ?string{
         $sql = "SELECT * FROM $this->table WHERE email = '$email'";
         $result = $this->pdo->query($sql);
@@ -730,7 +745,7 @@ class User extends DatabaseDriver
         return $data;
     }
     
-    public function getUserByEmail($email){
+    public function getUserByEmail(string $email){
         $sql = "SELECT * FROM ".$this->table." WHERE Email ='$email'";
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
