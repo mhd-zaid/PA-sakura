@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Core;
-
+use App\Vendor\DataTable\SSP;
 
 abstract class DatabaseDriver
 {
@@ -64,4 +64,38 @@ abstract class DatabaseDriver
 		$queryPrepared->execute();
 
 	}
+
+	public function serverProcessing($class){
+        $vars = array_keys(get_class_vars($class));
+		$sql_details = array(
+
+			'user' => 'usersql',
+			
+			'pass' => 'passwordsql',
+			
+			'db'   => 'sakura',
+			
+			'host' => 'database'
+		);
+		$columns = [];
+        foreach ($vars as $var) {
+			$columns[] = array('db' => $var, 'dt' => $var);
+		}
+		//print_r($columns);
+        $test = array(
+            array(
+                'db' => 'id',
+                'dt' => 'DT_RowId',
+                'formatter' => function( $d, $row ) {
+                    // Technically a DOM id cannot start with an integer, so we prefix
+                    // a string. This can also be useful if you have multiple tables
+                    // to ensure that the id is unique with a different prefix
+                    return 'row_'.$d;
+                }
+            ),
+			$columns
+        );
+		//print_r($columns);
+        echo json_encode(SSP::simple( $_GET, $sql_details, $this->table,'id', $test));
+    }
 }
