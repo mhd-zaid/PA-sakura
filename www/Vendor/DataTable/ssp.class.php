@@ -37,7 +37,6 @@ class SSP {
 	static function data_output ( $columns, $data )
 	{
 		$out = array();
-
 		for ( $i=0, $ien=count($data) ; $i<$ien ; $i++ ) {
 			$row = array();
 
@@ -249,30 +248,21 @@ class SSP {
 	 *  @param  array $columns Column information array
 	 *  @return array          Server-side processing response array
 	 */
-	static function simple ( $request, $conn, $table, $primaryKey, $columns )
+	static function simple ( $request, $conn, $table, $primaryKey)
 	{
 		$bindings = array();
 		$db = self::db( $conn );
 
-		// Build the SQL query string from the request
-		$limit = self::limit( $request, $columns );
-		$order = self::order( $request, $columns );
-		$where = self::filter( $request, $columns, $bindings );
-
 		// Main query to actually get the data
 		$data = self::sql_exec( $db, $bindings,
-			"SELECT `".implode("`, `", self::pluck($columns, 'db'))."`
-			 FROM `$table`
-			 $where
-			 $order
-			 $limit"
+			"SELECT *
+			 FROM `$table`"
 		);
 
 		// Data set length after filtering
 		$resFilterLength = self::sql_exec( $db, $bindings,
 			"SELECT COUNT(`{$primaryKey}`)
-			 FROM   `$table`
-			 $where"
+			 FROM   `$table`"
 		);
 		$recordsFiltered = $resFilterLength[0][0];
 
@@ -282,7 +272,16 @@ class SSP {
 			 FROM   `$table`"
 		);
 		$recordsTotal = $resTotalLength[0][0];
-
+		$columns = [];
+		foreach ($data as $d) {
+			foreach ($d as $key => $value) {
+				if(is_numeric($key)){
+					unset($d[$key]);
+				} 
+			}
+			$columns[] = $d;
+		}
+		
 		/*
 		 * Output
 		 */
@@ -292,7 +291,7 @@ class SSP {
 				0,
 			"recordsTotal"    => intval( $recordsTotal ),
 			"recordsFiltered" => intval( $recordsFiltered ),
-			"data"            => self::data_output( $columns, $data )
+			"data"            => $columns
 		);
 	}
 

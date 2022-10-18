@@ -63,15 +63,15 @@ $(document).ready(function () {
         defaultContent: "",
       },
       {
-        data: "id",
+        data: "Id",
         class: "user_id",
       },
       {
-        data: "firstname",
+        data: "Firstname",
         class: "user_firstname",
       },
       {
-        data: "lastname",
+        data: "Lastname",
         class: "user_lastname",
       },
     ],
