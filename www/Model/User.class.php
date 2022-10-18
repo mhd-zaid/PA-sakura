@@ -658,8 +658,14 @@ class User extends DatabaseDriver
         }
     }
     
-    public function getUser($id){
-        $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
+    public function getUser(?Int $id = null , ?String $email = null){
+        if ($id != null && $email == null)
+        {
+            $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
+        }
+        if($id == null && $email != null) {
+            $sql = "SELECT * FROM ".$this->table." WHERE email = '$email'";
+        }
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data;

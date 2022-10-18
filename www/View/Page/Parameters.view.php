@@ -16,10 +16,17 @@
             <div class="col-12 box-choices">
                 <h3> Gérer les informations relatives à vos sites</h3>
                 <ul class="flex-col">
-                    <li class="choices-parameters"><a href="/parametres-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
-                    <li class="choices-parameters"><a href="/parametres-users"><img src="Public/img/Back/Parameters/Sites.svg" alt="Sites">Gestions des utilisateurs</a></li>
-                    <li class="choices-parameters"><a href="/parametres-langue"><img src="Public/img/Back/Parameters/Language.svg" alt="Language">Langue</a></li>
-                    <li class="choices-parameters"><a href="/home"><img src="Public/img/Back/Parameters/Shield.svg" alt="Shield">Sécurité</a></li>
+                    <?php $userData = $User->getUser(null,$_COOKIE['Email']); ?>
+                    <?php if($userData['Role'] != 1): ?>
+                        <li class="choices-parameters"><a href="/parametres-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
+                        <li class="choices-parameters"><a href="/parametres-langue"><img src="Public/img/Back/Parameters/Language.svg" alt="Language">Langue</a></li>
+                        <li class="choices-parameters"><a href="/home"><img src="Public/img/Back/Parameters/Shield.svg" alt="Shield">Sécurité</a></li>
+					<?php else: ?>
+                        <li class="choices-parameters"><a href="/parametres-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
+                        <li class="choices-parameters"><a href="/parametres-users"><img src="Public/img/Back/Parameters/Sites.svg" alt="Sites">Gestions des utilisateurs</a></li>
+                        <li class="choices-parameters"><a href="/parametres-langue"><img src="Public/img/Back/Parameters/Language.svg" alt="Language">Langue</a></li>
+                        <li class="choices-parameters"><a href="/home"><img src="Public/img/Back/Parameters/Shield.svg" alt="Shield">Sécurité</a></li> 
+				    <?php endif;?>
                 </ul>
             </div>
         </div>

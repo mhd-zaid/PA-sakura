@@ -35,7 +35,7 @@
 </nav>
 
 <header id="header-back">
-
+    <?php $userData = $User->getUser(null,$_COOKIE['Email']); ?>
     <div class="row">
         <div class="col col-2">
             <a href="#" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
@@ -45,7 +45,8 @@
         </div>
         <div class="dropdownMenu col col-3 col-offset-6">
             <img class="photo-profil icon" src="Public\img\Back\avatar.svg" alt="">
-            <button class="dropbtnMenu"> Daniel Casanova
+            <button class="dropbtnMenu">
+                <?= ucfirst($userData['Firstname'])." ".strtoupper($userData['Lastname']); ?>
             </button>
             <div class="dropdownMenu-content" id="myDropdownMenu">
                 <a href="#">Paramètre du compte</a>
