@@ -2,7 +2,7 @@
 
 namespace App\Core;
 use App\Vendor\DataTable\SSP;
-
+use App\Model\User;
 abstract class DatabaseDriver
 {
 
@@ -66,6 +66,27 @@ abstract class DatabaseDriver
 	}
 
 	public function serverProcessing(){
-        echo json_encode(SSP::simple( $_GET, $this->pdo, $this->table,'id'));
+		if(get_class($this) == User::class){
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
+			$i=0;
+			$result = [
+				'recordsTotal' =>$dataTable['recordsTotal'] ,
+				'recordsFiltered'=>$dataTable['recordsFiltered'],
+				'data'=>null
+			];
+			
+			foreach ($dataTable as $data => $value) {
+				if ($dataTable['data'][$i]['Role'] == 0) {
+					unset($dataTable['data'][$i]);
+				}else{
+					$result['data'][] = $dataTable['data'][$i];
+				}
+				$i++;
+			}
+			$result['recordsFiltered'] = $dataTable['recordsFiltered'];
+			echo json_encode($result);
+		}else{
+			echo json_encode(SSP::simple( $_GET, $this->pdo, $this->table,'id'));
+		}
     }
 }

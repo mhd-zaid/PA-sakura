@@ -75,20 +75,16 @@ $(document).ready(function () {
         class: "user_lastname",
       },
     ],
-    order: [[1, "asc"]],
+    order: [[1, "asc"]], 
   });
-
   // Array to track the ids of the details displayed rows
   var detailRows = [];
 
   $("#table_users tbody").on("click", "tr td.details-control", function () {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
-    var idx = detailRows.indexOf(tr.attr("id"));
-    $("#user-name").html(row.data().firstname + " " + row.data().lastname);
-    $("#user-age").html(row.data().id + "yo");
-    console.log(row.data().id);
-    window.location.replace("/parametres-edit-user?id=" + row.data().id);
+    var id = row.data().Id;
+    window.location.replace("/parametres-edit-user?id=" + id);
     // if (row.child.isShown()) {
     //     tr.removeClass('details');
     //     row.child.hide();
