@@ -3,6 +3,7 @@
 namespace App\Core;
 use App\Vendor\DataTable\SSP;
 use App\Model\User;
+use App\Model\Article;
 abstract class DatabaseDriver
 {
 
@@ -17,7 +18,7 @@ abstract class DatabaseDriver
 	{
 		//Connexion avec la bdd
 		try{
-			$this->pdo = new \PDO("mysql:host=database;dbname=sakura;port=3306" ,"usersql" ,"passwordsql" );
+			$this->pdo = new \PDO("mysql:host=database;dbname=sakura;port=3306" ,"usersql" ,"passwordsql",array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
 
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     		$this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
@@ -76,17 +77,25 @@ abstract class DatabaseDriver
 			];
 			
 			foreach ($dataTable as $data => $value) {
-				if ($dataTable['data'][$i]['Role'] == 0) {
-					unset($dataTable['data'][$i]);
-				}else{
-					$result['data'][] = $dataTable['data'][$i];
+				if(array_key_exists($i,$dataTable['data'])){
+					if ($dataTable['data'][$i]['Role'] == 0) {
+						unset($dataTable['data'][$i]);
+					}else{
+						$result['data'][] = $dataTable['data'][$i];
+					}
 				}
 				$i++;
 			}
 			$result['recordsFiltered'] = $dataTable['recordsFiltered'];
 			echo json_encode($result);
-		}else{
-			echo json_encode(SSP::simple( $_GET, $this->pdo, $this->table,'id'));
+		}elseif(get_class($this) == Article::class){
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
+			$i=0;
+			foreach ($dataTable as $data => $value) {
+				preg_replace('/%u([0-9A-F]+)/', '&#x$1;', $dataTable['data'][$i]['Content']);
+				html_entity_decode($dataTable['data'][$i]['Content'], ENT_COMPAT, 'UTF-8');
+			}
+			echo json_encode($dataTable);
 		}
     }
 }

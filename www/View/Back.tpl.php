@@ -9,8 +9,10 @@
     <script type="text/javascript" src="../Public/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../Public/js/main.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../Public/js/dataTable.js"></script>
+   
 </head>
 <body>
 <nav id="main-nav-back">

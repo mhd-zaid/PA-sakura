@@ -8,6 +8,7 @@ class Article extends DatabaseDriver
 {
 	private $id = null;
 	protected $content;
+    protected $image;
 
 	public function __construct()
 	{

@@ -258,7 +258,6 @@ class SSP {
 			"SELECT *
 			 FROM `$table`"
 		);
-
 		// Data set length after filtering
 		$resFilterLength = self::sql_exec( $db, $bindings,
 			"SELECT COUNT(`{$primaryKey}`)
@@ -281,6 +280,7 @@ class SSP {
 			}
 			$columns[] = $d;
 		}
+		//\print_r($columns);
 		
 		/*
 		 * Output
