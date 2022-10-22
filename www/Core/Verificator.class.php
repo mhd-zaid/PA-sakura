@@ -45,7 +45,7 @@ class Verificator
 			else if(!empty($configInput["pass"]) && !self::checkLogin($configForm['profil']['Password'],$data[$name])){
 				$this->msg[]=$configInput["error"];		
 			}
-			else if($configInput["type"]=="password" && !empty($configInput["required"]) && !self::checkPassword($data[$name])){
+			else if($configInput["type"]=="password" && !empty($data[$name])  && !self::checkPassword($data[$name])){
 				$this->msg[]=$configInput["error"];		
 			}
 		}

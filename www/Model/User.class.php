@@ -108,6 +108,12 @@ class User extends DatabaseDriver
 
     }
 
+    public function setPasswordWithoutHash(String $password): void
+    {
+        $this->password = $password;
+
+    }
+
     /**
      * @return int
      */
@@ -463,16 +469,16 @@ class User extends DatabaseDriver
                             ],
                 "password"=>[
                                 "type"=>"password",
-                                "label"=>"Votre mot de passe",
+                                "label"=>"Nouveau mot de passe",
                                 "class"=>"ipt-form-entry",
-                                "required"=>true,
+                                "required"=>false,
                                 "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
                             ],
                 "passwordconfirm"=>[
                                 "type"=>"password",
-                                "label"=>"Confirmation",
+                                "label"=>"Confirmation nouveau mot de passe",
                                 "class"=>"ipt-form-entry",
-                                "required"=>true,
+                                "required"=>false,
                                 "confirm"=>"password",
                                 "error"=>"Votre mot de passe de confirmation ne correspond pas"
                             ],

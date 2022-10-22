@@ -35,12 +35,15 @@ class Parameters{
 			$verificator->verificatorLogin($profilUpdateForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
 			if(empty($configFormErrors)){
+				
+				isset($_POST['password']) && !empty($_POST['password']) ? $profil->setPassword($_POST['password'])
+				: $profil->setPasswordWithoutHash($profilUpdateForm['profil']['Password']);
+
 				$profil->setId($profilUpdateForm['profil']['Id']);
                 $profil->setFirstname($_POST['firstname']);
                 $profil->setLastname($_POST['lastname']);
                 $profil->setEmail($_POST['email']);
                 $profil->setStatus($profilUpdateForm['profil']['Status']);
-                $profil->setPassword($_POST['password']);
                 $profil->setToken($profilUpdateForm['profil']['Token']);
 				$profil->save();
 				header("Location: /tableau-de-bord");
