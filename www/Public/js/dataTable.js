@@ -1,7 +1,6 @@
 $(document).ready(function () {
   DataTableUser();
   DataTableArticle();
- 
 });
 
 function DataTableUser() {
@@ -29,7 +28,7 @@ function DataTableUser() {
         class: "user_lastname",
       },
     ],
-    order: [[1, "asc"]], 
+    order: [[1, "asc"]],
   });
   // Array to track the ids of the details displayed rows
   var detailRows = [];
@@ -40,8 +39,8 @@ function DataTableUser() {
     var id = row.data().Id;
     window.location.replace("/parametres-edit-user?id=" + id);
   });
-   // On each draw, loop over the `detailRows` array and show any child rows
-   table.on("draw", function () {
+  // On each draw, loop over the `detailRows` array and show any child rows
+  table.on("draw", function () {
     detailRows.forEach(function (id, i) {
       $("#" + id + " td.details-control").trigger("click");
     });
@@ -53,11 +52,13 @@ function DataTableArticle() {
     processing: true,
     serverSide: true,
     ajax: "/datatable?table=article",
-    columnDefs: [ {
-      orderable: false,
-      className: 'select-checkbox',
-      targets:   0
-    } ],
+    columnDefs: [
+      {
+        orderable: false,
+        className: "select-checkbox",
+        targets: 0,
+      },
+    ],
     columns: [
       {
         class: "details-control",
@@ -73,12 +74,12 @@ function DataTableArticle() {
         data: "Content",
         class: "article_content",
       },
-      {
-        data: 'Image',
-        class: "article_img"
-      }
+      // {
+      //   data: "Image",
+      //   class: "article_img",
+      // },
     ],
-    order: [[1, "asc"]], 
+    order: [[1, "asc"]],
   });
   // Array to track the ids of the details displayed rows
   var detailRows = [];
@@ -87,10 +88,10 @@ function DataTableArticle() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/article-edition?id=" + id);
+    window.location.replace("/article-add?id=" + id);
   });
-   // On each draw, loop over the `detailRows` array and show any child rows
-   table.on("draw", function () {
+  // On each draw, loop over the `detailRows` array and show any child rows
+  table.on("draw", function () {
     detailRows.forEach(function (id, i) {
       $("#" + id + " td.details-control").trigger("click");
     });

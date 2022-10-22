@@ -11,11 +11,11 @@
                             </div>
                             <div class="col col-5 flex-col flex-col-center">
                                 <input id="ipt-slug" type="text" name="article-slug"
-                                value = <?= isset($data) ? $data['slug'] : '' ?>>
+                                value = <?= isset($data) ? $data['Slug'] : '' ?>>
                             </div>
                         </div>
                     <textarea class="ckeditor" id="editor" name="editor">
-                        <?= isset($data) ? $data['content'] : '' ?>
+                        <?= isset($data) ? $data['Content'] : '' ?>
                     </textarea>
                     </div>
                 </div>
