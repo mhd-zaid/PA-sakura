@@ -1,5 +1,10 @@
 .grid{
   overflow: hidden;
+  &-back{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
   &-article-elmt{
     height: 225px;
   }
@@ -33,33 +38,12 @@
     &-md-#{$i} {
       width: ((100 / $columns) * $i) * 1%;
     };
-    &-offset-#{$i}{
+    &-md-offset-#{$i}{
       margin-left: ((100 / $columns) * $i) * 1%;
     }
     &-rounded{
       background-color: $white;
       border-radius: 15px;
-    }
-  }
-}
-
-@media (max-width: $small-screen) {
-}
-  
-.row{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.col{
-  padding: 15px;
-  $columns:12;
-  @for $i from 1 through $columns {
-    &-md-#{$i} {
-      width: ((100 / $columns) * $i) * 1%;
-    };
-    &-offset-#{$i}{
-      margin-left: ((100 / $columns) * $i) * 1%;
     }
   }
 }
@@ -71,7 +55,7 @@
       &-sm-#{$i} {
         width: ((100 / $columns) * $i) * 1%;
       };
-      &-offset-#{$i}{
+      &-sm-offset-#{$i}{
         margin-left: ((100 / $columns) * $i) * 1%;
       };
     }
@@ -91,43 +75,3 @@
     }
   }
 }
-
-// .col {
-//   padding: calc($gutter/2);
-//   $columns: 12;
-//   @for $i from 1 through $columns {
-//     &-#{$i} {
-//       width: calc(((100 / $columns) * $i) * 1%);
-//     }
-//     @media (max-width: $extra-small-screen) {
-//       &-xs-#{$i} {
-//         width: calc(((100 / $columns) * $i) * 1%);
-//       }
-//     }
-//     @media (min-width: $small-screen) {
-//       &-sm-#{$i} {
-//         width: calc(((100 / $columns) * $i) * 1%);
-//       }
-//     }
-//     @media (min-width: $medium-screen) {
-//       &-md-#{$i} {
-//         width: calc(((100 / $columns) * $i) * 1%);
-//       }
-//     }
-//     @media (min-width: $large-screen) {
-//       &-lg-#{$i} {
-//         width: calc(((100 / $columns) * $i) * 1%);
-//       }
-//     }
-//     @media (min-width: $extra-large-screen) {
-//       &-xl-#{$i} {
-//         width: calc(((100 / $columns) * $i) * 1%);
-//       }
-//     }
-//     @media (min-width: $extra-extra-large-screen) {
-//       &-xxl-#{$i} {
-//         width: calc(((100 / $columns) * $i) * 1%);
-//       }
-//     }
-//   }
-// }
