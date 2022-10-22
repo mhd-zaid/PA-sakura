@@ -8,7 +8,7 @@ class Article extends DatabaseDriver
 {
 	private $id = null;
 	protected $content;
-    protected $image;
+    protected $slug;
 
 	public function __construct()
 	{
@@ -47,5 +47,30 @@ class Article extends DatabaseDriver
     public function setContent(String $content): void
     {
         $this->content = $content;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setSlug(String $slug): void
+    {
+        $this->slug = $slug;
+    }
+
+    public function findArticleById(Int $id = null){ 
+        $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+        return $data;
+    }
+
+    public function deleteArticleById(Int $id = null):void{ 
+        $sql = "DELETE  FROM ".$this->table." WHERE id =".$id;
+        $result = $this->pdo->query($sql);
     }
 }
