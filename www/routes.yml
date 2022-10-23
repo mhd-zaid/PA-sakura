@@ -243,6 +243,11 @@
   controller: Navigation
   action: index
   security: 0
+
+/navigation-menu-edit:
+  controller: Navigation
+  action: editMenu
+  security: 0
   
 # /ajout-menu-navigation:
 #   controller: Navigation

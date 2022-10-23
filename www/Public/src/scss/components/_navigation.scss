@@ -1,0 +1,35 @@
+.navigation-link{
+    text-decoration: none;
+    color: black;
+}
+.navigation-menu-label{
+    color: $pink;
+    font-size: 1.5rem;
+}
+
+.menu-arrow{
+    cursor: pointer;
+}
+
+.menu-items{
+    & h2{
+        margin: 0;
+    }
+}
+#drag-container:last-child{
+    & .menu-items:last-child{
+        & .menu-arrow-down{
+            display: none;
+        }
+    }
+}
+#drag-container:first-child{
+    & .menu-items:first-child{
+        & .menu-arrow-up{
+            display: none;
+        }
+    }
+}
+.navigation-menu-items{
+    transition: all 1s;
+}

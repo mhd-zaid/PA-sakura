@@ -1186,6 +1186,29 @@ form input[type=textarea] {
     width: 100%;
     height: 100%; }
 
+.navigation-link {
+  text-decoration: none;
+  color: black; }
+
+.navigation-menu-label {
+  color: #FF66C4;
+  font-size: 1.5rem; }
+
+.menu-arrow {
+  cursor: pointer; }
+
+.menu-items h2 {
+  margin: 0; }
+
+#drag-container:last-child .menu-items:last-child .menu-arrow-down {
+  display: none; }
+
+#drag-container:first-child .menu-items:first-child .menu-arrow-up {
+  display: none; }
+
+.navigation-menu-items {
+  transition: all 1s; }
+
 .badge {
   border: 1px solid #FFF;
   border-radius: 5px;

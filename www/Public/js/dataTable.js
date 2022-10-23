@@ -52,13 +52,13 @@ function DataTableArticle() {
     processing: true,
     serverSide: true,
     ajax: "/datatable?table=article",
-    columnDefs: [
-      {
-        orderable: false,
-        className: "select-checkbox",
-        targets: 0,
-      },
-    ],
+    // columnDefs: [
+    //   {
+    //     orderable: false,
+    //     className: "select-checkbox",
+    //     targets: 0,
+    //   },
+    // ],
     columns: [
       {
         class: "details-control",
