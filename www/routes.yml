@@ -174,7 +174,7 @@
 
 /article-add:
   controller: Article
-  action: addArticle
+  action: saveArticle
   security: 0
 
 # /article-edition/{id}:

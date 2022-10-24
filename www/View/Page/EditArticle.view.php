@@ -11,25 +11,25 @@
                             </div>
                             <div class="col col-5 flex-col flex-col-center">
                                 <input id="ipt-slug" type="text" name="article-slug"
-                                value = <?= isset($data) ? $data['Slug'] : '' ?>>
+                                value = <?= isset($data) && !empty($data) ? $data['Slug'] : '' ?>>
                             </div>
                         </div>
                     <textarea class="ckeditor" id="editor" name="editor">
-                        <?= isset($data) ? $data['Content'] : '' ?>
+                        <?= isset($data) && !empty($data) ? $data['Content'] : '' ?>
                     </textarea>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col col-12">
                     <button type="submit" name="submit" class="cta-button btn--pink" id="add">
-                        <?= isset($data) ? 'Modifier' : 'Ajouter' ?>
+                        <?= isset($data) && !empty($data)  ? 'Modifier' : 'Ajouter' ?>
                     </button>
                     <?php
-                    if(isset($data)){
-                        echo '<button type="submit" name="delete" class="cta-button btn--pink" id="add" >';
-                        echo 'Supprimer';
-                        echo  '</button>';
-                    }      
+                    if(isset($data) && !empty($data)){ ?>
+                        <button type="submit" name="delete" class="cta-button btn--pink" id="add" >
+                        Supprimer
+                        </button>
+                    <?php }      
                     ?>
                    
             </form>

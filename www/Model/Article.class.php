@@ -9,6 +9,7 @@ class Article extends DatabaseDriver
 	private $id = null;
 	protected $content;
     protected $slug;
+    protected $user_id;
 
 	public function __construct()
 	{
@@ -55,11 +56,24 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param mixed $firstname
+     * @param mixed $user_id
      */
     public function setSlug(String $slug): void
     {
         $this->slug = $slug;
+    }
+
+    public function getUserId(): ?Int
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUserId(Int $user_id): void
+    {
+        $this->user_id = $user_id;
     }
 
     public function findArticleById(Int $id = null){ 
