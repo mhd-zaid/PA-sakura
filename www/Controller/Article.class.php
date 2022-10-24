@@ -4,36 +4,46 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Model\Article as ArticleModel;
+use App\Model\User;
 
 class Article{
     public function index(){
-        // session_start();
-		// if(!isset($_SESSION['email'])){
-		// 	header("Location: /se-connecter");
-		// }else{
             $v=new View("Page/Article", "Back");
-        // }
     }
-    public function addArticle(){
-            $v=new View("Page/EditArticle", "Back");
+    public function saveArticle(){
+        $user = new User();
+        $userData = $user->getUser(null,$_COOKIE['Email']);
+        if($userData['Role'] !== 3){
             $article = new ArticleModel();
-            if(isset($_GET['id']) && !empty($_GET['id'])){
+            //Cas d'un update car id est renseigné
+            if(isset($_GET['id']) && !empty($_GET['id'])){                
                 $data = $article->findArticleById($_GET['id']);
-                $article->setId($_GET["id"]);
-                $v->assign("data", $data??[]);
+                if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
+                    $article->setId($_GET["id"]);
+                }else{
+                    header("Location: /home");
+                }
             }
-        if(isset($_POST['submit']))
-        {
-            if(isset($_POST['editor']) && !empty($_POST['editor'])){
-                $article->setContent($_POST['editor']);
-                $article->setSlug($_POST['article-slug']);
-                $article->save();
+            $v=new View("Page/EditArticle", "Back");
+            $v->assign("data", $data??[]);
+
+            if(isset($_POST['submit'])){
+
+                if(isset($_POST['editor']) && !empty($_POST['editor'])){
+                    $article->setContent($_POST['editor']);
+                    $article->setSlug($_POST['article-slug']);
+                    $article->setUserId($userData['Id']);
+                    $article->save();
+                    header("Location: /home");
+                 }
+            }   
+            if(isset($_POST['delete'])){
+                $article->deleteArticleById($_GET['id']);
                 header("Location: /home");
             }
+        }else{
+            echo 'pas droit';
         }
-        if(isset($_POST['delete'])){
-            $article->deleteArticleById($_GET['id']);
-            header("Location: /home");
-        }
-    }
+}
+
 }
