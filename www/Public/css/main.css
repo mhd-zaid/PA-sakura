@@ -985,6 +985,9 @@ form input[type=textarea] {
   word-wrap: break-word;
   height: 8em; }
 
+input[type="text" i] {
+  height: 2em; }
+
 .edit-element {
   background-color: #FFF;
   border: 1px solid #000;

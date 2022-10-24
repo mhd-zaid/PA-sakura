@@ -23,40 +23,46 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-4">
+        <div class="col col-8">
             <div class="row menu-items">
-                <div class="col col-2 center-text"><b>Monter</b></div>
-                <div class="col col-8 center-text"><b>Nom de la page</b></div>
-                <div class="col col-2 center-text"><b>Descendre</b></div>
+                <div class="col col-2 center-text"><!--<b>Monter</b>--></div>
+                <div class="col col-6 center-text"><b>Nom de la page</b></div>
+                <div class="col col-2 center-text"><!--<b>Descendre</b>--></div>
+                <div class="col col-2 center-text"><!--<b>Supprimer</b>--></div>
             </div>
         </div>
     </div>
     <div class="row">   
-        <div class="col col-4" id="drag-container">
+        <div class="col col-8" id="drag-container">
             <div class="row menu-items">
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
-                <div class="col col-8 center-text"><h2 class="navigation-menu-items">Accueil</h2></div>
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
+                <div class="col col-6 center-text"><h2 class="navigation-menu-items">Accueil</h2></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="delete-page-menu" icon="el:remove-circle" style="color: red;" width="42"></iconify-icon></iconify-icon></div>
             </div>
             <div class="row menu-items">
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
-                <div class="col col-8 center-text"><h2 class="navigation-menu-items">Ventes</h2></div>
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
+                <div class="col col-6 center-text"><h2 class="navigation-menu-items">Ventes</h2></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="delete-page-menu" icon="el:remove-circle" style="color: red;" width="42"></iconify-icon></iconify-icon></div>
             </div>
             <div class="row menu-items">
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
-                <div class="col col-8 center-text"><h2 class="navigation-menu-items">Nouveautés</h2></div>
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
+                <div class="col col-6 center-text"><h2 class="navigation-menu-items">Nouveautés</h2></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="delete-page-menu" icon="el:remove-circle" style="color: red;" width="42"></iconify-icon></iconify-icon></div>
             </div>
             <div class="row menu-items">
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
-                <div class="col col-8 center-text"><h2 class="navigation-menu-items">Achat</h2></div>
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
+                <div class="col col-6 center-text"><h2 class="navigation-menu-items">Achat</h2></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="delete-page-menu" icon="el:remove-circle" style="color: red;" width="42"></iconify-icon></iconify-icon></div>
             </div>
             <div class="row menu-items">
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
-                <div class="col col-8 center-text"><h2 class="navigation-menu-items">Market Place</h2></div>
-                <div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>
+                <div class="col col-6 center-text"><h2 class="navigation-menu-items">Market Place</h2></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>
+                <div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="delete-page-menu" icon="el:remove-circle" style="color: red;" width="42"></iconify-icon></iconify-icon></div>
             </div>
         </div>
     </div>
@@ -88,21 +94,24 @@ $(document).ready(function () {
             }
         }
     });
+    //Supprimet la page du menu
+    $("#drag-container").on("click", ".delete-page-menu", function(e){
+        var parent = this.parentNode.parentNode;
+        parent.remove();
+    });
     //Ajout d'une page au menu
     $("#btn-add-page").click(function(){
         var newPage = $("#ipt-add-page").val();
         if(newPage){
             var newRowPage = $('<div class="row menu-items">'
-                            +'<div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>'
-                            +'<div class="col col-8 center-text"><h2>'+ newPage +'</h2></div>'
-                            +'<div class="col col-2 flex-col flex-col-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>'
+                            +'<div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-up" icon="ant-design:arrow-up-outlined" width="42"></iconify-icon></div>'
+                            +'<div class="col col-6 center-text"><h2>'+ newPage +'</h2></div>'
+                            +'<div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="menu-arrow menu-arrow-down" icon="ant-design:arrow-down-outlined" width="42"></iconify-icon></div>'
+                            +'<div class="col col-2 flex-col flex-col-align-center"><iconify-icon class="delete-page-menu" icon="el:remove-circle" style="color: red;" width="42"></iconify-icon></iconify-icon></div>'
                             +'</div>');
             $("#drag-container").append(newRowPage);
             document.getElementById("ipt-add-page").value="";
         }
     });
-    $("#btn-delete-page").click(function(){
-        
-    })
 });
 </script>
