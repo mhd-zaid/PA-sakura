@@ -12,6 +12,11 @@
             <input type="submit" />
         </form>     -->
         <input type="file" onchange="onFileSelected(event)">
+        <form action="/media" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="photo" id="photo">
+            <input type="submit" value="Upload Image" name="submit">
+        </form>
     </div>
 </section>
 
@@ -68,15 +73,15 @@
 
 <script>
 function onFileSelected(event) {
-  var selectedFile = event.target.files[0];
-  var reader = new FileReader();
+    var selectedFile = event.target.files[0];
+    var reader = new FileReader();
 
-//   var imgtag = document.getElementById("myimage");
-  imgtag.title = selectedFile.name;
+    var imgtag = document.getElementById("myimage");
+    imgtag.title = selectedFile.name;
 
-  reader.onload = function(event) {
-    // imgtag.src = event.target.result;
-    $('.media-container').append('<div class="col col-1"></div><article class="col col-2 col-sm-12 medias medias-medias"><div class="row medias-medias"><img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt=""><p>Jean Dujardin</p></div></article>')
+    reader.onload = function(event) {
+    imgtag.src = event.target.result;
+    //$('.media-container').append('<div class="col col-1"></div><article class="col col-2 col-sm-12 medias medias-medias"><div class="row medias-medias"><img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt=""><p>Jean Dujardin</p></div></article>')
     };
 
   reader.readAsDataURL(selectedFile);
