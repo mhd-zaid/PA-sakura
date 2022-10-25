@@ -3,23 +3,23 @@
         <h1 class="h1-section-back">Liste des médias</h1>
     </div>
     <div class="row">
-        <p>Recherche <span><input type="text"></span> </p>
-    </div>
-    <div class="row">
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Publiés</p></div>
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Brouillons</p> </div>
-        <div class="col col-6 flex-col flex-col-center"><p class="filter">Corbeille</p></div>
-        <div class="col col-2">
-            <button class="cta-button btn--pink">Ajouter</button>
-        </div>
+        <!-- <form action="/action_page.php" 
+            enctype="multipart/form-data">
+            
+            <label for="myfile">Select a file:</label>
+            <input type="file" id="myfile" name="myfile" />
+            <br /><br />
+            <input type="submit" />
+        </form>     -->
+        <input type="file" onchange="onFileSelected(event)">
     </div>
 </section>
 
 <section class="grid grid-medias-medias">
-        <div class="row">
+        <div class="row medias-container">
             <article class="col col-2 col-sm-12 medias medias-medias">
                 <div class="row medias-medias">
-                    <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
+                    <img id="myimage" src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
                     <p>Jean Dujardin</p>
                 </div>
             </article>
@@ -65,3 +65,20 @@
         </div>
     </div>
 </div>
+
+<script>
+function onFileSelected(event) {
+  var selectedFile = event.target.files[0];
+  var reader = new FileReader();
+
+//   var imgtag = document.getElementById("myimage");
+  imgtag.title = selectedFile.name;
+
+  reader.onload = function(event) {
+    // imgtag.src = event.target.result;
+    $('.media-container').append('<div class="col col-1"></div><article class="col col-2 col-sm-12 medias medias-medias"><div class="row medias-medias"><img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt=""><p>Jean Dujardin</p></div></article>')
+    };
+
+  reader.readAsDataURL(selectedFile);
+}
+</script>
