@@ -248,6 +248,11 @@
   controller: Navigation
   action: editMenu
   security: 0
+
+/navigation-menu-edit-alt:
+  controller: Navigation
+  action: editMenuAlt
+  security: 0
   
 # /ajout-menu-navigation:
 #   controller: Navigation

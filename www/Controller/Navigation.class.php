@@ -16,4 +16,7 @@ class Navigation{
     public function editMenu(){
             $v = new View("Page/NavigationMenu", "Back");
     }
+    public function editMenuAlt(){
+            $v = new View("Page/NavigationMenuAlt", "Back");
+    }
 }

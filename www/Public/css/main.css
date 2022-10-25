@@ -1213,6 +1213,13 @@ input[type="text" i] {
 .navigation-menu-items {
   transition: all 1s; }
 
+#drag-container div.hint {
+  border: 1px solid #BDA7DE;
+  background: #cdc5f9; }
+
+.delete-page-menu {
+  display: none; }
+
 .badge {
   border: 1px solid #FFF;
   border-radius: 5px;
