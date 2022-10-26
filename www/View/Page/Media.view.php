@@ -22,32 +22,23 @@
 
 <section class="grid grid-medias-medias">
         <div class="row medias-container">
-            <article class="col col-2 col-sm-12 medias medias-medias">
-                <div class="row medias-medias">
-                    <img id="myimage" src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
-                    <p>Jean Dujardin</p>
-                </div>
-            </article>
-            <div class="col col-1"></div>
-            <article class="col col-2 col-sm-12 medias medias-medias">
-                <div class="row medias-medias">
-                    <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
-                    <p>Jean Dujardin</p>
-                </div>
-            </article>
-            <div class="col col-1"></div>
-            <article class="col col-2 col-sm-12 medias medias-medias">
-                <div class="row medias-medias">
-                    <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
-                    <p>Jean Dujardin</p>
-                </div>
-            </article>
-            <div class="col col-1"></div>
-            <article class="col col-2 col-sm-12 medias medias-add-content">
-                <div class="row medias-medias">
-                    <p>Ajouter une image</p>
-                    <div class="medias-add-content-icon">
-                        <iconify-icon icon="ant-design:plus-circle-outlined" width="50"></iconify-icon>
+            <?php
+            $target_dir = __DIR__."/../../uploads";
+            if (is_dir($target_dir)) {
+                echo "dossier trouvé";
+                $folder = opendir($target_dir);
+                while($file = readdir($folder)){
+                    $img=$target_dir."/".$file;
+                    echo $img;
+                    echo "<img src='../../uploads/img_responsive.png' width='50px' alt=''>";
+                }
+            }else{
+                echo "dossier " . $target_dir . " non trouvé";
+            }
+            ?>
+            <article>
+                <div class="row">
+                    <div class="col col-3">
                     </div>
                 </div>
             </article>

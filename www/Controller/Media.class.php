@@ -5,6 +5,9 @@ use App\Core\View;
 
 class Media{
     public function index(){
+        print_r($_FILES);
+        echo "";
+        print_r(__DIR__."/../uploads");
         if(!empty($_FILES)){
             $target_dir = __DIR__."/../uploads";
             if (!is_dir($target_dir)) {
