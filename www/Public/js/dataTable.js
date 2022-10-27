@@ -1,6 +1,7 @@
 $(document).ready(function () {
   DataTableUser();
   DataTableArticle();
+  DataTableComment();
 });
 
 function DataTableUser() {
@@ -89,6 +90,47 @@ function DataTableArticle() {
     var row = table.row(tr);
     var id = row.data().Id;
     window.location.replace("/article-add?id=" + id);
+  });
+  // On each draw, loop over the `detailRows` array and show any child rows
+  table.on("draw", function () {
+    detailRows.forEach(function (id, i) {
+      $("#" + id + " td.details-control").trigger("click");
+    });
+  });
+}
+
+
+function DataTableComment() {
+  var table = $("#table_comments").DataTable({
+    processing: true,
+    serverSide: true,
+    ajax: "/datatable?table=comment",
+    columns: [
+      {
+        class: "details-control",
+        orderable: false,
+        data: null,
+        defaultContent: "",
+      },
+      {
+        data: "Id",
+        class: "user_id",
+      },
+      {
+        data: "Content",
+        class: "comment_content",
+      }
+    ],
+    order: [[1, "asc"]],
+  });
+  // Array to track the ids of the details displayed rows
+  var detailRows = [];
+
+  $("#table_comments tbody").on("click", "tr td.details-control", function () {
+    var tr = $(this).closest("tr");
+    var row = table.row(tr);
+    var id = row.data().Id;
+    window.location.replace("/commentaire-edition?id=" + id);
   });
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {

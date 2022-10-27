@@ -194,18 +194,19 @@
 
 /commentaire-add:
   controller: Commentaire
-  action: addComment
+  action: saveComment
   security: 0
+  
+/commentaire-edition:
+ controller: Commentaire
+ action: saveComment
+ security: 0
 
 /commentaire-mots-bannis:
  controller: Commentaire
  action: motsbannis
  security: 0
- 
-/commentaire/{id}:
- controller: Commentaire
- action: showCommentaire 
- security: 0
+
 
 
   ### EXTENSION ###
@@ -259,10 +260,7 @@
   action: index
   security: 0
   
-/commentaire-edition/{id}:
- controller: Commentaire
- action: editComment
- security: 0
+
 
   ### MEDIAS ###
 
