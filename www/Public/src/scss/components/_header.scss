@@ -1,25 +1,23 @@
 #col-header{
     background-color: $nightblue; 
     color: $white;
+    padding: 0;
     & .helpLink{
         display: flex;
         align-items: center;
-        & p{
-            margin-right: 50px;
-        }
         & a{
             color: $white;
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.5em;
+            font-weight: lighter;
+            font-size: 1rem;
         }
     }
     & #logo-site{
-        padding: 0;
-        width: 300px;
+        padding: 6px;
+        width: 170px;
         transition: all 1s;
         & img{
-            width: 70px;
+            width: 45px;
         }
     }
     & :last-child{
@@ -31,10 +29,9 @@
             overflow: hidden;
             height: 100%;
           }
-          
         & .dropdownMenu .dropbtnMenu {
             cursor: pointer;
-            font-size: 1.5em;  
+            font-size: 0.9rem;  
             border: none;
             outline: none;
             color: white;
@@ -42,7 +39,6 @@
             font-family: inherit;
             margin: 0;
           }
-          
         & .dropdownMenu-content {
             display: none;
             position: absolute;
@@ -54,7 +50,6 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
           }
-          
         & .dropdownMenu-content a {
             float: none;
             color: $white;
@@ -63,11 +58,9 @@
             display: block;
             text-align: left;
           }
-          
         & .dropdownMenu-content a:hover {
             @include object-bg($nightblue);
           }
-          
         & .show {
             display: block;
           }
@@ -82,19 +75,25 @@
     transition: all 1s;
     background-color: $nightblue;
     color: $white;
-    width: 300px;
+    width: 170px;
     padding: 15px;
     & a{
         text-decoration: none;
         color: $white;
         margin-bottom: 10px;
         & .row{
-            margin-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        & .col{
+            padding: 0;
         }
     }
     & .menu-label{
         transition:en;
         margin: 0;
+    }
+    & img{
+        width: 1.5rem;
     }
     & #disconnect{
         position: absolute;
@@ -107,7 +106,7 @@
     transition: all 1s;
     background-color: $skygrey;
     height: 100%;
-    width: calc(100% - 300px);
+    width: calc(100% - 170px);
     overflow-y: auto;
 }
 
@@ -122,15 +121,12 @@
     justify-content: center;
     position: fixed;
     width: 100%;
-
-
     & .container {
         height: 7em;
         width: 100%;
         background-color: $white;
         justify-content: space-around;
         align-items: center;
-
         & nav{
         display: flex;
         align-items: center;
@@ -139,8 +135,6 @@
                 list-style: none;
                 margin: 0;
                 padding: 0;
-                
-                
                 & li a {
                     padding: 1em;
                     display: block;
@@ -148,25 +142,19 @@
                     color: $black;
                     font-size: 1.5em;
                     border-bottom: 7px solid transparent;
-            
-
                 }
-
                 & li > a:hover {
                     border-bottom: 7px solid $pink;
                 }
-
                 & li button {
                     margin-top: 0.5em;
                     border: none;
                     background-color: $pink;
-
                     & a {
                         color: $white;
                         font-weight: bold;
                     }
                 }
-
             }
         } 
     }
@@ -205,7 +193,7 @@
 
 @media (max-width: $large-screen) {
     #col-header{
-        & .helpLink, #visit{
+        & .helpLink, .visitLink{
             display: none;
         }
         & #logo-site{
@@ -213,13 +201,16 @@
         }
     }
     #col-nav{
-        width: 100px;
+        width: 70px;
         & .col:has(> .menu-label) {
             display: none;
         }
+        & a .row{
+            justify-content: center;
+        }
     }
     #col-main{
-        width: calc(100% - 100px);
+        width: calc(100% - 70px);
     }
 }
   
