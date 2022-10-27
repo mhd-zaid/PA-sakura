@@ -14,6 +14,37 @@
                                 value = <?= isset($data) && !empty($data) ? $data['Slug'] : '' ?>>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col col-5 flex-col flex-col-center">
+                                <?php if(isset($data) && !empty($data) && !empty($data['Image_Name'])):  ?><img  width="50px"  src="/uploads/<?=$data['Image_Name']?>" /><?php endif ?>
+                                <button type="button" name="openFile" id="openFile">Choisir une image</button>
+                                <div id="modal-image" class="" style="display:none;">
+                                <input type="hidden" id="imageName" name="imageName" readonly="true"  style="display:none"/>
+                                <fieldset>
+                                <?php
+                                    $target_dir = getcwd()."/uploads";
+                                    if (is_dir($target_dir)) {
+                                        $folder = opendir($target_dir);
+                                        while($file = readdir($folder)){
+                                            if ($file !== '.' && $file !== '..') {
+                                                $img="/uploads/".$file;
+
+                                                echo "<input type='radio' name='imageName' value='$file' id='$file' >";
+                                                echo '<div class="row">';
+                                                echo '<div class="col col-3 block-image">';
+                                                echo "<label for='$file'>$file</label>";
+                                                echo "<img src='$img' width='50px' id='$file' alt=''>";
+                                                echo '</div>';
+                                                echo '</div>';
+                                            }
+                                        }
+                                    }      
+                                ?>
+                              </fieldset>                              
+                                </div>
+                            </div>
+                        </div>
+
                     <textarea class="ckeditor" id="editor" name="editor">
                         <?= isset($data) && !empty($data) ? $data['Content'] : '' ?>
                     </textarea>
@@ -46,8 +77,17 @@
     .catch( error => {
         console.error( error );
     } )
-        // const add = document.getElementById("add");
-        // add.onclick = function(){
-        //     console.log(theEditor.getData());
-        // }
+    
+    $("#openFile").click(() => {
+        $('#modal-image').css('display','flex');
+    })
+
+    $(".block-image").click((e) => {
+        console.log(e.currentTarget.children[0].innerHTML);
+        $("#imageName").css('display','block').val(e.currentTarget.children[0].innerHTML);
+        $('#' + e.currentTarget.children[0].innerHTML).attr('checked');
+    })
+
+
+
 </script>

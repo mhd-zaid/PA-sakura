@@ -21,7 +21,7 @@ class Article{
                 if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
                     $article->setId($_GET["id"]);
                 }else{
-                    header("Location: /home");
+                    header("Location: /tableau-de-bord");
                 }
             }
             $v=new View("Page/EditArticle", "Back");
@@ -33,14 +33,15 @@ class Article{
                     $article->setContent($_POST['editor']);
                     $article->setSlug($_POST['article-slug']);
                     $article->setUserId($userData['Id']);
+                    $article->setImageName($_POST['imageName']);
                     $article->save();
-                    header("Location: /home");
+                    header("Location: /article");
                  }
             }   
             if(isset($_POST['delete'])){
                 $article->deleteArticleById($_GET['id']);
-                header("Location: /home");
-            }
+                header("Location: /tableau-de-bord");
+            }  
         }else{
             echo 'pas droit';
         }

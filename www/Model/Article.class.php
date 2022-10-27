@@ -10,6 +10,7 @@ class Article extends DatabaseDriver
 	protected $content;
     protected $slug;
     protected $user_id;
+    protected $image_name;
 
 	public function __construct()
 	{
@@ -74,6 +75,19 @@ class Article extends DatabaseDriver
     public function setUserId(Int $user_id): void
     {
         $this->user_id = $user_id;
+    }
+
+    public function getImageName(): ?String
+    {
+        return $this->image_name;
+    }
+
+    /**
+     * @param mixed $image_name
+     */
+    public function setImageName(String $image_name): void
+    {
+        $this->image_name = $image_name;
     }
 
     public function findArticleById(Int $id = null){ 
