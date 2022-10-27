@@ -5,9 +5,7 @@ use App\Core\View;
 
 class Media{
     public function index(){
-        print_r($_FILES);
         echo "";
-        print_r(__DIR__."/../uploads");
         if(!empty($_FILES)){
             $target_dir = __DIR__."/../uploads";
             if (!is_dir($target_dir)) {
@@ -15,7 +13,7 @@ class Media{
             }
             $file = $_FILES['photo']['name'];
             $file_extension = strrchr($file,".");
-            $extension_allow = array('.JPG','.jpg','.png','.PNG');
+            $extension_allow = array('.JPG','.jpg','.png','.PNG','.JPEG','.jpeg');
             if(in_array($file_extension,$extension_allow)){
                 $temp_file = $_FILES['photo']['tmp_name'];  
                 copy($temp_file, $target_dir."/".$file);

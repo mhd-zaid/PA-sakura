@@ -23,14 +23,14 @@
 <section class="grid grid-medias-medias">
         <div class="row medias-container">
             <?php
-            $target_dir = __DIR__."/../../uploads";
+            $target_dir = getcwd()."/uploads";
             if (is_dir($target_dir)) {
-                echo "dossier trouvé";
                 $folder = opendir($target_dir);
                 while($file = readdir($folder)){
-                    $img=$target_dir."/".$file;
-                    echo $img;
-                    echo "<img src='../../uploads/img_responsive.png' width='50px' alt=''>";
+                    if ($file !== '.' && $file !== '..') {
+                        $img="/uploads/".$file;
+                        echo "<img src='$img' width='50px' alt=''>";
+                    }
                 }
             }else{
                 echo "dossier " . $target_dir . " non trouvé";
