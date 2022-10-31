@@ -8,29 +8,54 @@ use App\Model\User;
 
 class Commentaire
 {
-    public function index()
+    public function index(): void
     {
         $v = new View("Page/Commentaire", "Back");
     }
 
-    public function saveComment()
+    public function saveComment(): void
     {
         $user = new User();
         $comment = new CommentModel();
         $userData = $user->getUser(null,$_COOKIE['Email']);
+        //On regarde si l'id du commentaire existe 
+        //si existe alors nous sommes dans un edit
+        //si non nous somme dans la création
+        if(isset($_GET['id']) || !empty($_GET['id'])){
+            $data = $comment->findCommentById($_GET["id"]);
+            //Id -> vient de la bdd
+            $comment->setId($data["Id"]);
+            
+        }
+
         if(isset($_POST['submit'])){
+
             if(isset($_POST['editor']) && !empty($_POST['editor'])){
+                
                 $comment->setContent($_POST['editor']);
-                $comment->setUserId($userData['Id']);
-                $comment->save();
+                if(!($this->checkComment($comment->getContent())))
+                {
+                    $comment->setActive(0);
+                    //$comment->setArticleId();
+                    //save permet d'enregistrer dans la base de donner 
+                    $comment->save();
+                    header("Location: /Commentaire");
+                }
+                else{
+                    echo "Votre commentaire contient un mot banni !";
+                }
+             }
+        }
+
+        if(isset($_POST['delete'])){
+            if(isset($_POST['editor']) && !empty($_POST['editor'])){
+                $comment->delete($_GET["id"]);
                 header("Location: /Commentaire");
              }
-             
-        }   
-
-
-        
+        }
         $v = new View("Page/EditCommentaire", "Back");
+        $v->assign("data", $data??[]);
+
     }
 
 
@@ -47,5 +72,15 @@ class Commentaire
         } else {
             $v = new View("Page/CommentaireMotsBannis", "Back");
         }
+    }
+
+    public function checkComment(string $comment): void
+    {  
+        $commentWords = explode(" ",$comment); 
+        $banWords = file(getcwd()."/banWords.txt");
+
+        print_r($commentWords);
+        echo '<br>';
+        print_r($banWords);
     }
 }

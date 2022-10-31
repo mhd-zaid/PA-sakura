@@ -3,7 +3,7 @@
 <section class="grid">
     <div class="row">
         <div class="col col-12">
-            <h1 class="h1-section-back">Ajout d'un commentaire</h1>
+            <h1 class="h1-section-back">Edition d'un commentaire</h1>
             <form action="" method="POST">
                     <textarea class="ckeditor" id="editor" name="editor">
                         <?= isset($data) && !empty($data) ? $data['Content'] : '' ?>
