@@ -239,4 +239,3 @@
 </section>
 </div>
 <?php include 'View/Components/parameters-menu.php';?>
-<!-- <?php include 'View/Components/parameters-users-menu.php';?> -->

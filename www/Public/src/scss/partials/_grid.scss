@@ -17,9 +17,6 @@
   &-commentaire-commentaire{
     height: 250px;
   }
-  &-medias-medias{
-    height: 250px;
-  }
   &-rounded{
     background-color: $white;
     border-radius: 15px;
@@ -41,10 +38,10 @@
     &-md-offset-#{$i}{
       margin-left: ((100 / $columns) * $i) * 1%;
     }
-    &-rounded{
-      background-color: $white;
-      border-radius: 15px;
-    }
+  }
+  &-rounded{
+    background-color: $white;
+    border-radius: 15px;
   }
 }
 

@@ -293,52 +293,6 @@
     }
 }
 
-#parameters-users-nav{
-    color: $white;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    background-color: $nightblue;
-    width: 20%;
-    height: 100vh;
-    top: 75px;
-    right: 0;
-    align-items: center;
-    hr{
-        width: 80%;
-    }
-    & .grid {
-        width: 90%;
-        & #user-notes{
-            background-color: #FDFFA0;
-            color: $black;
-            border-radius: 15px;
-            padding: 15px;
-        }
-        & .user-label{
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        & #user-edit{
-            text-decoration: none;
-            color: $white;
-            display: flex;
-            align-items: center;
-        }
-        & #user-lastConnection{
-            font-weight: bold;
-            letter-spacing: 3px;
-        }
-        .row:has(> #user-edit){
-            justify-content: flex-end;
-            align-items: center;
-        }
-        & .photo-profil{
-            width: 60%;
-        }
-    }
-}
-
 .parametres-compte{
     p{
         font-size: 1.2rem;

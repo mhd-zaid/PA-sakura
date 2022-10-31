@@ -13,10 +13,6 @@ body{
   background-color: #f4f4f4;
 }
 
-#body-back{
-  display: flex;
-}
-
 .container-fluid{
   margin: auto;
   max-width: 90%;
@@ -41,6 +37,11 @@ body{
 
 img{
   object-fit: cover;
+  object-position: center;
+}
+
+section{
+  margin: 30px 0px;
 }
 
 .plain{
@@ -64,7 +65,11 @@ img{
 }
 
 .show{
-  visibility: visible;
+  display: block;
+}
+
+.hide{
+  display: none;
 }
 
 .flex-row{

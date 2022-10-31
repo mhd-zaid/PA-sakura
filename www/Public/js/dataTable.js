@@ -52,13 +52,6 @@ function DataTableArticle() {
     processing: true,
     serverSide: true,
     ajax: "/datatable?table=article",
-    // columnDefs: [
-    //   {
-    //     orderable: false,
-    //     className: "select-checkbox",
-    //     targets: 0,
-    //   },
-    // ],
     columns: [
       {
         class: "details-control",
@@ -80,6 +73,8 @@ function DataTableArticle() {
       // },
     ],
     order: [[1, "asc"]],
+    pageLength: 5,
+    // paging: false,
   });
   // Array to track the ids of the details displayed rows
   var detailRows = [];

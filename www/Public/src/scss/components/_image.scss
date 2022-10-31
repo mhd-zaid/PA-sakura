@@ -1,0 +1,28 @@
+.image{
+    object-fit: cover;
+    object-position: center;
+    &-icon{
+        width: 1.5rem;
+    }
+    &-small{
+    }
+    &-medium{
+    }
+    &-large{
+    }
+}
+
+.banner{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    &-small{
+        height: 100px;
+    }
+    &-medium{
+        height: 150px;
+    }
+    &-large{
+        height: 20px;
+    }
+}

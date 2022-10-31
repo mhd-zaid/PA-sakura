@@ -17,8 +17,6 @@ class Media{
                 $temp_file = $_FILES['photo']['tmp_name'];  
                 copy($temp_file, $target_dir."/".$file); //copie l'image dans upload
             }
-        }else{
-            print_r('pas envoyé');
         }
         $v = new View("Page/Media","Back");
 
