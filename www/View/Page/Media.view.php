@@ -20,6 +20,9 @@
             </div>
             </div>
         </form>
+        <div class="col">
+            <button id="del-media-img">Delete Image</button>
+        </div>
     </div>
 </section>
 
