@@ -19,6 +19,10 @@ class Media{
             }
         }
         $v = new View("Page/Media","Back");
+        if(isset($_POST["delete"])){
+            $target_dir = __DIR__."/../uploads/".$_POST["name-img"];
+            unlink($target_dir);
+        }
 
     }
 }

@@ -14,11 +14,12 @@
                 <div class="col">
                     <input type="submit" value="Upload Image" name="submit">
                 </div>
+                <div class="col">
+                <input type="submit" value="Delete Image" name="delete" id="del-media-img">
+                <input type="text" name="name-img" id="delete-img" value = "" readonly>
+            </div>
             </div>
         </form>
-        <div class="col">
-            <button id="del-media-img">Delete Image</button>
-        </div>
     </div>
 </section>
 
@@ -33,8 +34,8 @@
                 if ($file !== '.' && $file !== '..') {
                     $img = "/uploads/" . $file;
                     echo ('<div class="col col-2 art-media-img">');
-                    echo ('<div class="row">');
-                    echo ("<img src='$img' width='100%' alt=''>");
+                    echo ("<div class='row' id='$file'>");
+                    echo ("<img src='$img' id='$file' width='100%' class='' alt=''>");
                     echo ('</div>');
                     echo ('<div class="row flex-row flex-row-center art-media-label">');
                     echo ("<p>$file</p>");
@@ -81,7 +82,6 @@
 
 <script>
     $(document).ready(function() {
-        console.log('document prêt');
         $("#del-media-img").on("click", function(e) {
             console.log("clique");
             $(".art-media-img").css('cursor', 'pointer');
@@ -90,5 +90,17 @@
             );
             // $(".del-img").show();
         });
+        const images = document.querySelectorAll("img");
+        $(images).click((e) => {
+            images.forEach(element => element.classList.remove('selector'));            
+            event.target.classList.add('selector');
+            const inputDelete = document.getElementById('delete-img');
+            inputDelete.setAttribute("value",e.target.id);
+        })
     });
 </script>
+<style>
+    .selector{
+        border : 4px solid blue;
+    }
+</style>
