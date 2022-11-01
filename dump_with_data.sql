@@ -368,7 +368,7 @@ ALTER TABLE `sakura_chapter`
 -- AUTO_INCREMENT pour la table `sakura_comment`
 --
 ALTER TABLE `sakura_comment`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `sakura_manga`
