@@ -15,7 +15,7 @@ if(isset($_FILES['upload']['name']))
  {
 //   move_uploaded_file($file, "/uploads/" . $new_image_name);
   $function_number = $_GET['CKEditorFuncNum'];
-  $url = 'uploads/' . $new_image_name;
+  $url = 'uploads/' . $file;
   $message = '';
   echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');</script>";
  }
