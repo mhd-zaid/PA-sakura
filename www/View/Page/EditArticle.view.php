@@ -1,6 +1,7 @@
 <!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script> -->
 <script src="http://cdn.ckeditor.com/4.6.2/full-all/ckeditor.js"></script>
-<!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <section class="grid">
     <div class="row">
@@ -47,7 +48,8 @@
                             </div>
                         </div>
 
-                    <textarea class="ckeditor" id="editor" name="editor">
+                    <!-- <textarea class="ckeditor" id="editor" name="editor"> -->
+                    <textarea class="ckeditor" id="content" name="content">
                         <?= isset($data) && !empty($data) ? $data['Content'] : '' ?>
                     </textarea>
                     </div>
@@ -71,15 +73,20 @@
 </section>
 
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
+    // ClassicEditor
+    //     .create( document.querySelector( '#editor' ) )
+    //     .catch( error => {
+    //         console.error( error );
+    //     } );
     
-    $("#openFile").click(() => {
-        $('#modal-image').css('display','flex');
-    })
+    // $("#openFile").click(() => {
+    //     $('#modal-image').css('display','flex');
+    // })
+
+    CKEDITOR.replace( 'content', {
+        height: 300,
+        filebrowserUploadUrl: "Vendor/upload.php"
+        });
 
     $(".block-image").click((e) => {
         console.log(e.currentTarget.children[0].innerHTML);
@@ -87,6 +94,7 @@
         $('#' + e.currentTarget.children[0].innerHTML).attr('checked');
     })
 
+    
 
 
 </script>
