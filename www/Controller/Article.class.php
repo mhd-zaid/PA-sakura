@@ -8,8 +8,9 @@ use App\Model\User;
 
 class Article{
     public function index(){
-            $v=new View("Page/Article", "Back");
+        $v=new View("Page/Article", "Back");
     }
+
     public function saveArticle(){
         $user = new User();
         $userData = $user->getUser(null,$_COOKIE['Email']);
@@ -45,6 +46,18 @@ class Article{
         }else{
             echo 'pas droit';
         }
-}
+    }
+    
+    public function readArticle(){
+        $user = new User();
+        $userData = $user->getUser(null,$_COOKIE['Email']);
+        $article = new ArticleModel();
+        $data = $article->findArticleById($_GET['id']);
+        if(isset($_POST['submit'])){
+            header('Location: /article-add?id='.$data["Id"]);
+        }  
+        $v=new View("Page/ReadArticle", "Back");
+        $v->assign("data", $data??[]);
+    }
 
 }

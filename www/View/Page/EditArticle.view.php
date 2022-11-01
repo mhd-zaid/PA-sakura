@@ -1,4 +1,6 @@
-<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+<!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script> -->
+<script src="http://cdn.ckeditor.com/4.6.2/full-all/ckeditor.js"></script>
+<!-- <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script> -->
 
 <section class="grid">
     <div class="row">
@@ -11,7 +13,7 @@
                             </div>
                             <div class="col col-5 flex-col flex-col-center">
                                 <input id="ipt-slug" type="text" name="article-slug"
-                                value = <?= isset($data) && !empty($data) ? $data['Slug'] : '' ?>>
+                                value = "<?= isset($data) && !empty($data) ? $data['Slug'] : '' ?>">
                             </div>
                         </div>
                         <div class="row">
@@ -70,13 +72,10 @@
 
 <script>
     ClassicEditor
-    .create( document.querySelector( '#editor' ) )
-    .then( editor => {
-        theEditor = editor; // Save for later use.
-    } )
-    .catch( error => {
-        console.error( error );
-    } )
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
     
     $("#openFile").click(() => {
         $('#modal-image').css('display','flex');
