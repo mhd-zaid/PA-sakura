@@ -36,7 +36,7 @@ class Commentaire
                 if(!($this->checkComment($comment->getContent())))
                 {
                     $comment->setActive(0);
-                    //$comment->setArticleId();
+                    // $comment->setArticleId(1);
                     //save permet d'enregistrer dans la base de donner 
                     $comment->save();
                     header("Location: /Commentaire");
@@ -74,13 +74,17 @@ class Commentaire
         }
     }
 
-    public function checkComment(string $comment): void
+    public function checkComment(string $comment): bool
     {  
-        $commentWords = explode(" ",$comment); 
+        $comment = strip_tags($comment);
         $banWords = file(getcwd()."/banWords.txt");
 
-        print_r($commentWords);
-        echo '<br>';
-        print_r($banWords);
+        foreach($banWords as $banWord){
+            $banWord = trim($banWord);
+            if(preg_match("/$banWord/",$comment)){
+                return true;
+            }
+        }
+        return false;
     }
 }
