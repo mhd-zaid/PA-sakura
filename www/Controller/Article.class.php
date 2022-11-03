@@ -43,6 +43,15 @@ class Article{
                     header("Location: /article");
                  }
             }   
+
+            if(isset($_POST['deleteImage'])){
+                    $article->setContent($_POST['editor']);
+                    $article->setSlug($_POST['article-slug']);
+                    $article->setUserId($userData['Id']);
+                    $article->setImageName("");
+                    $article->save();
+                    header("Location: /article");
+            } 
             if(isset($_POST['delete'])){
                 $article->deleteArticleById($_GET['id']);
                 header("Location: /tableau-de-bord");
