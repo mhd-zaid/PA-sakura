@@ -1,6 +1,6 @@
 node_modules/
-db_data/
-db_data/*
+db_data\
+db_data\*
 server/
 .idea/
 *.log
