@@ -52,34 +52,6 @@
     </div>
 </section>
 
-<section>
-    <div class="row medias-container art-media">
-        <div class="col col-2 art-media-img">
-            <div class="row"><img src="/uploads/1572283201.png" width="100%" alt=""></div>
-            <div class="row flex-row flex-row-center art-media-label">
-                <p>1572283201.png</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="grid">
-    <div class="row">
-        <div class="col col-12 flex-row flex-row-center">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     $(document).ready(function() {
         $("#del-media-img").on("click", function(e) {
