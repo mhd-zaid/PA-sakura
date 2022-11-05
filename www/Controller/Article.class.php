@@ -32,25 +32,36 @@ class Article{
                 if(isset($_GET['id']) && !empty($_GET['id'])){                
                     $data = $article->findArticleById($_GET['id']);
                     $dataUserId = $data["User_Id"];
+                    $dataActive = $data["Active"];
                 }
                 isset($dataUserId) ? "" : $dataUserId=$userData["Id"] ;
+                isset($dataActive) ? "" : $dataActive=0 ;
                 if(isset($_POST['editor']) && !empty($_POST['editor'])){
                     $article->setContent($_POST['editor']);
                     $article->setSlug($_POST['article-slug']);
                     $article->setUserId($dataUserId);
                     $article->setImageName($_POST['imageName']);
+                    $article->setActive($dataActive);
                     $article->save();
                     header("Location: /article");
                  }
             }   
 
             if(isset($_POST['deleteImage'])){
-                    $article->setContent($_POST['editor']);
-                    $article->setSlug($_POST['article-slug']);
-                    $article->setUserId($userData['Id']);
-                    $article->setImageName("");
-                    $article->save();
-                    header("Location: /article");
+                if(isset($_GET['id']) && !empty($_GET['id'])){                
+                    $data = $article->findArticleById($_GET['id']);
+                    $dataUserId = $data["User_Id"];
+                    $dataActive = $data["Active"];
+                }
+                isset($dataUserId) ? "" : $dataUserId=$userData["Id"] ;
+                isset($dataActive) ? "" : $dataActive=0 ;
+                $article->setContent($_POST['editor']);
+                $article->setSlug($_POST['article-slug']);
+                $article->setUserId($userData['Id']);
+                $article->setImageName("");
+                $article->setActive($dataActive);
+                $article->save();
+                header("Location: /article");
             } 
             if(isset($_POST['delete'])){
                 $article->deleteArticleById($_GET['id']);

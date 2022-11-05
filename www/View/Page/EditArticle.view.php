@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col col-5 flex-col flex-col-center">
                             <?php
-                            if(isset($data) && !empty($data)){ ?>
+                            if(isset($data) && !empty($data["Image_Name"]) ){ ?>
                             <button type="deleteImage" name="deleteImage" class="cta-button btn--pink">Supprimer image</button>
                             <?php } ?>
                                 <?php if(isset($data) && !empty($data) && !empty($data['Image_Name'])):  ?><img  width="50px"  src="/uploads/<?=$data['Image_Name']?>" /><?php endif ?>
@@ -92,13 +92,14 @@
         filebrowserUploadUrl: "Vendor/upload.php"
     });
 
+    $("#openFile").click(() => {        
+        $('#modal-image').css('display','flex');
+    });
+
     $(".block-image").click((e) => {
         console.log(e.currentTarget.children[0].innerHTML);
         $("#imageName").css('display','block').val(e.currentTarget.children[0].innerHTML);
         $('#' + e.currentTarget.children[0].innerHTML).attr('checked');
-    })
-
-    
-
+    });    
 
 </script>
