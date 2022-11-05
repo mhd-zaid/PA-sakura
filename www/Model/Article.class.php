@@ -11,6 +11,7 @@ class Article extends DatabaseDriver
     protected $slug;
     protected $user_id;
     protected $image_name;
+    protected $active = 0;
 
 	public function __construct()
 	{
@@ -33,6 +34,24 @@ class Article extends DatabaseDriver
     public function setId(Int $id): void
     {
         $this->id = $id;
+    }
+    
+    /**
+     * @return null
+     */
+    public function getActive(): ?int
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param null $id
+     */
+
+    //abstract public function setId($id);
+    public function setActive(Int $active): void
+    {
+        $this->active = $active;
     }
 
     /**

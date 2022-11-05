@@ -71,8 +71,8 @@ function DataTableArticle() {
         class: "article_id",
       },
       {
-        data: "Content",
-        class: "article_content",
+        data: "Slug",
+        class: "article_slug",
       },
       // {
       //   data: "Image",

@@ -49,7 +49,7 @@
                         </div>
 
                     <!-- <textarea class="ckeditor" id="editor" name="editor"> -->
-                    <textarea class="ckeditor" id="content" name="content">
+                    <textarea class="ckeditor" id="editor" name="editor">
                         <?= isset($data) && !empty($data) ? $data['Content'] : '' ?>
                     </textarea>
                     </div>
@@ -83,10 +83,10 @@
     //     $('#modal-image').css('display','flex');
     // })
 
-    CKEDITOR.replace( 'content', {
+    CKEDITOR.replace( 'editor', {
         height: 300,
         filebrowserUploadUrl: "Vendor/upload.php"
-        });
+    });
 
     $(".block-image").click((e) => {
         console.log(e.currentTarget.children[0].innerHTML);
