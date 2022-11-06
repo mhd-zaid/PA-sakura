@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col col-6">
             <?php foreach ($data as $motBanni) : ?>
-                <iconify-icon icon="ant-design:close-circle-outlined" style="color: red;"></iconify-icon>
+                <p><a href="/supprimer-mot-banni?word=<?= $motBanni ?>"><iconify-icon icon="ant-design:close-circle-outlined" style="color: red;"></iconify-icon>
                     </a></span>&nbsp;&nbsp;&nbsp; <?= $motBanni ?> </p>
 
             <?php endforeach; ?>

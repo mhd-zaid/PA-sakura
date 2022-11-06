@@ -45,6 +45,13 @@
     }
 }
 
+td.signaler {
+    background: url('https://api.iconify.design/ci/flag-outline.svg') no-repeat center center / contain;
+}
+tr.details td.signaler {
+    cursor: pointer;
+    background: url('https://api.iconify.design/ci/flag-outline.svg') no-repeat center center / contain;
+}
 
 @media screen and (max-width: 715px){
     .commentaire-date-comment{

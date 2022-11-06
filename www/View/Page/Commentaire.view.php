@@ -32,6 +32,8 @@
                 <th></th>
                 <th>Id</th>
                 <th>Content</th>
+                <th>Publier</th>
+                <th>Signaler</th>
                 <th></th>
             </tr>
         </thead>

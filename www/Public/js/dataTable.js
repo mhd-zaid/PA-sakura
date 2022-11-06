@@ -119,7 +119,17 @@ function DataTableComment() {
       {
         data: "Content",
         class: "comment_content",
-      }
+      },
+      {
+        data: "Active",
+        class: "comment_active",
+      },
+      {
+        class: "signaler",
+        orderable: false,
+        data: null,
+        defaultContent: "",
+      },
     ],
     order: [[1, "asc"]],
   });
@@ -132,10 +142,25 @@ function DataTableComment() {
     var id = row.data().Id;
     window.location.replace("/commentaire-edition?id=" + id);
   });
+
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {
     detailRows.forEach(function (id, i) {
       $("#" + id + " td.details-control").trigger("click");
+    });
+  });
+
+  $("#table_comments tbody").on("click", "tr td.signaler", function () {
+    var tr = $(this).closest("tr");
+    var row = table.row(tr);
+    var id = row.data().Id;
+    window.location.replace("/signaler?id=" + id);
+  });
+  
+  // On each draw, loop over the `detailRows` array and show any child rows
+  table.on("draw", function () {
+    detailRows.forEach(function (id, i) {
+      $("#" + id + " td.signaler").trigger("click");
     });
   });
 }

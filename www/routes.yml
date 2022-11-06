@@ -207,6 +207,15 @@
  action: motsbannis
  security: 0
 
+/supprimer-mot-banni:
+  controller: Commentaire
+  action: removeBanWord
+  security: 0
+
+/signaler:
+  controller: Commentaire
+  action: signaler
+  security: 0
 
   ### EXTENSION ###
 

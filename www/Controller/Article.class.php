@@ -34,7 +34,7 @@ class Article{
                     $article->setSlug($_POST['article-slug']);
                     $article->setUserId($userData['Id']);
                     $article->save();
-                    header("Location: /home");
+                    header("Location: /tableau-de-bord");
                  }
             }   
             if(isset($_POST['delete'])){

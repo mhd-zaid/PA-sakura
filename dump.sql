@@ -67,7 +67,7 @@ CREATE TABLE `sakura_comment` (
   `User_Id` int(11) NOT NULL,
   `Content` varchar(255) DEFAULT NULL,
   `Active` tinyint(1) NOT NULL,
-  `Nbr_Signalement` int(11) NOT NULL
+  `Nbr_Signalement` int(11) NOT NULL,
   `Article_Id` int(11) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

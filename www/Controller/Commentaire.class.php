@@ -15,9 +15,7 @@ class Commentaire
 
     public function saveComment(): void
     {
-        $user = new User();
         $comment = new CommentModel();
-        $userData = $user->getUser(null, $_COOKIE['Email']);
         //On regarde si l'id du commentaire existe 
         //si existe alors nous sommes dans un edit
         //si non nous somme dans la création
@@ -30,8 +28,11 @@ class Commentaire
             if (isset($_POST['editor']) && !empty($_POST['editor'])) {
                 $comment->setContent($_POST['editor']);
                 if (!($this->checkComment($comment->getContent()))) {
-                    $comment->setActive(0);
-                    // $comment->setArticleId(1);
+                    $comment->setActive(intval($_POST['active']));
+                    if($comment->getActive() == 1){
+                        $comment->setNbrSignalement(0);
+                    }
+                    $comment->setArticleId(1);
                     //save permet d'enregistrer dans la base de donner 
                     $comment->save();
                     header("Location: /Commentaire");
@@ -52,14 +53,12 @@ class Commentaire
 
     public function motsbannis(): void
     {
-        $data=$this->getBanWords();
         if (isset($_POST['submit'])) {
-            print_r(!empty($_POST['ajouter-mot']));
             if(isset($_POST['ajouter-mot']) && !empty($_POST['ajouter-mot'])){
-                // print_r("Le mot a été ajouter dans la liste des mots bannis");
                 file_put_contents(getcwd() . "/banWords.txt", "\n".$_POST['ajouter-mot'],FILE_APPEND);
             }
         }
+        $data=$this->getBanWords();
         $v = new View("Page/CommentaireMotsBannis", "Back");
         $v->assign("data", $data ?? []);
     }
@@ -84,5 +83,36 @@ class Commentaire
     {
         $banWords = file(getcwd() . "/banWords.txt");
         return $banWords;
+    }
+
+    public function removeBanWord(): void
+    {
+        if (isset($_GET['word'])) {   
+            $file = getcwd()."/banwords.txt";
+            $contents = file_get_contents($file);
+            $contents = str_replace($_GET['word'], '', $contents);
+            file_put_contents($file, $contents);
+            file_put_contents($file, implode(PHP_EOL, file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)));
+        }
+        $data=$this->getBanWords();
+        $v = new View("Page/CommentaireMotsBannis", "Back");
+        $v->assign("data", $data ?? []);
+    }
+
+    public function signaler(): void
+    {
+        $comment = new CommentModel();
+        $commentData = $comment->findCommentById($_GET['id']);
+        $comment->setId($commentData['Id']);
+        $comment->setContent($commentData['Content']);
+        $comment->setArticleId($commentData['Article_Id']);
+        $comment->setNbrSignalement($commentData['Nbr_Signalement']+1);
+        if($commentData['Nbr_Signalement'] >= 20){
+            $comment->setActive(0);
+        }else{
+            $comment->setActive($commentData['Active']);
+        }
+        $comment->save();
+        $v = new View("Page/Commentaire", "Back");
     }
 }
