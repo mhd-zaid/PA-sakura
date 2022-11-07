@@ -15,48 +15,38 @@
             </div>
             <div class="row">
                 <div class="col col-3 flex-col flex-col-align-center flex-col-center">
-                    <a href="/navigation-menu-edit" class="navigation-link flex-row flex-row-align-center">Ajouter un menu&nbsp;&nbsp;&nbsp;<iconify-icon icon="ant-design:plus-circle-outlined" width="42"></iconify-icon></a>
+                    <a href="/navigation-menu-add" class="navigation-link flex-row flex-row-align-center">Ajouter un menu&nbsp;&nbsp;&nbsp;<iconify-icon icon="ant-design:plus-circle-outlined" width="35"></iconify-icon></a>
                 </div>
             </div>
             <div class="row">
-                <div class="col col-offset-2 col-5"><b>Titre</b></div>
-                <div class="col col-5"><b>Éléments du menu</b></div>
+                <div class="col col-offset-2 col-2"><b>Titre</b></div>
+                <div class="col col-offset-1"><b>Éléments du menu</b></div>
             </div>
-            <div class="row">
-                <div class="col col-1 flex-col flex-col-align-center flex-col-center">
-                    <iconify-icon icon="akar-icons:edit" width="42"></iconify-icon>
-                </div>
-                <div class="col col-5"><p class="navigation-menu-label">Menu principal</p></div>
-                <div class="col col-5"><p class="navigation-menu-elements">Accueil - Ventes - Nouveautés</p></div>
-            </div>
-            <div class="row">
-                <div class="col col-1 flex-col flex-col-align-center flex-col-center">
-                    <iconify-icon icon="akar-icons:edit" width="42"></iconify-icon>
-                </div>
-                <div class="col col-5"><p class="navigation-menu-label">Menu manga</p></div>
-                <div class="col col-5"><p class="navigation-menu-elements">Accueil - A propos - Compte - Shonen - Seinen</p></div>
-            </div>
+
+            <?php foreach ($data as $key => $value) {
+                // print_r($value["Content"]); 
+                $content=str_replace( ",", " - ", $value["Content"]);
+                echo('<div class="row">');
+                echo('<div class="col col-2 flex-col flex-col-align-center flex-col-center">');
+                echo('<a href="" class="read-menu" id="menu-'.$value["Id"].'"><iconify-icon icon="akar-icons:edit" width="35"></iconify-icon></a>');
+                echo('</div>');
+                echo('<div class="col col-3"><p class="navigation-menu-label">'.$value["Title"].'</p></div>');
+                echo('<div class="col col-7"><p class="navigation-menu-elements">'.$content.'</p></div>');
+                echo('</div>');
+            }
+            ?>
+
         </div>
     </div>
 </section>
-<br>
-<section class="grid grid-rounded navigation-categories">
-    <div class="row">
-        <div class="col col-12">
-            <div class="row">
-                <div class="col col-12 flex-col center-text"><h1>Catégories</h1></div>
-            </div>
-            <div class="row">
-                <div class="col col-3 flex-col flex-col-align-center flex-col-center">
-                    <a href="#" class="navigation-link flex-row flex-row-align-center">Ajouter une catégorie&nbsp;&nbsp;&nbsp;<iconify-icon icon="ant-design:plus-circle-outlined" width="42"></iconify-icon></a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col"><button class="cta-button btn--pink-rounded">Shojo</button></div>
-                <div class="col"><button class="cta-button btn--white-rounded">Kodomo</button></div>
-                <div class="col"><button class="cta-button btn--white-rounded">Seinen</button></div>
-                <div class="col"><button class="cta-button btn--white-rounded">Shonen</button></div>
-            </div>
-        </div>
-    </div>
-</section>
+
+<script>
+    $(document).ready(function(){
+        $('.read-menu').on("click",function(e){
+            e.preventDefault();
+            var menuId = $(this)[0].id.split("-");
+            window.location.replace("/navigation-menu-add?id=" + menuId[1]);
+        })
+
+    });
+</script>

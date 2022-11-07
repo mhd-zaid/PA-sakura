@@ -43,10 +43,10 @@
                         ?>
                     </button>
                     <div class="dropdownMenu-content" id="myDropdownMenu">
-                        <a href="#">Paramètre du compte</a>
-                        <a href="#">Gérer les utilisateurs</a>
-                        <a href="#">Assistance</a>
-                        <a href="#">Se déconnecter</a>
+                        <a href="/parametres-compte">Paramètre du compte</a>
+                        <a href="/parametres-users">Gérer les utilisateurs</a>
+                        <a href="/parametres-support">Assistance</a>
+                        <a href="/se-deconnecter">Se déconnecter</a>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 <div class="col col-3"><img src="Public/img/Back/settings-1.svg" alt="Dashboard"></div>
                 <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Paramètres</p></div>
             </div></a>
-            <a href="/"><div id="disconnect" class="row">
+            <a href="/se-deconnecter"><div id="disconnect" class="row">
                 <div class="col col-3"><img src="Public/img/Back/logout1.svg" alt="Dashboard"></div>
                 <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Déconnexion</p></div>
             </div></a>
