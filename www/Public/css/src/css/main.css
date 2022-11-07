@@ -40,10 +40,6 @@ body {
   font-size: 2em;
 }
 
-.h1-section-back {
-  font-size: 2.5em;
-}
-
 img {
   -o-object-fit: cover;
      object-fit: cover;
@@ -507,27 +503,25 @@ img {
 #col-header {
   background-color: #0F056B;
   color: #FFF;
+  padding: 0;
 }
 #col-header .helpLink {
   display: flex;
   align-items: center;
 }
-#col-header .helpLink p {
-  margin-right: 50px;
-}
 #col-header .helpLink a {
   color: #FFF;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 1.5em;
+  font-weight: lighter;
+  font-size: 1rem;
 }
 #col-header #logo-site {
-  padding: 0;
-  width: 300px;
+  padding: 6px;
+  width: 170px;
   transition: all 1s;
 }
 #col-header #logo-site img {
-  width: 70px;
+  width: 45px;
 }
 #col-header :last-child {
   display: flex;
@@ -541,7 +535,7 @@ img {
 }
 #col-header :last-child .dropdownMenu .dropbtnMenu {
   cursor: pointer;
-  font-size: 1.5em;
+  font-size: 0.9rem;
   border: none;
   outline: none;
   color: white;
@@ -590,7 +584,7 @@ img {
   transition: all 1s;
   background-color: #0F056B;
   color: #FFF;
-  width: 300px;
+  width: 170px;
   padding: 15px;
 }
 #col-nav a {
@@ -599,11 +593,17 @@ img {
   margin-bottom: 10px;
 }
 #col-nav a .row {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+#col-nav a .col {
+  padding: 0;
 }
 #col-nav .menu-label {
   transition: en;
   margin: 0;
+}
+#col-nav img {
+  width: 1.5rem;
 }
 #col-nav #disconnect {
   position: absolute;
@@ -615,7 +615,7 @@ img {
   transition: all 1s;
   background-color: #F4F4F4;
   height: 100%;
-  width: calc(100% - 300px);
+  width: calc(100% - 170px);
   overflow-y: auto;
 }
 
@@ -698,7 +698,7 @@ img {
 }
 
 @media (max-width: 992px) {
-  #col-header .helpLink, #col-header #visit {
+  #col-header .helpLink, #col-header .visitLink {
     display: none;
   }
   #col-header #logo-site {
@@ -706,14 +706,17 @@ img {
   }
 
   #col-nav {
-    width: 100px;
+    width: 70px;
   }
   #col-nav .col:has(> .menu-label) {
     display: none;
   }
+  #col-nav a .row {
+    justify-content: center;
+  }
 
   #col-main {
-    width: calc(100% - 100px);
+    width: calc(100% - 70px);
   }
 }
 @media screen and (max-width: 1000px) {
@@ -1112,7 +1115,7 @@ img {
   border-radius: 0px;
   font-size: 1em;
   border: 0px;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 #main-front .cta-button {
@@ -1120,7 +1123,6 @@ img {
   height: 4em;
   border: none;
   font-size: 1.5em;
-  font-weight: bold;
 }
 #main-front .cta-button--white {
   background-color: #FFF;
@@ -1223,11 +1225,11 @@ img {
   text-decoration: none;
   color: white;
   display: inline-block;
-  font-size: 1.3em;
+  font-size: 0.9rem;
   padding: 0.4em;
   background-color: grey;
   border-radius: 1000px;
-  font-weight: 700;
+  font-weight: 590;
   letter-spacing: 0.05em;
   text-align: center;
   transition: all 0.3s;
@@ -1480,15 +1482,6 @@ form input[type=textarea] {
 }
 .row:has(> .commentaire-commentaire) .commentaire-checkbox {
   height: 100%;
-}
-
-td.signaler {
-  background: url("https://api.iconify.design/ci/flag-outline.svg") no-repeat center center/contain;
-}
-
-tr.details td.signaler {
-  cursor: pointer;
-  background: url("https://api.iconify.design/ci/flag-outline.svg") no-repeat center center/contain;
 }
 
 @media screen and (max-width: 715px) {

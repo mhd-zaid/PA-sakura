@@ -20,7 +20,8 @@
             <tr>
                 <th></th>
                 <th>Id</th>
-                <th>Content</th>
+                <th>Titre</th>
+                <!-- <th>Illustration</th> -->
                 <th></th>
             </tr>
         </thead>

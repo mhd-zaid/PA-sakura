@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="Public/css/main.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
     <script type="text/javascript" src="../Public/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript" src="../Public/js/main.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="../Public/js/dataTable.js"></script>
    
 </head>
@@ -21,10 +27,10 @@
         <?php $userData = $User->getUser(null,$_COOKIE['Email']); ?>
         <header id="col-header" class="col col-12 col-md-12 col-md-6">
             <div class="row">
-                <div id="logo-site" class="flex-col flex-col-align-center">
+                <div id="logo-site" class="col flex-col flex-col-align-center">
                     <img src="Public/img/Back/mini-logo.svg" alt="logo-site">
                 </div>
-                <div class="col">
+                <div class="col visitLink">
                     <a href="#" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
                 </div>
                 <div class="col helpLink">
@@ -53,48 +59,48 @@
 
         <nav id="col-nav">
             <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/dashboard-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Accueil</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/dashboard-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Accueil</p></div>
             </div></a>
             <a href="/page"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Page</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Page</p></div>
             </div></a>
             <a href="/article"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Articles</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Articles</p></div>
             </div></a>
             <a href="/media"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/article-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Médias</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/article-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Médias</p></div>
             </div></a>
             <a href="/commentaire"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/media1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Commentaires</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/media1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Commentaires</p></div>
             </div></a>
             <a href="/navigation"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/comments1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Navigation</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/comments1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Navigation</p></div>
             </div></a>
             <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Apparence</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Apparence</p></div>
             </div></a>
             <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/analytics-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Statistiques</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/analytics-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Statistiques</p></div>
             </div></a>
             <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/extension-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Extension</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/extension-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Extension</p></div>
             </div></a>
             <a href="/parametres"><div class="row">
-                <div class="col col-4"><img src="Public/img/Back/settings-1.svg" alt="Dashboard"></div>
-                <div class="col col-8 flex-col flex-col-center"><h1 class="menu-label">Paramètres</h1></div>
+                <div class="col col-3"><img src="Public/img/Back/settings-1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Paramètres</p></div>
             </div></a>
             <a href="/"><div id="disconnect" class="row">
-                <div class="col col-2"><img src="Public/img/Back/logout1.svg" alt="Dashboard"></div>
-                <div class="col col-10 flex-col flex-col-center"><h2 class="menu-label">Se déconnecter</h2></div>
+                <div class="col col-3"><img src="Public/img/Back/logout1.svg" alt="Dashboard"></div>
+                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Déconnexion</p></div>
             </div></a>
         </nav>
         

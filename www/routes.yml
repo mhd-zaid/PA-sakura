@@ -177,13 +177,15 @@
   action: saveArticle
   security: 0
 
+/article-read:
+  controller: Article
+  action: readArticle
+  security: 0
+
 # /article-edition/{id}:
 # controller: Article
 # action: editArticle
-#
-#/article/{id}:
-# controller: Article
-# action: showArticle
+
 
 ### COMMENTAIRE ###
 
@@ -251,6 +253,16 @@
 /navigation:
   controller: Navigation
   action: index
+  security: 0
+
+/navigation-menu-edit:
+  controller: Navigation
+  action: editMenu
+  security: 0
+
+/navigation-menu-edit-alt:
+  controller: Navigation
+  action: editMenuAlt
   security: 0
   
 # /ajout-menu-navigation:
