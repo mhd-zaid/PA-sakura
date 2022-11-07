@@ -3,20 +3,19 @@
 namespace App\Controller;
 
 use App\Core\View;
+use App\Model\Menu as MenuModel;
 
 class Navigation{
     public function index(){
-        // session_start();
-		// if(!isset($_SESSION['email'])){
-		// 	header("Location: /se-connecter");
-		// }else{
-            $v = new View("Page/Navigation", "Back");
-        // }
+        $menu = new MenuModel();
+        $data = $menu->getMenus();
+        $v = new View("Page/Navigation", "Back");
+        $v->assign("data", $data??[]);
     }
-    public function editMenu(){
-            $v = new View("Page/NavigationMenu", "Back");
-    }
-    public function editMenuAlt(){
-            $v = new View("Page/NavigationMenuAlt", "Back");
+    public function saveMenu(){
+        $menu = new MenuModel();
+        $data = $menu->findMenuById($_GET["id"]);
+        $v = new View("Page/NavigationMenu", "Back");
+        $v->assign("data", $data??[]);
     }
 }

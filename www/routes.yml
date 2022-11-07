@@ -265,23 +265,11 @@
   action: index
   security: 0
 
-/navigation-menu-edit:
+/navigation-menu-add:
   controller: Navigation
-  action: editMenu
-  security: 0
-
-/navigation-menu-edit-alt:
-  controller: Navigation
-  action: editMenuAlt
+  action: saveMenu
   security: 0
   
-# /ajout-menu-navigation:
-#   controller: Navigation
-#   action: notification
-  
-# /edition-menu-navigation/{id}:
-#  controller: Navigation
-#  action: editNavigation
 
   ### THEME ###
 
