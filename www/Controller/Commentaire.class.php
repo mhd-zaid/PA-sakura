@@ -50,7 +50,7 @@ class Commentaire
         $v = new View("Page/EditCommentaire", "Back");
         $v->assign("data", $data ?? []);
     }
-
+    
     public function motsbannis(): void
     {
         if (isset($_POST['submit'])) {
@@ -62,13 +62,13 @@ class Commentaire
         $v = new View("Page/CommentaireMotsBannis", "Back");
         $v->assign("data", $data ?? []);
     }
-
-
+    
+    
     public function checkComment(string $comment): bool
     {
         $comment = strip_tags($comment);
         $banWords = file(getcwd() . "/banWords.txt");
-
+        
         foreach ($banWords as $banWord) {
             $banWord = trim($banWord);
             if (preg_match("/$banWord/", $comment)) {
@@ -77,14 +77,14 @@ class Commentaire
         }
         return false;
     }
-
-
+    
+    
     public function getBanWords(): array
     {
         $banWords = file(getcwd() . "/banWords.txt");
         return $banWords;
     }
-
+    
     public function removeBanWord(): void
     {
         if (isset($_GET['word'])) {   
@@ -93,12 +93,13 @@ class Commentaire
             $contents = str_replace($_GET['word'], '', $contents);
             file_put_contents($file, $contents);
             file_put_contents($file, implode(PHP_EOL, file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES)));
+            header("Location: /commentaire-mots-bannis");
         }
         $data=$this->getBanWords();
-        $v = new View("Page/CommentaireMotsBannis", "Back");
+        $v = new View("Page/Commentaire", "Back");
         $v->assign("data", $data ?? []);
     }
-
+    
     public function signaler(): void
     {
         $comment = new CommentModel();
