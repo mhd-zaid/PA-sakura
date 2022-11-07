@@ -64,7 +64,6 @@ CREATE TABLE `sakura_chapter` (
 
 CREATE TABLE `sakura_comment` (
   `Id` int(11) NOT NULL,
-  `User_Id` int(11) NOT NULL,
   `Content` varchar(255) DEFAULT NULL,
   `Active` tinyint(1) NOT NULL,
   `Nbr_Signalement` int(11) NOT NULL,
