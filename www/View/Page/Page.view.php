@@ -23,9 +23,13 @@
                 <th>Title</th>
                 <th>date publi</th>
                 <th>date modification</th>
+                <th>Auteur</th>
+                <th>Slug</th>
+
 
             </tr>
         </thead>
+        
     </table>
         </div>
     </div>

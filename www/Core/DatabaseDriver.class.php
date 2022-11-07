@@ -5,6 +5,7 @@ use App\Vendor\DataTable\SSP;
 use App\Model\User;
 use App\Model\Article;
 use App\Model\Comment;
+use App\Model\Page;
 abstract class DatabaseDriver
 {
 
@@ -89,7 +90,7 @@ abstract class DatabaseDriver
 			}
 			$result['recordsFiltered'] = $dataTable['recordsFiltered'];
 			echo json_encode($result);
-		}elseif((get_class($this) == Article::class) || (get_class($this) == Comment::class)){
+		}elseif((get_class($this) == Article::class) || (get_class($this) == Comment::class) || (get_class($this) == Page::class)){
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
 			$i=0;
 			foreach ($dataTable as $data => $value) {
