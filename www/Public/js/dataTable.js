@@ -276,7 +276,7 @@ function DataTablePage() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/page-add?id=" + id);
+    window.location.replace("/page-read?id=" + id);
   });
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {
