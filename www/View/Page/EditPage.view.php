@@ -24,7 +24,7 @@
                 </div>
                 <textarea class="ckeditor" id="editor" name="editor">
                         <?= isset($data) && !empty($data) ? $data['Content'] : '' ?>
-                    </textarea>
+                </textarea>
         </div>
     </div>
     <div class="row">

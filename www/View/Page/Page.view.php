@@ -24,7 +24,6 @@
                 <th>date publi</th>
                 <th>date modification</th>
                 <th>Auteur</th>
-                <th>Slug</th>
 
 
             </tr>
