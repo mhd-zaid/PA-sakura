@@ -73,7 +73,7 @@ class Page
             $page->setContent($data['Content']);
             $page->setTitle($data['Title']);
             $page->setUserId($userData['Id']);
-            $page->setActive(0);
+            $page->setActive(1);
             $page->setDescription($data['Description']);
             $today = date("Y-m-d");
             $page->setDate($today);
@@ -82,6 +82,7 @@ class Page
             header('Location: /page-read?id='.$data["Id"]);
         }  
         if(isset($_POST['unpublish'])){
+            $page->setId($data['Id']);
             $page->setContent($data['Content']);
             $page->setTitle($data['Title']);
             $page->setUserId($userData['Id']);
