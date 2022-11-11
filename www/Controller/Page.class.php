@@ -69,11 +69,12 @@ class Page
             header('Location: /page-add?id='.$data["Id"]);
         }  
         if(isset($_POST['publish'])){
+            $page->setId($data['Id']);
             $page->setContent($data['Content']);
             $page->setTitle($data['Title']);
-            $page->setUserId($data['Id']);
-            $page->setActive(0);
-            $page->setDescription($data['page-description']);
+            $page->setUserId($userData['Id']);
+            $page->setActive(1);
+            $page->setDescription($data['Description']);
             $today = date("Y-m-d");
             $page->setDate($today);
             $page->save();
@@ -81,11 +82,12 @@ class Page
             header('Location: /page-read?id='.$data["Id"]);
         }  
         if(isset($_POST['unpublish'])){
-            $page->setContent($_POST['editor']);
-            $page->setTitle($_POST['page-title']);
+            $page->setId($data['Id']);
+            $page->setContent($data['Content']);
+            $page->setTitle($data['Title']);
             $page->setUserId($userData['Id']);
             $page->setActive(0);
-            $page->setDescription($_POST['page-description']);
+            $page->setDescription($data['Description']);
             $today = date("Y-m-d");
             $page->setDate($today);
             $page->save();
