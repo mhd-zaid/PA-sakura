@@ -84,8 +84,13 @@ function DataTableArticle() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    // window.location.replace("/article-add?id=" + id);
-    window.location.replace("/article-read?id=" + id);
+    var slug = row.data().Slug;
+    var rewriteUrl = row.data().Rewrite_Url;
+    if (rewriteUrl == 1) {
+      window.location.replace("/article-read/" + id);
+    } else {
+      window.location.replace("/article-read/" + slug);
+    }
   });
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {
@@ -94,7 +99,6 @@ function DataTableArticle() {
     });
   });
 }
-
 
 function DataTableComment() {
   var table = $("#table_comments").DataTable({
@@ -152,7 +156,7 @@ function DataTableComment() {
     var id = row.data().Id;
     window.location.replace("/signaler?id=" + id);
   });
-  
+
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {
     detailRows.forEach(function (id, i) {
