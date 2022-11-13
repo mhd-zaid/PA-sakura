@@ -19,13 +19,13 @@ spl_autoload_register(function ( $class ){
 
 $request = $_SERVER['REQUEST_URI'];
 $requestExploded = explode("/", $request);
-$dat =(count($requestExploded)-1);
-if($dat == 2){
-	$keywords = preg_split("@(\/[0-9]+)|(/$requestExploded[$dat])|(\?)$@", $request);
+$uriExploded =(count($requestExploded)-1);
+if($uriExploded == 2){
+	$split = preg_split("@(\/[0-9]+)|(/$requestExploded[$uriExploded])|(\?)$@", $request);
 }else{
-	$keywords = preg_split("@(\/[0-9]+)|(\?)@", $request);
+	$split = preg_split("@(\/[0-9]+)|(\?)@", $request);
 }
-$uri = strtolower($keywords[0]);
+$uri = strtolower($split[0]);
 $routing = new Core\Routing();
 $routing->setAction($uri);
 $routing->run();

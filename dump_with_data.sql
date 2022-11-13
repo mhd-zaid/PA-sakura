@@ -33,7 +33,12 @@ CREATE TABLE `sakura_article` (
   `Slug` varchar(50) DEFAULT NULL,
   `User_Id` int(11) NOT NULL,
   `Image_Name` varchar(50) NOT NULL,
-  `Active` int(11) NOT NULL DEFAULT '0'
+  `Active` int(11) NOT NULL DEFAULT '0',
+  `Rewrite_Url` int(11) NOT NULL DEFAULT '1',
+  `Title` varchar(255) DEFAULT NULL,
+  `Date_Created` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `Date_Updated` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
