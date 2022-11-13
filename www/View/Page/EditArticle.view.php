@@ -14,7 +14,7 @@
                             </div>
                             <div class="col col-5 flex-col flex-col-center">
                                 <input id="ipt-slug" type="text" name="article-slug"
-                                value =" <?= isset($data) && !empty($data) ? $data['Slug'] : '' ?>">
+                                value =" <?= isset($data) && !empty($data) ? $data['Title'] : '' ?>">
                             </div>
                         </div>
                         <div class="row">

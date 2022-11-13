@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col">
             <a href="/article-add" class="cta-button btn--pink">Ajouter</a>
+            <a href="/categorie" class="cta-button btn--pink">Catégories</a>
         </div>
     </div>
 </section>
