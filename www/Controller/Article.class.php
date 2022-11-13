@@ -28,6 +28,8 @@ class Article{
             $v=new View("Page/EditArticle", "Back");
             $v->assign("data", $data??[]);
 
+            $rewriteUrl = $article->findArticleRewriteUrl();
+            $rewriteUrl > 0 ? $choice = 1 : $choice = 2;
             if(isset($_POST['submit'])){
                 if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){                
                     !empty($_GET['Slug']) ? $data = $article->findArticleBySlug($_GET['Slug']) : $data = $article->findArticleById($_GET['id']);
@@ -43,7 +45,7 @@ class Article{
                     $article->setImageName($_POST['imageName']);
                     $article->setActive($dataActive);
                     $article->setTitle($_POST['article-slug']);
-                    $article->setRewriteUrl($data['Rewrite_Url']);
+                    $article->setRewriteUrl($choice);
                     $article->save();
                     header("Location: /article");
                  }
