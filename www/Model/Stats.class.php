@@ -3,7 +3,7 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
-use DateTimeInterface;
+use DateTime;
 
 class Stats extends DatabaseDriver
 {
@@ -85,7 +85,57 @@ class Stats extends DatabaseDriver
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data["Id"];
-
 	}
+
+    public function getDayStats(String $date) : int
+    {
+        $todayDate = date_format(new DateTime(),"Y-m-d");
+        switch ($date) {
+            case 'today':
+                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date='$todayDate'";
+                $result = $this->pdo->query($sql);
+                $data = $result->fetch();
+                return $data[0];
+            
+            case 'yesterday' :
+                $compareDate = date_format(new DateTime("yesterday"),"Y-m-d");
+                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between'$compareDate' and '$todayDate'";
+                $result = $this->pdo->query($sql);
+                $data = $result->fetch();
+                return $data[0];
+
+            case 'week' : 
+                $compareDate = date_format(new DateTime("-7 days"),"Y-m-d");
+                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between'$compareDate' and '$todayDate'";
+                $result = $this->pdo->query($sql);
+                $data = $result->fetch();
+                return $data[0];
+
+            case 'month' : 
+                $compareDate=date('Y-m-d',strtotime("-1 month"));
+                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between '$compareDate' and '$todayDate'";
+                $result = $this->pdo->query($sql);
+                $data = $result->fetch();
+                return $data[0];
+
+            case 'months' :
+                $compareDate=date('Y-m-d',strtotime("-3 month"));
+                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between '$compareDate' and '$todayDate'";
+                $result = $this->pdo->query($sql);
+                $data = $result->fetch();
+                return $data[0];
+            
+            case 'year' : 
+                $compareDate = date_format(new DateTime("-1 year"),"Y-m-d");
+                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between'$compareDate' and '$todayDate'";
+                $result = $this->pdo->query($sql);
+                $data = $result->fetch();
+                return $data[0];
+
+            default:
+                return 0;
+                break;
+        }
+    }
 
 }

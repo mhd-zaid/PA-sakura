@@ -9,8 +9,17 @@
 
 <div class="grid box-statistiques">
     <div class="flex-row">
+        <select id="choices-stats">
+            <option value="">Veuillez choisir une valeur</option>
+            <option value="today">Aujourd'hui</option>
+            <option value="yesterday">Hier </option>
+            <option value="week"> 7 jours</option>
+            <option value="month">1 mois</option>
+            <option value="months"> 3 mois</option>
+            <option value="year"> 1 an</option>
+        </select>
         <p>
-            Jours / Mois / Années
+             / Mois / Années
         </p>
     </div>
 
@@ -21,19 +30,11 @@
         <div class="flex-row">
             <div class="flex-col col-12 statistique-case">
                 <p>Nombre visiteur</p>
-                <p>145</p>
+                <p id="number-visitors">0</p>
             </div>
             <div class="flex-col  col-12 statistique-case case-selected">
                 <p>Nombre inscrit</p>
-                <p>34</p>
-            </div>
-            <div class="flex-col col-12 statistique-case case-selected">
-                <p>Nombre nouveaux inscrits</p>
-                <p>13</p>
-            </div>
-            <div class="flex-col col-12 statistique-case case-selected">
-                <p>J'aime/Commentaire</p>
-                <p>13</p>
+                <p id="number-inscriptions">34</p>
             </div>
         </div>
     </div>
@@ -145,3 +146,29 @@
     </div>
 
 </section>
+
+<script>
+
+    $("#choices-stats").on("change", function(){
+        $.ajax({
+        //L'URL de la requête 
+        url: "statistiques-date?date="+ $("#choices-stats").val(),
+
+        //La méthode d'envoi (type de requête)
+        method: "GET",
+
+        //Le format de réponse attendu
+        dataType : "json",
+    })
+
+    .done(function(response){
+        // let data = JSON.stringify(response);
+        $("#number-visitors").val(response);
+        console.log($("#number-visitors").val(response))
+    })
+
+
+    })
+
+
+</script>
