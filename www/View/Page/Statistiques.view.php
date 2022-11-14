@@ -158,13 +158,11 @@
         method: "GET",
 
         //Le format de réponse attendu
-        dataType : "json",
+        dataType : "text",
     })
 
     .done(function(response){
-        // let data = JSON.stringify(response);
-        $("#number-visitors").val(response);
-        console.log($("#number-visitors").val(response))
+        $("#number-visitors").text(response);
     })
 
 
