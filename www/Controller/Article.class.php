@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\Article as ArticleModel;
 use App\Model\User;
+use App\Core\Verificator;
 
 class Article{
     public function index(){
@@ -16,35 +17,44 @@ class Article{
         $userData = $user->getUser(null,$_COOKIE['Email']);
         if($userData['Role'] !== 3){
             $article = new ArticleModel();
-            //Cas d'un update car slug est renseigné
-            if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){                
-                !empty($_GET['Slug']) ? $data = $article->findArticleBySlug($_GET['Slug']) : $data = $article->findArticleById($_GET['id']);
+            $form = $article->createArticleForm();
+
+            //Cas d'un update car slug ou id renseigné
+            if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
+                //récupère l'article courant
+                $data = $article->findArticle();
+                //Vérification de sécurité
                 if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
                     $article->setId($data["Id"]);
                 }else{
                     header("Location: /tableau-de-bord");
                 }
             }
-            $v=new View("Page/EditArticle", "Back");
-            $v->assign("data", $data??[]);
 
             $rewriteUrl = $article->findArticleRewriteUrl();
             $rewriteUrl > 0 ? $choice = 1 : $choice = 2;
+
+            if(!empty($_POST)){
+            $verificator = new Verificator($form, $_POST);
+			$verificator->verificatorEditionArticle($form, $_POST);
+			$configFormErrors = $verificator->getMsg();
+
+            if(empty($configFormErrors)){
             if(isset($_POST['submit'])){
-                if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){                
-                    !empty($_GET['Slug']) ? $data = $article->findArticleBySlug($_GET['Slug']) : $data = $article->findArticleById($_GET['id']);
+                if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
+                    $data = $article->findArticle();              
                     $dataUserId = $data["User_Id"];
                     $dataActive = $data["Active"];
                 }
                 isset($dataUserId) ? "" : $dataUserId=$userData["Id"] ;
                 isset($dataActive) ? "" : $dataActive=0 ;
-                if(isset($_POST['editor']) && !empty($_POST['editor']) && !is_numeric($_POST['article-slug'])){
+                if(isset($_POST['editor']) && !empty($_POST['editor'])){
                     $article->setContent($_POST['editor']);
-                    $article->setSlug($_POST['article-slug']);
+                    $article->setSlug($_POST['titre']);
                     $article->setUserId($dataUserId);
                     $article->setImageName($_POST['imageName']);
                     $article->setActive($dataActive);
-                    $article->setTitle($_POST['article-slug']);
+                    $article->setTitle($_POST['titre']);
                     $article->setRewriteUrl($choice);
                     $article->save();
                     header("Location: /article");
@@ -52,30 +62,35 @@ class Article{
             }   
 
             if(isset($_POST['deleteImage'])){
-                if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){                
-                    !empty($_GET['Slug']) ? $data = $article->findArticleBySlug($_GET['Slug']) : $data = $article->findArticleById($_GET['id']);
+                if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){    
+                    $data = $article->findArticle();            
                     $dataUserId = $data["User_Id"];
                     $dataActive = $data["Active"];
                 }
                 isset($dataUserId) ? "" : $dataUserId=$userData["Id"] ;
                 isset($dataActive) ? "" : $dataActive=0 ;
                 $article->setContent($_POST['editor']);
-                $article->setSlug($_POST['article-slug']);
+                $article->setSlug($_POST['titre']);
                 $article->setUserId($userData['Id']);
                 $article->setImageName("");
                 $article->setActive($dataActive);
-                $article->setTitle($_POST['article-slug']);
+                $article->setTitle($_POST['titre']);
                 $article->setRewriteUrl($data['Rewrite_Url']);
                 $article->save();
                 header("Location: /article");
             } 
             if(isset($_POST['delete'])){
-                !empty($_GET['Slug']) ? $article->deleteArticleBySlug($_GET['Slug']) : $article->deleteArticleById($_GET['id']);
-                header("Location: /tableau-de-bord");
-            }  
+                $article->deleteArticle();
+                header("Location: /article");
+            } 
+        }
+        } 
         }else{
             echo 'pas droit';
         }
+        $v=new View("Page/EditArticle", "Back");
+        $v->assign("configForm", $form);
+        $v->assign("configFormErrors", $configFormErrors??[]);
     }
     
     public function readArticle(){
@@ -83,7 +98,7 @@ class Article{
         $userData = $user->getUser(null,$_COOKIE['Email']);
         $article = new ArticleModel();
         
-        !empty($_GET['Slug']) ? $data = $article->findArticleBySlug($_GET['Slug']) : $data = $article->findArticleById($_GET['id']);
+        $data = $article->findArticle();
         if(isset($_POST['submit'])){
             $_GET['Slug'] ? header('Location: /article-add/'.$data["Slug"]) : header('Location: /article-add/'.$data["Id"]);
         }  

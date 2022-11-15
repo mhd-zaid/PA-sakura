@@ -2,6 +2,7 @@
 
 namespace App\Core;
 use App\Model\User;
+use App\Model\Article;
 
 class Verificator
 {
@@ -18,8 +19,7 @@ class Verificator
 
 
 	}
-
-	public function verificatorLogin($configForm, $data):void{
+	public function verificatorEditionArticle($configForm, $data):void{
 		foreach($configForm["inputs"] as $name=>$configInput){
 
 			if(!empty($configInput["required"]) && empty($data[$name])){
@@ -33,20 +33,31 @@ class Verificator
 			if(!empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
 				$this->msg[]=$configInput["error"];
 			}
+		}
 
-			if($configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
-				$this->msg[]=$configInput["error"];		
-			}
+		if(!empty($data["titre"]) && !self::checkIfTitleExsists($data["titre"])){
+			$this->msg[]="Un article portant ce titre existe déjà";
+		}
 
+		if(!empty($data["titre"]) && is_numeric($data["titre"])){
+			$this->msg[]="Votre titre ne peut contenir que des chiffres";
+		}
+		if(empty($data["editor"])){
+			$this->msg[]="Veuillez ajouter du contenu";
+		}
 
-			if(!empty($configInput["confirm"]) && !self::checkConfirm($data[$name], $data[$configInput["confirm"]]) ){
-				$this->msg[]=$configInput["error"];		
+	}
+
+	public function verificatorLogin($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(!empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
 			}
-			else if(!empty($configInput["pass"]) && !self::checkLogin($configForm['profil']['Password'],$data[$name])){
-				$this->msg[]=$configInput["error"];		
+			if(!empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
 			}
-			else if($configInput["type"]=="password" && !empty($data[$name])  && !self::checkPassword($data[$name])){
-				$this->msg[]=$configInput["error"];		
+			if(!empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+				$this->msg[]=$configInput["error"];
 			}
 		}
 	}
@@ -86,6 +97,11 @@ class Verificator
 	public static function checkConfirm(String $string, String $stringOrigin): bool
 	{
 		return $string == $stringOrigin;
+	}
+
+	public static function checkIfTitleExsists(string $title):bool{
+		$article = new Article();
+		return $article->isTitleExist($title);
 	}
 
 }

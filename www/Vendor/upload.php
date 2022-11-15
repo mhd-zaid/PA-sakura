@@ -16,7 +16,7 @@
         copy($temp_file, $target_dir."/".$file); //copie l'image dans upload
     }
     $function_number = $_GET['CKEditorFuncNum'];
-    $url = 'uploads/' . $file;
+    $url = '/uploads/' . $file;
     $message = '';
     echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number, '$url', '$message');</script>";
 }else{
