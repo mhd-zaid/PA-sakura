@@ -184,7 +184,11 @@ CREATE TABLE `sakura_page` (
   `Id` int(11) NOT NULL,
   `Title` varchar(255) DEFAULT NULL,
   `Content` text,
-  `Active` tinyint(1) NOT NULL
+  `Active` tinyint(1) NOT NULL,
+  `User_Id` int(11) DEFAULT NULL,
+  `Description` text,
+  `Date_publi` date NOT NULL,
+  `Date_modif` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -364,7 +368,7 @@ ALTER TABLE `sakura_chapter`
 -- AUTO_INCREMENT pour la table `sakura_comment`
 --
 ALTER TABLE `sakura_comment`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `sakura_manga`

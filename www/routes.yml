@@ -240,9 +240,15 @@
 
 /page-add:
   controller: Page
-  action: addPage
+  action: savePage
   security: 0
-  
+
+/page-read:
+  controller: Page
+  action: readPage
+  security: 0
+
+
 /page-edit/{id}:
  controller: Page
  action: editPage
@@ -252,7 +258,6 @@
  controller: Page
  action: showPage
  security: 0
-
   ### NAVIGATION ###
 
 /navigation:
