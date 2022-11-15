@@ -108,6 +108,12 @@ class User extends DatabaseDriver
 
     }
 
+    public function setPasswordWithoutHash(String $password): void
+    {
+        $this->password = $password;
+
+    }
+
     /**
      * @return int
      */
@@ -422,6 +428,72 @@ class User extends DatabaseDriver
             ];
 
     }
+    
+    public function profilUpdateForm(){
+
+        return [
+            "config" => [
+                            "method"=>"POST",
+                            "class"=>"form-register",
+                            "submit"=>"Modifier"
+                        ],
+
+            "profil"=>$this->getUserByEmail($_COOKIE['Email']), 
+    
+            "inputs"=> [
+                "firstname"=>[
+                                "type"=>"text",
+                                "label"=>"Prénom",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Votre prénom doit faire entre 2 et 25 caractères"
+                            ],
+
+                "lastname"=>[
+                                "type"=>"text",
+                                "label"=>"Nom",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>75,
+                                "required"=>true,
+                                "error"=>"Votre nom doit faire entre 2 et 75 caractères"
+                            ],
+                "email"=>[
+                                "type"=>"email",
+                                "label"=>"Email",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "error"=>"Votre email est incorrect"
+                            ],
+                "password"=>[
+                                "type"=>"password",
+                                "label"=>"Nouveau mot de passe",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                            ],
+                "passwordconfirm"=>[
+                                "type"=>"password",
+                                "label"=>"Confirmation nouveau mot de passe",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "confirm"=>"password",
+                                "error"=>"Votre mot de passe de confirmation ne correspond pas"
+                            ],
+                "confirmationpassword" =>[
+                                "type"=>"password",
+                                "label"=>"Tapez votre mot de passe pour tout changement",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "pass"=>"pass",
+                                "error"=>"Mauvais mot de passe"
+                ],
+            ]
+        ];
+
+    }
 
     public function loginForm(){
 
@@ -572,6 +644,14 @@ class User extends DatabaseDriver
         }
     }
 
+    public function isGoodPassword(string $pwd, string $entered):bool{
+        if(password_verify($entered,$pwd)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
     public function checkForgotPasswd(string $email): ?string{
         $sql = "SELECT * FROM $this->table WHERE email = '$email'";
         $result = $this->pdo->query($sql);
@@ -666,6 +746,13 @@ class User extends DatabaseDriver
         if($id == null && $email != null) {
             $sql = "SELECT * FROM ".$this->table." WHERE email = '$email'";
         }
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+        return $data;
+    }
+    
+    public function getUserByEmail(string $email){
+        $sql = "SELECT * FROM ".$this->table." WHERE Email ='$email'";
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data;

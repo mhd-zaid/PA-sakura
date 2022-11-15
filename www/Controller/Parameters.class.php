@@ -25,6 +25,35 @@ class Parameters{
     public function parametersAccount(){
         $v = new View("Page/ParametersAccount", "Back");
     }
+    public function parametersAccountManagement(){
+		$profil = new UserModel();
+		$profilUpdateForm = $profil->profilUpdateForm();
+       
+		if( !empty($_POST) )
+		{				
+			$verificator = new Verificator($profilUpdateForm, $_POST);
+			$verificator->verificatorLogin($profilUpdateForm, $_POST);
+			$configFormErrors = $verificator->getMsg();
+			if(empty($configFormErrors)){
+				
+				isset($_POST['password']) && !empty($_POST['password']) ? $profil->setPassword($_POST['password'])
+				: $profil->setPasswordWithoutHash($profilUpdateForm['profil']['Password']);
+
+				$profil->setId($profilUpdateForm['profil']['Id']);
+                $profil->setFirstname($_POST['firstname']);
+                $profil->setLastname($_POST['lastname']);
+                $profil->setEmail($_POST['email']);
+                $profil->setStatus($profilUpdateForm['profil']['Status']);
+                $profil->setToken($profilUpdateForm['profil']['Token']);
+				$profil->save();
+				header("Location: /tableau-de-bord");
+			}
+		}
+
+		$v = new View("Page/ParametersAccountManagement", "Back");
+        $v->assign("configForm", $profilUpdateForm);
+        $v->assign("configFormErrors", $configFormErrors??[]);
+    }
     public function parametersAddUser(){
         $user = new UserModel();
 		$userRegisterForm = $user->userRegisterForm();

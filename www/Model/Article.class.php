@@ -156,11 +156,57 @@ class Article extends DatabaseDriver
         return $this->date_updated;
     }
 
-    public function findArticleById(Int $id = null){ 
-        $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
+    public function createArticleForm(){
+
+        return [
+            "config" => [
+                            "method"=>"POST",
+                            "class"=>"form-register",
+                            "submit"=>"Modifier"
+                        ],
+
+           "article"=>$this->findArticle(),
+
+           "textarea"=>[
+                "class"=>"ckeditor",
+                "id"=>"editor",
+                "name"=>"editor"
+           ],
+            "inputs"=> [
+                "titre"=>[
+                                "type"=>"text",
+                                "label"=>"Titre de l'article",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                            ],
+
+                "openFile"=>[
+                                "type"=>"button",
+                                "value"=>"Ajouter une image",
+                                "id"=>"openFile",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "error"=>"Votre nom doit faire entre 2 et 75 caractères"
+                            ],
+                "deleteImage"=>[
+                                "type"=>"button",
+                                "value"=>"Supprimer l'image",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "error"=>"Votre email est incorrect"
+                            ],
+                "imageName"=>[
+                                "type"=>"hidden",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                            ],
+            ]
+        ];
+
     }
 
     public function findArticleRewriteUrl(){ 
@@ -169,10 +215,25 @@ class Article extends DatabaseDriver
         return $result->rowCount();
     }
 
-    public function findArticleBySlug(String $slug ){ 
-        $sql = "SELECT * FROM ".$this->table." WHERE Slug = '$slug'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+    public function findArticle(){
+        if(!empty($_GET['Slug'])){
+            $slug = $_GET['Slug'];
+            $sql = "SELECT * FROM ".$this->table." WHERE Slug = '$slug'";
+            $result = $this->pdo->query($sql);
+            $data = $result->fetch();
+            if(empty($data)){
+                header("Location: /article");
+            }
+        }elseif(!empty($_GET['id'])){
+            $sql = "SELECT * FROM ".$this->table." WHERE id =".$_GET['id'];
+            $result = $this->pdo->query($sql);
+            $data = $result->fetch();
+            if(empty($data)){
+                header("Location: /article");
+            }
+        }else{
+            return null;
+        }
         return $data;
     }
 
@@ -181,13 +242,50 @@ class Article extends DatabaseDriver
         $result = $this->pdo->query($sql);
     }
 
-    public function deleteArticleById(Int $id = null):void{ 
-        $sql = "DELETE  FROM ".$this->table." WHERE id =".$id;
-        $result = $this->pdo->query($sql);
+    public function deleteArticle():void{
+        if(!empty($_GET['Slug'])){
+            $slug = $_GET['Slug'];
+            $sql = "DELETE  FROM ".$this->table." WHERE Slug = '$slug'";
+            $result = $this->pdo->query($sql);
+        }elseif(!empty($_GET['id'])){
+            $sql = "DELETE  FROM ".$this->table." WHERE id =".$_GET['id'];
+            $result = $this->pdo->query($sql);
+        }else{
+        }
     }
 
-    public function deleteArticleBySlug(String $slug):void{ 
-        $sql = "DELETE  FROM ".$this->table." WHERE Slug = '$slug'";
+    public function isTitleExist(String $title){
+        $sql = "SELECT * FROM ".$this->table."  WHERE Title = '$title'";
         $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+
+        $numberRow = $result->rowCount();
+        if($numberRow > 0){
+            if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
+                $slug = $_GET['Slug'];
+                $compare = "SELECT * FROM ".$this->table."  WHERE Slug = '$slug'";  
+                $resultSlug = $this->pdo->query($compare);
+                $dataSlug = $resultSlug->fetch();
+                if($dataSlug['Id'] == $data['Id']){
+                    return true;
+                }else{
+                    return false;
+                }
+            }elseif(isset($_GET['id']) && !empty($_GET['id'])){
+                $id = $_GET['id'];
+                $compareId = "SELECT * FROM ".$this->table."  WHERE Id = '$id'";  
+                $resultId = $this->pdo->query($compareId);
+                $dataId = $resultId->fetch();
+                if($dataId['Id'] == $data['Id']){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return true;
+        }
     }
 }

@@ -108,7 +108,7 @@
 
 /parametres-gestion-compte: 
   controller: Parameters
-  action: AccountManagement
+  action: parametersAccountManagement
   security: 0
 
 /parametres-gestion-utilisateurs:
