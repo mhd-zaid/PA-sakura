@@ -96,6 +96,12 @@ abstract class DatabaseDriver
 			foreach ($dataTable as $data => $value) {
 				preg_replace('/%u([0-9A-F]+)/', '&#x$1;', $dataTable['data'][$i]['Content']);
 				html_entity_decode($dataTable['data'][$i]['Content'], ENT_COMPAT, 'UTF-8');
+				if ($dataTable['data'][$i]['Active'] === 0) {
+					$dataTable['data'][$i]['Active'] = "Brouillon";
+				}
+				if($dataTable['data'][$i]['Active'] === 1){
+					$dataTable['data'][$i]['Active'] = "Publié";
+				}
 			}
 			echo json_encode($dataTable);
 		}

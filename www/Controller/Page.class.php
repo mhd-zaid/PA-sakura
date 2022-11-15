@@ -16,7 +16,6 @@ class Page
 
     public function savePage()
     {
-        print_r('test savePAge');
         $user = new User();
         $userData = $user->getUser(null, $_COOKIE['Email']);
         if ($userData['Role'] !== 3) {
@@ -35,10 +34,7 @@ class Page
             $v->assign("data", $data ?? []);
 
             if (isset($_POST['submit'])) {
-                print_r($page);
-
                 if (isset($_POST['editor']) && !empty($_POST['editor'])) {
-                    print_r('EDITOR');
                     $page->setContent($_POST['editor']);
                     $page->setTitle($_POST['page-title']);
                     $page->setUserId($userData['Id']);
@@ -47,7 +43,6 @@ class Page
                     $today = date("Y-m-d");
                     $page->setDate($today);
                     $page->save();
-                    print_r($page);
                     header("Location: /page");
                 }
             }
@@ -78,7 +73,6 @@ class Page
             $today = date("Y-m-d");
             $page->setDate($today);
             $page->save();
-            print_r($page);
             header('Location: /page-read?id='.$data["Id"]);
         }  
         if(isset($_POST['unpublish'])){
@@ -91,7 +85,6 @@ class Page
             $today = date("Y-m-d");
             $page->setDate($today);
             $page->save();
-            print_r($page);;
             header('Location: /page-read?id='.$data["Id"]);
         }  
         $v=new View("Page/ReadPage", "Back");
