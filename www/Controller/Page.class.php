@@ -48,7 +48,7 @@ class Page
                     $page->setDate($today);
                     $page->save();
                     print_r($page);
-                    // header("Location: /tableau-de-bord");
+                    header("Location: /page");
                 }
             }
             if (isset($_POST['delete'])) {

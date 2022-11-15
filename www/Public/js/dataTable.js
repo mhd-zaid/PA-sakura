@@ -202,6 +202,14 @@ function DataTablePage() {
         data: "Date_modif",
         class: "page_date_modif",
       },
+      {
+        data: "User_Id",
+        class: "page_userid",
+      },
+      {
+        data: "Active",
+        class: "page_active",
+      },
     ],
     order: [[1, "asc"]],
   });

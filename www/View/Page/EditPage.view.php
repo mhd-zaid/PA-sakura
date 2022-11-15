@@ -19,7 +19,7 @@
                         <p id="page-title">Meta description</p>
                     </div>
                     <div class="col col-5 flex-col flex-col-center">
-                        <input id="ipt-title" type="text" name="page-description" value=<?= isset($data) && !empty($data) ? $data['description'] : '' ?>>
+                        <input id="ipt-description" type="text" name="page-description" value=<?= isset($data) && !empty($data) ? $data['Description'] : '' ?>>
                     </div>
                 </div>
                 <textarea class="ckeditor" id="editor" name="editor">
