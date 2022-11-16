@@ -1,5 +1,4 @@
 #Main
-
 /:
   controller: Main 
   action: index
@@ -396,5 +395,11 @@
 /datatable:
   controller: DataTable
   action: index
+  security: 0
+  isAdmin: 0
+
+/site:
+  controller: Site
+  action: getMainPage
   security: 0
   isAdmin: 0

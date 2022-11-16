@@ -3,7 +3,7 @@
 namespace App\Core;
 
 use App\Model\User;
-
+use App\Model\Page;
 
 class View{
 
@@ -58,6 +58,10 @@ class View{
 		include $component;
 	}
 
+	public function includePage(Array $page): array
+	{
+		return $page;
+	}
 
 
 	public function __destruct()
