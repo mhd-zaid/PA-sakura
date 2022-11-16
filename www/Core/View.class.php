@@ -58,11 +58,6 @@ class View{
 		include $component;
 	}
 
-	public function includePage(Array $page): array
-	{
-		return $page;
-	}
-
 
 	public function __destruct()
 	{
