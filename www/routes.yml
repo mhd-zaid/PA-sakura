@@ -403,3 +403,15 @@
   action: getMainPage
   security: 0
   isAdmin: 0
+
+/site/page?id:
+  controller: Site
+  action: getPage
+  security: 0
+  isAdmin: 0
+
+/site/page?name:
+  controller: Site
+  action: getPage
+  security: 0
+  isAdmin: 0

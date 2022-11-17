@@ -14,4 +14,20 @@ class Site{
         $v = new View("Site/Main","Site");
         $v->assign("page",$page);
 	}
+
+	public function getPage(): void
+	{	
+		$page = new Page();
+		if (isset($_GET['id'])) {
+			$page = $page->findPageById(intval($_GET['id']));
+		}elseif (isset($_GET['name'])) {
+			echo "afficher page avec le nom";
+		}
+
+		if(empty($page)){
+			echo "404 page introuvable";
+		}
+        $v = new View("Site/Main","Site");
+        $v->assign("page",$page);
+	}
 }
