@@ -13,9 +13,9 @@ class Verificator
 
 		//Vérifier que l'on a autant de post ou get  que de inputs dans la config (Faille XSS)
 
-		if( count($data) != count($configForm["inputs"])){
-			$this->msg[]="Tentative de Hack";
-		}
+		// if( count($data) != count($configForm["inputs"])){
+		// 	$this->msg[]="Tentative de Hack";
+		// }
 
 
 	}

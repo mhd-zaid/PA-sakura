@@ -22,7 +22,27 @@
 
 			></p>
 			</div>
-	<?php endforeach;?>
+	<?php endforeach;?>   
+	 <input type="hidden" id="list" value = "<?= !empty($config["article"]['categories']) ? $config["article"]['categories'] : '' ?>" name="list" readonly="true"  style="display:none"/>
+	<?php 
+	$categorieAlreadySet = $config['article']['categories'];
+	$array = explode(',',$categorieAlreadySet);
+	echo '<h1>Vos catégories</h1>';
+		foreach($config['category'] as $name => $categorie){
+			$categorieName = $config['category'][$name]['Titre'];
+			echo '<div class="row">';
+                    echo '<div class="col col-3 block-categorie">';
+					if(in_array($categorieName,$array)){
+						echo "<label for='$categorieName' style='color : pink; cursor : pointer;'>$categorieName</label>";
+
+					}else{
+						echo "<label for='$categorieName' style='cursor : pointer;'>$categorieName</label>";
+
+					}
+                    echo '</div>';
+                    echo '</div>';
+		}
+ 	?>
 	<?php 	
 		foreach ($secondElem as $name => $configInput):?>
 		<div>

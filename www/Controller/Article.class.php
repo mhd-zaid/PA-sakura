@@ -50,9 +50,12 @@ class Article{
                 isset($dataActive) ? "" : $dataActive=0 ;
                 if(isset($_POST['editor']) && !empty($_POST['editor'])){
                     $article->setContent($_POST['editor']);
-                    $article->setSlug($_POST['article-slug']);
+                    $article->setSlug($_POST['titre']);
+                    $article->setTitle($_POST['titre']);
                     $article->setUserId($userData['Id']);
                     $article->setImageName($_POST['imageName']);
+                    $article->setCategories($_POST['list']);
+                    $article->setRewriteUrl($choice);
                     $article->save();
                     header("Location: /article");
                  }
@@ -73,6 +76,7 @@ class Article{
                 $article->setActive($dataActive);
                 $article->setTitle($_POST['titre']);
                 $article->setRewriteUrl($data['Rewrite_Url']);
+                $article->setCategories($data['categories']);
                 $article->save();
                 header("Location: /article");
             } 

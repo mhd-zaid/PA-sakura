@@ -6,6 +6,8 @@ use App\Model\User;
 use App\Model\Article;
 use App\Model\Comment;
 use App\Model\Page;
+use App\Model\Category;
+
 abstract class DatabaseDriver
 {
 
@@ -68,6 +70,19 @@ abstract class DatabaseDriver
 
 	}
 
+	public function select()
+	{
+		if(isset($_GET['id']) && !empty($_GET['id'])){
+		$sql = "SELECT * FROM ".$this->table." WHERE id =".$_GET['id'];
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+		return $data;
+		}else{
+			return null;
+		}
+
+	}
+
 	public function serverProcessing(){
 		if(get_class($this) == User::class){
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
@@ -103,6 +118,9 @@ abstract class DatabaseDriver
 					$dataTable['data'][$i]['Active'] = "Publié";
 				}
 			}
+			echo json_encode($dataTable);
+		}elseif((get_class($this) == Category::class)){
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
 			echo json_encode($dataTable);
 		}
     }

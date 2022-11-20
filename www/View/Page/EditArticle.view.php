@@ -33,8 +33,25 @@
 
     $(".block-image").click((e) => {
         console.log(e.currentTarget.children[0].innerHTML);
-        $("#imageName").css('display','block').val(e.currentTarget.children[0].innerHTML);
+        $("#imageName").val(e.currentTarget.children[0].innerHTML);
         $('#' + e.currentTarget.children[0].innerHTML).attr('checked');
-    });    
+    });   
+    let length = $("#list").val().split(",");
+        if(length.length >= 1 && length[0]!= ""){
+        var categories = length;
+    }else{
+        var categories = [];
+    }
+    $(".block-categorie").click((e) => {
+        if(categories.includes(e.currentTarget.children[0].innerHTML)){
+            let newArray = categories.filter((item)=> item!==e.currentTarget.children[0].innerHTML);
+            categories = newArray;
+            e.currentTarget.children[0].style.color='black';
+        }else{
+            categories.push(e.currentTarget.children[0].innerHTML);
+            e.currentTarget.children[0].style.color='pink';
+        }
+        $("#list").val(categories);
+    });   
 
 </script>

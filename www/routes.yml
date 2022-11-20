@@ -192,6 +192,18 @@
 # action: editArticle
 
 
+### CATEGORY ###
+
+/category:
+  controller: Category
+  action: index
+  security: 0
+
+/category-add:
+  controller: Category
+  action: saveCategory
+  security: 0
+  
 ### COMMENTAIRE ###
 
 /commentaire:

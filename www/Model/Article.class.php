@@ -3,6 +3,8 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
+use App\Model\Category;
+
 
 class Article extends DatabaseDriver
 {
@@ -16,6 +18,7 @@ class Article extends DatabaseDriver
     private $date_created;
 	private $date_updated;
     protected $rewrite_Url;
+    protected $categories;
 
 	public function __construct()
 	{
@@ -96,7 +99,7 @@ class Article extends DatabaseDriver
      /**
      * @param mixed $title
      */
-    public function setTitle(String $title): void
+    public function setTitle(?String $title): void
     {
         $this->title = $title;
     }
@@ -156,6 +159,23 @@ class Article extends DatabaseDriver
         return $this->date_updated;
     }
 
+     /**
+     * @return null
+     */
+    public function getCategories(): ?string
+    {
+        return $this->categories;
+    }
+
+    /**
+     * @param null $id
+     */
+    //abstract public function setId($id);
+    public function setCategories(String $categories): void
+    {
+        $this->categories = $categories;
+    }
+
     public function createArticleForm(){
 
         return [
@@ -166,6 +186,7 @@ class Article extends DatabaseDriver
                         ],
 
            "article"=>$this->findArticle(),
+           "category"=>$this->selectAllCategories(),
 
            "textarea"=>[
                 "class"=>"ckeditor",
@@ -204,6 +225,13 @@ class Article extends DatabaseDriver
                                 "required"=>false,
                                 "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
                             ],
+              
+                "listCategorie"=>[
+                                "type"=>"hidden",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                            ],
             ]
         ];
 
@@ -234,6 +262,13 @@ class Article extends DatabaseDriver
         }else{
             return null;
         }
+        return $data;
+    }
+
+    public function findArticleById(Int $id){
+        $sql = "SELECT * FROM ".$this->table." WHERE Slug = '$slug'";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
         return $data;
     }
 
@@ -287,5 +322,18 @@ class Article extends DatabaseDriver
         }else{
             return true;
         }
+    }
+
+    public function selectAllCategories(){
+        $categories = new Category();
+        $data = $categories->getCategories();
+        return $data;
+    }
+
+    public function selectAllCategoriesArticle(){
+        $sql = "SELECT  * FROM ".$this->table.";";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetchAll();
+        return $data;
     }
 }
