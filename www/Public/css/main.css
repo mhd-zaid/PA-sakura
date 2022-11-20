@@ -1191,6 +1191,14 @@ input[type="text" i] {
 .menu-items h2 {
   margin: 0; }
 
+#drag-container input {
+  border: 0;
+  background-color: transparent;
+  cursor: grab; }
+
+#drag-container input:focus-visible {
+  outline: none; }
+
 #drag-container:last-child .menu-items:last-child .menu-arrow-down {
   display: none; }
 
