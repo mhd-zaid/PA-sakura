@@ -129,4 +129,13 @@ class Page extends DatabaseDriver
         $sql = "DELETE  FROM " . $this->table . " WHERE id =" . $id;
         $result = $this->pdo->query($sql);
     }
+
+    public function getPages()
+    {
+        $sql = "SELECT * FROM ".$this->table.";";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetchAll();
+        return $data;
+    }
+
 }

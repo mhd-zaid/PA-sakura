@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
+use App\Model\Page as PageModel;
 
 class Menu extends DatabaseDriver
 {
@@ -10,6 +11,7 @@ class Menu extends DatabaseDriver
 	protected $content;
     protected $title;
     protected $active = 0;
+    protected $main = 0;
 
 	public function __construct()
 	{
@@ -83,6 +85,22 @@ class Menu extends DatabaseDriver
     {
         $this->title = $title;
     }
+     
+    /**
+     * @return mixed
+     */
+    public function getMain(): ?int
+    {
+        return $this->main;
+    }
+
+    /**
+     * @param mixed $main
+     */
+    public function setMain(int $main): void
+    {
+        $this->main = $main;
+    }
 
     public function findMenuById(Int $id = null){ 
         $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
@@ -100,6 +118,19 @@ class Menu extends DatabaseDriver
 
     public function deleteMenuById(Int $id = null):void{ 
         $sql = "DELETE  FROM ".$this->table." WHERE id =".$id;
+        $result = $this->pdo->query($sql);
+    }
+    
+    public function getExistingPages()
+    {
+        $pages = new PageModel();
+        $data = $pages->getPages();
+        return $data;
+    }
+
+    public function updateMain(Int $id = null):void{
+        if($id==null) $id = $this->pdo->lastInsertId();
+        $sql = "UPDATE ".$this->table."SET Main = 0; UPDATE ".$this->table."SET Main = 1 WHERE id =".$id;
         $result = $this->pdo->query($sql);
     }
 }

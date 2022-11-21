@@ -14,23 +14,26 @@ class Navigation{
     }
     public function saveMenu(){
         $menu = new MenuModel();
-        if(isset($_GET["id"])) $data = $menu->findMenuById($_GET["id"]);
-        if(isset($_POST["submit"])) print_r($_POST);
-
-        if(isset($_POST["publish"]) && !empty($_POST["publish"])){
+        $pages = $menu->getExistingPages();
+        $content=array_splice($_POST, 2, count($_POST)-3);
+        
+        if(isset($_GET["id"])) $data = $menu->findMenuById($_GET["id"]); 
+        
+        if(isset($_POST["publish"]) && !empty($_POST["publish"]) && !empty($content)){
             if(isset($_GET['id']) && !empty($_GET['id'])){                
                 $data = $menu->findMenuById($_GET['id']);
+                
                 $menu->setId($data["Id"]);
                 $dataActive = $data["Active"];
+                $dataMain = $data["Main"];
             }
             isset($dataActive) ? "" : $dataActive=0;
-            // print_r($_POST);
-            $content=array_splice($_POST, 2, count($_POST)-3);
-            // print_r($content);
+            isset($dataMain) ? "" : $dataMain=0;
             $content=implode(",",$content);
             $menu->setTitle($_POST['menu-title']);
             $menu->setContent($content);
             $menu->setActive($dataActive);
+            $menu->setMain($dataMain);
             $menu->save();
             header("Location: /navigation");
         } 
@@ -41,5 +44,6 @@ class Navigation{
 
         $v = new View("Page/EditNavigationMenu", "Back");
         $v->assign("data", $data??[]);
+        $v->assign("existingPages", $pages??[]);
     }
 }
