@@ -130,7 +130,9 @@ class Menu extends DatabaseDriver
 
     public function updateMain(Int $id = null):void{
         if($id==null) $id = $this->pdo->lastInsertId();
-        $sql = "UPDATE ".$this->table."SET Main = 0; UPDATE ".$this->table."SET Main = 1 WHERE id =".$id;
-        $result = $this->pdo->query($sql);
+        $sql = "UPDATE {$this->table} SET Main = 0";
+        $sql1 = "UPDATE {$this->table} SET Main = 1 WHERE id = {$id}";
+        $this->pdo->query($sql);
+        $this->pdo->query($sql1);
     }
 }

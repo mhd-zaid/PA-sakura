@@ -15,10 +15,10 @@
                 <div class="col col-4"><b>Titre du menu</b></div>
                 <div class="col"><input type="text" name="menu-title" class="ipt-form-entry" required value="<?php echo isset($data["Title"]) ? $data["Title"] : "" ?>"></div>
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col col-4"><b>Définir par défault</b></div>
-                <div class="col"><input type="checkbox" id="default_menu" name="default_menu" <!?php if(isset($data["Main"]) && $data['Main']==1) echo "checked" ?>></div>
-            </div> -->
+                <div class="col"><input type="checkbox" id="default_menu" name="default_menu" <?php if(isset($data["Main"]) && $data['Main']==1) echo "checked" ?>></div>
+            </div>
             <div class="row">
                 <div class="col col-4 flex-col flex-col-center"><b>Ajouter un élément</b></div>
                 <div class="col flex-col flex-col-center"><select name="slt-add-page" id="slt-add-page" class="ipt-form-entry">

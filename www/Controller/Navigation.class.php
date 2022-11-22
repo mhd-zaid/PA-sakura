@@ -15,7 +15,8 @@ class Navigation{
     public function saveMenu(){
         $menu = new MenuModel();
         $pages = $menu->getExistingPages();
-        $content=array_splice($_POST, 2, count($_POST)-3);
+        $remove = ["menu-title", "default_menu", "slt-del-page", "publish"];
+        $content = array_diff_key($_POST, array_flip($remove));
         
         if(isset($_GET["id"])) $data = $menu->findMenuById($_GET["id"]); 
         
@@ -35,6 +36,8 @@ class Navigation{
             $menu->setActive($dataActive);
             $menu->setMain($dataMain);
             $menu->save();
+            if(isset($_POST["default_menu"]) && isset($_GET["id"])) $menu->updateMain($_GET["id"]);
+            else if(isset($_POST["default_menu"])) $menu->updateMain();
             header("Location: /navigation");
         } 
         if(isset($_POST["unpublish"])){
