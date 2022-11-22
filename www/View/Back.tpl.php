@@ -113,7 +113,7 @@
                 unset($_SESSION["flash-success"]);
                 echo("<div id='flash-msg' class='row flash flash-success'>");
                 echo("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
-                echo("<p>{$msg}</p>");
+                echo("<p class='center-text plain'>{$msg}</p>");
                 echo("</div>");
             }else{
                 $msg=$_SESSION["flash-error"];

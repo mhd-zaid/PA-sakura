@@ -15,6 +15,11 @@ $().ready(function (){
     var container = document.getElementById('row-nav-main');
     container.removeChild(flash);
   })
+  setTimeout(function() { 
+    var flash = document.getElementById('flash-msg');
+    var container = document.getElementById('row-nav-main');
+    container.removeChild(flash);
+  }, 7000);
   
   // Close the dropdown if the user clicks outside of it
   window.onclick = function(event) {

@@ -9,7 +9,6 @@ class Navigation
 {
     public function index()
     {
-        print_r($_SESSION);
         $menu = new MenuModel();
         $data = $menu->getMenus();
         $v = new View("Page/Navigation", "Back");
@@ -17,7 +16,6 @@ class Navigation
     }
     public function saveMenu()
     {
-        // session_start();
         $menu = new MenuModel();
         $pages = $menu->getExistingPages();
         $remove = ["menu-title", "default_menu", "slt-del-page", "publish"];
@@ -46,17 +44,17 @@ class Navigation
             if (isset($_GET["id"])) $_SESSION["flash-success"] = "Le menu a été modifié avec succés";
             else $_SESSION["flash-success"] = "Le menu a été créer avec succés";
             header("Location: /navigation");
+            exit();
         }
         if (isset($_POST["unpublish"])) {
             $menuDel = $menu->findMenuById($_GET["id"]);
             if ($menuDel["Main"] == 0) {
                 $menu->deleteMenuById($_GET["id"]);
                 $_SESSION["flash-success"] = "Le menu a été supprimé avec succés";
-                print_r($_SESSION);
-                // header("Location: /navigation");
+                header("Location: /navigation");
+                exit();
             } else {
                 $_SESSION["flash-error"] = "Veuillez définir un autre menu par défault avant de supprimer celui ci.";
-                print_r($_SESSION);
             }
         }
 
