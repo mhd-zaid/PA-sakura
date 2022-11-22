@@ -9,6 +9,12 @@ $().ready(function (){
     var dropdown = document.getElementById("myDropdownMenu");
     dropdown.classList.toggle("show");
   })
+
+  $('#close-flash').on('click', function(){
+    var flash = document.getElementById('flash-msg');
+    var container = document.getElementById('row-nav-main');
+    container.removeChild(flash);
+  })
   
   // Close the dropdown if the user clicks outside of it
   window.onclick = function(event) {

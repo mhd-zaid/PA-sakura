@@ -1120,6 +1120,13 @@ input[type="text" i] {
   .row:has(> .commentaire-commentaire) .commentaire-checkbox {
     height: 100%; }
 
+td.signaler {
+  background: url("https://api.iconify.design/ci/flag-outline.svg") no-repeat center center/contain; }
+
+tr.details td.signaler {
+  cursor: pointer;
+  background: url("https://api.iconify.design/ci/flag-outline.svg") no-repeat center center/contain; }
+
 @media screen and (max-width: 715px) {
   .commentaire-date-comment {
     align-items: flex-start; }
@@ -1544,3 +1551,28 @@ tr.details td.details-control {
     height: 150px; }
   .banner-large {
     height: 20px; }
+
+.flash {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  height: 50px;
+  width: calc(100% - 170px);
+  transition: all 1s;
+  background-color: black; }
+  .flash-success {
+    background-color: #37ff00;
+    color: #FFF; }
+  .flash-error {
+    background-color: red;
+    color: #FFF; }
+
+#close-flash {
+  position: fixed;
+  right: 10px;
+  transform: translateY(5px);
+  cursor: pointer; }
+
+@media (max-width: 992px) {
+  .flash {
+    width: calc(100% - 70px); } }

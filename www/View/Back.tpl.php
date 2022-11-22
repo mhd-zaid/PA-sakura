@@ -55,7 +55,7 @@
     </div>
 
 
-    <div class="row row-nav-main">
+    <div id="row-nav-main" class="row row-nav-main">
 
         <nav id="col-nav">
             <a href="/tableau-de-bord"><div class="row">
@@ -107,6 +107,24 @@
         <main id="col-main" class="col">
             <?php require $this->view; ?>
         </main>
+        <?php if(isset($_SESSION["flash-success"]) || isset($_SESSION["flash-error"])){
+            if(isset($_SESSION["flash-success"])){
+                $msg=$_SESSION["flash-success"];
+                unset($_SESSION["flash-success"]);
+                echo("<div id='flash-msg' class='row flash flash-success'>");
+                echo("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
+                echo("<p>{$msg}</p>");
+                echo("</div>");
+            }else{
+                $msg=$_SESSION["flash-error"];
+                unset($_SESSION["flash-error"]);
+                echo("<div id='flash-msg' class='row flash flash-error'>");
+                echo("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
+                echo("<p class='center-text plain'>{$msg}</p>");
+                echo("</div>");
+            }
+        }?>
+        
 
     </div>
 
