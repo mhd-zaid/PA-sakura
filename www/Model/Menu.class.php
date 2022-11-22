@@ -103,22 +103,24 @@ class Menu extends DatabaseDriver
     }
 
     public function findMenuById(Int $id = null){ 
-        $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+        $sql->bindValue("id", $id);
+        $sql->execute();
+        $data = $sql->fetch();
         return $data;
     }
     
     public function getMenus(){ 
-        $sql = "SELECT * FROM ".$this->table.";";
+        $sql = "SELECT * FROM {$this->table};";
         $result = $this->pdo->query($sql);
         $data = $result->fetchAll();
         return $data;
     }
 
     public function deleteMenuById(Int $id = null):void{ 
-        $sql = "DELETE  FROM ".$this->table." WHERE id =".$id;
-        $result = $this->pdo->query($sql);
+        $sql = $this->pdo->prepare("DELETE  FROM {$this->table} WHERE id = :id");
+        $sql->bindValue("id", $id);
+        $sql->execute();;
     }
     
     public function getExistingPages()
@@ -130,9 +132,13 @@ class Menu extends DatabaseDriver
 
     public function updateMain(Int $id = null):void{
         if($id==null) $id = $this->pdo->lastInsertId();
+        
         $sql = "UPDATE {$this->table} SET Main = 0";
-        $sql1 = "UPDATE {$this->table} SET Main = 1 WHERE id = {$id}";
         $this->pdo->query($sql);
+
+        $sql1 = $this->pdo->prepare("UPDATE {$this->table} SET Main = 1 WHERE id = :id");
+        $sql1->bindValue("id", $id);
+        $sql1->execute();
         $this->pdo->query($sql1);
     }
 }

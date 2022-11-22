@@ -132,7 +132,7 @@ class Page extends DatabaseDriver
 
     public function getPages()
     {
-        $sql = "SELECT * FROM ".$this->table.";";
+        $sql = "SELECT * FROM ".$this->table;
         $result = $this->pdo->query($sql);
         $data = $result->fetchAll();
         return $data;
