@@ -50,7 +50,7 @@ class Article{
                 isset($dataActive) ? "" : $dataActive=0 ;
                 if(isset($_POST['editor']) && !empty($_POST['editor'])){
                     $article->setContent($_POST['editor']);
-                    $article->setSlug($_POST['titre']);
+                    $article->setSlug($_POST['slug']);
                     $article->setTitle($_POST['titre']);
                     $article->setUserId($userData['Id']);
                     $article->setImageName($_POST['imageName']);

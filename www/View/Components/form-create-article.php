@@ -5,9 +5,10 @@
 		$secondElem=array_slice($config["inputs"], 1, 1);
 		$thirdElem=array_slice($config["inputs"], 2, 2);
 		$fifthElem=array_slice($config["inputs"], 5, 5);
+		$sixthElem=array_slice($config["inputs"], 5, 6);
 
 	?>
-	<div>
+	<div> 
 	<?php 	
 		foreach ($firstElem as $name => $configInput):?>
 		<div>
@@ -22,26 +23,38 @@
 
 			></p>
 			</div>
-	<?php endforeach;?>   
+	<?php endforeach;?> 
+
+	<?php 
+		foreach ($sixthElem as $name => $configInput):?>
+		<div>
+			<p><?= $configInput["label"] ?>
+			<input name="<?= $name ?>" 
+					class=""
+					type="<?= $configInput["type"]??"text" ?>"
+					value="<?= !empty($config["article"]['Slug']) ? $config["article"]['Slug'] : ''  ?>"
+					<?php if(!empty($configInput["required"])): ?>
+						required="required"
+					<?php endif;?>
+
+			></p>
+			</div>
+	<?php endforeach;?>
 	 <input type="hidden" id="list" value = "<?= !empty($config["article"]['categories']) ? $config["article"]['categories'] : '' ?>" name="list" readonly="true"  style="display:none"/>
 	<?php 
 	$categorieAlreadySet = $config['article']['categories'];
 	$array = explode(',',$categorieAlreadySet);
 	echo '<h1>Vos catégories</h1>';
+	echo '<div id="container-category">';
+	echo '<select name="categorie" id="categorie">';
+	echo '<option value="">--Please choose an option--</option>';
 		foreach($config['category'] as $name => $categorie){
 			$categorieName = $config['category'][$name]['Titre'];
-			echo '<div class="row">';
-                    echo '<div class="col col-3 block-categorie">';
-					if(in_array($categorieName,$array)){
-						echo "<label for='$categorieName' style='color : pink; cursor : pointer;'>$categorieName</label>";
-
-					}else{
-						echo "<label for='$categorieName' style='cursor : pointer;'>$categorieName</label>";
-
-					}
-                    echo '</div>';
-                    echo '</div>';
+   			echo "<option value='$categorieName'>$categorieName</option>";
 		}
+		echo '</select>';
+		echo '</div>';
+
  	?>
 	<?php 	
 		foreach ($secondElem as $name => $configInput):?>

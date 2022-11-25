@@ -27,6 +27,7 @@ class Category{
             $article = new Article();
             $category = new CategoryModel();
             $dataCategory = $category->select();
+            //Cas d'un update
             if(isset($_GET['id']) && !empty($_GET['id'])){
                 $category->setId($_GET['id']);
             }

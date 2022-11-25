@@ -124,4 +124,92 @@ abstract class DatabaseDriver
 			echo json_encode($dataTable);
 		}
     }
+
+	public function isTitleExist(String $title){
+
+        $sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
+        $params = ['Title'=>$title];
+        $queryPrepared = $this->pdo->prepare($sql);
+
+		$queryPrepared->execute($params);
+        $result = $queryPrepared->fetch();
+
+        $numberRow = $queryPrepared->rowCount();
+        if($numberRow > 0){
+            if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
+
+				$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
+				$params = ['Slug'=>$_GET['Slug']];
+				$queryPrepared = $this->pdo->prepare($sql);
+				$queryPrepared->execute($params);
+				$dataSlug = $queryPrepared->fetch();
+
+                if($dataSlug['Id'] == $result['Id']){
+                    return true;
+                }else{
+                    return false;
+                }
+            }elseif(isset($_GET['id']) && !empty($_GET['id'])){
+                $sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
+				$params = ['Id'=>$_GET['id']];
+				$queryPrepared = $this->pdo->prepare($sql);
+				$queryPrepared->execute($params);
+				$dataSlug = $queryPrepared->fetch();
+
+                if($dataSlug['Id'] == $result['Id']){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return true;
+        }
+    }
+
+	public function isSlugExists(String $slug){
+
+        $sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
+        $params = ['Title'=>$title];
+        $queryPrepared = $this->pdo->prepare($sql);
+
+		$queryPrepared->execute($params);
+        $result = $queryPrepared->fetch();
+
+        $numberRow = $queryPrepared->rowCount();
+        if($numberRow > 0){
+            if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
+
+				$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
+				$params = ['Slug'=>$_GET['Slug']];
+				$queryPrepared = $this->pdo->prepare($sql);
+				$queryPrepared->execute($params);
+				$dataSlug = $queryPrepared->fetch();
+
+                if($dataSlug['Id'] == $result['Id']){
+                    return true;
+                }else{
+                    return false;
+                }
+            }elseif(isset($_GET['id']) && !empty($_GET['id'])){
+                $sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
+				$params = ['Id'=>$_GET['id']];
+				$queryPrepared = $this->pdo->prepare($sql);
+				$queryPrepared->execute($params);
+				$dataSlug = $queryPrepared->fetch();
+
+                if($dataSlug['Id'] == $result['Id']){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return true;
+        }
+    }
 }

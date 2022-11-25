@@ -87,8 +87,8 @@ class Article extends DatabaseDriver
      */
     public function setSlug(String $slug): void
     {   
-        $arr = ['?', '#', '(', ')',' '];
-        $this->slug = str_replace($arr,'-',trim($slug));
+        $newSlug = self::slugify($slug);
+        $this->slug = $newSlug;
     }
 
     public function getUserId(): ?Int
@@ -101,7 +101,7 @@ class Article extends DatabaseDriver
      */
     public function setTitle(?String $title): void
     {
-        $this->title = $title;
+        $this->title = strip_tags($title);
     }
 
     public function getTitle(): ?string
@@ -203,7 +203,6 @@ class Article extends DatabaseDriver
                                 "required"=>true,
                                 "error"=>"Le titre doit faire entre 2 et 25 caractères"
                             ],
-
                 "openFile"=>[
                                 "type"=>"button",
                                 "value"=>"Ajouter une image",
@@ -231,6 +230,15 @@ class Article extends DatabaseDriver
                                 "class"=>"ipt-form-entry",
                                 "required"=>false,
                                 "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                            ],
+                "slug"=>[
+                                "type"=>"text",
+                                "label"=>"Slug",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Le slug doit faire entre 2 et 25 caractères"
                             ],
             ]
         ];
@@ -288,42 +296,6 @@ class Article extends DatabaseDriver
         }else{
         }
     }
-
-    public function isTitleExist(String $title){
-        $sql = "SELECT * FROM ".$this->table."  WHERE Title = '$title'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-
-        $numberRow = $result->rowCount();
-        if($numberRow > 0){
-            if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
-                $slug = $_GET['Slug'];
-                $compare = "SELECT * FROM ".$this->table."  WHERE Slug = '$slug'";  
-                $resultSlug = $this->pdo->query($compare);
-                $dataSlug = $resultSlug->fetch();
-                if($dataSlug['Id'] == $data['Id']){
-                    return true;
-                }else{
-                    return false;
-                }
-            }elseif(isset($_GET['id']) && !empty($_GET['id'])){
-                $id = $_GET['id'];
-                $compareId = "SELECT * FROM ".$this->table."  WHERE Id = '$id'";  
-                $resultId = $this->pdo->query($compareId);
-                $dataId = $resultId->fetch();
-                if($dataId['Id'] == $data['Id']){
-                    return true;
-                }else{
-                    return false;
-                }
-            }else{
-                return false;
-            }
-        }else{
-            return true;
-        }
-    }
-
     public function selectAllCategories(){
         $categories = new Category();
         $data = $categories->getCategories();
@@ -331,9 +303,36 @@ class Article extends DatabaseDriver
     }
 
     public function selectAllCategoriesArticle(){
-        $sql = "SELECT  * FROM ".$this->table.";";
+        $sql = "SELECT  * FROM ".$this->table;
         $result = $this->pdo->query($sql);
         $data = $result->fetchAll();
         return $data;
     }
+    
+    public function slugify($text, string $divider = '-')
+    {
+    // replace non letter or digits by divider
+    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, $divider);
+
+    // remove duplicate divider
+    $text = preg_replace('~-+~', $divider, $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+  return $text;
+}
 }

@@ -62,7 +62,7 @@ class Category extends DatabaseDriver
                                     "label"=>"Titre de la catégorie",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
-                                    "error"=>"Votre titre est inccorectè-"
+                                    "error"=>"Votre titre est inccorect"
                                 ],
                 ]
             ];

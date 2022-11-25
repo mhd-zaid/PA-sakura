@@ -36,22 +36,54 @@
         $("#imageName").val(e.currentTarget.children[0].innerHTML);
         $('#' + e.currentTarget.children[0].innerHTML).attr('checked');
     });   
+    
     let length = $("#list").val().split(",");
         if(length.length >= 1 && length[0]!= ""){
         var categories = length;
     }else{
         var categories = [];
     }
-    $(".block-categorie").click((e) => {
-        if(categories.includes(e.currentTarget.children[0].innerHTML)){
-            let newArray = categories.filter((item)=> item!==e.currentTarget.children[0].innerHTML);
-            categories = newArray;
-            e.currentTarget.children[0].style.color='black';
-        }else{
-            categories.push(e.currentTarget.children[0].innerHTML);
-            e.currentTarget.children[0].style.color='pink';
+    categories.forEach(function(element){
+        var mySpan = document.createElement("label");
+        var mySpanDelete = document.createElement("span");
+        addCategorie(mySpan,mySpanDelete,element);
+        removeCategorie(mySpan,mySpanDelete,categories);
+    });
+    
+
+    $("#categorie").on('change',(e) => {
+        if(!document.getElementById(e.currentTarget.value) && e.currentTarget.value!==''){
+            var mySpan = document.createElement("label");
+            var mySpanDelete = document.createElement("span");
+            addCategorie(mySpan,mySpanDelete,e.currentTarget.value);
+            removeCategorie(mySpan,mySpanDelete,categories);
         }
-        $("#list").val(categories);
-    });   
+        var child = $('#container-category').find('label');
+        $(child).each(function(element){
+            if(!categories.includes(child[element].outerText)){
+                categories.push(child[element].outerText);            
+            }
+    });
+    $("#list").val((categories.join(',')));
+    });
+
+    function addCategorie(mySpan,mySpanDelete,el){
+        mySpan.setAttribute('id', el);
+        mySpanDelete.setAttribute("id","Delete-category");  
+
+        mySpan.innerHTML = el;
+        mySpanDelete.innerHTML = 'X';
+        $( "#container-category" ).append( mySpan );
+        $( "#container-category" ).append( ' ' );
+        $( "#container-category" ).append( mySpanDelete );
+    }
+    function removeCategorie(mySpan,mySpanDelete,categories){
+        mySpanDelete.addEventListener("click",()=>{
+            categories.splice($.inArray(mySpan.innerHTML, categories), 1);
+            mySpan.remove();
+            mySpanDelete.remove();
+            $("#list").val((categories.join(',')));
+        });
+    }
 
 </script>
