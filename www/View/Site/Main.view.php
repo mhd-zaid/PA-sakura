@@ -5,5 +5,5 @@
 </h1>
 
 <?php 
-   echo $page['Content'];
+   echo  $page['Content'];
 ?>

@@ -22,16 +22,11 @@ class Routing{
 
 	public function setAction(string $uri): array
 	{
-		if ($_GET) {
-			$uriParam = key($_GET);
-			$uri = \explode("?",$uri)[0]."?". $uriParam;
-		}
 		if( empty($this->routes[$uri]) 
 			|| empty($this->routes[$uri]["controller"])  
 			|| empty($this->routes[$uri]["action"])){
 			die("Page 404");
 		}
-
 		$this->controller = $this->routes[$uri]["controller"];//Main
 		$this->action = $this->routes[$uri]["action"]; //index
 		

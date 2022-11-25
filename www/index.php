@@ -25,6 +25,7 @@ if($uriExploded == 2){
 }else{
 	$split = preg_split("@(\/[0-9]+)|(\?)@", $request);
 }
+$split = preg_split("@(\/[0-9]+)|(/$request)|(\?)$@", $request);
 session_start();
 $uri = strtolower($split[0]);
 $routing = new Core\Routing();

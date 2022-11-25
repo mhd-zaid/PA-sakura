@@ -404,7 +404,7 @@
   security: 0
   isAdmin: 0
 
-/site/page?id:
+/site/page?id={id}:
   controller: Site
   action: getPage
   security: 0
