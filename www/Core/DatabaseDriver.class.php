@@ -16,7 +16,22 @@ abstract class DatabaseDriver
 
 	protected $pdo;
 	protected $table;
+    private static $instance;
 
+    
+    /**
+     * @return object
+     */
+    public static function getInstance(): object
+    {
+        if (is_null(self::$instance)) {
+			self::$instance = new \PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";port=3306" ,DB_USER ,DB_PASSWD,array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
+
+			self::$instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    		self::$instance->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        }
+        return self::$instance;
+    }
 
 	public function __construct()
 	{
@@ -25,10 +40,7 @@ abstract class DatabaseDriver
         }
         //Connexion avec la bdd
 		try{
-			$this->pdo = new \PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";port=3306" ,DB_USER ,DB_PASSWD,array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
-
-			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-    		$this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+			$this->pdo = $this::getInstance();
 
 		}catch(\Exception $e){
 			die("Erreur SQL ".$e->getMessage());
