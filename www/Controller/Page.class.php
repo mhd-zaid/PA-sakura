@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Model\Page as PageModel;
+use App\Model\Menu as MenuModel;
 use App\Model\User;
 
 
@@ -17,10 +18,11 @@ class Page
     public function savePage()
     {
         $user = new User();
+        $menu = new MenuModel();
         $userData = $user->getUser(null, $_COOKIE['Email']);
         if ($userData['Role'] !== 3) {
             $page = new PageModel();
-
+            
             //Cas d'un update car id est renseigné
             if (isset($_GET['id']) && !empty($_GET['id'])) {
                 $data = $page->findPageById($_GET['id']);
@@ -29,6 +31,7 @@ class Page
                 } else {
                     header("Location: /tableau-de-bord");
                 }
+                $oldTitle=$data["Title"];
             }
             $v = new View("Page/EditPage", "Back");
             $v->assign("data", $data ?? []);
@@ -43,6 +46,7 @@ class Page
                     $today = date("Y-m-d");
                     $page->setDate($today);
                     $page->save();
+                    if (isset($_GET['id'])) $menu->updateContent($oldTitle, $_POST['page-title']);
                     header("Location: /page");
                 }
             }
