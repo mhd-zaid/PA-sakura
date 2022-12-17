@@ -246,24 +246,31 @@ class Article extends DatabaseDriver
     }
 
     public function findArticleRewriteUrl(){ 
-        $sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =1";
-        $result = $this->pdo->query($sql);
-        return $result->rowCount();
+        $sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
+        $params = ['Rewrite_Url'=>'1'];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $result = $queryPrepared->fetch();
+        return $queryPrepared->rowCount();
     }
 
     public function findArticle(){
         if(!empty($_GET['Slug'])){
             $slug = $_GET['Slug'];
-            $sql = "SELECT * FROM ".$this->table." WHERE Slug = '$slug'";
-            $result = $this->pdo->query($sql);
-            $data = $result->fetch();
+            $sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
+            $params = ['Slug'=>$slug];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
+            $data = $queryPrepared->fetch();
             if(empty($data)){
                 header("Location: /article");
             }
         }elseif(!empty($_GET['id'])){
-            $sql = "SELECT * FROM ".$this->table." WHERE id =".$_GET['id'];
-            $result = $this->pdo->query($sql);
-            $data = $result->fetch();
+            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
+            $params = ['id'=>$_GET['id']];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
+            $data = $queryPrepared->fetch();
             if(empty($data)){
                 header("Location: /article");
             }
@@ -273,26 +280,25 @@ class Article extends DatabaseDriver
         return $data;
     }
 
-    public function findArticleById(Int $id){
-        $sql = "SELECT * FROM ".$this->table." WHERE Slug = '$slug'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
-    }
-
     public function updateRewriteUrl(Int $choice){
-        $sql = "Update ".$this->table." SET Rewrite_Url=$choice";
-        $result = $this->pdo->query($sql);
+        $sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
+        $params = ['Rewrite_Url'=>$choice];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
     }
 
     public function deleteArticle():void{
         if(!empty($_GET['Slug'])){
             $slug = $_GET['Slug'];
-            $sql = "DELETE  FROM ".$this->table." WHERE Slug = '$slug'";
-            $result = $this->pdo->query($sql);
+            $sql = "DELETE  FROM ".$this->table." WHERE Slug =:Slug";
+            $params = ['Slug'=>$slug];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
         }elseif(!empty($_GET['id'])){
-            $sql = "DELETE  FROM ".$this->table." WHERE id =".$_GET['id'];
-            $result = $this->pdo->query($sql);
+            $sql = "DELETE  FROM ".$this->table." WHERE id =:id";
+            $params = ['id'=>$_GET['id']];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
         }else{
         }
     }
