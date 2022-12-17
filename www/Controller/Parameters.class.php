@@ -21,7 +21,7 @@ class Parameters{
     }
     public function parametersUsers(){
 		$user = new UserModel();
-		$role = $user->getUser(null,$_COOKIE['Email']);
+		$role = $user->getUser($_COOKIE['JWT']);
 		if($role['Role'] !== 1) header("Location: /tableau-de-bord");
         $v = new View("Page/ParametersUsers", "Back");
     }

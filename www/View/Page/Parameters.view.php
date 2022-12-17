@@ -16,7 +16,7 @@
             <div class="col-12 box-choices">
                 <h3> Gérer les informations relatives à vos sites</h3>
                 <ul class="flex-col">
-                    <?php $userData = $User->getUser(null,$_COOKIE['Email']); ?>
+                    <?php $userData = $User->getUser($_COOKIE['JWT']); ?>
                     <li class="choices-parameters"><a href="/parametres-gestion-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
                     <?php if($userData['Role'] == 1): ?>
                         <li class="choices-parameters"><a href="/parametres-users"><img src="Public/img/Back/Parameters/Sites.svg" alt="Sites">Gestions des utilisateurs</a></li>

@@ -15,7 +15,7 @@ class Category{
 
     public function saveCategory(){
         $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
+        $userData = $user->getUser($_COOKIE['JWT']);
         if($userData['Role'] !== 3){
             $category = new CategoryModel();
             $form = $category->createCategoryForm();

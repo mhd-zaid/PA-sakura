@@ -438,7 +438,7 @@ class User extends DatabaseDriver
                             "submit"=>"Modifier"
                         ],
 
-            "profil"=>$this->getUser(null, $_COOKIE['Email']), 
+            "profil"=>$this->getUser($_COOKIE['JWT']), 
     
             "inputs"=> [
                 "firstname"=>[
@@ -753,16 +753,9 @@ class User extends DatabaseDriver
         }
     }
     
-    public function getUser(?Int $id = null , ?String $email = null){
-        if ($id != null && $email == null)
-        {
-            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
-            $params = ['id'=>$id];
-        }
-        if($id == null && $email != null) {
-            $sql = "SELECT * FROM ".$this->table." WHERE email =:email";
-            $params = ['email'=>$email];
-        }
+    public function getUser($token){
+        $sql = "SELECT * FROM ".$this->table." WHERE token =:token";
+        $params = ['token'=>$token];
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($params);
         $data = $queryPrepared->fetch();

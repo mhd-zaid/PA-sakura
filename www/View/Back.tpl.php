@@ -21,7 +21,7 @@
 
 <div class="grid grid-back">
     <div class="row row-header">
-        <?php $userData = $User->getUser(null,$_COOKIE['Email']); ?>
+        <?php $userData = $User->getUser($_COOKIE['JWT']); ?>
         <header id="col-header" class="col col-12 col-md-12 col-md-6">
             <div class="row">
                 <div id="logo-site" class="col flex-col flex-col-align-center">

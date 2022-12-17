@@ -19,7 +19,7 @@ class Page
     {
         $user = new User();
         $menu = new MenuModel();
-        $userData = $user->getUser(null, $_COOKIE['Email']);
+        $userData = $user->getUser($_COOKIE['JWT']);
         if ($userData['Role'] !== 3) {
             $page = new PageModel();
             
@@ -60,7 +60,7 @@ class Page
     }
     public function readPage(){
         $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
+        $userData = $user->getUser($_COOKIE['JWT']);
         $page = new PageModel();
         $data = $page->findPageById($_GET['id']);
 

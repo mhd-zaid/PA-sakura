@@ -14,7 +14,7 @@ class Article{
 
     public function saveArticle(){
         $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
+        $userData = $user->getUser($_COOKIE['JWT']);
         if($userData['Role'] !== 3){
             $article = new ArticleModel();
             $form = $article->createArticleForm();
@@ -96,7 +96,7 @@ class Article{
     
     public function readArticle(){
         $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
+        $userData = $user->getUser($_COOKIE['JWT']);
         $article = new ArticleModel();
         
         $data = $article->findArticle();
