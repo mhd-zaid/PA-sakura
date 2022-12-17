@@ -1,5 +1,6 @@
 node_modules/
-db_data/
+db_data\
+db_data\*
 server/
 .idea/
 *.log
@@ -16,3 +17,4 @@ db_data/ib_logfile0
 .idea/workspace.xml
 .idea/workspace.xml
 db_data/ibdata1
+db_data/*

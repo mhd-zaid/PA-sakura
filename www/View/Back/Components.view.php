@@ -1,3 +1,4 @@
+<div class="container-fluid container-fluid-parameters">
 <section>
     <h1>Components élèments d'édition</h1>
 </section>
@@ -129,7 +130,7 @@
 
 <section class="grid grid-article-elmt">
         <div class="row">
-            <article class="col col-3 article article-elmt">
+            <article class="col col-4 article article-elmt">
                 <div class="row">
                     <div class="col col-4 article-elmt-img">
                         <img src="https://img.freepik.com/vecteurs-libre/fond-silhouettes-palmiers-colores_23-2148541792.jpg?w=2000" alt="">
@@ -236,3 +237,5 @@
             </article>
         </div>
 </section>
+</div>
+<?php include 'View/Components/parameters-menu.php';?>

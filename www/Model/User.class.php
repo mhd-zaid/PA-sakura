@@ -15,6 +15,7 @@ class User extends DatabaseDriver
     protected $password;
 	protected $status = 0;
     protected $token = null;
+    protected $role = 1;
 	private $date_created;
 	private $date_updated;
 
@@ -107,6 +108,12 @@ class User extends DatabaseDriver
 
     }
 
+    public function setPasswordWithoutHash(String $password): void
+    {
+        $this->password = $password;
+
+    }
+
     /**
      * @return int
      */
@@ -121,6 +128,22 @@ class User extends DatabaseDriver
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRole(): int
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param int $role
+     */
+    public function setRole(int $role): void
+    {
+        $this->role = $role;
     }
 
     /**
@@ -208,6 +231,267 @@ class User extends DatabaseDriver
 
                 ]
             ];
+
+    }
+    
+    
+    public function userRegisterForm(){
+        
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Ajouter l'utilisateur"
+                            ],
+                "inputs"=> [
+                    "firstname"=>[
+                                    "type"=>"text",
+                                    "label"=>"Prénom",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>25,
+                                    "required"=>true,
+                                    "error"=>"Le prénom doit faire entre 2 et 25 caractères"
+                                ],
+
+                    "lastname"=>[
+                                    "type"=>"text",
+                                    "label"=>"Nom",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>75,
+                                    "required"=>true,
+                                    "error"=>"Le nom doit faire entre 2 et 75 caractères"
+                                ],
+
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"Email",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "error"=>"L'email est incorrect"
+                                ],
+
+                    "password"=>[
+                                    "type"=>"password",
+                                    "label"=>"Votre mot de passe",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"Le mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                                ],
+                                
+                    "passwordconfirm"=>[
+                                    "type"=>"password",
+                                    "label"=>"Confirmation",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "confirm"=>"password",
+                                    "error"=>"Votre Le de passe de confirmation ne correspond pas"
+                                ],
+
+                    "administrateur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Administrateur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"1",
+                                    "elemName"=>"userRole"
+                                ],
+
+                    "editeur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Editeur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"2",
+                                    "elemName"=>"userRole"
+                                ],
+                                
+                    "lecteur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Lecteur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"3",
+                                    "elemName"=>"userRole"
+                                ],
+
+                    "note"=>[
+                                    "type"=>"text",
+                                    "label"=>"Note (facultatif)",
+                                    "class"=>"ipt-form-entry",
+                                ],
+
+                    "message"=>[
+                                    "type"=>"text",
+                                    "label"=>"Message d'invitation (facultatif)",
+                                    "class"=>"ipt-form-entry",
+                                ],
+
+                ]
+            ];
+
+    }
+    
+    public function userUpdateForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Modifier",
+                                "delete"=>"Supprimer"
+                            ],
+                "user"=>$this->getUser($_GET['id']),
+                            
+                "inputs"=> [
+                    "firstname"=>[
+                                    "type"=>"text",
+                                    "label"=>"Prénom",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>25,
+                                    "required"=>true,
+                                    "error"=>"Le prénom doit faire entre 2 et 25 caractères",
+                                    "value"=>$this->firstname
+                                ],
+
+                    "lastname"=>[
+                                    "type"=>"text",
+                                    "label"=>"Nom",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>75,
+                                    "required"=>true,
+                                    "error"=>"Le nom doit faire entre 2 et 75 caractères"
+                                ],
+
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"Email",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "error"=>"L'email est incorrect"
+                                ],
+
+                    "password"=>[
+                                    "type"=>"password",
+                                    "label"=>"Votre mot de passe",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"Le mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                                ],
+                                
+                    "passwordconfirm"=>[
+                                    "type"=>"password",
+                                    "label"=>"Confirmation",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "confirm"=>"password",
+                                    "error"=>"Votre Le de passe de confirmation ne correspond pas"
+                                ],
+
+                    "administrateur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Administrateur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"1",
+                                    "elemName"=>"userRole"
+                                ],
+
+                    "editeur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Editeur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"2",
+                                    "elemName"=>"userRole"
+                                ],
+                                
+                    "lecteur"=>[
+                                    "type"=>"radio",
+                                    "label"=>"Lecteur",
+                                    "class"=>"ipt-form-entry",
+                                    "value"=>"3",
+                                    "elemName"=>"userRole"
+                                ],
+
+                    "note"=>[
+                                    "type"=>"text",
+                                    "label"=>"Note (facultatif)",
+                                    "class"=>"ipt-form-entry",
+                                ],
+
+                    "message"=>[
+                                    "type"=>"text",
+                                    "label"=>"Message d'invitation (facultatif)",
+                                    "class"=>"ipt-form-entry",
+                                ],
+
+                ]
+            ];
+
+    }
+    
+    public function profilUpdateForm(){
+
+        return [
+            "config" => [
+                            "method"=>"POST",
+                            "class"=>"form-register",
+                            "submit"=>"Modifier"
+                        ],
+
+            "profil"=>$this->getUserByEmail($_COOKIE['Email']), 
+    
+            "inputs"=> [
+                "firstname"=>[
+                                "type"=>"text",
+                                "label"=>"Prénom",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Votre prénom doit faire entre 2 et 25 caractères"
+                            ],
+
+                "lastname"=>[
+                                "type"=>"text",
+                                "label"=>"Nom",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>75,
+                                "required"=>true,
+                                "error"=>"Votre nom doit faire entre 2 et 75 caractères"
+                            ],
+                "email"=>[
+                                "type"=>"email",
+                                "label"=>"Email",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "error"=>"Votre email est incorrect"
+                            ],
+                "password"=>[
+                                "type"=>"password",
+                                "label"=>"Nouveau mot de passe",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                            ],
+                "passwordconfirm"=>[
+                                "type"=>"password",
+                                "label"=>"Confirmation nouveau mot de passe",
+                                "class"=>"ipt-form-entry",
+                                "required"=>false,
+                                "confirm"=>"password",
+                                "error"=>"Votre mot de passe de confirmation ne correspond pas"
+                            ],
+                "confirmationpassword" =>[
+                                "type"=>"password",
+                                "label"=>"Tapez votre mot de passe pour tout changement",
+                                "class"=>"ipt-form-entry",
+                                "required"=>true,
+                                "pass"=>"pass",
+                                "error"=>"Mauvais mot de passe"
+                ],
+            ]
+        ];
 
     }
 
@@ -332,18 +616,23 @@ class User extends DatabaseDriver
                 $_SESSION['firstname'] = $data['Firstname'];
                 $_SESSION['lastname'] = $data['Lastname'];
                 $_SESSION['status'] = $data['Status'];
-                $header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
-                $playload = base64_encode(json_encode($_SESSION));
-                $secret = base64_encode('Za1234');
-                $signature = hash_hmac('sha256',$header.".".$playload,$secret);
+                $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
+                $this->setId($data['Id']);
+                $this->setFirstname($data['Firstname']);
+                $this->setLastname($data['Lastname']);
+                $this->setEmail($data['Email']);
+                $this->setStatus($data['Status']);
+                $this->password = $data['Password'];
+                $this->setToken($token->getToken());
+                $this->setRole(intval($data['Role']));
+                $token = $this->getToken();
                 if($data['Status'] == 0){
-                    $token = new Jwt([$data['Firstname'],$data['Lastname'],$data['Email']]);
-                    $this->setToken($token->getToken());
-                    $token = $this->getToken();
                     $servername = $_SERVER['HTTP_HOST'];
                     new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
                 }else{
-                    setcookie("JWT",$header.".".$playload.".".$signature,time()+(60*60*2));
+                    setcookie("JWT",$token,time()+(60*60*2));
+                    setcookie("Email",$data['Email'],time()+(60*60*2));
+                    $this->save();
                     header("Location: /tableau-de-bord");
                     die();
                 }
@@ -355,6 +644,14 @@ class User extends DatabaseDriver
         }
     }
 
+    public function isGoodPassword(string $pwd, string $entered):bool{
+        if(password_verify($entered,$pwd)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
     public function checkForgotPasswd(string $email): ?string{
         $sql = "SELECT * FROM $this->table WHERE email = '$email'";
         $result = $this->pdo->query($sql);
@@ -401,6 +698,18 @@ class User extends DatabaseDriver
         }
     }
 
+    public function checkToken(string $token,string $email):string
+    {
+        $sql = "SELECT Token FROM $this->table where token='$token' AND email= '$email'";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+        if($result->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public function checkTokenEmail(string $token,string $email):void
     {
         $sql = "SELECT Token FROM $this->table where status=0 AND email= '$email'";
@@ -427,6 +736,39 @@ class User extends DatabaseDriver
         }else{
             return 1;
         }
+    }
+    
+    public function getUser(?Int $id = null , ?String $email = null){
+        if ($id != null && $email == null)
+        {
+            $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
+        }
+        if($id == null && $email != null) {
+            $sql = "SELECT * FROM ".$this->table." WHERE email = '$email'";
+        }
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+        return $data;
+    }
+    
+    public function getUserByEmail(string $email){
+        $sql = "SELECT * FROM ".$this->table." WHERE Email ='$email'";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+        return $data;
+    }
+
+    public function updateUserRole(array $userInformation){
+                $this->setId($_GET['id']);
+				$this->setFirstname($userInformation['Firstname']);
+				$this->setLastname($userInformation['Lastname']);
+				$this->setEmail($userInformation['Email']);
+				$this->password = $userInformation['Password'];
+				$this->setToken($userInformation['Token']);
+				$this->setRole(intval($_POST['userRole']));
+				$this->setStatus($userInformation['Status']);
+				$this->save();
+				header('Location: /parametres-users');
     }
 
 }

@@ -1,0 +1,30 @@
+.flash{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: 50px;
+    width: calc(100% - 170px);
+    transition: all 1s;
+    background-color: black;
+    &-success{
+        background-color: rgba($color: #43bc21, $alpha: 1.0);
+        color: $white;
+    }
+    &-error{
+        background-color: rgba($color: #ff0000, $alpha: 1.0);
+        color: $white;
+    }
+}
+
+#close-flash{
+    position: fixed;
+    right: 10px;
+    transform: translateY(5px);
+    cursor: pointer;
+}
+
+@media (max-width: $large-screen) {
+    .flash{
+        width: calc(100% - 70px);
+    }
+}

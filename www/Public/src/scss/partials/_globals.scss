@@ -10,16 +10,17 @@ body{
   margin: 0;
   font-family: $font1;
   height: 100%; ///// 
-}
-
-#body-back{
-  display: flex;
+  background-color: #f4f4f4;
 }
 
 .container-fluid{
   margin: auto;
   max-width: 90%;
   position: relative;
+  &-parameters{
+    margin: 0;
+    width: 75%;
+  }
 }
 
 .container {
@@ -27,19 +28,25 @@ body{
 }
 
 .h1-section {
-  font-size: 4em;
+  font-size: 3em;
 }
 
 .h1-simple{
   font-size: 2em;
 }
 
-.h1-section-back{
-  font-size: 2.5em;
-}
-
 img{
   object-fit: cover;
+  object-position: center;
+}
+
+section{
+  margin: 30px 0px;
+}
+
+.plain{
+  height: 100%;
+  width: 100%;
 }
 
 #main-front{
@@ -58,7 +65,11 @@ img{
 }
 
 .show{
-  visibility: visible;
+  display: block;
+}
+
+.hide{
+  display: none;
 }
 
 .flex-row{
@@ -66,7 +77,9 @@ img{
   &-center{
     justify-content: center;
   }
-
+ &-align-center{
+  align-items: center;
+ }
 }
 
 
@@ -76,6 +89,9 @@ img{
   &-center{
     justify-content: center;
   }
+  &-align-center{
+    align-items: center;
+   }
 }
 
 .center-text{

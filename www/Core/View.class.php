@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Model\User;
+
 
 class View{
 
@@ -13,6 +15,7 @@ class View{
 	{
 		$this->setTempalte($template);
 		$this->setView($view);
+		$this->assign('User',new User());
 		
 	}
 
