@@ -17,16 +17,11 @@
                 <h3> Gérer les informations relatives à vos sites</h3>
                 <ul class="flex-col">
                     <?php $userData = $User->getUser(null,$_COOKIE['Email']); ?>
-                    <?php if($userData['Role'] != 1): ?>
-                        <li class="choices-parameters"><a href="/parametres-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
-                        <li class="choices-parameters"><a href="/parametres-langue"><img src="Public/img/Back/Parameters/Language.svg" alt="Language">Langue</a></li>
-                        <li class="choices-parameters"><a href="/home"><img src="Public/img/Back/Parameters/Shield.svg" alt="Shield">Sécurité</a></li>
-					<?php else: ?>
-                        <li class="choices-parameters"><a href="/parametres-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
+                    <li class="choices-parameters"><a href="/parametres-gestion-compte"><img src="Public/img/Back/Parameters/Account.svg" alt="Account">Gestion du compte</a></li>
+                    <?php if($userData['Role'] == 1): ?>
                         <li class="choices-parameters"><a href="/parametres-users"><img src="Public/img/Back/Parameters/Sites.svg" alt="Sites">Gestions des utilisateurs</a></li>
-                        <li class="choices-parameters"><a href="/parametres-langue"><img src="Public/img/Back/Parameters/Language.svg" alt="Language">Langue</a></li>
-                        <li class="choices-parameters"><a href="/home"><img src="Public/img/Back/Parameters/Shield.svg" alt="Shield">Sécurité</a></li> 
-				    <?php endif;?>
+                        <?php endif;?>
+                         <li class="choices-parameters"><a href="/parametres-langue"><img src="Public/img/Back/Parameters/Language.svg" alt="Language">Langue</a></li>
                 </ul>
             </div>
         </div>

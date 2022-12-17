@@ -56,7 +56,7 @@ class User extends DatabaseDriver
      */
     public function setFirstname(String $firstname): void
     {
-        $this->firstname = ucwords(mb_strtolower(trim($firstname)));
+        $this->firstname = ucwords(mb_strtolower(trim(strip_tags($firstname))));
     }
 
      /**
@@ -72,7 +72,7 @@ class User extends DatabaseDriver
      */
     public function setLastname(String $lastname): void
     {
-        $this->lastname = mb_strtoupper(trim($lastname));
+        $this->lastname = mb_strtoupper(trim(strip_tags($lastname)));
     }
 
     /**
@@ -438,7 +438,7 @@ class User extends DatabaseDriver
                             "submit"=>"Modifier"
                         ],
 
-            "profil"=>$this->getUserByEmail($_COOKIE['Email']), 
+            "profil"=>$this->getUser(null, $_COOKIE['Email']), 
     
             "inputs"=> [
                 "firstname"=>[
@@ -606,10 +606,12 @@ class User extends DatabaseDriver
 
     public function checkLogin(String $email, String $pwd): void
     {
-        $sql = "SELECT * FROM $this->table WHERE email = '$email'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            $data = $result->fetch();
+        $sql = "SELECT * FROM " .$this->table." WHERE email =:email";
+        $params = ['email'=>$email];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        if($queryPrepared->rowCount() > 0){
+            $data = $queryPrepared->fetch();
             if(password_verify($pwd,$data['Password'])){
                 session_start();
                 $_SESSION['email'] = $data['Email'];
@@ -653,10 +655,14 @@ class User extends DatabaseDriver
 
     }
     public function checkForgotPasswd(string $email): ?string{
-        $sql = "SELECT * FROM $this->table WHERE email = '$email'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            $data = $result->fetch();
+
+        $sql = "SELECT * FROM " .$this->table. " WHERE email =:email";
+        $params = ['email'=>$email];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        if($queryPrepared->rowCount() > 0){
+            $data = $queryPrepared->fetch();
             $header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
             $playload = base64_encode(json_encode(array_diff($data,[$data['Password']],[$data['Token']])));
             $secret = base64_encode('Za1234');
@@ -679,11 +685,13 @@ class User extends DatabaseDriver
 
     public function checkTokenPasswd(string $email,string $token,string $password): bool
     {
-        $email = str_replace('%40','@',$email);
-        $sql = "SELECT * FROM $this->table WHERE email = '$email' AND token = '$token'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0 ){
-            $data = $result->fetch();
+        $sql = "SELECT * FROM " .$this->table. " WHERE email =:email AND token=:token";
+        $params = ['email'=>$email, "token"=>$token];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        if($queryPrepared->rowCount() > 0 ){
+            $data = $queryPrepared->fetch();
             $this->setId($data['Id']);
             $this->setFirstname($data['Firstname']);
             $this->setLastname($data['Lastname']);
@@ -700,10 +708,12 @@ class User extends DatabaseDriver
 
     public function checkToken(string $token,string $email):string
     {
-        $sql = "SELECT Token FROM $this->table where token='$token' AND email= '$email'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        if($result->rowCount() > 0){
+        $sql = "SELECT Token FROM " .$this->table. " WHERE token=:token AND email=:email";
+        $params = ['email'=>$email, 'token'=>$token];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
+        if($queryPrepared->rowCount() > 0){
             return true;
         }else{
             return false;
@@ -712,13 +722,17 @@ class User extends DatabaseDriver
 
     public function checkTokenEmail(string $token,string $email):void
     {
-        $sql = "SELECT Token FROM $this->table where status=0 AND email= '$email'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = "SELECT Token FROM " .$this->table.  " WHERE status=:status AND email=:email";
+        $params = ['email'=>$email, 'status'=>0];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
         
-        if($result->rowCount() > 0 && $data['Token']==$token){
-            $sql_update = "UPDATE $this->table SET status=1 where email='$email'";
-            $this->pdo->query($sql_update);
+        if($queryPrepared->rowCount() > 0 && $data['Token']==$token){
+            $sql = "UPDATE " .$this->table. " SET status=:status where email=:email";
+            $params = ['email'=>$email, 'status'=>1];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
             die();
@@ -727,11 +741,12 @@ class User extends DatabaseDriver
 
     public function checkEmailExist($email):Int
     {
-        $sql = "SELECT * FROM $this->table where Email='$email'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            print_r("Cet email est déjà associé à un compte");
-
+        $sql = "SELECT * FROM " .$this->table. " where email=:email";
+        $params = ['email'=>$email];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        if($queryPrepared->rowCount() > 0){
+        print_r("Cet email est déjà associé à un compte");
             return 0;
         }else{
             return 1;
@@ -741,23 +756,19 @@ class User extends DatabaseDriver
     public function getUser(?Int $id = null , ?String $email = null){
         if ($id != null && $email == null)
         {
-            $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
+            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
+            $params = ['id'=>$id];
         }
         if($id == null && $email != null) {
-            $sql = "SELECT * FROM ".$this->table." WHERE email = '$email'";
+            $sql = "SELECT * FROM ".$this->table." WHERE email =:email";
+            $params = ['email'=>$email];
         }
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
         return $data;
     }
     
-    public function getUserByEmail(string $email){
-        $sql = "SELECT * FROM ".$this->table." WHERE Email ='$email'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
-    }
-
     public function updateUserRole(array $userInformation){
                 $this->setId($_GET['id']);
 				$this->setFirstname($userInformation['Firstname']);

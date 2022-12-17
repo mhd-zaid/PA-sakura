@@ -20,6 +20,9 @@ class Parameters{
         $v = new View("Page/ParametersLangue", "Back");
     }
     public function parametersUsers(){
+		$user = new UserModel();
+		$role = $user->getUser(null,$_COOKIE['Email']);
+		if($role['Role'] !== 1) header("Location: /tableau-de-bord");
         $v = new View("Page/ParametersUsers", "Back");
     }
     public function parametersAccount(){
@@ -84,7 +87,9 @@ class Parameters{
         $v->assign("configFormErrors", $configFormErrors??[]);
     }
     public function parametersEditUser(){
-        $user = new UserModel();
+		$user = new UserModel();
+		$role = $user->getUser(null,$_COOKIE['Email']);
+		if($role['Role'] !== 1) header("Location: /tableau-de-bord");
 		$userUpdateForm = $user->userUpdateForm();
         $userInformation = $user->getUser($_GET['id']);
         if( !empty($_POST) )
