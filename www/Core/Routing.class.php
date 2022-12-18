@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Core;
-
-use App\Model\User;
+use App\Core\Security;
 
 class Routing{
 
@@ -21,36 +20,6 @@ class Routing{
 		
 	}
 
-	public function getSecurity(string $uri):void
-	{
-		$user = new User();
-		if($this->routes[$uri]['security']){
-			if(!empty($_COOKIE['JWT']) && !empty($_COOKIE['Email'])){
-				$checked = $user->checkToken($_COOKIE['JWT'],$_COOKIE['Email']);
-				if(!$checked)
-				{
-					header("Location: /se-connecter");
-				}
-			}else{
-				header("Location: /se-connecter");
-			}
-		}
-	}
-
-	public function isAdmin(string $uri):void
-	{
-		if($this->routes[$uri]['isAdmin']){
-			$user = new User();
-			if(!empty($_COOKIE['JWT']) && !empty($_COOKIE['Email'])){
-				$role = $user->getUser($_COOKIE['JWT']);
-				if($role['Role'] !== 1)
-				{
-					header("Location: /tableau-de-bord");
-				}
-			}
-		}
-	}
-
 	public function setAction(string $uri): array
 	{
 		if( empty($this->routes[$uri]) 
@@ -62,8 +31,12 @@ class Routing{
 		$this->controller = $this->routes[$uri]["controller"];//Main
 		$this->action = $this->routes[$uri]["action"]; //index
 		
-		$this->getSecurity($uri);
-		$this->isAdmin($uri);
+		if($this->routes[$uri]['security']){
+		Security::getSecurity($uri);
+		}
+		if($this->routes[$uri]['isAdmin']){
+	    Security::isAdmin($uri);
+		}
 		return [$this->controller,$this->action];
 	}
 

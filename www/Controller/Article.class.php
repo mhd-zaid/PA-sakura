@@ -46,12 +46,14 @@ class Article{
 			$configFormErrors = $verificator->getMsg();
 
             if(empty($configFormErrors)){
+
             $article->setContent($_POST['editor']);
             $article->setSlug($_POST['slug']);
             $article->setTitle($_POST['titre']);
             $article->setImageName($_POST['imageName']);
             $article->setCategories($_POST['list']);
             $article->setRewriteUrl($choice);
+
             if(isset($_POST['submit'])){
                 $article->save();
                 header("Location: /article");
@@ -77,13 +79,12 @@ class Article{
             }  
         }
         } 
-        }
+    }
 
         $v=new View("Page/EditArticle", "Back");
-        $v->assign("data", $data??[]);
         $v->assign("configForm", $form);
         $v->assign("configFormErrors", $configFormErrors??[]);
-    }
+}
 
     public function manageArticle(){
         $article = new ArticleModel();
