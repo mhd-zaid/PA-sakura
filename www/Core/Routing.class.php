@@ -37,6 +37,20 @@ class Routing{
 		}
 	}
 
+	public function isAdmin(string $uri):void
+	{
+		if($this->routes[$uri]['isAdmin']){
+			$user = new User();
+			if(!empty($_COOKIE['JWT']) && !empty($_COOKIE['Email'])){
+				$role = $user->getUser($_COOKIE['JWT']);
+				if($role['Role'] !== 1)
+				{
+					header("Location: /tableau-de-bord");
+				}
+			}
+		}
+	}
+
 	public function setAction(string $uri): array
 	{
 		if( empty($this->routes[$uri]) 
@@ -49,6 +63,7 @@ class Routing{
 		$this->action = $this->routes[$uri]["action"]; //index
 		
 		$this->getSecurity($uri);
+		$this->isAdmin($uri);
 		return [$this->controller,$this->action];
 	}
 
