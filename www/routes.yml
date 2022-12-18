@@ -4,57 +4,81 @@
   controller: Main 
   action: index
   security: 0
+  isAdmin: 0
+
 
 
 /se-connecter:
   controller: User
   action: login
   security: 0
+  isAdmin: 0
+
 
 /se-deconnecter:
   controller: User
   action: logout
   security: 0
+  isAdmin: 0
+
 
 /s-inscrire:
   controller: User
   action: register
   security: 0
+  isAdmin: 0
+
 
 /home:
   controller: Main
   action: admin
   security: 0
+  isAdmin: 0
+  isAdmin: 0
+
+
 
 /confirmation-mail:
   controller: User
   action: confirmMail
   security: 0
+  isAdmin: 0
+
 
 /mot-de-passe-oublie:
   controller: User
   action: forgotPasswd
   security: 0
+  isAdmin: 0
+
 
 /reinitialisation-mot-de-passe:
   controller: User
   action: resetPasswd
   security: 0
+  isAdmin: 0
+
 
 /modifier-utilisateur:
   controller: User
   action: edit
   security: 0
+  isAdmin: 0
+
 
 /utilisateurs:
   controller: User
   action: list
   security: 0
+  isAdmin: 0
+
 
 /tableau-de-bord:
   controller: Admin
   action: dashboard
   security: 0
+  isAdmin: 0
+
 
 
 ### PROFIL ###
@@ -63,11 +87,13 @@
   controller: Profil
   action: index
   security: 0
+  isAdmin: 0
 
 /profil-notification:
   controller: Profil
   action: manageNotification
   security: 0
+  isAdmin: 0
 
   
 /profil-langue:
@@ -79,26 +105,31 @@
  controller: Profil
  action: manageAccount
  security: 0
+ isAdmin: 0
 
 /profil-securite:
   controller: Profil
   action: manageSecurity
   security: 0
+  isAdmin: 0
   
 /profil-contact:
  controller: Profil
  action: manageContact
  security: 0
+ isAdmin: 0
 
 /profil-aide-et-support:
  controller: Profil
  action: help
  security: 0
-  
+ isAdmin: 0
+ 
 /profil-conditions-generale-d-utilisation:
  controller: Profil
  action: condition
  security: 0
+ isAdmin: 0
 
 ### Statistiques ###
 /statistiques:
@@ -116,70 +147,84 @@
   controller: Parameters
   action: index
   security: 0
+  isAdmin: 0
 
 /parametres-gestion-compte: 
   controller: Parameters
   action: parametersAccountManagement
   security: 0
+  isAdmin: 0
 
 /parametres-gestion-utilisateurs:
   controller: UsersManagement
   action: index
   security: 0
+  isAdmin: 0
 
 /parametres-support:
   controller: Parameters
   action: parametersSupport
   security: 0
+  isAdmin: 0
 
 /parametres-langue:
   controller: Parameters
   action: parametersLangue
   security: 0
+  isAdmin: 0
 
 /parametres-users:
   controller: Parameters
   action: parametersUsers
+  isAdmin: 0
 
 /parametres-add-user:
   controller: Parameters
   action: parametersAddUser
   security: 0
+  isAdmin: 0
 
 /parametres-edit-user:
   controller: Parameters
   action: parametersEditUser
   security: 0
+  isAdmin: 0
 
 /parametres-compte:
   controller: Parameters
   action: parametersAccount
   security: 0
+  isAdmin: 0
 
 /parametres-support:
   controller: Parameters
   action: parametersSupport
   security: 0
+  isAdmin: 0
 
 /parametres-langue:
   controller: Parameters
   action: parametersLangue
   security: 0
+  isAdmin: 0
 
 /parametres-users:
   controller: Parameters
   action: parametersUsers
   security: 0
+  isAdmin: 0
 
 /parametres-compte:
   controller: Parameters
   action: parametersAccount
   security: 0
+  isAdmin: 0
 
 /parametres-article:
   controller: Article
   action : manageArticle
   security : 0
+  isAdmin: 0
 
  ### ARTICLE ###
 
@@ -187,16 +232,19 @@
   controller: Article
   action: index
   security: 0
+  isAdmin: 0
 
 /article-add:
   controller: Article
   action: saveArticle
   security: 0
+  isAdmin: 0
 
 /article-read:
   controller: Article
   action: readArticle
   security: 0
+  isAdmin: 0
 
 # /article-edition/{id}:
 # controller: Article
@@ -209,43 +257,51 @@
   controller: Category
   action: index
   security: 0
+  isAdmin: 0
 
 /category-add:
   controller: Category
   action: saveCategory
   security: 0
-  
+  isAdmin: 0
+ 
 ### COMMENTAIRE ###
 
 /commentaire:
   controller: Commentaire
   action: index
   security: 0
+  isAdmin: 0
 
 /commentaire-add:
   controller: Commentaire
   action: saveComment
   security: 0
+  isAdmin: 0
   
 /commentaire-edition:
  controller: Commentaire
  action: saveComment
  security: 0
+ isAdmin: 0
 
 /commentaire-mots-bannis:
  controller: Commentaire
  action: motsbannis
  security: 0
+ isAdmin: 0
 
 /supprimer-mot-banni:
   controller: Commentaire
   action: removeBanWord
   security: 0
+  isAdmin: 0
 
 /signaler:
   controller: Commentaire
   action: signaler
   security: 0
+  isAdmin: 0
 
   ### EXTENSION ###
 
@@ -253,18 +309,21 @@
   controller: Extension
   action: index
   security: 0
-  
+  isAdmin: 0
+ 
   ### PAGE ###
 
 /page:
   controller: Page
   action: index
   security: 0
+  isAdmin: 0
 
 /page-add:
   controller: Page
   action: savePage
   security: 0
+  isAdmin: 0
 
 /page-read:
   controller: Page
@@ -276,17 +335,21 @@
  controller: Page
  action: editPage
  security: 0
+ isAdmin: 0
  
 /page/{id}:
  controller: Page
  action: showPage
  security: 0
+ isAdmin: 0
+
   ### NAVIGATION ###
 
 /navigation:
   controller: Navigation
   action: index
   security: 0
+  isAdmin: 0
 
 /navigation-menu-add:
   controller: Navigation
@@ -300,25 +363,27 @@
   controller: Commentaire
   action: index
   security: 0
+  isAdmin: 0
   
-
-
   ### MEDIAS ###
 
 /media:
   controller: Media
   action: index
   security: 0
+  isAdmin: 1
 
 /ajout-medias:
   controller: Media
   action: addComment
   security: 0
+  isAdmin: 0
   
 /medias/{id}:
  controller: Media
  action: showMedia
  security: 0
+ isAdmin: 0
 
   ### APPARENCES ###
 
@@ -326,16 +391,19 @@
   controller: Apparence
   action: editTheme
   security: 0
+  isAdmin: 0
 
 /apparence-page:
   controller: Apparence
   action: editPage
   security: 0
+  isAdmin: 0
 
 /apparence-menu:
   controller: Apparence
   action: editMenu
   security: 0
+  isAdmin: 0
 
   ### GRID & COMPONENTS ###
 
@@ -343,14 +411,17 @@
   controller: WebCreator
   action: grid
   security: 0
+  isAdmin: 0
 
 /components:
   controller: WebCreator
   action: components
   security: 0
+  isAdmin: 0
 
 ### DATA TABLE
 /datatable:
   controller: DataTable
   action: index
   security: 0
+  isAdmin: 0
