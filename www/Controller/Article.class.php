@@ -41,7 +41,13 @@ class Article{
             $rewriteUrl > 0 ? $choice = 1 : $choice = 2;
 
             if(!empty($_POST)){
-            $verificator = new Verificator($form, $_POST);
+            $data = [];
+            isset($_POST['editor']) ? array_push($data, $_POST["editor"]) : '';
+            isset($_POST['titre']) ? array_push($data, $_POST["titre"]) : '';
+            isset($_POST['slug']) ? array_push($data, $_POST["slug"]) : '';
+            isset($_POST['imageName']) ? array_push($data, $_POST["imageName"]) : '';
+            isset($_POST['list']) ? array_push($data, $_POST["list"]) : '';
+            $verificator = new Verificator($form, $data);
 			$verificator->verificatorEditionArticle($form, $_POST);
 			$configFormErrors = $verificator->getMsg();
 
@@ -68,14 +74,22 @@ class Article{
                 header("Location: /article");
             } 
             if(isset($_POST['publish'])){
+                if($userData['Role'] === 1){
                 $article->setActive(1);
                 $article->save();
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                }else{
+                    header("Location: /tableau-de-bord");
+                }
             }  
             if(isset($_POST['unpublish'])){
+                if($userData['Role'] === 1){
                 $article->setActive(0);
                 $article->save();
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                }else{
+                    header("Location: /tableau-de-bord");
+                }
             }  
         }
         } 

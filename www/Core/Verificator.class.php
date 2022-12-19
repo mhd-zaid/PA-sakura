@@ -10,12 +10,10 @@ class Verificator
 
 	public function __construct($configForm, $data)
 	{
-
 		//Vérifier que l'on a autant de post ou get  que de inputs dans la config (Faille XSS)
-
-		// if( count($data) != count($configForm["inputs"])){
-		// 	$this->msg[]="Tentative de Hack";
-		// }
+		if( count($data) != count($configForm["inputs"])){
+			$this->msg[]="Tentative de Hack";
+		}
 
 
 	}
@@ -26,23 +24,23 @@ class Verificator
 				$this->msg[]="Le champs ".$name." est obligatoire";
 			}
 
-			if(!empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
 				$this->msg[]=$configInput["error"];
 			}
 
-			if(!empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
 				$this->msg[]=$configInput["error"];
 			}
 		}
 
-		if(!empty($data["titre"]) && !self::checkIfTitleExsists($data["titre"])){
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfTitleExsists($data["titre"])){
 			$this->msg[]="Un article portant ce titre existe déjà";
 		}
 
-		if(!empty($data["titre"]) && is_numeric($data["titre"])){
+		if(empty($this->msg) && !empty($data["titre"]) && is_numeric($data["titre"])){
 			$this->msg[]="Votre titre ne peut contenir que des chiffres";
 		}
-		if(empty($data["editor"])){
+		if(empty($this->msg) && empty($data["editor"])){
 			$this->msg[]="Veuillez ajouter du contenu";
 		}
 

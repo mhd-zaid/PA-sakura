@@ -4,7 +4,7 @@ namespace App\Model;
 
 use App\Core\DatabaseDriver;
 use App\Model\Category;
-
+use App\Model\User;
 
 class Article extends DatabaseDriver
 {
@@ -177,6 +177,8 @@ class Article extends DatabaseDriver
     }
 
     public function createArticleForm(){
+        $user = new User();
+        $userInfo = $user->getUser($_COOKIE['JWT']);
 
         return [
             "config" => [
@@ -187,6 +189,7 @@ class Article extends DatabaseDriver
 
            "article"=>$this->findArticle(),
            "category"=>$this->selectAllCategories(),
+           "user"=>$userInfo, 
 
            "textarea"=>[
                 "class"=>"ckeditor",
@@ -203,21 +206,6 @@ class Article extends DatabaseDriver
                                 "required"=>true,
                                 "error"=>"Le titre doit faire entre 2 et 25 caractères"
                             ],
-                "openFile"=>[
-                                "type"=>"button",
-                                "value"=>"Ajouter une image",
-                                "id"=>"openFile",
-                                "class"=>"ipt-form-entry",
-                                "required"=>false,
-                                "error"=>"Votre nom doit faire entre 2 et 75 caractères"
-                            ],
-                "deleteImage"=>[
-                                "type"=>"button",
-                                "value"=>"Supprimer l'image",
-                                "class"=>"ipt-form-entry",
-                                "required"=>false,
-                                "error"=>"Votre email est incorrect"
-                            ],
                 "imageName"=>[
                                 "type"=>"hidden",
                                 "class"=>"ipt-form-entry",
@@ -227,6 +215,7 @@ class Article extends DatabaseDriver
               
                 "listCategorie"=>[
                                 "type"=>"hidden",
+                                "id"=>"list",
                                 "class"=>"ipt-form-entry",
                                 "required"=>false,
                                 "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
@@ -240,6 +229,12 @@ class Article extends DatabaseDriver
                                 "required"=>true,
                                 "error"=>"Le slug doit faire entre 2 et 25 caractères"
                             ],
+                "editor"=>[
+                    "type"=>"hidden",
+                    "class"=>"ipt-form-entry",
+                    "required"=>false,
+                    "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                ],
             ]
         ];
 
