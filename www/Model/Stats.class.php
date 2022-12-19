@@ -158,7 +158,7 @@ class Stats extends DatabaseDriver
                 $queryPrepared = $this->pdo->prepare($sql);
                 $queryPrepared->execute($params);
                 $data = $queryPrepared->fetch();
-                
+                return $data[0];
             default:
                 if(empty($compareDate)){
                     $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Date=:date";
@@ -173,7 +173,6 @@ class Stats extends DatabaseDriver
                 $data = $queryPrepared->fetch();
                 break;
         }
-    
         return $data[0];
 
     }
