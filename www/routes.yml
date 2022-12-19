@@ -106,7 +106,7 @@
   action: index
   security: 0
 
-/statistiques-date:
+/stats:
   controller: Statistiques
   action: stats
   security: 0

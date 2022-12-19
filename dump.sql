@@ -49,7 +49,7 @@ CREATE TABLE `sakura_category` (
 
 CREATE TABLE `sakura_stats` (
   `Id` int(11) NOT NULL,
-  `Ip` varchar(15) NOT NULL,
+  `Session` varchar(255) NOT NULL,
   `Date` date NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------

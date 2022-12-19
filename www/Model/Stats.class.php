@@ -8,7 +8,7 @@ use DateTime;
 class Stats extends DatabaseDriver
 {
     private $id = null;
-	protected $ip;
+	protected $session;
     protected $date;
 
 
@@ -52,25 +52,27 @@ class Stats extends DatabaseDriver
     /**
      * @return String
      */
-    public function getIp(): ?String
+    public function getSession(): ?String
     {
-        return $this->ip;
+        return $this->session;
     }
 
     /**
-     * @param String $ip
+     * @param String $session
      */
-    public function setIp(String $ip): void
+    public function setSession(String $session): void
     {
-        $this->ip = $ip;
+        $this->session = $session;
     }
 
-    public function existIp(String $ip): bool
+    public function existSession(String $session): bool
     {
-        $sql = "SELECT Ip FROM $this->table WHERE Ip='$ip'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        if ($data["Ip"] == $ip ){
+        $sql = "SELECT Session FROM $this->table WHERE Session=:session";
+        $params = ['session'=>$session];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
+        if ($data["Session"] == $session ){
             return true;
         }
         else{
@@ -78,12 +80,14 @@ class Stats extends DatabaseDriver
         }
     }
 
-	public function findIdByIp(string $ip) : int
+	public function findIdBySession(string $session) : int
 	{
 		//recup L'id par une requete sql avec l'ip
-        $sql = "SELECT Id FROM $this->table WHERE Ip='$ip'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = "SELECT Id FROM $this->table WHERE Session=:session";
+        $params = ['session'=>$session];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
         return $data["Id"];
 	}
 
@@ -92,50 +96,86 @@ class Stats extends DatabaseDriver
         $todayDate = date_format(new DateTime(),"Y-m-d");
         switch ($date) {
             case 'today':
-                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date='$todayDate'";
-                $result = $this->pdo->query($sql);
-                $data = $result->fetch();
-                return $data[0];
+                
+                return $this->getVisitor($todayDate);
             
             case 'yesterday' :
                 $compareDate = date_format(new DateTime("yesterday"),"Y-m-d");
-                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between'$compareDate' and '$todayDate'";
-                $result = $this->pdo->query($sql);
-                $data = $result->fetch();
-                return $data[0];
+                
+                return $this->getVisitor($compareDate);
 
             case 'week' : 
                 $compareDate = date_format(new DateTime("-7 days"),"Y-m-d");
-                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between'$compareDate' and '$todayDate'";
-                $result = $this->pdo->query($sql);
-                $data = $result->fetch();
-                return $data[0];
+            
+                return $this->getVisitor($todayDate,$compareDate);
 
             case 'month' : 
                 $compareDate=date('Y-m-d',strtotime("-1 month"));
-                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between '$compareDate' and '$todayDate'";
-                $result = $this->pdo->query($sql);
-                $data = $result->fetch();
-                return $data[0];
+               
+                return $this->getVisitor($todayDate,$compareDate);
 
             case 'months' :
                 $compareDate=date('Y-m-d',strtotime("-3 month"));
-                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between '$compareDate' and '$todayDate'";
-                $result = $this->pdo->query($sql);
-                $data = $result->fetch();
-                return $data[0];
-            
+                
+                return $this->getVisitor($todayDate,$compareDate);
+                
             case 'year' : 
                 $compareDate = date_format(new DateTime("-1 year"),"Y-m-d");
-                $sql = "SELECT COUNT(Ip) FROM ".$this->table." WHERE Date between'$compareDate' and '$todayDate'";
-                $result = $this->pdo->query($sql);
-                $data = $result->fetch();
-                return $data[0];
+                
+                return $this->getVisitor($todayDate,$compareDate);
+                
+            case 'year-1' : 
+            $compareDate = date_format(new DateTime("-1 year"),"Y-m-d");
+            return $this->getVisitor($compareDate);
+
+            case 'year-2' : 
+                $compareDate = date_format(new DateTime("-2 year"),"Y-m-d");
+                
+                return $this->getVisitor($compareDate);
+
+            case 'year-3' : 
+                $compareDate = date_format(new DateTime("-3 year"),"Y-m-d");
+                
+                return $this->getVisitor($compareDate);
 
             default:
                 return 0;
                 break;
         }
+    }
+
+    public function getVisitor(String $todaydate,? String $compareDate = null): Int
+    {
+        $data = null;
+        $sql = "";
+        $params = [];
+        switch ($_GET['year']) {
+            case 'year-1':
+            case 'year-2':
+            case 'year-3':
+                $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Year(Date) = Year(:date)";
+                $params = ['date'=>$todaydate];
+                $queryPrepared = $this->pdo->prepare($sql);
+                $queryPrepared->execute($params);
+                $data = $queryPrepared->fetch();
+                
+            default:
+                if(empty($compareDate)){
+                    $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Date=:date";
+                    $params = ['date'=>$todaydate];
+        
+                }else{
+                    $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Date between :compareDate AND :date";
+                    $params = ['date'=>$todaydate,'compareDate'=>$compareDate];
+                }
+                $queryPrepared = $this->pdo->prepare($sql);
+                $queryPrepared->execute($params);
+                $data = $queryPrepared->fetch();
+                break;
+        }
+    
+        return $data[0];
+
     }
 
 }

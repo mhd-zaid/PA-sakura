@@ -5,22 +5,22 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\Stats as statsModel;
 use DateTime;
-
+session_start();
 class Statistiques{
 
 	public function index(): void
 	{	
-		$ipUser = $_SERVER['REMOTE_ADDR'];
+		$idSession = session_id();
 		$stat = new statsModel();
-		if(!$stat->existIp($ipUser)){
-			$stat->setIp($ipUser);
+		if(!$stat->existSession($idSession)){
+			$stat->setSession($idSession);
 			$objectDate = date_format(new DateTime(),"Y-m-d" );	
 			$stat->setDate($objectDate);
 			$stat->save();
 		}
 		else{
-			$stat->setId($stat->findIdByIp($ipUser));
-			$stat->setIp($ipUser);
+			$stat->setId($stat->findIdBySession($idSession));
+			$stat->setSession($idSession);
 			$objectDate = date_format(new DateTime(),"Y-m-d" );	
 			$stat->setDate($objectDate);
 			$stat->save();
@@ -31,9 +31,19 @@ class Statistiques{
 
 	public function stats(): void
 	{
-		$date = $_GET["date"];
-		$stat = new statsModel();
-		echo $stat->getDayStats($date);
-		
+		$dates = ['today', 'yesterday', 'week', 'month', 'months', 'year'];
+		$datesValues = [];
+		if ($_GET['year'] === 'current') {
+			foreach ($dates as $date) {
+				$stat = new statsModel();
+				array_push($datesValues,$stat->getDayStats($date));
+			}
+			echo json_encode($datesValues);
+		}else{
+			$stat = new statsModel();
+			array_push($datesValues,$stat->getDayStats($_GET['year']));
+			echo json_encode($datesValues);
+		}
+
 	}
 }
