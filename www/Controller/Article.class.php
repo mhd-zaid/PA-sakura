@@ -61,7 +61,7 @@ class Article{
             $article->setImageName($_POST['imageName']);
             $article->setCategories($_POST['list']);
             $article->setRewriteUrl($choice);
-            $page->setDescription($_POST['metadescription']);
+            $article->setDescription($_POST['metadescription']);
 
             if(isset($_POST['submit'])){
                 $article->save();
