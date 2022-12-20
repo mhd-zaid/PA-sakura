@@ -33,8 +33,12 @@ class Verificator
 			}
 		}
 
-		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfTitleExsists($data["titre"])){
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title" ,$data["titre"])){
 			$this->msg[]="Un article portant ce titre existe déjà";
+		}
+
+		if(empty($this->msg) && !empty($data["slug"]) && !self::checkIfExists("slug" ,$data["slug"])){
+			$this->msg[]="Un article avec ce slug existe déjà";
 		}
 
 		if(empty($this->msg) && !empty($data["titre"]) && is_numeric($data["titre"])){
@@ -97,9 +101,8 @@ class Verificator
 		return $string == $stringOrigin;
 	}
 
-	public static function checkIfTitleExsists(string $title):bool{
+	public static function checkIfExists(string $context, string $data):bool{
 		$article = new Article();
-		return $article->isTitleExist($title);
+		return $article->isUnique($context, $data);
 	}
-
 }
