@@ -339,7 +339,7 @@ class User extends DatabaseDriver
                                 "submit"=>"Modifier",
                                 "delete"=>"Supprimer"
                             ],
-                "user"=>$this->getUser($_COOKIE['JWT']), 
+                "user"=>$this->find(), 
                             
                 "inputs"=> [
                     "firstname"=>[

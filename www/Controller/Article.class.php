@@ -22,7 +22,7 @@ class Article{
             //Cas d'un update car slug ou id renseigné
             if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
                 //récupère l'article courant
-                $data = $article->findArticle();
+                $data = $article->find();
                 $article->setUserId($data['User_Id']);
                 $article->setActive($data["Active"]);
                 //Vérification de sécurité
@@ -37,7 +37,7 @@ class Article{
             }
 
             //Récupère le choix de réecriture d'URL
-            $rewriteUrl = $article->findArticleRewriteUrl();
+            $rewriteUrl = $article->findRewriteUrl();
             $rewriteUrl > 0 ? $choice = 1 : $choice = 2;
 
             if(!empty($_POST)){
@@ -70,7 +70,7 @@ class Article{
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
             } 
             if(isset($_POST['delete'])){
-                $article->deleteArticle();
+                $article->delete();
                 header("Location: /article");
             } 
             if(isset($_POST['publish'])){
@@ -99,17 +99,4 @@ class Article{
         $v->assign("configForm", $form);
         $v->assign("configFormErrors", $configFormErrors??[]);
 }
-
-    public function manageArticle(){
-        $article = new ArticleModel();
-        $value = $article->findArticleRewriteUrl();
-        if(isset($_POST['save'])){
-            $article->updateRewriteUrl($_POST['choice']);
-            header('Location: /parametres-article ');
-        }
-        $v = new View("Page/ParametresManageArticle", "Back");
-        $v->assign("configForm", $value);
-        $v->assign("configFormErrors", $configFormErrors??[]);
-    }
-
 }

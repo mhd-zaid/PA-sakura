@@ -87,7 +87,7 @@ class Article extends DatabaseDriver
      */
     public function setSlug(String $slug): void
     {   
-        $newSlug = self::slugify($slug);
+        $newSlug = $this->slugify($slug);
         $this->slug = $newSlug;
     }
 
@@ -187,7 +187,7 @@ class Article extends DatabaseDriver
                             "submit"=>"Modifier"
                         ],
 
-           "article"=>$this->findArticle(),
+           "article"=>$this->find(),
            "category"=>$this->selectAllCategories(),
            "user"=>$userInfo, 
 
@@ -239,64 +239,7 @@ class Article extends DatabaseDriver
         ];
 
     }
-
-    public function findArticleRewriteUrl(){ 
-        $sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
-        $params = ['Rewrite_Url'=>'1'];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
-        $result = $queryPrepared->fetch();
-        return $queryPrepared->rowCount();
-    }
-
-    public function findArticle(){
-        if(!empty($_GET['Slug'])){
-            $slug = $_GET['Slug'];
-            $sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
-            $params = ['Slug'=>$slug];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-            $data = $queryPrepared->fetch();
-            if(empty($data)){
-                header("Location: /article");
-            }
-        }elseif(!empty($_GET['id'])){
-            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
-            $params = ['id'=>$_GET['id']];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-            $data = $queryPrepared->fetch();
-            if(empty($data)){
-                header("Location: /article");
-            }
-        }else{
-            return null;
-        }
-        return $data;
-    }
-
-    public function updateRewriteUrl(Int $choice){
-        $sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
-        $params = ['Rewrite_Url'=>$choice];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
-    }
-
-    public function deleteArticle():void{
-        if(!empty($_GET['Slug'])){
-            $slug = $_GET['Slug'];
-            $sql = "DELETE  FROM ".$this->table." WHERE Slug =:Slug";
-            $params = ['Slug'=>$slug];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-        }elseif(!empty($_GET['id'])){
-            $sql = "DELETE  FROM ".$this->table." WHERE id =:id";
-            $params = ['id'=>$_GET['id']];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-        }else{
-        }
-    }
+    
     public function selectAllCategories(){
         $categories = new Category();
         $data = $categories->getCategories();
@@ -309,31 +252,4 @@ class Article extends DatabaseDriver
         $data = $result->fetchAll();
         return $data;
     }
-    
-    public function slugify($text, string $divider = '-')
-    {
-    // replace non letter or digits by divider
-    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
-
-    // transliterate
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-    // remove unwanted characters
-    $text = preg_replace('~[^-\w]+~', '', $text);
-
-    // trim
-    $text = trim($text, $divider);
-
-    // remove duplicate divider
-    $text = preg_replace('~-+~', $divider, $text);
-
-    // lowercase
-    $text = strtolower($text);
-
-    if (empty($text)) {
-        return 'n-a';
-    }
-
-  return $text;
-}
 }

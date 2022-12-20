@@ -129,7 +129,7 @@ class Menu extends DatabaseDriver
     public function getExistingPages()
     {
         $pages = new PageModel();
-        $data = $pages->getPages();
+        $data = $pages->select();
         return $data;
     }
 

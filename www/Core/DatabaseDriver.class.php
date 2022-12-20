@@ -62,25 +62,12 @@ abstract class DatabaseDriver
 
 	}
 
-	public function delete(int $id):void
-	{
-		$sql = "DELETE FROM $this->table where id=$id";
-		$queryPrepared = $this->pdo->prepare($sql);
-		$queryPrepared->execute();
-
-	}
-
 	public function select()
 	{
-		if(isset($_GET['id']) && !empty($_GET['id'])){
-		$sql = "SELECT * FROM ".$this->table." WHERE id =".$_GET['id'];
+		$sql = "SELECT * FROM ".$this->table;
         $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $data = $result->fetchAll();
 		return $data;
-		}else{
-			return null;
-		}
-
 	}
 
 	public function serverProcessing(){
@@ -120,7 +107,6 @@ abstract class DatabaseDriver
     }
 
 	public function isUnique(String $context, String $data){
-
 		if($context === 'Title'){
 			$sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
 			$params = ['Title'=>$data];
@@ -168,4 +154,89 @@ abstract class DatabaseDriver
             return true;
         }
     }
+
+	public function find(){
+        if(!empty($_GET['Slug'])){
+            $slug = $_GET['Slug'];
+            $sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
+            $params = ['Slug'=>$slug];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
+            $data = $queryPrepared->fetch();
+            if(empty($data)){
+                header("Location: /page");
+            }
+        }elseif(!empty($_GET['id'])){
+            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
+            $params = ['id'=>$_GET['id']];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
+            $data = $queryPrepared->fetch();
+            if(empty($data)){
+                header("Location: /page");
+            }
+        }else{
+            return null;
+        }
+        return $data;
+    }
+
+	public function findRewriteUrl(){ 
+        $sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
+        $params = ['Rewrite_Url'=>'1'];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $result = $queryPrepared->fetch();
+        return $queryPrepared->rowCount();
+    }
+
+	public function updateRewriteUrl(Int $choice){
+        $sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
+        $params = ['Rewrite_Url'=>$choice];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+    }
+
+	public function delete():void{
+        if(!empty($_GET['Slug'])){
+            $slug = $_GET['Slug'];
+            $sql = "DELETE  FROM ".$this->table." WHERE Slug =:Slug";
+            $params = ['Slug'=>$slug];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
+        }elseif(!empty($_GET['id'])){
+            $sql = "DELETE  FROM ".$this->table." WHERE id =:id";
+            $params = ['id'=>$_GET['id']];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
+        }else{
+        }
+    }
+
+	public function slugify($text, string $divider = '-')
+    {
+    // replace non letter or digits by divider
+    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, $divider);
+
+    // remove duplicate divider
+    $text = preg_replace('~-+~', $divider, $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+	return $text;
+	}
 }

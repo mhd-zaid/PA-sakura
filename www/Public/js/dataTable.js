@@ -200,16 +200,20 @@ function DataTablePage() {
         class: "page_title",
       },
       {
-        data: "user_id",
+        data: "Date_Created",
+        class: "page_date_publi",
+      },
+      {
+        data: "Date_Updated",
+        class: "page_date_modif",
+      },
+      {
+        data: "User_Id",
         class: "page_userid",
       },
       {
         data: "active",
         class: "page_active",
-      },
-      {
-        data: "date_publi",
-        class: "page_date_publi",
       },
     ],
     order: [[1, "asc"]],
@@ -221,7 +225,13 @@ function DataTablePage() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/page-read?id=" + id);
+    var slug = row.data().Slug;
+    var rewriteUrl = row.data().Rewrite_Url;
+    if (rewriteUrl == 1) {
+      window.location.replace("/page-add/" + id);
+    } else {
+      window.location.replace("/page-add/" + slug);
+    }
   });
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {

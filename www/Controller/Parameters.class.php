@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\User as UserModel;
 use App\Core\Verificator;
+use App\Model\Article;
+use App\Model\Page;
 use App\Core\SendMail;
 use App\Core\Jwt;
 
@@ -74,7 +76,6 @@ class Parameters{
 					$token = $user->getToken();
                     $user->setRole(intval($_POST['userRole']));
 					$user->setStatus(1);
-					print_r($user);
 					$user->save();
 					$servername = $_SERVER['HTTP_HOST'];
 					$email = $_POST['email'];
@@ -88,23 +89,36 @@ class Parameters{
     }
     public function parametersEditUser(){
 		$user = new UserModel();
-		$role = $user->getUser(null,$_COOKIE['Email']);
+		$role = $user->getUser($_COOKIE['JWT']);
 		if($role['Role'] !== 1) header("Location: /tableau-de-bord");
 		$userUpdateForm = $user->userUpdateForm();
-        $userInformation = $user->getUser($_GET['id']);
+        $userInformation = $user->find();
         if( !empty($_POST) )
 		{
 			if(isset($_POST['update'])){
 				$user->updateUserRole($userInformation);
 			}
 			if(isset($_POST['delete'])){
-				$user->delete($_GET['id']);
+				$user->delete();
 				header('Location: /parametres-users');
 			}
 		}
         $v = new View("Page/ParametersEditUsers", "Back");
         $v->assign("configForm", $userUpdateForm);
-        $v->assign("user", $userInformation);
+        $v->assign("configFormErrors", $configFormErrors??[]);
+    }
+
+	public function manageUrl(){
+        $article = new Article();
+		$page = new Page();
+        $value = $article->findRewriteUrl();
+        if(isset($_POST['save'])){
+            $article->updateRewriteUrl($_POST['choice']);
+			$page->updateRewriteUrl($_POST['choice']);
+            header('Location: /parametres ');
+        }
+        $v = new View("Page/ParametresManageArticle", "Back");
+        $v->assign("configForm", $value);
         $v->assign("configFormErrors", $configFormErrors??[]);
     }
 }

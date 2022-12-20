@@ -3,6 +3,7 @@
 namespace App\Core;
 use App\Model\User;
 use App\Model\Article;
+use App\Model\Page;
 
 class Verificator
 {
@@ -33,11 +34,44 @@ class Verificator
 			}
 		}
 
-		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title" ,$data["titre"])){
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title", $data["titre"], "Article")){
 			$this->msg[]="Un article portant ce titre existe déjà";
 		}
 
-		if(empty($this->msg) && !empty($data["slug"]) && !self::checkIfExists("slug" ,$data["slug"])){
+		if(empty($this->msg) && !empty($data["slug"]) && !self::checkIfExists("slug", $data["slug"], "Article")){
+			$this->msg[]="Un article avec ce slug existe déjà";
+		}
+
+		if(empty($this->msg) && !empty($data["titre"]) && is_numeric($data["titre"])){
+			$this->msg[]="Votre titre ne peut contenir que des chiffres";
+		}
+		if(empty($this->msg) && empty($data["editor"])){
+			$this->msg[]="Veuillez ajouter du contenu";
+		}
+
+	}
+
+	public function verificatorEditionPage($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+
+			if(!empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+				$this->msg[]=$configInput["error"];
+			}
+		}
+
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title", $data["titre"], "Page")){
+			$this->msg[]="Un article portant ce titre existe déjà";
+		}
+
+		if(empty($this->msg) && !empty($data["slug"]) && !self::checkIfExists("slug", $data["slug"], "Page")){
 			$this->msg[]="Un article avec ce slug existe déjà";
 		}
 
@@ -101,8 +135,13 @@ class Verificator
 		return $string == $stringOrigin;
 	}
 
-	public static function checkIfExists(string $context, string $data):bool{
-		$article = new Article();
-		return $article->isUnique($context, $data);
+	public static function checkIfExists(string $context, string $data, $object):bool{
+		if($object === "Article"){
+		  $unique = new Article();
+		}
+		if($object === "Page"){
+			$unique = new Page();
+		  }
+		return $unique->isUnique($context, $data);
 	}
 }
