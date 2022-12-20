@@ -29,7 +29,10 @@ class Article{
                 if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
                     $article->setId($data["Id"]);
                 }else{
+                    $_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
+                    http_response_code(401);
                     header("Location: /article");
+                    exit();
                 }
             }else{
                 $article->setUserId($userData["Id"]);
@@ -65,33 +68,48 @@ class Article{
 
             if(isset($_POST['submit'])){
                 $article->save();
+                if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "L'article a été modifié avec succés";
+                else $_SESSION["flash-success"] = "L'article a été crée avec succés";
                 header("Location: /article");
+                exit();
             }   
             if(isset($_POST['deleteImage'])){
                 $article->setImageName("");
                 $article->save();
+                $_SESSION["flash-success"] = "Image supprimer";
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                exit();
             } 
             if(isset($_POST['delete'])){
                 $article->delete();
+                $_SESSION["flash-success"] = "L'article a été supprimer avec succés";
                 header("Location: /article");
+                exit();
             } 
             if(isset($_POST['publish'])){
                 if($userData['Role'] === 1){
                 $article->setActive(1);
                 $article->save();
+                $_SESSION["flash-success"] = "L'article a été publié avec succés";
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                exit();
                 }else{
+                    $_SESSION["flash-error"] = "Vous n'êtes pas autorisé à faire cela.";
                     header("Location: /tableau-de-bord");
+                    exit();
                 }
             }  
             if(isset($_POST['unpublish'])){
                 if($userData['Role'] === 1){
                 $article->setActive(0);
                 $article->save();
+                $_SESSION["flash-success"] = "L'article a été retiré avec succés";
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                exit();
                 }else{
+                    $_SESSION["flash-error"] = "Vous n'êtes pas autorisé à faire cela.";
                     header("Location: /tableau-de-bord");
+                    exit();
                 }
             }  
         }
