@@ -1,13 +1,11 @@
 RewriteEngine On 
 RewriteBase /
 
-RewriteRule ^article-read/(.*)$ article-read?Slug=$1
-RewriteRule ^article-read/([0-9]+)$ article-read?id=$1
-
-
 RewriteRule ^article-add/(.*)$ article-add?Slug=$1
 RewriteRule ^article-add/([0-9]+)$ article-read?id=$1
 
+RewriteRule ^page-add/([0-9]+)$ page-read?id=$1
+RewriteRule ^page-add/(.*)$ page-add?Slug=$1
 
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
