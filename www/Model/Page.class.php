@@ -14,6 +14,7 @@ class Page extends DatabaseDriver
     protected $slug;
     protected $rewrite_Url;
     protected $description;
+    protected $main;
     private $date_created;
 	private $date_updated;
 
@@ -124,6 +125,19 @@ class Page extends DatabaseDriver
         return $this->rewrite_Url;
     }
 
+     /**
+     * @param mixed $main
+     */
+    public function setMain(Int $main): void
+    {
+        $this->main = $main;
+    }
+
+    public function getMain(): ?Int
+    {
+        return $this->main;
+    }
+
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -158,7 +172,7 @@ class Page extends DatabaseDriver
                             "submit"=>"Modifier"
                         ],
 
-           "article"=>$this->find(),
+           "page"=>$this->find(),
            "user"=>$userInfo, 
 
            "textarea"=>[
@@ -169,7 +183,7 @@ class Page extends DatabaseDriver
             "inputs"=> [
                 "titre"=>[
                                 "type"=>"text",
-                                "label"=>"Titre de l'article",
+                                "label"=>"Titre de la page",
                                 "class"=>"ipt-form-entry",
                                 "min"=>2,
                                 "max"=>25,

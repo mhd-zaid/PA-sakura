@@ -61,6 +61,9 @@ class Page
                 $page->setRewriteUrl($choice);
                 $page->setDescription($_POST['metadescription']);
 
+            if(isset($_POST['checkbox'])){
+                $page->setMain(1);
+            }
             if(isset($_POST['submit'])){
                 $page->save();
                 header("Location: /page");

@@ -325,13 +325,6 @@
   security: 0
   isAdmin: 0
 
-/page-read:
-  controller: Page
-  action: readPage
-  security: 0
-  isAdmin: 0
-
-
 /page-edit/{id}:
  controller: Page
  action: editPage
