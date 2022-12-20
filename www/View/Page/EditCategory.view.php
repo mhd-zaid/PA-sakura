@@ -9,7 +9,13 @@
             <h1 class="h1-section-back">Catégorie</h1>
             <?php 
                 $this->includeComponent("form-create-category", $configForm);
+                
                 ?>
+            <?php foreach ($configFormErrors as $error ):?>
+            <div>
+                <p><?= $error ?> </p>
+            </div>
+             <?php endforeach;?>
         </div>
     </div>
 </section>

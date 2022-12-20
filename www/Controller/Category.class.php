@@ -22,11 +22,18 @@ class Category{
         }else{
             header("Location: /category");
         }
-
-        if(isset($_POST['submit'])){
+        if(!empty($_POST)){
+            $data =[];
+            isset($_POST['titre']) ? array_push($data, $_POST["titre"]) : '';
+            $verificator = new Verificator($form, $data);
+            $verificator->verificatorEditionCategory($form, $_POST);
+            $configFormErrors = $verificator->getMsg();
+            
+            if(empty($configFormErrors)){
+            if(isset($_POST['submit'])){
             $article = new Article();
             $category = new CategoryModel();
-            $dataCategory = $category->select();
+            $dataCategory = $category->find();
             //Cas d'un update
             if(isset($_GET['id']) && !empty($_GET['id'])){
                 $category->setId($_GET['id']);
@@ -57,12 +64,14 @@ class Category{
             $category->save();
             header("Location: /category");
         }
+    }
+    }
 
         if(isset($_POST['delete'])){
             $article = new Article();
             $data = $article->selectAllCategoriesArticle();
             $category = new CategoryModel();
-            $dataCategory = $category->select();
+            $dataCategory = $category->find();
             $search = $dataCategory['Titre'];
 
 
@@ -84,11 +93,12 @@ class Category{
                     $articleUpdate->save();
                 }
             }
-            $category->delete($_GET['id']);
+            $category->delete();
             header("Location: /category");
         }
         $v=new View("Page/EditCategory", "Back");
         $v->assign("configForm", $form);
+        $v->assign("configFormErrors", $configFormErrors??[]);
     }
 
 }

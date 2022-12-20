@@ -84,6 +84,28 @@ class Verificator
 
 	}
 
+	public function verificatorEditionCategory($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+
+			if(!empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+				$this->msg[]=$configInput["error"];
+			}
+		}
+
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title", $data["titre"], "Page")){
+			$this->msg[]="Un article portant ce titre existe déjà";
+		}
+
+	}
+
 	public function verificatorLogin($configForm, $data):void{
 		foreach($configForm["inputs"] as $name=>$configInput){
 			if(!empty($configInput["required"]) && empty($data[$name])){

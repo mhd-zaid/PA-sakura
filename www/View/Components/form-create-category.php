@@ -21,7 +21,7 @@
 	<?php endforeach;?>   
 	</div>
 
-	<input type="submit" class="cta-button btn--pink" name="submit" value="<?= 'Ajouter' ?>">
+	<input type="submit" class="cta-button btn--pink" name="submit" value="<?= !empty($config['category']) ? 'Modifier' : 'Ajouter' ?>">
 	<?php if(!empty($config['category'])): ?>
 	<input type="submit" class="cta-button btn--pink" name="delete" value="<?= 'Supprimer' ?>">
 	<?php endif; ?>

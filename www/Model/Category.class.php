@@ -43,7 +43,7 @@ class Category extends DatabaseDriver
      */
     public function setTitre(String $titre): void
     {
-        $this->titre = $titre;
+        $this->titre = strip_tags($titre);
     }
 
     public function createCategoryForm(){
@@ -54,16 +54,18 @@ class Category extends DatabaseDriver
                                 "class"=>"form-register",
                                 "submit"=>"Enregistrer"
                             ],
-                "category"=>$this->select(),
+                "category"=>$this->find(),
 
                 "inputs"=> [
                     "titre"=>[
-                                    "type"=>"text",
-                                    "label"=>"Titre de la catégorie",
-                                    "class"=>"ipt-form-entry",
-                                    "required"=>true,
-                                    "error"=>"Votre titre est inccorect"
-                                ],
+                        "type"=>"text",
+                        "label"=>"Titre de l'article",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                    ],
                 ]
             ];
 
