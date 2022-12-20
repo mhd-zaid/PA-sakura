@@ -34,6 +34,7 @@ CREATE TABLE `sakura_article` (
   `User_Id` int(11) NOT NULL,
   `Image_Name` varchar(50) NOT NULL,
   `Active` int(11) NOT NULL DEFAULT '0',
+  `categories` varchar(255),
   `Rewrite_Url` int(11) NOT NULL DEFAULT '1',
   `Title` varchar(255) DEFAULT NULL,
   `categories` varchar(255),
@@ -187,15 +188,17 @@ CREATE TABLE `sakura_page` (
   `Active` tinyint(1) NOT NULL,
   `User_Id` int(11) DEFAULT NULL,
   `Description` text,
-  `Date_publi` date NOT NULL,
-  `Date_modif` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `Slug` varchar(255),
+  `Rewrite_Url` varchar(10),
+  `Date_Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Date_Updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `sakura_page`
 --
 
-INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_publi`, `Date_modif`) VALUES
+INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_Created`, `Date_Updated`) VALUES
 (1, 'My 1st page', '<h2>First Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'first-page', '2022-11-21', '2022-11-21 09:57:20'),
 (2, 'My 2nd page', '<h2>Second Page</h2><p>Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem</p>', 0, 1, 'my-second-page', '2022-11-20', '2022-11-21 09:54:51'),
 (3, 'My 3rd page', '<h2>Third Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'third-page', '2022-11-21', '2022-11-21 09:55:17'),
