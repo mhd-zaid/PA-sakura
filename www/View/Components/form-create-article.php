@@ -5,7 +5,7 @@
 		$secondElem=array_slice($config["inputs"], 1, 1);
 		$thirdElem=array_slice($config["inputs"], 2, 1);
 		$sixthElem=array_slice($config["inputs"], 3, 1);
-
+		$fifthElem=array_slice($config["inputs"], 5, 1);
 	?>
 	<?php if($config['user']['Role']=== 1): ?>
 	<?php if(!empty($config['article']) && $config['article']['Active'] === 0): ?> <input type="submit" class="cta-button btn--pink" name="publish" value="<?= "Publier" ?>"><?php endif; ?>
@@ -44,6 +44,23 @@
 			></p>
 			</div>
 	<?php endforeach;?>
+
+	<?php 
+		foreach ($fifthElem as $name => $configInput):?>
+		<div>
+			<p><?= $configInput["label"] ?>
+			<input name="<?= $name ?>" 
+					class=""
+					type="<?= $configInput["type"]??"text" ?>"
+					value="<?= !empty($config["article"]['Description']) ? $config["article"]['Description'] : ''  ?>"
+					<?php if(!empty($configInput["required"])): ?>
+						required="required"
+					<?php endif;?>
+
+			></p>
+			</div>
+	<?php endforeach;?>
+
 	 <input type="hidden" id= <?= $thirdElem['listCategorie']['id'] ?>  value = "<?= !empty($config["article"]['categories']) ? $config["article"]['categories'] : '' ?>" name="list" readonly="true"  style="display:none"/>
 	<?php 
 	$categorieAlreadySet = $config['article']['categories'];

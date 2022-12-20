@@ -47,6 +47,8 @@ class Article{
             isset($_POST['slug']) ? array_push($data, $_POST["slug"]) : '';
             isset($_POST['imageName']) ? array_push($data, $_POST["imageName"]) : '';
             isset($_POST['list']) ? array_push($data, $_POST["list"]) : '';
+            isset($_POST['description']) ? array_push($data, $_POST["description"]) : '';
+            isset($_POST['metadescription']) ? array_push($data, $_POST["metadescription"]) : '';
             $verificator = new Verificator($form, $data);
 			$verificator->verificatorEditionArticle($form, $_POST);
 			$configFormErrors = $verificator->getMsg();
@@ -59,6 +61,7 @@ class Article{
             $article->setImageName($_POST['imageName']);
             $article->setCategories($_POST['list']);
             $article->setRewriteUrl($choice);
+            $page->setDescription($_POST['metadescription']);
 
             if(isset($_POST['submit'])){
                 $article->save();

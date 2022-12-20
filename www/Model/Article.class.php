@@ -19,6 +19,7 @@ class Article extends DatabaseDriver
 	private $date_updated;
     protected $rewrite_Url;
     protected $categories;
+    protected $description;
 
 	public function __construct()
 	{
@@ -115,6 +116,17 @@ class Article extends DatabaseDriver
     public function setUserId(Int $user_id): void
     {
         $this->user_id = $user_id;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->content;
+    }
+
+
+    public function setDescription(String $description): void
+    {
+        $this->description = strip_tags($description);
     }
 
     public function getImageName(): ?String
@@ -234,6 +246,16 @@ class Article extends DatabaseDriver
                     "class"=>"ipt-form-entry",
                     "required"=>false,
                     "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                ],
+
+                "metadescription"=>[
+                    "type"=>"text",
+                    "label"=>"Metadescription",
+                    "class"=>"ipt-form-entry",
+                    "min"=>2,
+                    "max"=>25,
+                    "required"=>true,
+                    "error"=>"Les metadescriptions sont obligatoires"
                 ],
             ]
         ];
