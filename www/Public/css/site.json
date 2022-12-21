@@ -1,0 +1,71 @@
+{
+    "themes":
+    [
+        {
+            "h1": {
+                "color": "red",
+                "font-size": "42px",
+                "font-weight": "600",
+                "font-family": ""
+            },
+            "h2": {
+                "color": "red",
+                "font-size": "42px",
+                "font-weight": "600",
+                "font-family": ""
+            },
+            "body": {
+                "background-color": "red"
+            },
+            "nav": {
+                "background-color": "red",
+                "color": "black"
+            }
+
+        },
+        {
+            "h1": {
+                "color": "red",
+                "font-size": "42px",
+                "font-weight": "600",
+                "font-family": ""
+            },
+            "h2": {
+                "color": "red",
+                "font-size": "42px",
+                "font-weight": "600",
+                "font-family": ""
+            },
+            "body": {
+                "background-color": "red"
+            },
+            "nav": {
+                "background-color": "red",
+                "color": "black"
+            }
+
+        },
+        {
+            "h1": {
+                "color": "red",
+                "font-size": "42px",
+                "font-weight": "600",
+                "font-family": ""
+            },
+            "h2": {
+                "color": "red",
+                "font-size": "42px",
+                "font-weight": "600",
+                "font-family": ""
+            },
+            "body": {
+                "background-color": "red"
+            },
+            "nav": {
+                "background-color": "red",
+                "color": "black"
+            }
+
+        },
+    ]
+}

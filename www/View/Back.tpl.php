@@ -79,8 +79,8 @@
                 <div class="col col-3"><img src="/Public/img/Back/comments1.svg" alt="Dashboard"></div>
                 <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Navigation</p></div>
             </div></a>
-            <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
+            <a href="/apparence"><div class="row">
+                <div class="col col-3"><img src="Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
                 <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Apparence</p></div>
             </div></a>
             <a href="/statistiques"><div class="row">
