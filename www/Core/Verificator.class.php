@@ -3,6 +3,7 @@
 namespace App\Core;
 use App\Model\User;
 use App\Model\Article;
+use App\Model\Category;
 use App\Model\Page;
 
 class Verificator
@@ -11,6 +12,10 @@ class Verificator
 
 	public function __construct($configForm, $data)
 	{
+		// print_r($data);
+		// echo '<br />';
+		// print_r($configForm['inputs']);
+		// die();
 		//Vérifier que l'on a autant de post ou get  que de inputs dans la config (Faille XSS)
 		if( count($data) != count($configForm["inputs"])){
 			$this->msg[]="Tentative de Hack";
@@ -100,22 +105,31 @@ class Verificator
 			}
 		}
 
-		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title", $data["titre"], "Page")){
-			$this->msg[]="Un article portant ce titre existe déjà";
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title", $data["titre"], "Category")){
+			$this->msg[]="Une catégorie portant ce titre existe déjà";
 		}
 
 	}
 
 	public function verificatorLogin($configForm, $data):void{
 		foreach($configForm["inputs"] as $name=>$configInput){
-			if(!empty($configInput["required"]) && empty($data[$name])){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
 				$this->msg[]="Le champs ".$name." est obligatoire";
 			}
-			if(!empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
 				$this->msg[]=$configInput["error"];
 			}
-			if(!empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
 				$this->msg[]=$configInput["error"];
+			}
+			if(empty($this->msg) && $configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+			if(empty($this->msg) && !empty($configInput["confirm"]) && !self::checkConfirm($data[$name], $data[$configInput["confirm"]]) ){
+				$this->msg[]=$configInput["error"];		
+			}
+			else if(empty($this->msg) && $configInput["type"]=="password" && !empty($configInput["required"]) && !self::checkPassword($data[$name])){
+				$this->msg[]=$configInput["error"];		
 			}
 		}
 	}
@@ -164,6 +178,9 @@ class Verificator
 		if($object === "Page"){
 			$unique = new Page();
 		  }
+		if($object === "Category"){
+			$unique = new Category();
+		}
 		return $unique->isUnique($context, $data);
 	}
 }

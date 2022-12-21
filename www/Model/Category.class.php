@@ -9,7 +9,7 @@ class Category extends DatabaseDriver
 {
 
 	private $id = null;
-	protected $titre;
+	protected $title;
 
 	public function __construct()
 	{
@@ -35,15 +35,15 @@ class Category extends DatabaseDriver
 
     public function getTitre(): ?String
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
      * @param null $content
      */
-    public function setTitre(String $titre): void
+    public function setTitre(String $title): void
     {
-        $this->titre = strip_tags($titre);
+        $this->title = strip_tags($title);
     }
 
     public function createCategoryForm(){
