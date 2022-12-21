@@ -244,8 +244,8 @@ class Article extends DatabaseDriver
                 "editor"=>[
                     "type"=>"hidden",
                     "class"=>"ipt-form-entry",
-                    "required"=>false,
-                    "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                    "required"=>true,
+                    "error"=>"Veuillez ajouter du contenu."
                 ],
 
                 "metadescription"=>[

@@ -26,7 +26,9 @@ class Security{
 				$role = $user->getUser($_COOKIE['JWT']);
 				if($role['Role'] !== 1)
 				{
+					$_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
 					header("Location: /tableau-de-bord");
+					die();
 				}
 			}
 	}
