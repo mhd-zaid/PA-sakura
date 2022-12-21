@@ -14,7 +14,7 @@ class Verificator
 	{
 		// print_r($data);
 		// echo '<br />';
-		// print_r($configForm['inputs']);
+		// print_r(count($configForm['inputs']));
 		// die();
 		//Vérifier que l'on a autant de post ou get  que de inputs dans la config (Faille XSS)
 		if( count($data) != count($configForm["inputs"])){
@@ -112,6 +112,23 @@ class Verificator
 			$this->msg[]="Une catégorie portant ce titre existe déjà";
 		}
 
+	}
+
+	public function verificatorEditionMotBanni($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+
+			if(!empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+				$this->msg[]=$configInput["error"];
+			}
+		}
 	}
 
 	public function verificatorLogin($configForm, $data):void{

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\Comment as CommentModel;
 use App\Model\User;
+use App\Core\Verificator;
 
 class Commentaire
 {
@@ -53,14 +54,26 @@ class Commentaire
     
     public function motsbannis(): void
     {
-        if (isset($_POST['submit'])) {
-            if(isset($_POST['ajouter-mot']) && !empty($_POST['ajouter-mot'])){
-                file_put_contents(getcwd() . "/banWords.txt", "\n".$_POST['ajouter-mot'],FILE_APPEND);
+        $comment = new CommentModel();
+        $form = $comment->createMotBanForm();
+        if(!empty($_POST)){
+            $data = [];
+            isset($_POST['word']) ? array_push($data, $_POST["word"]) : '';
+            $verificator = new Verificator($form, $data);
+            $verificator->verificatorEditionMotBanni($form, $_POST);
+            $configFormErrors = $verificator->getMsg();
+
+            if(empty($configFormErrors)){
+                if (isset($_POST['submit'])) {
+                        file_put_contents(getcwd() . "/banWords.txt", "\n".strip_tags($_POST['word']),FILE_APPEND);
+                }
             }
         }
         $data=$this->getBanWords();
         $v = new View("Page/CommentaireMotsBannis", "Back");
         $v->assign("data", $data ?? []);
+        $v->assign("configForm", $form);
+        $v->assign("configFormErrors", $configFormErrors??[]);
     }
     
     

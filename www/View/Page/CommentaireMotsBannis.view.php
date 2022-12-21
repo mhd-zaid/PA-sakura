@@ -7,16 +7,14 @@
     </div>
     <div class="row">
         <div class="col-4">
-            <p>Rechercher&nbsp;&nbsp;&nbsp;<span><input type="text" id="recherche"></span></p>
-        </div>
-        <div class="col-4">
-            <form action="" method="POST">
-                <button type="submit" name="submit" class="cta-button btn--pink" id="ajouter-mot">
-                    Ajouter
-                </button>
-                <input type="text" name="ajouter-mot" id="ajouter-mot"></span></p>
-            </form>
-
+          <?php 
+                $this->includeComponent("form-create-category", $configForm);
+                ?>
+                 <?php foreach ($configFormErrors as $error ):?>
+                    <div>
+                        <p><?= $error ?> </p>
+                    </div>
+                <?php endforeach;?>
         </div>
     </div>
 </section>
