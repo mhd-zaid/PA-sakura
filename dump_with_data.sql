@@ -75,7 +75,7 @@ INSERT INTO `sakura_article` (`Id`, `Content`, `Slug`, `User_Id`, `Image_Name`, 
 
 CREATE TABLE `sakura_category` (
   `Id` int(11) NOT NULL,
-  `Titre` varchar(255),
+  `Titre` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -255,7 +255,7 @@ CREATE TABLE `sakura_type` (
 --
 
 CREATE TABLE `sakura_stats` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Session` varchar(255) NOT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
