@@ -43,6 +43,15 @@ CREATE TABLE `sakura_category` (
   `Description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Structure de la table `Stats`
+--
+
+CREATE TABLE `sakura_stats` (
+  `Id` int(11) NOT NULL,
+  `Session` varchar(255) NOT NULL,
+  `Date` date NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 -- --------------------------------------------------------
 
 --

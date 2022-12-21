@@ -250,6 +250,47 @@ CREATE TABLE `sakura_type` (
   `Name` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Structure de la table `Stats`
+--
+
+CREATE TABLE `sakura_stats` (
+  `Id` int(11) NOT NULL,
+  `Session` varchar(255) NOT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `sakura_user`
+--
+
+INSERT INTO `sakura_stats` (`Id`, `Session`, `Date`) VALUES
+(2, 'cmppn0s48cundfn6sff4414080', '2022-12-19'),
+(3, 'p0s49jh6gbj938gtcd4kccugl2', '2022-12-18'),
+(4, 'lgd711m8771g8ao3rpda2hsl14', '2022-12-18'),
+(5, 'qzrfazfgaqfaq', '2022-12-01'),
+(6, 'qsfqsfqsfqsfqs', '2022-12-05'),
+(7, 'qsfqsfqsfqsfqsfdgfhjfj', '2022-12-04'),
+(8, 'dsfghjngdg', '2022-11-06'),
+(9, 'sdgdhjsfhgdg', '2022-11-15'),
+(10, 'eryzeryhiiupiouery', '2022-10-02'),
+(11, 'zretyuulilml', '2021-03-15'),
+(12, 'sdfsdgsdgqdgqdg', '2021-01-10'),
+(13, 'qiopyufthdjfg', '2021-03-29'),
+(14, 'qsidonfoqdfglk', '2022-05-16'),
+(15, 'hlrbf3csidpk690v6no0slgmm3', '2022-12-19'),
+(16, 'f8389n997ir834po6nmq9ggq3i', '2022-12-19'),
+(17, 'zeartyuj', '2019-05-15'),
+(18, 'zetzetzztzt', '2019-03-20'),
+(19, 'zetzetztztz', '2019-12-17'),
+(20, 'ztztzetzyeryuzerye', '2020-05-13'),
+(21, 'zaeyuout-yeyezry', '2020-12-30'),
+(22, 'yzeryzeryrey', '2020-12-15'),
+(23, '754ert578erf546r4', '2019-04-16'),
+(24, 'ze7tze87t857zzetze4t', '2019-06-24'),
+(25, 'zetze4t4zetzet54ze', '2020-12-17'),
+(26, 'ze47tze5t4ze56t', '2020-06-19');
+
 -- --------------------------------------------------------
 
 --
