@@ -84,43 +84,37 @@ abstract class DatabaseDriver
 	}
 
 	public function serverProcessing(){
-		if(get_class($this) == User::class){
-			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
-			$i=0;
-			$result = [
-				'recordsTotal' =>$dataTable['recordsTotal'] ,
-				'recordsFiltered'=>$dataTable['recordsFiltered'],
-				'data'=>null
-			];
-			
-			foreach ($dataTable as $data => $value) {
-				if(array_key_exists($i,$dataTable['data'])){
-					if ($dataTable['data'][$i]['Role'] == 0) {
-						unset($dataTable['data'][$i]);
-					}else{
-						$result['data'][] = $dataTable['data'][$i];
-					}
-				}
-				$i++;
+
+		$objectVars = get_object_vars($this);
+		$classVars = get_class_vars(get_class());
+		$columns = array_diff_key($objectVars, $classVars);
+		$arrColumns = [['db' => 'Id', 'dt' => 'Id']];
+			foreach($columns as $key => $col){
+				$arrColumns[] = ['db' => $key, 'dt' => $key];
 			}
-			$result['recordsFiltered'] = $dataTable['recordsFiltered'];
-			echo json_encode($result);
-		}elseif((get_class($this) == Article::class) || (get_class($this) == Comment::class) || (get_class($this) == Page::class)){
-			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
-			$i=0;
-			foreach ($dataTable as $data => $value) {
-				preg_replace('/%u([0-9A-F]+)/', '&#x$1;', $dataTable['data'][$i]['Content']);
-				html_entity_decode($dataTable['data'][$i]['Content'], ENT_COMPAT, 'UTF-8');
-				if ($dataTable['data'][$i]['Active'] === 0) {
-					$dataTable['data'][$i]['Active'] = "Brouillon";
+		$user = new User();
+		if((get_class($this) == Article::class) || (get_class($this) == Comment::class) || (get_class($this) == Page::class)){
+
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'Id', $arrColumns);
+
+			foreach ($dataTable['data'] as $data => &$value) {
+
+				preg_replace('/%u([0-9A-F]+)/', '&#x$1;', $value['content']);
+				html_entity_decode($value['content'], ENT_COMPAT, 'UTF-8');
+
+				if ($value['active'] == 0) {
+					$value['active'] = "Brouillon";
 				}
-				if($dataTable['data'][$i]['Active'] === 1){
-					$dataTable['data'][$i]['Active'] = "Publié";
+				if($value['active'] == 1){
+				   $value['active'] = "Publié";
+				}
+				if(isset($value['user_id'])){
+				$value['user_id'] = $user->getNameUserId($value['user_id']);
 				}
 			}
 			echo json_encode($dataTable);
-		}elseif((get_class($this) == Category::class)){
-			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
+		}elseif((get_class($this) == Category::class) || get_class($this) === User::class){
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id', $arrColumns);
 			echo json_encode($dataTable);
 		}
     }

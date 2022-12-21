@@ -1,4 +1,9 @@
 $(document).ready(function () {
+  $.extend(true, $.fn.dataTable.defaults, {
+    language: {
+      url: "https://cdn.datatables.net/plug-ins/1.13.1/i18n/fr-FR.json",
+    },
+  });
   DataTableUser();
   DataTableArticle();
   DataTableComment();
@@ -23,11 +28,11 @@ function DataTableUser() {
         class: "user_id",
       },
       {
-        data: "Firstname",
+        data: "firstname",
         class: "user_firstname",
       },
       {
-        data: "Lastname",
+        data: "lastname",
         class: "user_lastname",
       },
     ],
@@ -67,7 +72,7 @@ function DataTableArticle() {
         class: "article_id",
       },
       {
-        data: "Slug",
+        data: "title",
         class: "article_slug",
       },
       // {
@@ -89,9 +94,9 @@ function DataTableArticle() {
     var slug = row.data().Slug;
     var rewriteUrl = row.data().Rewrite_Url;
     if (rewriteUrl == 1) {
-      window.location.replace("/article-read/" + id);
+      window.location.replace("/article-add/" + id);
     } else {
-      window.location.replace("/article-read/" + slug);
+      window.location.replace("/article-add/" + slug);
     }
   });
   // On each draw, loop over the `detailRows` array and show any child rows
@@ -119,11 +124,11 @@ function DataTableComment() {
         class: "user_id",
       },
       {
-        data: "Content",
+        data: "content",
         class: "comment_content",
       },
       {
-        data: "Active",
+        data: "active",
         class: "comment_active",
       },
       {
@@ -191,89 +196,20 @@ function DataTablePage() {
         class: "page_id",
       },
       {
-        data: "Title",
+        data: "title",
         class: "page_title",
       },
-
       {
-        data: "Date_publi",
-        class: "page_date_publi",
-      },
-      {
-        data: "Date_modif",
-        class: "page_date_modif",
-      },
-      {
-        data: "User_Id",
+        data: "user_id",
         class: "page_userid",
       },
       {
-        data: "Active",
+        data: "active",
         class: "page_active",
       },
-    ],
-    order: [[1, "asc"]],
-  });
-  // Array to track the ids of the details displayed rows
-  var detailRows = [];
-
-  $("#table_pages tbody").on("click", "tr td.details-control", function () {
-    var tr = $(this).closest("tr");
-    var row = table.row(tr);
-    var id = row.data().Id;
-    window.location.replace("/page-read?id=" + id);
-  });
-  // On each draw, loop over the `detailRows` array and show any child rows
-  table.on("draw", function () {
-    detailRows.forEach(function (id, i) {
-      $("#" + id + " td.details-control").trigger("click");
-    });
-  });
-}
-
-function DataTablePage() {
-  var table = $("#table_pages").DataTable({
-    processing: true,
-    serverSide: true,
-    ajax: "/datatable?table=page",
-    columnDefs: [
       {
-        orderable: false,
-        className: "select-checkbox",
-        targets: 0,
-      },
-    ],
-    columns: [
-      {
-        class: "details-control",
-        orderable: false,
-        data: null,
-        defaultContent: "",
-      },
-      {
-        data: "Id",
-        class: "page_id",
-      },
-      {
-        data: "Title",
-        class: "page_title",
-      },
-
-      {
-        data: "Date_publi",
+        data: "date_publi",
         class: "page_date_publi",
-      },
-      {
-        data: "Date_modif",
-        class: "page_date_modif",
-      },
-      {
-        data: "User_Id",
-        class: "page_userid",
-      },
-      {
-        data: "Active",
-        class: "page_active",
       },
     ],
     order: [[1, "asc"]],
@@ -312,7 +248,7 @@ function DataTableCategory() {
         class: "category_id",
       },
       {
-        data: "Titre",
+        data: "titre",
         class: "category_titre",
       },
     ],
