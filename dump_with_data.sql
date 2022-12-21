@@ -257,7 +257,7 @@ CREATE TABLE `sakura_type` (
 CREATE TABLE `sakura_stats` (
   `Id` int(11) NOT NULL,
   `Session` varchar(255) NOT NULL,
-  `Date` date NOT NULL,
+  `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -290,7 +290,6 @@ INSERT INTO `sakura_stats` (`Id`, `Session`, `Date`) VALUES
 (24, 'ze7tze87t857zzetze4t', '2019-06-24'),
 (25, 'zetze4t4zetzet54ze', '2020-12-17'),
 (26, 'ze47tze5t4ze56t', '2020-06-19');
-COMMIT;
 
 -- --------------------------------------------------------
 
