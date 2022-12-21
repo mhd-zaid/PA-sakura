@@ -771,4 +771,13 @@ class User extends DatabaseDriver
 				header('Location: /parametres-users');
     }
 
+    public function getNameUserId($id){
+        $sql = "SELECT Firstname, Lastname FROM ".$this->table." WHERE Id=:Id";
+        $params = ['Id'=>$id];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
+        return $data['Lastname'].' '.$data['Firstname'];
+        }
+
 }
