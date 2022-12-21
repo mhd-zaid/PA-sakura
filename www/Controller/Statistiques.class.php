@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\Stats as statsModel;
 use DateTime;
-session_start();
+
 class Statistiques{
 
 	public function index(): void
