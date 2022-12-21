@@ -11,7 +11,7 @@
 			<input name="<?= $name ?>" 
 					class=""
 					type="<?= $configInput["type"]??"text" ?>"
-					value="<?= !empty($config['category']) ? $config['category']['Titre'] : '' ?>"
+					value="<?= !empty($config['category']) ? $config['category']['Title'] : '' ?>"
 					<?php if(!empty($configInput["required"])): ?>
 						required="required"
 					<?php endif;?>

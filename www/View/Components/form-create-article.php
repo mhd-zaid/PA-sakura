@@ -70,7 +70,7 @@
 	echo '<select name="categorie" id="categorie">';
 	echo '<option value="">--Catégorie--</option>';
 		foreach($config['category'] as $name => $categorie){
-			$categorieName = $config['category'][$name]['Titre'];
+			$categorieName = $config['category'][$name]['Title'];
    			echo "<option value='$categorieName'>$categorieName</option>";
 		}
 		echo '</select>';

@@ -53,6 +53,9 @@ class Verificator
 		if(empty($this->msg) && empty($data["editor"])){
 			$this->msg[]="Veuillez ajouter du contenu";
 		}
+		if(empty($this->msg) && !empty($data["list"] && !self::isCategoryExist($data['list']))){
+			$this->msg[]="Ajouter des catégories qui existent.";
+		}
 
 	}
 
@@ -132,6 +135,9 @@ class Verificator
 				$this->msg[]=$configInput["error"];		
 			}
 		}
+		if(empty($this->msg) && !empty($data["email"]) && !self::checkIfExists("Email", $data["email"], "User")){
+			$this->msg[]="Cette email est déjà associé à un compte.";
+		}
 	}
 
 	public function getMsg(): array
@@ -181,6 +187,21 @@ class Verificator
 		if($object === "Category"){
 			$unique = new Category();
 		}
+		if($object === "User"){
+			$unique = new User();
+		}
 		return $unique->isUnique($context, $data);
+	}
+
+	public static function isCategoryExist($list):bool{
+		$categoryList = explode(',', $list);
+		foreach($categoryList as $value){
+			$category = new Category();
+			$categoryExist = $category->isExist($value);
+			if(!$categoryExist){
+				return false;
+			}
+		}
+		return true;
 	}
 }

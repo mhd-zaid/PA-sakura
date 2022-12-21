@@ -116,6 +116,13 @@ abstract class DatabaseDriver
 			$params = ['slug'=>$data];
 		}
 
+		if($context === 'Email'){
+			$user = new User();
+			$userInfo = $user->getUser($_COOKIE['JWT']);
+			$sql = "SELECT * FROM ".$this->table." WHERE Email = :Email AND Id!= :id";
+			$params = ['Email'=>$data, "id"=>$userInfo['Id']];
+		}
+
         $queryPrepared = $this->pdo->prepare($sql);
 		$queryPrepared->execute($params);
         $result = $queryPrepared->fetch();

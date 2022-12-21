@@ -185,7 +185,8 @@ class Article extends DatabaseDriver
     //abstract public function setId($id);
     public function setCategories(String $categories): void
     {
-        $this->categories = $categories;
+        $categories = array_unique(explode(',', $categories));
+        $this->categories = strip_tags(implode(',', $categories));
     }
 
     public function createArticleForm(){
