@@ -10,11 +10,9 @@
 <div class="grid box-statistiques">
     <div class="flex-row">
         <select id="choices-stats">
-            <option value="">Veuillez choisir une valeur</option>
-            <option value="current">Année courante</option>
-            <option value="year-1"><?= date_format(new DateTime("-1 year"),"Y")?> </option>
-            <option value="year-2"><?= date_format(new DateTime("-2 year"),"Y")?> </option>
-            <option value="year-3"><?= date_format(new DateTime("-3 year"),"Y")?> </option>
+            <option value="">Choisir une option</option>
+            <option value="current">Vu sur l'Année courante</option>
+            <option value="year-1">Vu sur les années précendentes</option>
         </select>
     </div>
 
@@ -64,15 +62,13 @@
                 });
                 
             }else{
-                var prevDate = d.setFullYear(d.getFullYear() - $("#choices-stats").val().split('-')[1])
                 myChart = 
                     new Chart(ctx, {
                     type: 'doughnut',
                     data: {
-                    labels: ['Année '+ new Date(prevDate).getFullYear()],
+                    labels: ['Année '+ d.getFullYear(), 'Année'+(d.getFullYear()-1).toString(),'Année'+(d.getFullYear()-2).toString(),'Année'+(d.getFullYear()-3).toString()],
                     datasets: [{
                         data: data,
-                        backgroundColor: '#0F056B',
                         borderWidth: 1
                     }]
                     }

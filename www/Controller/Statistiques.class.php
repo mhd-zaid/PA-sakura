@@ -40,8 +40,12 @@ class Statistiques{
 			}
 			echo json_encode($datesValues);
 		}else{
-			$stat = new statsModel();
-			array_push($datesValues,$stat->getDayStats($_GET['year']));
+			$dates = ['year', 'year-1', 'year-2', 'year-3'];
+			$datesValues = [];
+			foreach ($dates as $date) {
+				$stat = new statsModel();
+				array_push($datesValues,$stat->getDayStats($date));
+			}
 			echo json_encode($datesValues);
 		}
 
