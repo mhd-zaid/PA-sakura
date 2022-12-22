@@ -6,17 +6,6 @@
         </div>
     </div>
     <div class="row">
-        <p>Recherche <span><input type="text"></span> </p>
-    </div>
-    <div class="row">
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">En attente</p></div>
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Publié</p> </div>
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Supprimé</p></div>
-        <div class="col col-2 flex-col flex-col-center"><p class="filter">Signalement</p></div>
-        <div class="col col-2 flex-col flex-col-center"><a href="/commentaire-mots-bannis"> <p class="filter">Mot bannis</p></a></div>
-
-    </div>
-    <div class="row">
         <div class="col col-2">
             <a href="/commentaire-add" class="cta-button btn--pink">Ajouter</a>
         </div>

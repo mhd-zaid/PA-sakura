@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Dashboard</title>
     <meta charset="utf-8" />
@@ -15,8 +16,9 @@
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script type="text/javascript" src="../Public/js/dataTable.js"></script>
-   
+
 </head>
+
 <body>
 
 <div class="grid grid-back">
@@ -46,11 +48,240 @@
                         <a href="/se-deconnecter">Se déconnecter</a>
                     </div>
                 </div>
+            </header>
+
+        </div>
+
+
+        <div id="row-nav-main" class="row row-nav-main">
+
+            <nav id="col-nav">
+                <a href="/tableau-de-bord">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/dashboard-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Accueil</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/page">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Page</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/article">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Articles</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/media">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/article-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Médias</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/commentaire">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/media1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Commentaires</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/navigation">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/comments1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Navigation</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/apparence">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Apparence</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/tableau-de-bord">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/analytics-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Statistiques</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/tableau-de-bord">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/extension-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Extension</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/parametres">
+                    <div class="row">
+                        <div class="col col-3"><img src="Public/img/Back/settings-1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Paramètres</p>
+                        </div>
+                    </div>
+                </a>
+                <a href="/se-deconnecter">
+                    <div id="disconnect" class="row">
+                        <div class="col col-3"><img src="Public/img/Back/logout1.svg" alt="Dashboard"></div>
+                        <div class="col col-7 flex-col flex-col-center">
+                            <p class="menu-label">Déconnexion</p>
+                        </div>
+                    </div>
+                </a>
+            </nav>
+
+            <main id="col-main" class="col">
+                <?php require $this->view; ?>
+            </main>
+
+            <div id="col-appearance">
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>H1</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>H2</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>H3</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>H4</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>H5</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>H6</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
+                <hr>
+                <div id="label" class="row appearance">
+                    <div class="menu-label col col-7 flex-col flex-col-center">
+                        <p>Menu</p>
+                    </div>
+                    <div id="appearance-menu-icon" class="menu-icon col col-5">
+                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                    </div>
+                </div>
+                <div id="appearance-menu-settings" class="row">
+                    <form action="" method="POST">
+                        <div class="row">
+                            <label for="nav-color">Color</label><br>
+                        </div>
+                        <div class="row">
+                            <input type="color" name="nav-color" id="colorPicker"><br>
+                        </div>
+                        <div class="row">
+                            <label for="nav-background-color">Background-color</label><br>
+                        </div>
+                        <div class="row">
+                            <input type="color" name="nav-background-color"><br>
+                        </div>
+                        <div class="row">
+                            <input class="reset" type="reset"><br>
+                            <input type="submit">
+                        </div>
+                    </form>
+                </div>
+                <hr>
+                <a href="">
+                    <div class="row">
+                        <div class="menu-label col col-7 flex-col flex-col-center">
+                            <p>Body</p>
+                        </div>
+                        <div class="menu-icon col col-5">
+                            <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </header>
+
+            <?php if (isset($_SESSION["flash-success"]) || isset($_SESSION["flash-error"])) {
+                if (isset($_SESSION["flash-success"])) {
+                    $msg = $_SESSION["flash-success"];
+                    unset($_SESSION["flash-success"]);
+                    echo ("<div id='flash-msg' class='row flash flash-success'>");
+                    echo ("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
+                    echo ("<p class='center-text plain'>{$msg}</p>");
+                    echo ("</div>");
+                } else {
+                    $msg = $_SESSION["flash-error"];
+                    unset($_SESSION["flash-error"]);
+                    echo ("<div id='flash-msg' class='row flash flash-error'>");
+                    echo ("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
+                    echo ("<p class='center-text plain'>{$msg}</p>");
+                    echo ("</div>");
+                }
+            } ?>
+
+
+        </div>
 
     </div>
 
+<<<<<<< HEAD
 
     <div id="row-nav-main" class="row row-nav-main">
 
@@ -127,5 +358,8 @@
 
 </div>
 
+=======
+>>>>>>> 5301997 (init Apparence)
 </body>
+
 </html>

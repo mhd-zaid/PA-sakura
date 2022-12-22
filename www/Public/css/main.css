@@ -462,6 +462,7 @@ section {
 #col-header {
   background-color: #0F056B;
   color: #FFF;
+<<<<<<< HEAD
   padding: 0;
 }
 #col-header .helpLink {
@@ -538,6 +539,68 @@ section {
   height: 25px;
   width: 25px;
 }
+=======
+  padding: 0; }
+  #col-header .helpLink {
+    display: flex;
+    align-items: center; }
+    #col-header .helpLink a {
+      color: #FFF;
+      text-decoration: none;
+      font-weight: lighter;
+      font-size: 1rem; }
+  #col-header #logo-site {
+    padding: 6px;
+    width: 170px;
+    transition: all 1s; }
+    #col-header #logo-site img {
+      width: 45px; }
+  #col-header :last-child {
+    display: flex;
+    align-items: center; }
+    #col-header :last-child .dropdownMenu {
+      position: absolute;
+      right: 0;
+      overflow: hidden; }
+    #col-header :last-child .dropdownMenu .dropbtnMenu {
+      cursor: pointer;
+      font-size: 0.9rem;
+      border: none;
+      outline: none;
+      color: white;
+      background-color: inherit;
+      font-family: inherit;
+      margin: 0; }
+    #col-header :last-child .dropdownMenu-content {
+      display: none;
+      position: absolute;
+      top: 370px;
+      border-radius: 7px;
+      background-color: #0F056B;
+      color: #FFF;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1; }
+    #col-header :last-child .dropdownMenu-content a {
+      float: none;
+      color: #FFF;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left; }
+    #col-header :last-child .dropdownMenu-content a:hover {
+      background-color: #0F056B; }
+      #col-header :last-child .dropdownMenu-content a:hover:hover {
+        background-color: #16079c;
+        transition: all 0.3s ease; }
+      #col-header :last-child .dropdownMenu-content a:hover:active {
+        background-color: #200be5; }
+    #col-header :last-child .show {
+      display: block; }
+    #col-header :last-child #icon-profil {
+      height: 25px;
+      width: 25px; }
+>>>>>>> 5301997 (init Apparence)
 
 #col-nav {
   transition: all 1s;
@@ -642,6 +705,7 @@ section {
     width: 100%;
     height: 101vh;
     background-color: #FFF;
+<<<<<<< HEAD
     transition: left 1s;
     justify-content: center;
   }
@@ -651,15 +715,69 @@ section {
     align-items: center;
   }
 }
+=======
+    justify-content: space-around;
+    align-items: center; }
+    #site-header .container nav {
+      display: flex;
+      align-items: center; }
+      #site-header .container nav ul {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        #site-header .container nav ul li a {
+          padding: 1em;
+          display: block;
+          text-decoration: none;
+          color: #000;
+          font-size: 1.5em;
+          border-bottom: 7px solid transparent; }
+        #site-header .container nav ul li > a:hover {
+          border-bottom: 7px solid #FF66C4; }
+        #site-header .container nav ul li button {
+          margin-top: 0.5em;
+          border: none;
+          background-color: #FF66C4; }
+          #site-header .container nav ul li button a {
+            color: #FFF;
+            font-weight: bold; }
+  @media screen and (max-width: 1280px) {
+    #site-header #menu-button,
+    #site-header .logo-site {
+      z-index: 20; }
+    #site-header #menu-button {
+      transition-duration: 0.3s;
+      transform: translateX(0px); }
+    #site-header #main-nav {
+      position: fixed;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      height: 101vh;
+      background-color: #fff;
+      transition: left 1s;
+      justify-content: center; }
+      #site-header #main-nav ul {
+        z-index: 20;
+        flex-direction: column;
+        align-items: center; } }
+>>>>>>> 5301997 (init Apparence)
 
 .visible {
   left: 0% !important;
 }
 
 @media (max-width: 992px) {
+<<<<<<< HEAD
   #col-header .helpLink, #col-header .visitLink {
     display: none;
   }
+=======
+  #col-header .helpLink,
+  #col-header .visitLink {
+    display: none; }
+>>>>>>> 5301997 (init Apparence)
   #col-header #logo-site {
     width: 70px;
   }
@@ -2002,3 +2120,28 @@ tr.details td.details-control {
 @media (max-width: 992px) {
   .flash {
     width: calc(100% - 70px); } }
+
+#col-appearance {
+  background-color: #0F056B;
+  color: #FFF;
+  width: 170px;
+  padding: 15px;
+  overflow-y: auto; }
+  #col-appearance a {
+    text-decoration: none;
+    color: #FFF;
+    margin-bottom: 10px; }
+  #col-appearance .menu-label p {
+    margin: 0; }
+  #col-appearance .menu-icon {
+    display: flex;
+    flex-direction: row-reverse; }
+  #col-appearance input {
+    width: 100%; }
+  #col-appearance form .row {
+    margin-bottom: 10px; }
+  #col-appearance .appearance {
+    cursor: pointer; }
+  #col-appearance #appearance-menu-settings {
+    display: none;
+    transition: top 2s ease 0s; }

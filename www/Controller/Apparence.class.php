@@ -9,9 +9,8 @@ class Apparence{
         $v = new View("Page/Apparence", "Back");
         $css =  json_decode(file_get_contents(__DIR__."/../Public/css/site.json"));
         $cssTheme = $css->themes[0];
-        // $selectorsWithValues = ["h1" => ["color" => "blue"]];
-        $selectorsWithValues = ["h1" => ["color" => "blue", "font-size" => "120px"]];
-        var_dump($this->changeValueCss($cssTheme, $selectorsWithValues));
+        $selectorsWithValues = ["h2" => ["color" => "pink", "font-size" => "120px"], "h1" => ["color" => "blue"]];
+        // var_dump($this->changeValueCss($cssTheme, $selectorsWithValues));
         die;
     }
 

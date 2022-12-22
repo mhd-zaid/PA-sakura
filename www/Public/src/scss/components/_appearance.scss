@@ -1,0 +1,38 @@
+#col-appearance {
+    background-color: $nightblue;
+    color: $white;
+    width: 170px;
+    padding: 15px;
+    overflow-y: auto;
+    & a {
+        text-decoration: none;
+        color: $white;
+        margin-bottom: 10px;
+    }
+    & .menu-label {
+        & p {
+            margin: 0;
+        }
+    }
+    & .menu-icon {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    & input {
+        width: 100%;
+    }
+    & form{
+        & .row{
+            margin-bottom: 10px;
+        }
+    }
+
+    & .appearance{
+        cursor: pointer;
+    }
+
+    & #appearance-menu-settings{
+        display: none;
+        transition: top 2s ease 0s;
+    }
+}
