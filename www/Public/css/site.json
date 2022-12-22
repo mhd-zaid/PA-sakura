@@ -6,13 +6,13 @@
                 "color": "red",
                 "font-size": "42px",
                 "font-weight": "600",
-                "font-family": ""
+                "font-family": "Arial"
             },
             "h2": {
                 "color": "red",
                 "font-size": "42px",
                 "font-weight": "600",
-                "font-family": ""
+                "font-family": "Arial"
             },
             "body": {
                 "background-color": "red"
