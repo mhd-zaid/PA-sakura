@@ -3,6 +3,7 @@
 namespace App\Core;
 use App\Model\User;
 use App\Model\Article;
+use App\Model\Menu;
 use App\Model\Category;
 use App\Model\Page;
 
@@ -157,6 +158,33 @@ class Verificator
 		}
 	}
 
+	public function verificatorEditionNavigation($configForm, $data):void{
+		$remove = ["titre", "default_menu", "slt-del-page", "publish"];
+        $content = array_diff_key($_POST, array_flip($remove));
+		foreach($configForm["inputs"] as $name=>$configInput){
+
+			if(!empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+				$this->msg[]=$configInput["error"];
+			}
+		}
+
+		if(empty($this->msg) && !empty($data["titre"]) && !self::checkIfExists("Title", $data["titre"], "Navigation")){
+			$this->msg[]="Un Menu portant ce titre existe déjà";
+		}
+
+		if(empty($this->msg) && !empty($content) && !self::isPageExist($content)){
+			$this->msg[]="Ajouter des pages qui existent.";
+		}
+	}
+
 	public function getMsg(): array
 	{
 		return $this->msg;
@@ -207,6 +235,9 @@ class Verificator
 		if($object === "User"){
 			$unique = new User();
 		}
+		if($object === "Navigation"){
+			$unique = new Menu();
+		  }
 		return $unique->isUnique($context, $data);
 	}
 
@@ -216,6 +247,16 @@ class Verificator
 			$category = new Category();
 			$categoryExist = $category->isExist($value);
 			if(!$categoryExist){
+				return false;
+			}
+		}
+		return true;
+	}
+	public static function isPageExist($list):bool{
+		foreach($list as $value){
+			$page = new Page();
+			$pageExist = $page->isExist($value);
+			if(!$pageExist){
 				return false;
 			}
 		}

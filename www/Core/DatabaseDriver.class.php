@@ -220,6 +220,18 @@ abstract class DatabaseDriver
         }
     }
 
+	public function isExist($value){
+        $sql = "SELECT * FROM " .$this->table. " WHERE Title=:title";
+        $params = ['title'=>$value];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        if($queryPrepared->rowCount() > 0 ){
+            return true;
+        }
+        return false;
+    }
+
 	public function slugify($text, string $divider = '-')
     {
     // replace non letter or digits by divider

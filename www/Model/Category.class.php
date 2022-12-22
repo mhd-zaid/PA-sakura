@@ -77,18 +77,6 @@ class Category extends DatabaseDriver
         $data = $result->fetchAll();
         return $data;
     }
-
-    public function isExist($value){
-        $sql = "SELECT * FROM " .$this->table. " WHERE Title=:title";
-        $params = ['title'=>$value];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
-
-        if($queryPrepared->rowCount() > 0 ){
-            return true;
-        }
-        return false;
-    }
 }
 
 ?>
