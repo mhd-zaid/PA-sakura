@@ -280,5 +280,16 @@ abstract class DatabaseDriver
         }
 
         return $text;
+	public function getAllPostActive():array{
+		$sql = "SELECT Slug FROM ".$this->table." WHERE Active=:active";
+        $params = ['active'=>1];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+		$data =  $queryPrepared->fetchAll();
+		$arraySlug = [];
+		foreach($data as $k=>$v){
+			$arraySlug[] = $v[0];
+		}
+		return $arraySlug;
 	}
 }
