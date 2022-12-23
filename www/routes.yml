@@ -417,6 +417,10 @@
   security: 0
   isAdmin: 0
 
+/apparence-h1:
+  controller: Apparence
+  action: editH1
+  security: 0
   ### GRID & COMPONENTS ###
 
 /grid:
