@@ -21,18 +21,26 @@
     & input {
         width: 100%;
     }
+    
+    & .appearance{
+        cursor: pointer;
+        justify-content: space-between;
+    }
+
     & form{
         & .row{
             margin-bottom: 10px;
         }
     }
-
-    & .appearance{
-        cursor: pointer;
-    }
-
-    & #appearance-menu-settings{
+    
+    & #appearance-menu-settings, #appearance-h6-settings, 
+    #appearance-h5-settings, #appearance-h4-settings, 
+    #appearance-h3-settings, #appearance-h2-settings, 
+    #appearance-h1-settings, #appearance-body-settings{
         display: none;
         transition: top 2s ease 0s;
+        & .row{
+            margin-bottom: 10px;
+        }
     }
 }

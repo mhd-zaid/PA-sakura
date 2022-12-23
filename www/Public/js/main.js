@@ -51,13 +51,6 @@ $().ready(function () {
     }
 
     // Appearance (display/hide)
-    // $('#appearance-menu-label').on("click", function(){
-    //   if(document.getElementById('appearance-menu-settings').style.displaycsr
-    //     document.getElementById('appearance-menu-settings').style.display="none";
-    //   else
-    //     document.getElementById('appearance-menu-settings').style.display="block";
-
-    // })
     const buttons = document.getElementsByClassName("appearance");
     const buttonPressed = (e) => {
       const section = e.target.innerText.toLowerCase();

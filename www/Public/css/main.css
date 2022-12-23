@@ -2020,10 +2020,19 @@ tr.details td.details-control {
     flex-direction: row-reverse; }
   #col-appearance input {
     width: 100%; }
+  #col-appearance .appearance {
+    cursor: pointer;
+    justify-content: space-between; }
   #col-appearance form .row {
     margin-bottom: 10px; }
-  #col-appearance .appearance {
-    cursor: pointer; }
-  #col-appearance #appearance-menu-settings {
+  #col-appearance #appearance-menu-settings, #col-appearance #appearance-h6-settings,
+  #col-appearance #appearance-h5-settings, #col-appearance #appearance-h4-settings,
+  #col-appearance #appearance-h3-settings, #col-appearance #appearance-h2-settings,
+  #col-appearance #appearance-h1-settings, #col-appearance #appearance-body-settings {
     display: none;
     transition: top 2s ease 0s; }
+    #col-appearance #appearance-menu-settings .row, #col-appearance #appearance-h6-settings .row,
+    #col-appearance #appearance-h5-settings .row, #col-appearance #appearance-h4-settings .row,
+    #col-appearance #appearance-h3-settings .row, #col-appearance #appearance-h2-settings .row,
+    #col-appearance #appearance-h1-settings .row, #col-appearance #appearance-body-settings .row {
+      margin-bottom: 10px; }
