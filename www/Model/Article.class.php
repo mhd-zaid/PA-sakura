@@ -262,6 +262,39 @@ class Article extends DatabaseDriver
         ];
 
     }
+
+    public function formManageUrl(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Modifier",
+                                "delete"=>"Supprimer"
+                            ],
+                "rewriteUrl"=>$this->findRewriteUrl(), 
+                            
+                "inputs"=> [    
+                    "choice"=>[
+                        "Slug"=>[
+                            "type"=>"radio",
+                            "label"=>"Slug",
+                            "class"=>"ipt-form-entry",
+                            "value"=>"2",
+                            "elemName"=>"choice"
+                        ],
+                        "Id"=>[
+                            "type"=>"radio",
+                            "label"=>"Id",
+                            "class"=>"ipt-form-entry",
+                            "value"=>"1",
+                            "elemName"=>"choice"
+                        ],
+                    ],
+                ]
+            ];
+
+    }
     
     public function selectAllCategories(){
         $categories = new Category();

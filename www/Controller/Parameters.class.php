@@ -126,15 +126,25 @@ class Parameters{
 	public function manageUrl(){
         $article = new Article();
 		$page = new Page();
-        $value = $article->findRewriteUrl();
-        if(isset($_POST['save'])){
-            $article->updateRewriteUrl($_POST['choice']);
-			$page->updateRewriteUrl($_POST['choice']);
-            header('Location: /parametres ');
-        }
+		$formRewriteUrl = $article->formManageUrl();
+		if(!empty($_POST)){
+			$data = [];
+			isset($_POST['choice']) ? array_push($data, $_POST['choice']) : '';
+
+			$verificator = new Verificator($formRewriteUrl, $data);
+			$verificator->verificatorRewriteUrl($formRewriteUrl, $_POST);
+			$configFormErrors = $verificator->getMsg();
+			if(empty($configFormErrors)){
+				if(isset($_POST['save'])){
+					$article->updateRewriteUrl($_POST['choice']);
+					$page->updateRewriteUrl($_POST['choice']);
+					header('Location: /parametres ');
+				}
+			}
+		}
         $v = new View("Page/ParametresManageArticle", "Back");
-        $v->assign("configForm", $value);
         $v->assign("configFormErrors", $configFormErrors??[]);
+		$v->assign("configForm", $formRewriteUrl);
     }
 }
 

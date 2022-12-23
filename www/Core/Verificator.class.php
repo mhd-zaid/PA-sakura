@@ -13,10 +13,6 @@ class Verificator
 
 	public function __construct($configForm, $data)
 	{
-		// print_r($data);
-		// echo '<br />';
-		// print_r(count($configForm['inputs']));
-		// die();
 		//Vérifier que l'on a autant de post ou get  que de inputs dans la config (Faille XSS)
 		if( count($data) != count($configForm["inputs"])){
 			$this->msg[]="Tentative de Hack";
@@ -270,6 +266,17 @@ class Verificator
 		
 		if(empty($this->msg) && isset($data['userRole']) && !self::isGoodValueRole($data['userRole'])){
 			$this->msg[]="Ce rôle n'existe pas.";
+		}
+	}
+
+	public function verificatorRewriteUrl($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+		}
+		if(empty($this->msg) && isset($data['choice']) && !self::isGoodValueRole($data['choice'])){
+			$this->msg[]="Cette valeur de réecriture n'existe pas.";
 		}
 	}
 
