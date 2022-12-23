@@ -584,7 +584,7 @@ class User extends DatabaseDriver
 
     }
 
-    public function checkLogin(String $email, String $pwd): void
+    public function checkLogin(String $email, String $pwd)
     {
         $sql = "SELECT * FROM " .$this->table." WHERE email =:email";
         $params = ['email'=>$email];
@@ -619,10 +619,10 @@ class User extends DatabaseDriver
                     die();
                 }
             }else{
-                print_r("Mot de passe ou email incorrect");
+                return false;
             }
         }else{
-            print_r('Mot de passe ou email incorrect');
+            return false;
         }
     }
 

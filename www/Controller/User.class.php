@@ -19,17 +19,15 @@ class User{
 		if( !empty($_POST) )
 		{
 			$verificator = new Verificator($loginForm, $_POST);
-
+			$verificator->verificatorConnexion($loginForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-
 			if(empty($configFormErrors)){
-				$user->checkLogin($_POST['email'],$_POST['password']);
-			}else{
-				echo 'Email ou mot de passe incorrect';
+				$verification = $user->checkLogin($_POST['email'],$_POST['password']);
+				if(!$verification){
+					$configFormErrors[] = 'Email ou mot de passe incorrect';
+				}
 			}
-
-		}
-		
+		}		
 		$v = new View("Auth/Login", "Front");
 		$v->assign("configForm", $loginForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
