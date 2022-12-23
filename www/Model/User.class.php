@@ -286,45 +286,25 @@ class User extends DatabaseDriver
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
                                     "confirm"=>"password",
-                                    "error"=>"Votre Le de passe de confirmation ne correspond pas"
+                                    "error"=>"Votre mot de passe de confirmation ne correspond pas"
                                 ],
 
-                    "administrateur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Administrateur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"1",
-                                    "elemName"=>"userRole"
-                                ],
-
-                    "editeur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Editeur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"2",
-                                    "elemName"=>"userRole"
-                                ],
-                                
-                    "lecteur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Lecteur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"3",
-                                    "elemName"=>"userRole"
-                                ],
-
-                    "note"=>[
-                                    "type"=>"text",
-                                    "label"=>"Note (facultatif)",
-                                    "class"=>"ipt-form-entry",
-                                ],
-
-                    "message"=>[
-                                    "type"=>"text",
-                                    "label"=>"Message d'invitation (facultatif)",
-                                    "class"=>"ipt-form-entry",
-                                ],
-
+                    "userRole"=>[
+                            "administrateur"=>[
+                                "type"=>"radio",
+                                "label"=>"Administrateur",
+                                "class"=>"ipt-form-entry",
+                                "value"=>"1",
+                                "elemName"=>"userRole"
+                            ],
+                            "editeur"=>[
+                                "type"=>"radio",
+                                "label"=>"Editeur",
+                                "class"=>"ipt-form-entry",
+                                "value"=>"2",
+                                "elemName"=>"userRole"
+                            ],
+                        ],
                 ]
             ];
 

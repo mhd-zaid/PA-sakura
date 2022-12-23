@@ -64,9 +64,13 @@ class Parameters{
 		$userRegisterForm = $user->userRegisterForm();
 
         if( !empty($_POST) )
-		{				
-				$emailExist = $user->checkEmailExist($_POST['email']);
-				if($emailExist){
+		{		
+			
+			$verificator = new Verificator($userRegisterForm, $_POST);
+			$verificator->verificatorAddUser($userRegisterForm, $_POST);
+			$configFormErrors = $verificator->getMsg();
+			
+			if(empty($configFormErrors)){
 					$user->setFirstname($_POST['firstname']);
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
@@ -75,13 +79,16 @@ class Parameters{
 					$user->setToken($token->getToken());
 					$token = $user->getToken();
                     $user->setRole(intval($_POST['userRole']));
-					$user->setStatus(1);
+					$user->setStatus(0);
 					$user->save();
 					$servername = $_SERVER['HTTP_HOST'];
 					$email = $_POST['email'];
 					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
-				}	
+					$_SESSION["flash-success"] = "Utilisateur ajouté.";
+               		 header("Location: /parametres-users");
+                	exit();
 		}
+	}
 
         $v = new View("Page/ParametersNewUsers", "Back");
         $v->assign("configForm", $userRegisterForm);

@@ -185,6 +185,36 @@ class Verificator
 		}
 	}
 
+	public function verificatorAddUser($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMaxLength($data[$name], $configInput["max"])){
+				$this->msg[]=$configInput["error"];
+			}
+			if(empty($this->msg) && isset($configInput["type"]) && $configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+			if(empty($this->msg) && !empty($configInput["confirm"]) && !self::checkConfirm($data[$name], $data[$configInput["confirm"]]) ){
+				$this->msg[]=$configInput["error"];		
+			}
+			else if(empty($this->msg) && isset($configInput["type"]) &&  $configInput["type"]=="password" && !empty($configInput["required"]) && !self::checkPassword($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+		}
+		if(empty($this->msg) && !empty($data["email"]) && !self::checkIfExists("Email", $data["email"], "User")){
+			$this->msg[]="Cette email est déjà associé à un compte.";
+		}
+
+		if(empty($this->msg) && !self::isGoodValueRole($data['userRole'])){
+			$this->msg[]="Ce rôle n'existe pas.";
+		}
+	}
+
 	public function getMsg(): array
 	{
 		return $this->msg;
@@ -261,5 +291,9 @@ class Verificator
 			}
 		}
 		return true;
+	}
+
+	public static function isGoodValueRole($data):bool{
+		return $data == 1 || $data == 2;
 	}
 }
