@@ -97,14 +97,25 @@ class Parameters{
 		if($role['Role'] !== 1) header("Location: /tableau-de-bord");
 		$userUpdateForm = $user->userUpdateForm();
         $userInformation = $user->find();
+		
         if( !empty($_POST) )
 		{
-			if(isset($_POST['update'])){
-				$user->updateUserRole($userInformation);
-			}
-			if(isset($_POST['delete'])){
-				$user->delete();
-				header('Location: /parametres-users');
+			$data = [];
+	
+			isset($_POST['userRole']) ? array_push($data, $_POST['userRole']) : '';
+
+			$verificator = new Verificator($userUpdateForm, $data);
+			$verificator->verificatorUpdateUserRole($userUpdateForm, $_POST);
+			$configFormErrors = $verificator->getMsg();
+
+			if(empty($configFormErrors)){
+				if(isset($_POST['update'])){
+					$user->updateUserRole($userInformation);
+				}
+				if(isset($_POST['delete'])){
+					$user->delete();
+					header('Location: /parametres-users');
+				}
 			}
 		}
         $v = new View("Page/ParametersEditUsers", "Back");

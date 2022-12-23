@@ -261,6 +261,18 @@ class Verificator
 		}
 	}
 
+	public function verificatorUpdateUserRole($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+		}
+		
+		if(empty($this->msg) && isset($data['userRole']) && !self::isGoodValueRole($data['userRole'])){
+			$this->msg[]="Ce rôle n'existe pas.";
+		}
+	}
+
 	public function getMsg(): array
 	{
 		return $this->msg;
