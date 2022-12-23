@@ -265,11 +265,11 @@ class User extends DatabaseDriver
                                 ],
 
                     "email"=>[
-                        "type"=>"email",
-                        "label"=>"Email",
-                        "class"=>"ipt-form-entry",
-                        "required"=>true,
-                        "error"=>"L'email est incorrect"
+                                    "type"=>"email",
+                                    "label"=>"Email",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"L'email est incorrect"
                                 ],
 
                     "password"=>[
@@ -549,7 +549,7 @@ class User extends DatabaseDriver
                                     "label"=>"Adresse e-mail",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
-                                    "error"=>"Votre email ou mot de passe est incorrect"
+                                    "error"=>"Email incorrect."
                                 ],
                 ]
             ];
@@ -659,7 +659,7 @@ class User extends DatabaseDriver
             $this->save();
                 return $this->getToken();
         }else{
-            return null;
+            return false;
         }
     }
 
@@ -719,17 +719,16 @@ class User extends DatabaseDriver
         }
     }
 
-    public function checkEmailExist($email):Int
+    public function checkEmailExist($email):bool
     {
         $sql = "SELECT * FROM " .$this->table. " where email=:email";
         $params = ['email'=>$email];
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($params);
         if($queryPrepared->rowCount() > 0){
-        print_r("Cet email est déjà associé à un compte");
-            return 0;
+            return false;
         }else{
-            return 1;
+            return true;
         }
     }
     

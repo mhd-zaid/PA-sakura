@@ -210,7 +210,7 @@ class Verificator
 			$this->msg[]="Cette email est déjà associé à un compte.";
 		}
 
-		if(empty($this->msg) && !self::isGoodValueRole($data['userRole'])){
+		if(empty($this->msg) && isset($data['userRole']) && !self::isGoodValueRole($data['userRole'])){
 			$this->msg[]="Ce rôle n'existe pas.";
 		}
 	}
@@ -221,8 +221,43 @@ class Verificator
 
 			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
 				$this->msg[]="Le champs ".$name." est obligatoire";
-				
 			}
+
+			if(empty($this->msg) && $configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+		}
+	}
+
+	public function verificatorForgotPassword($configForm, $data){
+
+		foreach($configForm["inputs"] as $name=>$configInput){
+
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+			
+			if(empty($this->msg) && $configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+		}
+	}
+
+	public function verificatorResetPassword($configForm, $data){
+
+		foreach($configForm["inputs"] as $name=>$configInput){
+
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+
+			if(empty($this->msg) && !empty($configInput["confirm"]) && !self::checkConfirm($data[$name], $data[$configInput["confirm"]]) ){
+				$this->msg[]=$configInput["error"];		
+			}
+			else if(empty($this->msg) && $configInput["type"]=="password" && !empty($configInput["required"]) && !self::checkPassword($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+
 		}
 	}
 
