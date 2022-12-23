@@ -9,4 +9,10 @@ server/
 .idea/workspace.xml
 .idea/workspace.xml
 .idea/workspace.xml
+<<<<<<< HEAD
 
+=======
+db_data/ibdata1
+db_data/*
+.prettierrc
+>>>>>>> 09fbb28 (Update .gitignore)
