@@ -2,6 +2,7 @@
     background-color: $nightblue;
     color: $white;
     width: 170px;
+    height: 100%;
     padding: 15px;
     overflow-y: auto;
     & a {
@@ -33,10 +34,7 @@
         }
     }
     
-    & #appearance-menu-settings, #appearance-h6-settings, 
-    #appearance-h5-settings, #appearance-h4-settings, 
-    #appearance-h3-settings, #appearance-h2-settings, 
-    #appearance-h1-settings, #appearance-body-settings{
+    & .appearance-settings{
         display: none;
         transition: top 2s ease 0s;
         & .row{

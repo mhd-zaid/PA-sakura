@@ -3,42 +3,45 @@
 namespace App\Controller;
 
 use App\Core\View;
+use App\Model\Apparence as ApparenceModel;
 
-class Apparence{
-    public function index(){
+class Apparence
+{
+    public function index()
+    {
         $v = new View("Page/Apparence", "Back");
-        $css =  json_decode(file_get_contents(__DIR__."/../Public/css/site.json"));
-        $cssTheme = $css->themes[0];
-        $selectorsWithValues = ["h2" => ["color" => "pink", "font-size" => "120px"], "h1" => ["color" => "blue"]];
-        // $this->changeValueCss($cssTheme, $selectorsWithValues);
-        die;
+        $css =  json_decode(file_get_contents(__DIR__ . "/../Public/css/site.json"));
+        // var_dump($css);
+        $selectorsWithValues = ["paragraph" => [], "titre" => [], "body" => [], "nav" => []];
+        if (isset($_POST['submit'])) {
+            $selectorsWithValues[".paragraph"] = ["color" => $_POST["paragraphe-color"], "font-family" => $_POST["paragraphe-font-family"]];
+            $selectorsWithValues[".titre"] = ["color" => $_POST["titre-color"], "font-family" => $_POST["titre-font-family"]];
+            $selectorsWithValues["body"] = ["background-color" => $_POST["body-background-color"]];
+            $selectorsWithValues["nav"] = ["background-color" => $_POST["nav-background-color"], "color" => $_POST["nav-color"]];
+
+            $this->changeValueCss($css, $selectorsWithValues);
+        }
     }
 
-    public function changeValueCss($css, $selectorsWithNewValues){
+    public function changeValueCss($cssJson, $selectorsWithNewValues)
+    {
         //obliger de pointer sur themes pour faire fonctionner la boucle
-        foreach($css->themes as $differentThemes=>$valueThemeCss){ // boucle sur les selecteurs du json
-            foreach($selectorsWithNewValues[0] as $selectors=>$newValue){ // boucle sur les selecteurs à modifiés, $selectorsWithNewValues[0] -> pour boucler sur les nouvelles données
-                if($differentThemes === $selectorsWithNewValues["theme-choice"]){ // On vérifie quel theme est choisie 
-                    $themeChoiced = $differentThemes; //On sauvegarde la valeur du theme choisis
-                    foreach($valueThemeCss as $selectorJsonCss => $valueJsonCss){ // On récupere les sélecteurs Json
-                        if($selectorJsonCss === $selectors){// si le selecteur existe dans le json
-                            foreach ($valueJsonCss as $keyValueCss => &$valueCss) {  // boucle sur les valeurs du json
-                                foreach ($newValue as $keyNewValue => $newValueSend) {// boucle sur les valeurs à modifier
-                                    if($keyValueCss === $keyNewValue){
-                                        if(!empty($newValueSend)){
-                                            $valueCss = $newValueSend;
-                                        }
-                                    }                                
-                                }                            
+        foreach($cssJson as $selectorJsonCss=>$valueJsonCss){ // boucle sur les selecteurs du json
+            foreach($selectorsWithNewValues as $selectors=>$newValue){ // boucle sur les selecteurs à modifiés
+                if($selectorJsonCss == $selectors){ // si le selecteur existe dans le json
+                    foreach ($valueJsonCss as $keyJson=>&$valueJson ) {  // boucle sur les valeurs du json
+                        foreach ($newValue as $keyCss => $newValueCss) { // boucle sur les valeurs à modifier
+                            if($keyJson == $keyCss){
+                                $valueJson = $newValueCss;
                             }
                         }
                     }
                 }
             }
         }
-        
-        $this->generateCss($css->themes[$themeChoiced]);
-        return $css; 
+        file_put_contents(__DIR__."/../site.json",json_encode($cssJson));
+        $this->generateCss($cssJson);
+        return $cssJson;
     }
 
     // public function changeValueCss($css, $selectorsWithNewValues){
@@ -59,39 +62,25 @@ class Apparence{
     //     $this->generateCss($css);
     //     return $css; 
     // }
-    
 
-    //Fonction seulement pour h1
-    public function editH1(){
-        $selectorWithNewValues = [
-                                    "theme-choice"=>0,
-                                    [
-                                        "h1" => 
-                                        [
-                                        "color" => $_POST["h1-color"], 
-                                        "font-size" => $_POST["h1-font-size"],  
-                                        "font-weight" => $_POST["h1-font-weight"],  
-                                        "font-family" => $_POST["h1-font-family"]
-                                        ]
-                                    ]
-                                ]; 
-        
-        $css =  json_decode(file_get_contents(__DIR__."/../Public/css/site.json"));
 
-        $this->changeValueCss($css,$selectorWithNewValues);
+    // Fonction seulement pour h1
+    public function edit($tabJson)
+    {
+        $tabJson["paragraph"]="";
+
+        $tabJson =  json_decode(file_get_contents(__DIR__ . "/../Public/css/site.json"));
 
         header("Location: /apparence");
-                            
     }
 
 
 
-    public function generateCss($json) {
-        
-        $json = str_replace(["\"","},",",",":{"],["","\n}\n",";\n\t","{\n\t"],substr(json_encode($json),1,-1));
-        
+    public function generateCss($json)
+    {
+        $json = str_replace(["\"", "},", ",", ":{"], ["", "\n}\n", ";\n\t", "{\n\t"], substr(json_encode($json), 1, -1));
         $filename = "site-theme-x.css";
 
-        \file_put_contents(__DIR__."/../Public/css/$filename",$json);
+        \file_put_contents(__DIR__ . "/../Public/css/$filename", $json);
     }
 }

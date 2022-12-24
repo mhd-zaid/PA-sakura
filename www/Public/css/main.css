@@ -2007,6 +2007,7 @@ tr.details td.details-control {
   background-color: #0F056B;
   color: #FFF;
   width: 170px;
+  height: 100%;
   padding: 15px;
   overflow-y: auto; }
   #col-appearance a {
@@ -2025,14 +2026,8 @@ tr.details td.details-control {
     justify-content: space-between; }
   #col-appearance form .row {
     margin-bottom: 10px; }
-  #col-appearance #appearance-menu-settings, #col-appearance #appearance-h6-settings,
-  #col-appearance #appearance-h5-settings, #col-appearance #appearance-h4-settings,
-  #col-appearance #appearance-h3-settings, #col-appearance #appearance-h2-settings,
-  #col-appearance #appearance-h1-settings, #col-appearance #appearance-body-settings {
+  #col-appearance .appearance-settings {
     display: none;
     transition: top 2s ease 0s; }
-    #col-appearance #appearance-menu-settings .row, #col-appearance #appearance-h6-settings .row,
-    #col-appearance #appearance-h5-settings .row, #col-appearance #appearance-h4-settings .row,
-    #col-appearance #appearance-h3-settings .row, #col-appearance #appearance-h2-settings .row,
-    #col-appearance #appearance-h1-settings .row, #col-appearance #appearance-body-settings .row {
+    #col-appearance .appearance-settings .row {
       margin-bottom: 10px; }

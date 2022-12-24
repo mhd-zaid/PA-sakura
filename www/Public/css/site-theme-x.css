@@ -1,18 +1,14 @@
-h1{
-	color:blue;
-	font-size:120px;
-	font-weight:600;
-	font-family:Arial
+.paragraph{
+	color:#000000;
+	font-family:
 }
-h2{
-	color:red;
-	font-size:42px;
-	font-weight:600;
-	font-family:Arial
+.titre{
+	color:#c800ff;
+	font-family:
 }
 body{
-	background-color:red
+	background-color:#000000
 }
 nav{
-	background-color:red;
-	color:black}
+	background-color:#000000;
+	color:#000000}

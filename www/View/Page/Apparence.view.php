@@ -1,11 +1,22 @@
 <section>
-    <h1>Apparence H1</h1>
-    <h2>Apparence H2</h2>
-    <h3>Apparence H3</h3>
-    <h4>Apparence H4</h4>
-    <h5>Apparence H5</h5>
-    <h6>Apparence H6</h6>
+    <?= var_dump($_POST) ?>
 </section>
+
+<section>
+    <h1 class="title">Apparence H1</h1>
+    <h2 class="title">Apparence H2</h2>
+    <h3 class="title">Apparence H3</h3>
+    <h4 class="title">Apparence H4</h4>
+    <h5 class="title">Apparence H5</h5>
+    <h6 class="title">Apparence H6</h6>
+</section>
+
+<section>
+    <p class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem unde mollitia itaque. Molestiae dolores, omnis ratione libero animi officiis natus magnam odio delectus hic ab voluptas doloremque itaque tempore nemo?</p>
+    <p class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem unde mollitia itaque. Molestiae dolores, omnis ratione libero animi officiis natus magnam odio delectus hic ab voluptas doloremque itaque tempore nemo?</p>
+    <p class="paragraph">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem unde mollitia itaque. Molestiae dolores, omnis ratione libero animi officiis natus magnam odio delectus hic ab voluptas doloremque itaque tempore nemo?</p>
+</section>
+
 
 
 <script>
@@ -15,33 +26,21 @@
     })
 
     function startup() {
-        h1colorPicker = document.querySelector("#h1colorPicker");
-        h2colorPicker = document.querySelector("#h2colorPicker");
-        h3colorPicker = document.querySelector("#h3colorPicker");
-        h4colorPicker = document.querySelector("#h4colorPicker");
-        h5colorPicker = document.querySelector("#h5colorPicker");
-        h6colorPicker = document.querySelector("#h6colorPicker");
+        titrecolorPicker = document.querySelector("#titrecolorPicker");
+        paragraphecolorPicker = document.querySelector("#paragraphecolorPicker");
         navcolorPicker = document.querySelector("#navcolorPicker");
         navbcgcolorPicker = document.querySelector("#navbcgcolorPicker");
         bodycolorPicker = document.querySelector("#bodycolorPicker");
 
-        h1colorPicker.addEventListener("input", updateFirst, false);
-        h2colorPicker.addEventListener("input", updateFirst, false);
-        h3colorPicker.addEventListener("input", updateFirst, false);
-        h4colorPicker.addEventListener("input", updateFirst, false);
-        h5colorPicker.addEventListener("input", updateFirst, false);
-        h6colorPicker.addEventListener("input", updateFirst, false);
+        titrecolorPicker.addEventListener("input", updateFirst, false);
+        paragraphecolorPicker.addEventListener("input", updateFirst, false);
         navcolorPicker.addEventListener("input", updateFirst, false);
         navbcgcolorPicker.addEventListener("input", updateFirst, false);
         bodycolorPicker.addEventListener("input", updateFirst, false);
 
         // colorPicker.addEventListener("change", updateAll, false);
-        h1colorPicker.select();
-        h2colorPicker.select();
-        h3colorPicker.select();
-        h4colorPicker.select();
-        h5colorPicker.select();
-        h6colorPicker.select();
+        titrecolorPicker.select();
+        paragraphecolorPicker.select();
         navcolorPicker.select();
         navbcgcolorPicker.select();
         bodycolorPicker.select();
@@ -49,40 +48,21 @@
 
     function updateFirst(event) {
         switch (event.target.getAttribute('id')) {
-            case 'h1colorPicker':
-                const h1 = document.querySelector("h1");
-                if (h1) {
-                    h1.style.color = event.target.value;
+            case 'titrecolorPicker':
+                const titres = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+                if (titres) {
+                    titres.forEach(element => {
+                        element.style.color = event.target.value;
+                    });
                 }
                 break;
-            case 'h2colorPicker':
-                const h2 = document.querySelector("h2");
-                if (h2) {
-                    h2.style.color = event.target.value;
-                }
-                break;
-            case 'h3colorPicker':
-                const h3 = document.querySelector("h3");
-                if (h3) {
-                    h3.style.color = event.target.value;
-                }
-                break;
-            case 'h4colorPicker':
-                const h4 = document.querySelector("h4");
-                if (h4) {
-                    h4.style.color = event.target.value;
-                }
-                break;
-            case 'h5colorPicker':
-                const h5 = document.querySelector("h5");
-                if (h5) {
-                    h5.style.color = event.target.value;
-                }
-                break;
-            case 'h6colorPicker':
-                const h6 = document.querySelector("h6");
-                if (h6) {
-                    h6.style.color = event.target.value;
+            case 'paragraphecolorPicker':
+                const paragraphes = document.querySelectorAll(".paragraph");
+                if (paragraphes) {
+                    paragraphes.forEach(element => {
+                        console.log(element);
+                        element.style.color = event.target.value;
+                    });
                 }
                 break;
             case 'navcolorPicker':

@@ -151,38 +151,36 @@
             </main>
 
             <div id="col-appearance">
+                <div class="row">
+                    <form action="/apparence" method="POST" class="col col-12 appearance-set">
+                        <div class="col col-12">
+                            <input class="reset" type="reset" name="reset"><br>
+                        </div>
+                        <div class="col col-12">
+                            <input type="submit" name="submit">
+                        </div>
+                </div>
+                <hr>
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
-                        <p>H1</p>
+                        <p>Titre</p>
                     </div>
-                    <div id="appearance-h1-icon" class="menu-icon col col-5">
+                    <div id="appearance-titre-icon" class="menu-icon col col-5">
                         <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
                     </div>
                 </div>
-                <div id="appearance-h1-settings" class="row">
+                <div id="appearance-titre-settings" class="row appearance-settings">
                     <div class="row">
-                        <label for="h1-color">Color</label><br>
+                        <label for="titre-color">Color</label><br>
                     </div>
                     <div class="row">
-                        <input type="color" name="h1-color" id="h1colorPicker"><br>
+                        <input type="color" name="titre-color" id="titrecolorPicker"><br>
                     </div>
                     <div class="row">
-                        <label for="h1-font-size">Font-size</label><br>
+                        <label for="titre-font-family">Font-family</label><br>
                     </div>
                     <div class="row">
-                        <input type="number" name="h1-font-size" min="0" max="64"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h1-font-weigth">Font-weight</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h1-font-weigth" min="0" max="800"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h1-font-family">Font-family</label><br>
-                    </div>
-                    <div class="row">
-                        <select name="h1-font-family" id="h1-font-family">
+                        <select name="titre-font-family" id="titre-font-family">
                             <option value=""></option>
                             <option value="sans-serif">Sans-serif</option>
                             <option value="calibri">Calibri</option>
@@ -195,204 +193,24 @@
 
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
-                        <p>H2</p>
+                        <p>Paragraphe</p>
                     </div>
-                    <div id="appearance-h2-icon" class="menu-icon col col-5">
+                    <div id="appearance-paragraphe-icon" class="menu-icon col col-5">
                         <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
                     </div>
                 </div>
-                <div id="appearance-h2-settings" class="row">
+                <div id="appearance-paragraphe-settings" class="row appearance-settings">
                     <div class="row">
-                        <label for="h2-color">Color</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="color" name="h2-color" id="h2colorPicker"><br>
+                        <label for="paragraphe-color">Color</label><br>
                     </div>
                     <div class="row">
-                        <label for="h2-font-size">Font-size</label><br>
+                        <input type="color" name="paragraphe-color" id="paragraphecolorPicker"><br>
                     </div>
                     <div class="row">
-                        <input type="number" name="h2-font-size" min="0" max="64"><br>
+                        <label for="paragraphe-font-family">Font-family</label><br>
                     </div>
                     <div class="row">
-                        <label for="h2-font-weigth">Font-weight</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h2-font-weigth" min="0" max="800"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h2-font-family">Font-family</label><br>
-                    </div>
-                    <div class="row">
-                        <select name="h2-font-family" id="h2-font-family">
-                            <option value=""></option>
-                            <option value="sans-serif">Sans-serif</option>
-                            <option value="calibri">Calibri</option>
-                            <option value="times-new-roman">Times new roman</option>
-                            <option value="mulish">Mulish</option>
-                        </select><br>
-                    </div>
-                </div>
-                <hr>
-
-                <div id="label" class="row appearance">
-                    <div class="menu-label col col-7 flex-col flex-col-center">
-                        <p>H3</p>
-                    </div>
-                    <div id="appearance-h3-icon" class="menu-icon col col-5">
-                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
-                    </div>
-                </div>
-                <div id="appearance-h3-settings" class="row">
-                    <div class="row">
-                        <label for="h3-color">Color</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="color" name="h3-color" id="h3colorPicker"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h3-font-size">Font-size</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h3-font-size" min="0" max="64"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h3-font-weigth">Font-weight</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h3-font-weigth" min="0" max="800"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h3-font-family">Font-family</label><br>
-                    </div>
-                    <div class="row">
-                        <select name="h3-font-family" id="h3-font-family">
-                            <option value=""></option>
-                            <option value="sans-serif">Sans-serif</option>
-                            <option value="calibri">Calibri</option>
-                            <option value="times-new-roman">Times new roman</option>
-                            <option value="mulish">Mulish</option>
-                        </select><br>
-                    </div>
-                </div>
-                <hr>
-
-                <div id="label" class="row appearance">
-                    <div class="menu-label col col-7 flex-col flex-col-center">
-                        <p>H4</p>
-                    </div>
-                    <div id="appearance-h4-icon" class="menu-icon col col-5">
-                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
-                    </div>
-                </div>
-                <div id="appearance-h4-settings" class="row">
-                    <div class="row">
-                        <label for="h4-color">Color</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="color" name="h4-color" id="h4colorPicker"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h4-font-size">Font-size</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h4-font-size" min="0" max="64"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h4-font-weigth">Font-weight</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h4-font-weigth" min="0" max="800"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h4-font-family">Font-family</label><br>
-                    </div>
-                    <div class="row">
-                        <select name="h4-font-family" id="h4-font-family">
-                            <option value=""></option>
-                            <option value="sans-serif">Sans-serif</option>
-                            <option value="calibri">Calibri</option>
-                            <option value="times-new-roman">Times new roman</option>
-                            <option value="mulish">Mulish</option>
-                        </select><br>
-                    </div>
-                </div>
-                <hr>
-
-                <div id="label" class="row appearance">
-                    <div class="menu-label col col-7 flex-col flex-col-center">
-                        <p>H5</p>
-                    </div>
-                    <div id="appearance-h5-icon" class="menu-icon col col-5">
-                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
-                    </div>
-                </div>
-                <div id="appearance-h5-settings" class="row">
-                    <div class="row">
-                        <label for="h5-color">Color</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="color" name="h5-color" id="h5colorPicker"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h5-font-size">Font-size</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h5-font-size" min="0" max="64"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h5-font-weigth">Font-weight</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h5-font-weigth" min="0" max="800"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h5-font-family">Font-family</label><br>
-                    </div>
-                    <div class="row">
-                        <select name="h5-font-family" id="h5-font-family">
-                            <option value=""></option>
-                            <option value="sans-serif">Sans-serif</option>
-                            <option value="calibri">Calibri</option>
-                            <option value="times-new-roman">Times new roman</option>
-                            <option value="mulish">Mulish</option>
-                        </select><br>
-                    </div>
-                </div>
-                <hr>
-
-                <div id="label" class="row appearance">
-                    <div class="menu-label col col-7 flex-col flex-col-center">
-                        <p>H6</p>
-                    </div>
-                    <div id="appearance-h6-icon" class="menu-icon col col-5">
-                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
-                    </div>
-                </div>
-                <div id="appearance-h6-settings" class="row">
-                    <div class="row">
-                        <label for="h6-color">Color</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="color" name="h6-color" id="h6colorPicker"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h6-font-size">Font-size</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h6-font-size" min="0" max="64"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h6-font-weigth">Font-weight</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="number" name="h6-font-weigth" min="0" max="800"><br>
-                    </div>
-                    <div class="row">
-                        <label for="h6-font-family">Font-family</label><br>
-                    </div>
-                    <div class="row">
-                        <select name="h6-font-family" id="h6-font-family">
+                        <select name="paragraphe-font-family" id="paragraphe-font-family">
                             <option value=""></option>
                             <option value="sans-serif">Sans-serif</option>
                             <option value="calibri">Calibri</option>
@@ -411,7 +229,7 @@
                         <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
                     </div>
                 </div>
-                <div id="appearance-menu-settings" class="row">
+                <div id="appearance-menu-settings" class="row appearance-settings">
                     <div class="row">
                         <label for="nav-color">Color</label><br>
                     </div>
@@ -435,7 +253,7 @@
                         <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
                     </div>
                 </div>
-                <div id="appearance-body-settings" class="row">
+                <div id="appearance-body-settings" class="row appearance-settings">
                     <div class="row">
                         <label for="body-background-color">Background-color</label><br>
                     </div>
@@ -443,17 +261,7 @@
                         <input type="color" name="body-background-color" id="bodycolorPicker"><br>
                     </div>
                 </div>
-                <hr>
-                <div class="row">
-                    <form action="" class="col col-12">
-                        <!-- <div class="col col-12"> -->
-                            <input class="reset" type="reset"><br>
-                        <!-- </div> -->
-                        <!-- <div class="col col-12"> -->
-                            <input type="submit">
-                        <!-- </div> -->
-                    </form>
-                </div>
+                </form>
             </div>
 
             <?php if (isset($_SESSION["flash-success"]) || isset($_SESSION["flash-error"])) {

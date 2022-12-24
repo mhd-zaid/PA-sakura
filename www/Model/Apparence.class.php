@@ -8,9 +8,6 @@ class Apparence extends DatabaseDriver
 {
     private $id = null;
     protected $css;
-    protected $active;
-
-
 
     public function __construct()
     {
@@ -48,20 +45,6 @@ class Apparence extends DatabaseDriver
     public function setCss(String $css): void
     {
         $this->css = $css;
-    }
-
-    public function getActive(): ?Int
-    {
-        return $this->active;
-    }
-
-
-    /**
-     * @param mixed $user_id
-     */
-    public function setActive(Int $active): void
-    {
-        $this->active = $active;
     }
 
 }
