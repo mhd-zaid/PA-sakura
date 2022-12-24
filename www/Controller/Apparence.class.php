@@ -87,6 +87,7 @@ class Apparence{
 
 
     public function generateCss($json) {
+        
         $json = str_replace(["\"","},",",",":{"],["","\n}\n",";\n\t","{\n\t"],substr(json_encode($json),1,-1));
         
         $filename = "site-theme-x.css";
