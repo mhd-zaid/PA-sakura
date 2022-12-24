@@ -1,14 +1,19 @@
 .paragraph{
 	color:#000000;
-	font-family:
+	font-family:impact
 }
 .titre{
-	color:#c800ff;
-	font-family:
+	color:#8582b0;
+	font-family:arial
 }
-body{
-	background-color:#000000
+.body{
+	background-color:#d05858
 }
-nav{
-	background-color:#000000;
-	color:#000000}
+.nav{
+	color:#4b27b0
+}
+.header{
+	background-color:#ff00dd
+}
+.footer{
+	background-color:#ff0000}

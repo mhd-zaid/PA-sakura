@@ -161,6 +161,8 @@
                         </div>
                 </div>
                 <hr>
+
+                <!-- Apparence titre -->
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
                         <p>Titre</p>
@@ -174,23 +176,24 @@
                         <label for="titre-color">Color</label><br>
                     </div>
                     <div class="row">
-                        <input type="color" name="titre-color" id="titrecolorPicker"><br>
+                        <input type="color" name="titre-color" id="titrecolorPicker" value='<?= $css[".titre"]->color ?>'><br>
                     </div>
                     <div class="row">
                         <label for="titre-font-family">Font-family</label><br>
                     </div>
                     <div class="row">
-                        <select name="titre-font-family" id="titre-font-family">
-                            <option value=""></option>
-                            <option value="sans-serif">Sans-serif</option>
-                            <option value="calibri">Calibri</option>
-                            <option value="times-new-roman">Times new roman</option>
-                            <option value="mulish">Mulish</option>
+                        <select name="titre-font-family" id="titrefontFamily" value='<?= $css[".titre"]->{"font-family"} ?>'>
+                            <option value='<?= $css[".titre"]->{"font-family"} ?>' selected hidden><?= ucfirst($css[".titre"]->{"font-family"}) ?></option>
+                            <option value="arial">Arial</option>
+                            <option value="cambria">Cambria</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="impact">Impact</option>
                         </select><br>
                     </div>
                 </div>
                 <hr>
 
+                <!-- Apparence paragraphe -->
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
                         <p>Paragraphe</p>
@@ -204,23 +207,24 @@
                         <label for="paragraphe-color">Color</label><br>
                     </div>
                     <div class="row">
-                        <input type="color" name="paragraphe-color" id="paragraphecolorPicker"><br>
+                        <input type="color" name="paragraphe-color" id="paragraphecolorPicker" value='<?= $css[".paragraph"]->color ?>'><br>
                     </div>
                     <div class="row">
                         <label for="paragraphe-font-family">Font-family</label><br>
                     </div>
                     <div class="row">
-                        <select name="paragraphe-font-family" id="paragraphe-font-family">
-                            <option value=""></option>
-                            <option value="sans-serif">Sans-serif</option>
-                            <option value="calibri">Calibri</option>
-                            <option value="times-new-roman">Times new roman</option>
-                            <option value="mulish">Mulish</option>
+                        <select name="paragraphe-font-family" id="paragraphefontFamily" value='<?= $css[".paragraph"]->{"font-family"} ?>'>
+                            <option value='<?= $css[".paragraph"]->{"font-family"} ?>' selected hidden><?= ucfirst($css[".paragraph"]->{"font-family"}) ?></option>
+                            <option value="arial">Arial</option>
+                            <option value="cambria">Cambria</option>
+                            <option value="georgia">Georgia</option>
+                            <option value="impact">Impact</option>
                         </select><br>
                     </div>
                 </div>
                 <hr>
 
+                <!-- Apparence menu -->
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
                         <p>Menu</p>
@@ -234,17 +238,12 @@
                         <label for="nav-color">Color</label><br>
                     </div>
                     <div class="row">
-                        <input type="color" name="nav-color" id="navcolorPicker"><br>
-                    </div>
-                    <div class="row">
-                        <label for="nav-background-color">Background-color</label><br>
-                    </div>
-                    <div class="row">
-                        <input type="color" name="nav-background-color" id="navbcgcolorPicker"><br>
+                        <input type="color" name="nav-color" id="navcolorPicker" value='<?= $css[".nav"]->color ?>'><br>
                     </div>
                 </div>
                 <hr>
 
+                <!-- Apparence body -->
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
                         <p>Body</p>
@@ -258,9 +257,51 @@
                         <label for="body-background-color">Background-color</label><br>
                     </div>
                     <div class="row">
-                        <input type="color" name="body-background-color" id="bodycolorPicker"><br>
+                        <input type="color" name="body-background-color" id="bodycolorPicker" value='<?= $css[".body"]->{"background-color"} ?>'><br>
                     </div>
                 </div>
+                <hr>
+                
+                <!-- Apparence haeder -->
+                <div id="label" class="row appearance">
+                    <div class="menu-label col col-7 flex-col flex-col-center">
+                        <p>Header</p>
+                    </div>
+                    <div id="appearance-header-icon" class="menu-icon col col-5">
+                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                    </div>
+                </div>
+                <div id="appearance-header-settings" class="row appearance-settings">
+                    <div class="row">
+                        <label for="header-background-color">Background-color</label><br>
+                    </div>
+                    <div class="row">
+                        <input type="color" name="header-background-color" id="headercolorPicker" value='<?= $css[".header"]->{"background-color"} ?>'><br>
+                    </div>
+                </div>
+                <hr>
+                
+                <!-- Apparence footer -->
+                <div id="label" class="row appearance">
+                    <div class="menu-label col col-7 flex-col flex-col-center">
+                        <p>Footer</p>
+                    </div>
+                    <div id="appearance-footer-icon" class="menu-icon col col-5">
+                        <iconify-icon icon="material-symbols:arrow-forward-ios" style="color: white;"></iconify-icon>
+                    </div>
+                </div>
+                <div id="appearance-footer-settings" class="row appearance-settings">
+                    <div class="row">
+                        <label for="footer-background-color">Background-color</label><br>
+                    </div>
+                    <div class="row">
+                        <input type="color" name="footer-background-color" id="footercolorPicker" value='<?= $css[".footer"]->{"background-color"} ?>'><br>
+                    </div>
+                </div>
+                <hr>
+
+                <input type="submit" value="electro" name="electro"><br>
+                <input type="submit" value="music" name="music"><br>
                 </form>
             </div>
 
