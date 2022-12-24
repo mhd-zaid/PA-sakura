@@ -6,6 +6,7 @@ use App\Core\View;
 use App\Core\Verificator;
 use App\Model\Page as PageModel;
 use App\Model\User;
+use App\Model\Menu;
 
 
 class Page
@@ -69,6 +70,29 @@ class Page
                 header("Location: /page");
             }   
             if(isset($_POST['delete'])){
+                
+            $menu = new Menu();
+            $data = $menu->select();
+            $page = new PageModel();
+            $dataPage = $page->find();
+            $search = $dataPage['Title'];
+
+            foreach($data as $id=>$key ){
+                if(preg_match("@$search@",$key['Content'])){
+
+                    $replace = str_replace($search,'',$key['Content']);
+                    $array = explode(',',$replace);
+                    $newArray = array_filter($array);
+
+                    $menuUpdate = new Menu();
+                    $menuUpdate->setId($key['Id']);
+                    $menuUpdate->setTitle($key['Title']);
+                    $menuUpdate->setMain($key['Main']);
+                    $menuUpdate->setActive($key['Active']);
+                    $menuUpdate->setContent(implode(',',$newArray));
+                    $menuUpdate->save();
+                }
+            }
                 $page->delete();
                 header("Location: /page");
             } 

@@ -40,7 +40,7 @@ class Category{
             }
 
             $category->setTitre($_POST['titre']);
-            $data = $article->selectAllCategoriesArticle();
+            $data = $article->select();
             $search = $dataCategory['Titre'];
 
             foreach($data as $id=>$key ){
@@ -69,7 +69,7 @@ class Category{
 
         if(isset($_POST['delete'])){
             $article = new Article();
-            $data = $article->selectAllCategoriesArticle();
+            $data = $article->select();
             $category = new CategoryModel();
             $dataCategory = $category->find();
             $search = $dataCategory['Titre'];

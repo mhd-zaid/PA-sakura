@@ -301,11 +301,4 @@ class Article extends DatabaseDriver
         $data = $categories->getCategories();
         return $data;
     }
-
-    public function selectAllCategoriesArticle(){
-        $sql = "SELECT  * FROM ".$this->table;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
-    }
 }
