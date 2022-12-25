@@ -20,14 +20,17 @@ abstract class DatabaseDriver
 
 	public function __construct()
 	{
-		//Connexion avec la bdd
+		if (file_exists(__DIR__."/../config.php")) {
+            include_once __DIR__."/../config.php";
+        }
+        //Connexion avec la bdd
 		try{
-			$this->pdo = new \PDO("mysql:host=database;dbname=sakura;port=3306" ,"usersql" ,"passwordsql",array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
+			$this->pdo = new \PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";port=3306" ,DB_USER ,DB_PASSWD,array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
 
 			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     		$this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
 
-		}catch(Exception $e){
+		}catch(\Exception $e){
 			die("Erreur SQL ".$e->getMessage());
 		}
 
