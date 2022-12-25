@@ -218,10 +218,13 @@ INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Descr
 -- Structure de la table `sakura_site`
 --
 
-CREATE TABLE `sakura_site` (
-  `Id` int(11) NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `Description` text
+Create table sakura_site(
+	`Id` int AUTO_INCREMENT PRIMARY KEY,
+  `Logo` varchar(255),
+  `Name` varchar(50),
+  `Email` varchar(255),
+  `Number` varchar(20),
+  `Address` varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
