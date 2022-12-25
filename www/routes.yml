@@ -399,8 +399,8 @@
   isAdmin: 0
 
 /site:
-  controller: Site
-  action: getMainPage
+  controller: Home
+  action: showPosts
   security: 0
   isAdmin: 0
 

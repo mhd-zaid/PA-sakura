@@ -85,6 +85,12 @@ abstract class DatabaseDriver
 		return $data;
 	}
 
+	public function selectAll()
+	{
+		$sql = "SELECT * FROM $this->table";
+		return $result = $this->pdo->query($sql)->fetchAll();
+	}
+
 	public function serverProcessing(){
 
 		$objectVars = get_object_vars($this);

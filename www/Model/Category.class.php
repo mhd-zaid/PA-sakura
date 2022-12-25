@@ -70,6 +70,15 @@ class Category extends DatabaseDriver
             ];
 
     }
-}
 
-?>
+    public function setCatTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function selectAllLimit()
+	{
+		$sql = "SELECT * FROM $this->table LIMIT 4";
+		return $result = $this->pdo->query($sql)->fetchAll();
+	}
+}

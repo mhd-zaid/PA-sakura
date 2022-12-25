@@ -188,6 +188,12 @@ class Article extends DatabaseDriver
         $categories = array_unique(explode(',', $categories));
         $this->categories = strip_tags(implode(',', $categories));
     }
+    public function selectAllLimit()
+	{
+		$sql = "SELECT * FROM $this->table LIMIT 10";
+		return $result = $this->pdo->query($sql)->fetchAll();
+        
+	}
 
     public function createArticleForm(){
         $user = new User();
