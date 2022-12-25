@@ -34,7 +34,6 @@
   action: admin
   security: 0
   isAdmin: 0
-  isAdmin: 0
 
 
 
@@ -100,6 +99,7 @@
  controller: Profil
  action: manageLanguage
  security: 0
+ isAdmin: 0
 
 /profil-gestion-des-comptes:
  controller: Profil
@@ -136,11 +136,13 @@
   controller: Statistiques
   action: index
   security: 0
+  isAdmin: 0
 
 /stats:
   controller: Statistiques
   action: stats
   security: 0
+  isAdmin: 0
 
 ### Parameters ####
 /parametres:
