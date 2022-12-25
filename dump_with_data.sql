@@ -35,7 +35,6 @@ CREATE TABLE `sakura_article` (
   `Image_Name` varchar(50) NOT NULL,
   `Active` int(11) NOT NULL DEFAULT '0',
   `Description` varchar(255),
-  `categories` varchar(255),
   `Rewrite_Url` int(11) NOT NULL DEFAULT '1',
   `Title` varchar(255) DEFAULT NULL,
   `categories` varchar(255),
@@ -76,7 +75,7 @@ INSERT INTO `sakura_article` (`Id`, `Content`, `Slug`, `User_Id`, `Image_Name`, 
 --
 
 CREATE TABLE `sakura_category` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Titre` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,12 +85,12 @@ CREATE TABLE `sakura_category` (
 -- Structure de la table `sakura_chapter`
 --
 
-CREATE TABLE `sakura_chapter` (
-  `Id` int(11) NOT NULL,
-  `Manga_Id` int(11) NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `Number` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- CREATE TABLE `sakura_chapter` (
+--   `Id` int(11) NOT NULL,
+--   `Manga_Id` int(11) NOT NULL,
+--   `Name` varchar(255) DEFAULT NULL,
+--   `Number` int(11) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -100,7 +99,7 @@ CREATE TABLE `sakura_chapter` (
 --
 
 CREATE TABLE `sakura_comment` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Content` varchar(255) DEFAULT NULL,
   `Active` tinyint(1) NOT NULL,
   `Nbr_Signalement` int(11) NOT NULL,
@@ -263,7 +262,7 @@ CREATE TABLE `sakura_type` (
 --
 
 CREATE TABLE `sakura_stats` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+	`Id` int AUTO_INCREMENT PRIMARY KEY,
   `Session` varchar(255) NOT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -336,24 +335,11 @@ ALTER TABLE `sakura_article`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Index pour la table `sakura_category`
---
-ALTER TABLE `sakura_category`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Fk_CategoryUserId` (`User_Id`);
-
---
 -- Index pour la table `sakura_chapter`
 --
-ALTER TABLE `sakura_chapter`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Fk_ChapterMangaId` (`Manga_Id`);
-
---
--- Index pour la table `sakura_comment`
---
-ALTER TABLE `sakura_comment`
-  ADD PRIMARY KEY (`Id`);
+-- ALTER TABLE `sakura_chapter`
+--   ADD PRIMARY KEY (`Id`),
+--   ADD KEY `Fk_ChapterMangaId` (`Manga_Id`);
 
 --
 -- Index pour la table `sakura_manga`
@@ -419,21 +405,14 @@ ALTER TABLE `sakura_article`
 
 --
 -- AUTO_INCREMENT pour la table `sakura_category`
---
-ALTER TABLE `sakura_category`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
 
 --
 -- AUTO_INCREMENT pour la table `sakura_chapter`
 --
-ALTER TABLE `sakura_chapter`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `sakura_chapter`
+--   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT pour la table `sakura_comment`
---
-ALTER TABLE `sakura_comment`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `sakura_manga`
