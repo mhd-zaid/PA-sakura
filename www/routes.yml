@@ -196,6 +196,12 @@
   security: 0
   isAdmin: 0
 
+/parametres-site:
+  controller: Parameters
+  action: parametersUpdateSite
+  security: 0
+  isAdmin: 0
+
 /parametres-support:
   controller: Parameters
   action: parametersSupport

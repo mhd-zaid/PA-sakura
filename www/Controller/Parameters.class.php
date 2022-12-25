@@ -9,6 +9,7 @@ use App\Model\Article;
 use App\Model\Page;
 use App\Core\SendMail;
 use App\Core\Jwt;
+use App\Model\Site;
 
 class Parameters{
     public function index(){
@@ -28,8 +29,33 @@ class Parameters{
         $v = new View("Page/ParametersUsers", "Back");
     }
     public function parametersAccount(){
+		$site = new Site();
+		$siteInfo = $site->select();
         $v = new View("Page/ParametersAccount", "Back");
+		$v->assign("site", $siteInfo);
     }
+
+	public function parametersUpdateSite(){
+		$site = new Site();
+		$siteUpdateForm = $site->updateSiteForm();
+		if(!empty($_POST)){
+			if(isset($_POST['submit'])){
+				$site->setId(1);
+				$site->setName($_POST['name']);
+				$site->setLogo("manga.jpg");
+				$site->setAddress($_POST["address"]);
+				$site->setEmail($_POST["email"]);
+				$site->setNumber($_POST['number']);
+				$site->save();
+				$_SESSION["flash-success"] = "Information du site mise à jour.";
+				header("Location: /parametres");
+                exit();
+			}
+		}
+        $v = new View("Page/SiteInformation", "Back");
+		$v->assign("configForm", $siteUpdateForm);
+    }
+
     public function parametersAccountManagement(){
 		$profil = new UserModel();
 		$profilUpdateForm = $profil->profilUpdateForm();
