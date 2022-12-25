@@ -5,8 +5,14 @@
             <div class="col">
                 <?php 
                 $this->includeComponent("form-user-register", $configForm);
-            ?>
+                ?>
+                 <?php foreach ($configFormErrors as $error ):?>
+                    <div>
+                        <p><?= $error ?> </p>
+                    </div>
+                <?php endforeach;?>
             </div>
+            
         </div>
     </section>
 </div>

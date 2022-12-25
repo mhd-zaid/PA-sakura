@@ -2,11 +2,12 @@
 	<div>
 		<?php 
 			$radioElem=array_slice($config["inputs"], 0,1);
+            if($config['rewriteUrl'] == 0){
+                $val = 2;
+            }else{
+                $val = 1;
+            }
 		?>
-	</div>
-
-	<div>
-		<p>Editer les droits de <?= $config['user']['Firstname'].' '.$config['user']['Lastname'] ?></p>
 	</div>
 	<?php 	
 		foreach ($radioElem as $name => $configInput):?>
@@ -19,11 +20,10 @@
 						value="<?= $value["value"]??"" ?>"
 
 						<?php 
-						if($value["value"]==$config["user"]['Role']){
+						if($value["value"]==$val){
 							echo 'checked';
 						}
 						?>
-
 						<?php if(!empty($value["required"])): ?>
 							required="required"
 						<?php endif;?>
@@ -39,10 +39,7 @@
 
 	<div class="row">
 		<div class="col">
-			<input type="submit" name="update" class="cta-button btn--pink" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
-		</div>
-		<div class="col">
-			<input type="submit" name="delete" class="cta-button btn--pink" value="<?= $config["config"]["delete"]??"Envoyer" ?>">
+			<input type="submit" name="save" class="cta-button btn--pink" value="<?= $config["config"]["submit"]??"Envoyer" ?>">
 		</div>
 	</div>
 </form>

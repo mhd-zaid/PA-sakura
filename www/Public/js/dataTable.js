@@ -75,10 +75,6 @@ function DataTableArticle() {
         data: "title",
         class: "article_slug",
       },
-      // {
-      //   data: "Image",
-      //   class: "article_img",
-      // },
     ],
     order: [[1, "asc"]],
     pageLength: 5,
@@ -91,8 +87,8 @@ function DataTableArticle() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    var slug = row.data().Slug;
-    var rewriteUrl = row.data().Rewrite_Url;
+    var slug = row.data().slug;
+    var rewriteUrl = row.data().rewrite_Url;
     if (rewriteUrl == 1) {
       window.location.replace("/article-add/" + id);
     } else {
@@ -207,10 +203,6 @@ function DataTablePage() {
         data: "active",
         class: "page_active",
       },
-      {
-        data: "date_publi",
-        class: "page_date_publi",
-      },
     ],
     order: [[1, "asc"]],
   });
@@ -221,7 +213,13 @@ function DataTablePage() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/page-read?id=" + id);
+    var slug = row.data().slug;
+    var rewriteUrl = row.data().rewrite_Url;
+    if (rewriteUrl == 1) {
+      window.location.replace("/page-add/" + id);
+    } else {
+      window.location.replace("/page-add/" + slug);
+    }
   });
   // On each draw, loop over the `detailRows` array and show any child rows
   table.on("draw", function () {
@@ -248,7 +246,7 @@ function DataTableCategory() {
         class: "category_id",
       },
       {
-        data: "titre",
+        data: "Title",
         class: "category_titre",
       },
     ],

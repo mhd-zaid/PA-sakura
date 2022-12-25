@@ -67,7 +67,8 @@ class Menu extends DatabaseDriver
      */
     public function setContent(String $content): void
     {
-        $this->content = $content;
+        $content = array_unique(explode(',', $content));
+        $this->content = strip_tags(implode(',', $content));
     }
 
     /**
@@ -102,34 +103,39 @@ class Menu extends DatabaseDriver
         $this->main = $main;
     }
 
-    public function findMenuById(Int $id = null)
-    {
-        $sql = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
-        $sql->bindValue("id", $id);
-        $sql->execute();
-        $data = $sql->fetch();
-        return $data;
-    }
+    public function createNavigationForm(){
+        $user = new User();
+        $userInfo = $user->getUser($_COOKIE['JWT']);
 
-    public function getMenus()
-    {
-        $sql = "SELECT * FROM {$this->table};";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
-    }
+        return [
+            "config" => [
+                            "method"=>"POST",
+                            "class"=>"form-register",
+                            "submit"=>"Modifier"
+                        ],
 
-    public function deleteMenuById(Int $id = null): void
-    {
-        $sql = $this->pdo->prepare("DELETE  FROM {$this->table} WHERE id = :id");
-        $sql->bindValue("id", $id);
-        $sql->execute();;
+           "navigation"=>$this->find(),
+           "user"=>$userInfo, 
+           "existingPages"=>$this->getExistingPages(),
+            "inputs"=> [
+                "titre"=>[
+                                "type"=>"text",
+                                "label"=>"Titre de la navigation",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                            ],
+            ]
+        ];
+
     }
 
     public function getExistingPages()
     {
         $pages = new PageModel();
-        $data = $pages->getPages();
+        $data = $pages->select();
         return $data;
     }
 

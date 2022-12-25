@@ -1,3 +1,2 @@
-pute
-ok
-rr
+gfdg
+alert(1)

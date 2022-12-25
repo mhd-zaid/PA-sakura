@@ -11,7 +11,7 @@
 			<input name="<?= $name ?>" 
 					class=""
 					type="<?= $configInput["type"]??"text" ?>"
-					value="<?= !empty($config['category']) ? $config['category']['Titre'] : '' ?>"
+					value="<?= !empty($config['category']) ? $config['category']['Title'] : '' ?>"
 					<?php if(!empty($configInput["required"])): ?>
 						required="required"
 					<?php endif;?>
@@ -21,7 +21,7 @@
 	<?php endforeach;?>   
 	</div>
 
-	<input type="submit" class="cta-button btn--pink" name="submit" value="<?= 'Ajouter' ?>">
+	<input type="submit" class="cta-button btn--pink" name="submit" value="<?= !empty($config['category']) ? 'Modifier' : 'Ajouter' ?>">
 	<?php if(!empty($config['category'])): ?>
 	<input type="submit" class="cta-button btn--pink" name="delete" value="<?= 'Supprimer' ?>">
 	<?php endif; ?>

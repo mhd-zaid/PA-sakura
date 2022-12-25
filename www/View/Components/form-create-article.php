@@ -3,11 +3,15 @@
 	<?php 
 		$firstElem=array_slice($config["inputs"], 0, 1);
 		$secondElem=array_slice($config["inputs"], 1, 1);
-		$thirdElem=array_slice($config["inputs"], 2, 2);
-		$fifthElem=array_slice($config["inputs"], 5, 5);
-		$sixthElem=array_slice($config["inputs"], 5, 6);
-
+		$thirdElem=array_slice($config["inputs"], 2, 1);
+		$sixthElem=array_slice($config["inputs"], 3, 1);
+		$fifthElem=array_slice($config["inputs"], 5, 1);
 	?>
+	<?php if($config['user']['Role']=== 1): ?>
+	<?php if(!empty($config['article']) && $config['article']['Active'] === 0): ?> <input type="submit" class="cta-button btn--pink" name="publish" value="<?= "Publier" ?>"><?php endif; ?>
+	<?php if(!empty($config['article']) && $config['article']['Active'] === 1): ?> <input type="submit" class="cta-button btn--pink" name="unpublish" value="<?= "Dépublier" ?>"><?php endif; ?>
+	<?php endif;?>
+		<h1 class="h1-section-back">Création d'un article</h1>
 	<div> 
 	<?php 	
 		foreach ($firstElem as $name => $configInput):?>
@@ -40,30 +44,15 @@
 			></p>
 			</div>
 	<?php endforeach;?>
-	 <input type="hidden" id="list" value = "<?= !empty($config["article"]['categories']) ? $config["article"]['categories'] : '' ?>" name="list" readonly="true"  style="display:none"/>
-	<?php 
-	$categorieAlreadySet = $config['article']['categories'];
-	$array = explode(',',$categorieAlreadySet);
-	echo '<h1>Vos catégories</h1>';
-	echo '<div id="container-category">';
-	echo '<select name="categorie" id="categorie">';
-	echo '<option value="">--Please choose an option--</option>';
-		foreach($config['category'] as $name => $categorie){
-			$categorieName = $config['category'][$name]['Titre'];
-   			echo "<option value='$categorieName'>$categorieName</option>";
-		}
-		echo '</select>';
-		echo '</div>';
 
- 	?>
-	<?php 	
-		foreach ($secondElem as $name => $configInput):?>
+	<?php 
+		foreach ($fifthElem as $name => $configInput):?>
 		<div>
+			<p><?= $configInput["label"] ?>
 			<input name="<?= $name ?>" 
 					class=""
-					id="<?= $configInput["id"] ?>"
 					type="<?= $configInput["type"]??"text" ?>"
-					value="<?= $configInput["value"] ?>"
+					value="<?= !empty($config["article"]['Description']) ? $config["article"]['Description'] : ''  ?>"
 					<?php if(!empty($configInput["required"])): ?>
 						required="required"
 					<?php endif;?>
@@ -71,6 +60,23 @@
 			></p>
 			</div>
 	<?php endforeach;?>
+
+	 <input type="hidden" id= <?= $thirdElem['listCategorie']['id'] ?>  value = "<?= !empty($config["article"]['categories']) ? $config["article"]['categories'] : '' ?>" name="list" readonly="true"  style="display:none"/>
+	<?php 
+	$categorieAlreadySet = $config['article']['categories'];
+	$array = explode(',',$categorieAlreadySet);
+	echo '<h1>Vos catégories</h1>';
+	echo '<div id="container-category">';
+	echo '<select name="categorie" id="categorie">';
+	echo '<option value="">--Catégorie--</option>';
+		foreach($config['category'] as $name => $categorie){
+			$categorieName = $config['category'][$name]['Title'];
+   			echo "<option value='$categorieName'>$categorieName</option>";
+		}
+		echo '</select>';
+		echo '</div>';
+
+ 	?>
 
 	<?php if(!empty($config['article']['Image_Name'])):  ?><img  width="50px"  src="/uploads/<?=$config['article']['Image_Name']?>" /><?php endif ?>
 	<div id="modal-image" class="" style="display:none;">
@@ -97,6 +103,10 @@
         </fieldset>                              
         </div>
 
+	<?php 	
+		if(empty($config['article']['Image_Name'])): ?>
+		  <input type="button" class="" name="openFile" id='openFile' value="<?= "Ajouter image" ?>">
+	<?php endif; ?>
 	<?php 	
 		if(!empty($config['article']['Image_Name'])): ?>
 		  <input type="submit" class="" name="deleteImage" value="<?= "Supprimer l'image" ?>">

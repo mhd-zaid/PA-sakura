@@ -19,17 +19,15 @@ class User{
 		if( !empty($_POST) )
 		{
 			$verificator = new Verificator($loginForm, $_POST);
-
+			$verificator->verificatorConnexion($loginForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-
 			if(empty($configFormErrors)){
-				$user->checkLogin($_POST['email'],$_POST['password']);
-			}else{
-				echo 'Email ou mot de passe incorrect';
+				$verification = $user->checkLogin($_POST['email'],$_POST['password']);
+				if(!$verification){
+					$configFormErrors[] = 'Email ou mot de passe incorrect';
+				}
 			}
-
-		}
-		
+		}		
 		$v = new View("Auth/Login", "Front");
 		$v->assign("configForm", $loginForm);
 		$v->assign("configFormErrors", $configFormErrors??[]);
@@ -44,13 +42,11 @@ class User{
 		if( !empty($_POST) )
 		{
 			$verificator = new Verificator($registerForm, $_POST);
-
+			$verificator->verificatorAddUser($registerForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-
 			if(empty($configFormErrors)){
-				
-				$emailExist = $user->checkEmailExist($_POST['email']);
-				if($emailExist){
+				$verification = $user->checkEmailExist($_POST['email']); 
+				if($verification){
 					$user->setFirstname($_POST['firstname']);
 					$user->setLastname($_POST['lastname']);
 					$user->setEmail($_POST['email']);
@@ -62,7 +58,9 @@ class User{
 					$servername = $_SERVER['HTTP_HOST'];
 					$email = $_POST['email'];
 					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
-				}	
+				}else{
+					$configFormErrors[] = "Cette email est déjà associé à un autre compte.";
+				}
 			}
 
 		}
@@ -85,21 +83,26 @@ class User{
 		$forgotPasswdForm = $user->forgotPasswdForm();
 		if( !empty($_POST) )
 		{
-			$verificator = new Verificator($forgotPasswdForm, $_POST);
-
+			$data = [];
+			isset($_POST['email']) ? array_push($data, $_POST['email']) : '';
+			$verificator = new Verificator($forgotPasswdForm, $data);
+			$verificator->verificatorForgotPassword($forgotPasswdForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-
+			
 			if(empty($configFormErrors)){
-				if(!empty($user->checkForgotPasswd($_POST['email']))){
+				$verification = $user->checkForgotPasswd($_POST['email']);
+				if(!$verification){
+					$configFormErrors[] = "Cette email n'est associé à aucun compte.";
+				}else{
 					$servername = $_SERVER['HTTP_HOST'];
 					$email = $_POST['email'];
 					$token = $user->checkForgotPasswd($_POST['email']);
 					new sendMail($_POST['email'],"CHANGEMENT DE MDP","<a href='http://$servername/reinitialisation-mot-de-passe?token=$token&email=$email'>Nouveau mot de passe</a>","Un email à été envoyer pour la réinitialisation du mot de passe","Une erreur s'est produite, merci de réesayer plus tard");
-				}else{
-					echo("l'email n'existe pas");
+					// $_SESSION["flash-success"] = "Un email vous à été envoyer pour la réinitialisation de votre mot de passe";
+                	// header("Location: /se-connecter");
+               	 	// exit();				
 				}
 			}
-
 		}
 		$v = new View("Auth/ForgotPasswd", "Front");
 		$v->assign("configForm", $forgotPasswdForm);
@@ -107,22 +110,21 @@ class User{
 	}
 
 	public function resetPasswd(){
-		if(!empty($_GET['token'])&& !empty($_GET['email'])){
+		if(!empty($_GET['token']) && !empty($_GET['email'])){
 			$user = new UserModel();
 			$resetPasswdForm = $user->resetPasswdForm();
 
 			if( !empty($_POST) )
 			{
 				$verificator = new Verificator($resetPasswdForm, $_POST);
-
+				$verificator->verificatorResetPassword($resetPasswdForm, $_POST);
 				$configFormErrors = $verificator->getMsg();
 				if(empty($configFormErrors)){
-					if($user->checkTokenPasswd($_GET['email'],$_GET['token'],$_POST['password'])){
-						header("Location: /se-connecter");
-						die();
+					$verification = $user->checkTokenPasswd($_GET['email'],$_GET['token'],$_POST['password']);
+					if(!$verification){
+						$configFormErrors[] = "Une erreur s'est produite. ";
 					}else{
-						header("Location: /mot-de-passe-oublie");
-						die();
+						header("Location: /se-connecter");
 					}
 				}
 			}

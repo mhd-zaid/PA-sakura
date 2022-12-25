@@ -3,7 +3,13 @@
             <div class="col">
             <h1 class="h1-section-back">Catégories</h1>
             <h1 class="h-section-back">Gérer vos catégories ici</h1>
+            <div class="row">
+        <div class="col">
+            <a href="/category-add" class="cta-button btn--pink">Ajouter</a>
         </div>
+    </div> 
+        </div>
+        
     </div>
 </section>
 

@@ -34,6 +34,7 @@ CREATE TABLE `sakura_article` (
   `User_Id` int(11) NOT NULL,
   `Image_Name` varchar(50) NOT NULL,
   `Active` int(11) NOT NULL DEFAULT '0',
+  `Description` varchar(255),
   `Rewrite_Url` int(11) NOT NULL DEFAULT '1',
   `Title` varchar(255) DEFAULT NULL,
   `categories` varchar(255),
@@ -74,7 +75,7 @@ INSERT INTO `sakura_article` (`Id`, `Content`, `Slug`, `User_Id`, `Image_Name`, 
 --
 
 CREATE TABLE `sakura_category` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Titre` varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -84,12 +85,12 @@ CREATE TABLE `sakura_category` (
 -- Structure de la table `sakura_chapter`
 --
 
-CREATE TABLE `sakura_chapter` (
-  `Id` int(11) NOT NULL,
-  `Manga_Id` int(11) NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `Number` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- CREATE TABLE `sakura_chapter` (
+--   `Id` int(11) NOT NULL,
+--   `Manga_Id` int(11) NOT NULL,
+--   `Name` varchar(255) DEFAULT NULL,
+--   `Number` int(11) DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,7 @@ CREATE TABLE `sakura_chapter` (
 --
 
 CREATE TABLE `sakura_comment` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Content` varchar(255) DEFAULT NULL,
   `Active` tinyint(1) NOT NULL,
   `Nbr_Signalement` int(11) NOT NULL,
@@ -187,15 +188,18 @@ CREATE TABLE `sakura_page` (
   `Active` tinyint(1) NOT NULL,
   `User_Id` int(11) DEFAULT NULL,
   `Description` text,
-  `Date_publi` date NOT NULL,
-  `Date_modif` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  `Main` varchar(10),
+  `Slug` varchar(255),
+  `Rewrite_Url` varchar(10),
+  `Date_Created` datetime DEFAULT CURRENT_TIMESTAMP,
+  `Date_Updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `sakura_page`
 --
 
-INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_publi`, `Date_modif`) VALUES
+INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_Created`, `Date_Updated`) VALUES
 (1, 'My 1st page', '<h2>First Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'first-page', '2022-11-21', '2022-11-21 09:57:20'),
 (2, 'My 2nd page', '<h2>Second Page</h2><p>Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem</p>', 0, 1, 'my-second-page', '2022-11-20', '2022-11-21 09:54:51'),
 (3, 'My 3rd page', '<h2>Third Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'third-page', '2022-11-21', '2022-11-21 09:55:17'),
@@ -213,10 +217,13 @@ INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Descr
 -- Structure de la table `sakura_site`
 --
 
-CREATE TABLE `sakura_site` (
-  `Id` int(11) NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `Description` text
+Create table sakura_site(
+	`Id` int AUTO_INCREMENT PRIMARY KEY,
+  `Logo` varchar(255),
+  `Name` varchar(50),
+  `Email` varchar(255),
+  `Number` varchar(20),
+  `Address` varchar(100)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -255,7 +262,7 @@ CREATE TABLE `sakura_type` (
 --
 
 CREATE TABLE `sakura_stats` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
+	`Id` int AUTO_INCREMENT PRIMARY KEY,
   `Session` varchar(255) NOT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -328,24 +335,11 @@ ALTER TABLE `sakura_article`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Index pour la table `sakura_category`
---
-ALTER TABLE `sakura_category`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Fk_CategoryUserId` (`User_Id`);
-
---
 -- Index pour la table `sakura_chapter`
 --
-ALTER TABLE `sakura_chapter`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `Fk_ChapterMangaId` (`Manga_Id`);
-
---
--- Index pour la table `sakura_comment`
---
-ALTER TABLE `sakura_comment`
-  ADD PRIMARY KEY (`Id`);
+-- ALTER TABLE `sakura_chapter`
+--   ADD PRIMARY KEY (`Id`),
+--   ADD KEY `Fk_ChapterMangaId` (`Manga_Id`);
 
 --
 -- Index pour la table `sakura_manga`
@@ -411,21 +405,14 @@ ALTER TABLE `sakura_article`
 
 --
 -- AUTO_INCREMENT pour la table `sakura_category`
---
-ALTER TABLE `sakura_category`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
 
 --
 -- AUTO_INCREMENT pour la table `sakura_chapter`
 --
-ALTER TABLE `sakura_chapter`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+-- ALTER TABLE `sakura_chapter`
+--   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT pour la table `sakura_comment`
---
-ALTER TABLE `sakura_comment`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `sakura_manga`

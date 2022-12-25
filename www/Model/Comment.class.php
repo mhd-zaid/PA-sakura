@@ -88,6 +88,31 @@ class Comment extends DatabaseDriver
         $this->nbr_signalement = $nbr_signalement;
     }
 
+    public function createMotBanForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Enregistrer"
+                            ],
+                "category"=>$this->find(),
+
+                "inputs"=> [
+                    "word"=>[
+                        "type"=>"text",
+                        "label"=>"Mot Banni",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Le mot banni doit faire entre 2 et 25 caractères."
+                    ],
+                ]
+            ];
+
+    }
+
     public function findCommentById(Int $id){
         $sql = "SELECT * FROM $this->table WHERE id = $id";
         $result = $this->pdo->query($sql);

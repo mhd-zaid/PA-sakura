@@ -23,8 +23,6 @@
                 <th>Title</th>
                 <th>Auteur</th>
                 <th>Publié</th>
-                <th>Date de publication</th>
-
             </tr>
         </thead>
         

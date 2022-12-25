@@ -56,7 +56,7 @@ class User extends DatabaseDriver
      */
     public function setFirstname(String $firstname): void
     {
-        $this->firstname = ucwords(mb_strtolower(trim($firstname)));
+        $this->firstname = ucwords(mb_strtolower(trim(strip_tags($firstname))));
     }
 
      /**
@@ -72,7 +72,7 @@ class User extends DatabaseDriver
      */
     public function setLastname(String $lastname): void
     {
-        $this->lastname = mb_strtoupper(trim($lastname));
+        $this->lastname = mb_strtoupper(trim(strip_tags($lastname)));
     }
 
     /**
@@ -265,11 +265,11 @@ class User extends DatabaseDriver
                                 ],
 
                     "email"=>[
-                        "type"=>"email",
-                        "label"=>"Email",
-                        "class"=>"ipt-form-entry",
-                        "required"=>true,
-                        "error"=>"L'email est incorrect"
+                                    "type"=>"email",
+                                    "label"=>"Email",
+                                    "class"=>"ipt-form-entry",
+                                    "required"=>true,
+                                    "error"=>"L'email est incorrect"
                                 ],
 
                     "password"=>[
@@ -286,45 +286,25 @@ class User extends DatabaseDriver
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
                                     "confirm"=>"password",
-                                    "error"=>"Votre Le de passe de confirmation ne correspond pas"
+                                    "error"=>"Votre mot de passe de confirmation ne correspond pas"
                                 ],
 
-                    "administrateur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Administrateur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"1",
-                                    "elemName"=>"userRole"
-                                ],
-
-                    "editeur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Editeur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"2",
-                                    "elemName"=>"userRole"
-                                ],
-                                
-                    "lecteur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Lecteur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"3",
-                                    "elemName"=>"userRole"
-                                ],
-
-                    "note"=>[
-                                    "type"=>"text",
-                                    "label"=>"Note (facultatif)",
-                                    "class"=>"ipt-form-entry",
-                                ],
-
-                    "message"=>[
-                                    "type"=>"text",
-                                    "label"=>"Message d'invitation (facultatif)",
-                                    "class"=>"ipt-form-entry",
-                                ],
-
+                    "userRole"=>[
+                            "administrateur"=>[
+                                "type"=>"radio",
+                                "label"=>"Administrateur",
+                                "class"=>"ipt-form-entry",
+                                "value"=>"1",
+                                "elemName"=>"userRole"
+                            ],
+                            "editeur"=>[
+                                "type"=>"radio",
+                                "label"=>"Editeur",
+                                "class"=>"ipt-form-entry",
+                                "value"=>"2",
+                                "elemName"=>"userRole"
+                            ],
+                        ],
                 ]
             ];
 
@@ -339,91 +319,25 @@ class User extends DatabaseDriver
                                 "submit"=>"Modifier",
                                 "delete"=>"Supprimer"
                             ],
-                "user"=>$this->getUser($_GET['id']),
+                "user"=>$this->find(), 
                             
-                "inputs"=> [
-                    "firstname"=>[
-                                    "type"=>"text",
-                                    "label"=>"Prénom",
-                                    "class"=>"ipt-form-entry",
-                                    "min"=>2,
-                                    "max"=>25,
-                                    "required"=>true,
-                                    "error"=>"Le prénom doit faire entre 2 et 25 caractères",
-                                    "value"=>$this->firstname
-                                ],
-
-                    "lastname"=>[
-                                    "type"=>"text",
-                                    "label"=>"Nom",
-                                    "class"=>"ipt-form-entry",
-                                    "min"=>2,
-                                    "max"=>75,
-                                    "required"=>true,
-                                    "error"=>"Le nom doit faire entre 2 et 75 caractères"
-                                ],
-
-                    "email"=>[
-                        "type"=>"email",
-                        "label"=>"Email",
-                        "class"=>"ipt-form-entry",
-                        "required"=>true,
-                        "error"=>"L'email est incorrect"
-                                ],
-
-                    "password"=>[
-                                    "type"=>"password",
-                                    "label"=>"Votre mot de passe",
-                                    "class"=>"ipt-form-entry",
-                                    "required"=>true,
-                                    "error"=>"Le mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
-                                ],
-                                
-                    "passwordconfirm"=>[
-                                    "type"=>"password",
-                                    "label"=>"Confirmation",
-                                    "class"=>"ipt-form-entry",
-                                    "required"=>true,
-                                    "confirm"=>"password",
-                                    "error"=>"Votre Le de passe de confirmation ne correspond pas"
-                                ],
-
-                    "administrateur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Administrateur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"1",
-                                    "elemName"=>"userRole"
-                                ],
-
-                    "editeur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Editeur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"2",
-                                    "elemName"=>"userRole"
-                                ],
-                                
-                    "lecteur"=>[
-                                    "type"=>"radio",
-                                    "label"=>"Lecteur",
-                                    "class"=>"ipt-form-entry",
-                                    "value"=>"3",
-                                    "elemName"=>"userRole"
-                                ],
-
-                    "note"=>[
-                                    "type"=>"text",
-                                    "label"=>"Note (facultatif)",
-                                    "class"=>"ipt-form-entry",
-                                ],
-
-                    "message"=>[
-                                    "type"=>"text",
-                                    "label"=>"Message d'invitation (facultatif)",
-                                    "class"=>"ipt-form-entry",
-                                ],
-
+                "inputs"=> [    
+                    "userRole"=>[
+                        "administrateur"=>[
+                            "type"=>"radio",
+                            "label"=>"Administrateur",
+                            "class"=>"ipt-form-entry",
+                            "value"=>"1",
+                            "elemName"=>"userRole"
+                        ],
+                        "editeur"=>[
+                            "type"=>"radio",
+                            "label"=>"Editeur",
+                            "class"=>"ipt-form-entry",
+                            "value"=>"2",
+                            "elemName"=>"userRole"
+                        ],
+                    ],
                 ]
             ];
 
@@ -438,7 +352,7 @@ class User extends DatabaseDriver
                             "submit"=>"Modifier"
                         ],
 
-            "profil"=>$this->getUserByEmail($_COOKIE['Email']), 
+            "profil"=>$this->getUser($_COOKIE['JWT']), 
     
             "inputs"=> [
                 "firstname"=>[
@@ -569,7 +483,7 @@ class User extends DatabaseDriver
                                     "label"=>"Adresse e-mail",
                                     "class"=>"ipt-form-entry",
                                     "required"=>true,
-                                    "error"=>"Votre email ou mot de passe est incorrect"
+                                    "error"=>"Email incorrect."
                                 ],
                 ]
             ];
@@ -604,12 +518,14 @@ class User extends DatabaseDriver
 
     }
 
-    public function checkLogin(String $email, String $pwd): void
+    public function checkLogin(String $email, String $pwd)
     {
-        $sql = "SELECT * FROM $this->table WHERE email = '$email'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            $data = $result->fetch();
+        $sql = "SELECT * FROM " .$this->table." WHERE email =:email";
+        $params = ['email'=>$email];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        if($queryPrepared->rowCount() > 0){
+            $data = $queryPrepared->fetch();
             if(password_verify($pwd,$data['Password'])){
                 session_start();
                 $_SESSION['email'] = $data['Email'];
@@ -637,10 +553,10 @@ class User extends DatabaseDriver
                     die();
                 }
             }else{
-                print_r("Mot de passe ou email incorrect");
+                return false;
             }
         }else{
-            print_r('Mot de passe ou email incorrect');
+            return false;
         }
     }
 
@@ -653,10 +569,14 @@ class User extends DatabaseDriver
 
     }
     public function checkForgotPasswd(string $email): ?string{
-        $sql = "SELECT * FROM $this->table WHERE email = '$email'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            $data = $result->fetch();
+
+        $sql = "SELECT * FROM " .$this->table. " WHERE email =:email";
+        $params = ['email'=>$email];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        if($queryPrepared->rowCount() > 0){
+            $data = $queryPrepared->fetch();
             $header = base64_encode(json_encode(array("alg"=>"HS256","typ"=>"JWT")));
             $playload = base64_encode(json_encode(array_diff($data,[$data['Password']],[$data['Token']])));
             $secret = base64_encode('Za1234');
@@ -673,17 +593,19 @@ class User extends DatabaseDriver
             $this->save();
                 return $this->getToken();
         }else{
-            return null;
+            return false;
         }
     }
 
     public function checkTokenPasswd(string $email,string $token,string $password): bool
     {
-        $email = str_replace('%40','@',$email);
-        $sql = "SELECT * FROM $this->table WHERE email = '$email' AND token = '$token'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0 ){
-            $data = $result->fetch();
+        $sql = "SELECT * FROM " .$this->table. " WHERE email =:email AND token=:token";
+        $params = ['email'=>$email, "token"=>$token];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+
+        if($queryPrepared->rowCount() > 0 ){
+            $data = $queryPrepared->fetch();
             $this->setId($data['Id']);
             $this->setFirstname($data['Firstname']);
             $this->setLastname($data['Lastname']);
@@ -700,10 +622,12 @@ class User extends DatabaseDriver
 
     public function checkToken(string $token,string $email):string
     {
-        $sql = "SELECT Token FROM $this->table where token='$token' AND email= '$email'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        if($result->rowCount() > 0){
+        $sql = "SELECT Token FROM " .$this->table. " WHERE token=:token AND email=:email";
+        $params = ['email'=>$email, 'token'=>$token];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
+        if($queryPrepared->rowCount() > 0){
             return true;
         }else{
             return false;
@@ -712,52 +636,45 @@ class User extends DatabaseDriver
 
     public function checkTokenEmail(string $token,string $email):void
     {
-        $sql = "SELECT Token FROM $this->table where status=0 AND email= '$email'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = "SELECT Token FROM " .$this->table.  " WHERE status=:status AND email=:email";
+        $params = ['email'=>$email, 'status'=>0];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
         
-        if($result->rowCount() > 0 && $data['Token']==$token){
-            $sql_update = "UPDATE $this->table SET status=1 where email='$email'";
-            $this->pdo->query($sql_update);
+        if($queryPrepared->rowCount() > 0 && $data['Token']==$token){
+            $sql = "UPDATE " .$this->table. " SET status=:status where email=:email";
+            $params = ['email'=>$email, 'status'=>1];
+            $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared->execute($params);
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
             die();
         }
     }
 
-    public function checkEmailExist($email):Int
+    public function checkEmailExist($email):bool
     {
-        $sql = "SELECT * FROM $this->table where Email='$email'";
-        $result = $this->pdo->query($sql);
-        if($result->rowCount() > 0){
-            print_r("Cet email est déjà associé à un compte");
-
-            return 0;
+        $sql = "SELECT * FROM " .$this->table. " where email=:email";
+        $params = ['email'=>$email];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        if($queryPrepared->rowCount() > 0){
+            return false;
         }else{
-            return 1;
+            return true;
         }
     }
     
-    public function getUser(?Int $id = null , ?String $email = null){
-        if ($id != null && $email == null)
-        {
-            $sql = "SELECT * FROM ".$this->table." WHERE id =".$id;
-        }
-        if($id == null && $email != null) {
-            $sql = "SELECT * FROM ".$this->table." WHERE email = '$email'";
-        }
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+    public function getUser($token){
+        $sql = "SELECT * FROM ".$this->table." WHERE token =:token";
+        $params = ['token'=>$token];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
         return $data;
     }
     
-    public function getUserByEmail(string $email){
-        $sql = "SELECT * FROM ".$this->table." WHERE Email ='$email'";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
-    }
-
     public function updateUserRole(array $userInformation){
                 $this->setId($_GET['id']);
 				$this->setFirstname($userInformation['Firstname']);

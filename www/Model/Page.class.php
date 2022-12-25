@@ -3,17 +3,20 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
-use DateTime;
 
 class Page extends DatabaseDriver
 {
     private $id = null;
     protected $title;
     protected $content;
-    protected $active;
+    protected $active = 0;
     protected $user_id;
+    protected $slug;
+    protected $rewrite_Url;
     protected $description;
-    protected $date_publi;
+    protected $main;
+    private $date_created;
+	private $date_updated;
 
 
 
@@ -53,7 +56,7 @@ class Page extends DatabaseDriver
      */
     public function setTitle(String $title): void
     {
-        $this->title = $title;
+        $this->title = strip_tags($title);
     }
 
     public function getContent(): ?string
@@ -77,7 +80,23 @@ class Page extends DatabaseDriver
 
     public function setDescription(String $description): void
     {
-        $this->description = $description;
+        $this->description = strip_tags($description);
+    }
+
+     /**
+     * @return mixed
+     */
+    public function getDateCreated()
+    {
+        return $this->date_created;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateUpdated()
+    {
+        return $this->date_updated;
     }
 
     /**
@@ -93,6 +112,46 @@ class Page extends DatabaseDriver
         return $this->active;
     }
 
+     /**
+     * @param mixed $rewrite_Url
+     */
+    public function setRewriteUrl(Int $rewrite_Url): void
+    {
+        $this->rewrite_Url = $rewrite_Url;
+    }
+
+    public function getRewriteUrl(): ?Int
+    {
+        return $this->rewrite_Url;
+    }
+
+     /**
+     * @param mixed $main
+     */
+    public function setMain(Int $main): void
+    {
+        $this->main = $main;
+    }
+
+    public function getMain(): ?Int
+    {
+        return $this->main;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setSlug(String $slug): void
+    {   
+        $newSlug = $this->slugify($slug);
+        $this->slug = $newSlug;
+    }
+
 
     /**
      * @param mixed $user_id
@@ -102,40 +161,61 @@ class Page extends DatabaseDriver
         $this->active = $active;
     }
 
-     /**
-     * @param mixed $date_publi
-     */
-    public function setDate(String $date_publi): void
-    {
-        $this->date_publi = $date_publi;
+    public function createPageForm(){
+        $user = new User();
+        $userInfo = $user->getUser($_COOKIE['JWT']);
+
+        return [
+            "config" => [
+                            "method"=>"POST",
+                            "class"=>"form-register",
+                            "submit"=>"Modifier"
+                        ],
+
+           "page"=>$this->find(),
+           "user"=>$userInfo, 
+
+           "textarea"=>[
+                "class"=>"ckeditor",
+                "id"=>"editor",
+                "name"=>"editor"
+           ],
+            "inputs"=> [
+                "titre"=>[
+                                "type"=>"text",
+                                "label"=>"Titre de la page",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                            ],
+                "metadescription"=>[
+                                "type"=>"text",
+                                "label"=>"Metadescription",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Les metadescriptions sont obligatoires"
+                ],
+                "slug"=>[
+                                "type"=>"text",
+                                "label"=>"Slug",
+                                "class"=>"ipt-form-entry",
+                                "min"=>2,
+                                "max"=>25,
+                                "required"=>true,
+                                "error"=>"Le slug doit faire entre 2 et 25 caractères"
+                            ],
+                "editor"=>[
+                    "type"=>"hidden",
+                    "class"=>"ipt-form-entry",
+                    "required"=>false,
+                    "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
+                ],
+            ]
+        ];
+
     }
-
-    public function getDate(): ?String
-    {
-        return $this->date_publi;
-    }
-
-
-    public function findPageById(Int $id = null)
-    {
-        $sql = "SELECT * FROM " . $this->table . " WHERE id =" . $id;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
-    }
-
-    public function deletePageById(Int $id = null): void
-    {
-        $sql = "DELETE  FROM " . $this->table . " WHERE id =" . $id;
-        $result = $this->pdo->query($sql);
-    }
-
-    public function getPages()
-    {
-        $sql = "SELECT * FROM ".$this->table;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
-    }
-
 }
