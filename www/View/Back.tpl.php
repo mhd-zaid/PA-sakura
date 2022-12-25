@@ -186,8 +186,14 @@
                             <option value='<?= $css[".titre"]->{"font-family"} ?>' selected hidden><?= ucfirst($css[".titre"]->{"font-family"}) ?></option>
                             <option value="arial">Arial</option>
                             <option value="cambria">Cambria</option>
+                            <option value="courier">Courier</option>
                             <option value="georgia">Georgia</option>
-                            <option value="impact">Impact</option>
+                            <option value="helvetica">Helvetica</option>
+                            <option value="optima">Optima</option>
+                            <option value="palatino">Palatino</option>
+                            <option value="tahoma">Tahoma</option>
+                            <option value="times">Times</option>
+                            <option value="verdana">Verdana</option>
                         </select><br>
                     </div>
                 </div>
@@ -217,8 +223,14 @@
                             <option value='<?= $css[".paragraph"]->{"font-family"} ?>' selected hidden><?= ucfirst($css[".paragraph"]->{"font-family"}) ?></option>
                             <option value="arial">Arial</option>
                             <option value="cambria">Cambria</option>
+                            <option value="courier">Courier</option>
                             <option value="georgia">Georgia</option>
-                            <option value="impact">Impact</option>
+                            <option value="helvetica">Helvetica</option>
+                            <option value="optima">Optima</option>
+                            <option value="palatino">Palatino</option>
+                            <option value="tahoma">Tahoma</option>
+                            <option value="times">Times</option>
+                            <option value="verdana">Verdana</option>
                         </select><br>
                     </div>
                 </div>
@@ -302,6 +314,7 @@
 
                 <input type="submit" value="electro" name="electro"><br>
                 <input type="submit" value="music" name="music"><br>
+                <input type="submit" value="sakura" name="sakura"><br>
                 </form>
             </div>
 

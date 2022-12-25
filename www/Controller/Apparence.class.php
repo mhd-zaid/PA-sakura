@@ -44,6 +44,14 @@ class Apparence
             $apparence->updateActive(3);
             $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
         }
+        if(isset($_POST["sakura"])){
+            $apparence->setId(4);
+            $apparence->setCss("sakura");
+            $apparence->setActive(1);
+            $apparence->save();
+            $apparence->updateActive(4);
+            $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
+        }
 
         $v = new View("Page/Apparence", "Back");
         $v->assign("css", get_object_vars($css));

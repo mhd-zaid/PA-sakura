@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : database
--- Généré le : mar. 22 nov. 2022 à 16:02
+-- Généré le : dim. 25 déc. 2022 à 14:14
 -- Version du serveur : 5.7.38
 -- Version de PHP : 8.0.19
 
@@ -24,6 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `sakura_apparence`
+--
+
+CREATE TABLE `sakura_apparence` (
+  `Id` int(11) NOT NULL,
+  `Css` longtext NOT NULL,
+  `Active` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `sakura_apparence`
+--
+
+INSERT INTO `sakura_apparence` (`Id`, `Css`, `Active`) VALUES
+(1, '.paragraph{\n	color:#000000;\n	font-family:impact\n}\n.titre{\n	color:#8582b0;\n	font-family:arial\n}\n.body{\n	background-color:#d05858\n}\n.nav{\n	color:#4b27b0\n}\n.header{\n	background-color:#ff00dd\n}\n.footer{\n	background-color:#ff0000}', 0),
+(2, 'electro', 0),
+(3, 'music', 1),
+(4, 'sakura', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `sakura_article`
 --
 
@@ -37,7 +59,7 @@ CREATE TABLE `sakura_article` (
   `Description` varchar(255),
   `Rewrite_Url` int(11) NOT NULL DEFAULT '1',
   `Title` varchar(255) DEFAULT NULL,
-  `categories` varchar(255),
+  `categories` varchar(255) DEFAULT NULL,
   `Date_Created` datetime DEFAULT CURRENT_TIMESTAMP,
   `Date_Updated` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -171,9 +193,9 @@ CREATE TABLE `sakura_menu` (
 --
 
 INSERT INTO `sakura_menu` (`Id`, `Title`, `Content`, `Active`, `Main`) VALUES
-(19, 'Menu impaires', 'My 1st page,My 3rd page,My 5th page,My 7th page,My 9th page', 0, 0),
-(21, 'Menu principal', 'My 1st page,My 2nd page,My 3rd page,My 4th page,My 5th page,My 6th page,My 7th page,My 8th page,My 9th page,My 10th page ', 0, 1),
-(22, 'Menu paire', 'My 2nd page,My 4th page,My 6th page,My 8th page,My 10th page ', 0, 0);
+(19, 'Menu impaires', 'My 3rd page,My 5th page,My 7th page,My 9th page', 0, 1),
+(21, 'Menu principal', 'My 2nd page,My 3rd page,My 4th page,My 5th page,My 6th page,My 7th page,My 8th page,My 9th page,My 10eme page ', 0, 0),
+(22, 'Menu paire', 'My 2nd page,My 4th page,My 6th page,My 8th page,My 10eme page ', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -199,8 +221,13 @@ CREATE TABLE `sakura_page` (
 -- Déchargement des données de la table `sakura_page`
 --
 
+<<<<<<< HEAD:www/dump_with_data.sql
 INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_Created`, `Date_Updated`) VALUES
 (1, 'My 1st page', '<h2>First Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'first-page', '2022-11-21', '2022-11-21 09:57:20'),
+=======
+INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_publi`, `Date_modif`) VALUES
+(1, 'My 1st page', '<h2>First Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'first-page', '2022-12-24', '2022-12-24 12:42:10'),
+>>>>>>> 12000aa (fix (Apparence)):dump_with_data.sql
 (2, 'My 2nd page', '<h2>Second Page</h2><p>Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem</p>', 0, 1, 'my-second-page', '2022-11-20', '2022-11-21 09:54:51'),
 (3, 'My 3rd page', '<h2>Third Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'third-page', '2022-11-21', '2022-11-21 09:55:17'),
 (4, 'My 4th page', '<h2>Fourth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'fourth-page', '2022-11-21', '2022-11-21 09:44:01'),
@@ -208,8 +235,7 @@ INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Descr
 (6, 'My 6th page', '<h2>Sixth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'sixth-page', '2022-11-21', '2022-11-21 09:55:31'),
 (7, 'My 7th page', '<h2>Seventh  Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'seventh-page', '2022-11-21', '2022-11-21 09:55:36'),
 (8, 'My 8th page', '<h2>Heigth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'heigth-page', '2022-11-21', '2022-11-21 09:55:51'),
-(9, 'My 9th page', '<h2>Nineth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'nineth-page', '2022-11-21', '2022-11-21 09:56:01'),
-(10, 'My 10th page ', '<h2>Tenth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'tenth-page', '2022-11-21', '2022-11-21 09:56:09');
+(9, 'My 9th page', '<h2>Nineth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'nineth-page', '2022-11-21', '2022-11-21 09:56:01');
 
 -- --------------------------------------------------------
 
@@ -224,25 +250,6 @@ Create table sakura_site(
   `Email` varchar(255),
   `Number` varchar(20),
   `Address` varchar(100)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `sakura_theme`
---
-
-CREATE TABLE `sakura_theme` (
-  `Id` int(11) NOT NULL,
-  `Background` varchar(255) DEFAULT NULL,
-  `Font` varchar(255) DEFAULT NULL,
-  `Font_Color` varchar(20) DEFAULT NULL,
-  `Font_Size` int(11) DEFAULT NULL,
-  `Logo` varchar(255) DEFAULT NULL,
-  `Favicon` varchar(255) DEFAULT NULL,
-  `Nav_Color` varchar(10) DEFAULT NULL,
-  `Nav_Position` varchar(5) DEFAULT NULL,
-  `Active` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -322,11 +329,18 @@ CREATE TABLE `sakura_user` (
 INSERT INTO `sakura_user` (`Id`, `Firstname`, `Lastname`, `Email`, `Password`, `Status`, `Role`, `Token`) VALUES
 (1, 'Makan', 'KAMISSOKO', 'makan.kamissoko@hotmail.fr', '$2a$12$WlDnoGROaol0bdKUe5cxJOBX2BFJPsewOXo12nIeEIy02Bm/Wacvq', 1, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.WyJNYWthbiIsIktBTUlTU09LTyIsIm1ha2FuLmthbWlzc29rb0Bob3RtYWlsLmZyIl0=.cd610801d0dcf3f3461412ef80f026e5037a7b70f3f6c0b6f656099c1d485697'),
 (2, 'Daniel', 'CASANOVA', 'dcasanova@gmail.com', '$2a$12$RdIcrj/Rz8m5iLxyWIg0ZOCSqYn36DkfWZHGsOh/VWWB182NNbQ/6', 1, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.WyJEYW5pZWwiLCJDYXNhbm92YSIsImRjYXNhbm92YUBnbWFpbC5jb20iXQ==.ee1aaf47f36c079ab5ca2aa721650dcb1dc7e2b8574e97761381698f348a2d92'),
-(3, 'Emile', 'Zola', 'ezola@outlook.com', '$2a$12$UkWyr98z4X60pUx8dsXdKOREuuHegCViXC3uTULaxlz90KVSQR2iy', 0, 2, NULL);
+(3, 'Emile', 'Zola', 'ezola@outlook.com', '$2a$12$UkWyr98z4X60pUx8dsXdKOREuuHegCViXC3uTULaxlz90KVSQR2iy', 0, 2, NULL),
+(4, 'Axel', 'HALIFA', 'axel.halifa0@gmail.com', '$2y$10$p1KtbYfrsfuyiUwL2NhLl.uOrxpI5urQnFPLsb8cj7.FFHqBKMXgC', 1, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.WyJBeGVsIiwiSEFMSUZBIiwiYXhlbC5oYWxpZmEwQGdtYWlsLmNvbSJd.0d15b1ed83697bd1307020cff87dbba8c54b8bd70a972260ec70da6de8c7e19d');
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `sakura_apparence`
+--
+ALTER TABLE `sakura_apparence`
+  ADD PRIMARY KEY (`Id`);
 
 --
 -- Index pour la table `sakura_article`
@@ -375,12 +389,6 @@ ALTER TABLE `sakura_page`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Index pour la table `sakura_theme`
---
-ALTER TABLE `sakura_theme`
-  ADD PRIMARY KEY (`Id`);
-
---
 -- Index pour la table `sakura_type`
 --
 ALTER TABLE `sakura_type`
@@ -398,16 +406,25 @@ ALTER TABLE `sakura_user`
 --
 
 --
+-- AUTO_INCREMENT pour la table `sakura_apparence`
+--
+ALTER TABLE `sakura_apparence`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT pour la table `sakura_article`
 --
 ALTER TABLE `sakura_article`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
+<<<<<<< HEAD:www/dump_with_data.sql
 -- AUTO_INCREMENT pour la table `sakura_category`
 
 
 --
+=======
+>>>>>>> 12000aa (fix (Apparence)):dump_with_data.sql
 -- AUTO_INCREMENT pour la table `sakura_chapter`
 --
 -- ALTER TABLE `sakura_chapter`
@@ -436,13 +453,7 @@ ALTER TABLE `sakura_menu`
 -- AUTO_INCREMENT pour la table `sakura_page`
 --
 ALTER TABLE `sakura_page`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT pour la table `sakura_theme`
---
-ALTER TABLE `sakura_theme`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `sakura_type`
@@ -454,7 +465,7 @@ ALTER TABLE `sakura_type`
 -- AUTO_INCREMENT pour la table `sakura_user`
 --
 ALTER TABLE `sakura_user`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
