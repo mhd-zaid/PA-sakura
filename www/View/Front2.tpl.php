@@ -7,26 +7,29 @@
 	<link rel="stylesheet" href="../Public/dist/main.css">
 </head>
 
-<body class="sk-body-front">
-	<nav class="sk-navbar">
-		<div class="container">
-			<div class="row">
-				<div>
-					<a href="">Sakura CMS</a>
-				</div>
-				<!--- Catégories à afficher -->
-				<div>
-					<ul>
+<body class="sk-body-front body">
+	<header class="header">
+		<nav class="sk-navbar nav">
+			<div class="container">
+				<div class="row">
+					<div>
+						<a href="">Sakura CMS</a>
+					</div>
+					<!--- Catégories à afficher -->
+					<div>
+						<ul>
 
-						<li><a href="/tableau-de-bord">Admin</a></li> 
-					</ul>
+							<li><a href="/tableau-de-bord">Admin</a></li> 
+						</ul>
+					</div>
 				</div>
 			</div>
-		</div>
-	</nav>
+		</nav>
+	</header>
+	
 	<?php require $this->view; ?>
 
-	<footer>
+	<footer class="footer">
 
 	</footer>
 
