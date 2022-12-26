@@ -34,6 +34,7 @@ class Apparence
             $apparence->setActive(1);
             $apparence->save();
             $apparence->updateActive(2);
+            $this->applyTheme("electro",$css);
             $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
         }
         if(isset($_POST["music"])){
@@ -42,6 +43,7 @@ class Apparence
             $apparence->setActive(1);
             $apparence->save();
             $apparence->updateActive(3);
+            $this->applyTheme("music",$css);
             $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
         }
         if(isset($_POST["sakura"])){
@@ -50,6 +52,7 @@ class Apparence
             $apparence->setActive(1);
             $apparence->save();
             $apparence->updateActive(4);
+            $this->applyTheme("sakura",$css);
             $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
         }
 
@@ -87,5 +90,44 @@ class Apparence
         $filename = "site-theme-x.css";
 
         \file_put_contents(__DIR__ . "/../Public/css/$filename", $json);
+    }
+
+    public function applyTheme($theme,$json)
+    {
+        switch ($theme) {
+            case 'electro':
+                $selectorsWithValues = [
+                    ".paragraph" => ["color" => "#F4CFDF","font-family"=>"Verdana, Geneva, Tahoma, sans-serif"], 
+                    ".titre" => ["color" => "#F7F6CF","font-family"=>"'Courier New', Courier, monospace"], 
+                    ".body" => ["background-color"=>"#5784BA"], 
+                    ".nav" => ["color"=>"#000000"],
+                    ".header" => ["background-color"=>"#B6D8F2"],
+                    ".footer" => ["background-color"=>"#B6D8F2"] ];
+                $this->changeValueCss($json,$selectorsWithValues);
+                break;
+            case 'music':
+                $selectorsWithValues = [
+                    ".paragraph" => ["color" => "#D6955B","font-family"=>"'Times New Roman', Times, serif"], 
+                    ".titre" => ["color" => "#FEEAA1","font-family"=>"Helvetica, sans-serif"], 
+                    ".body" => ["background-color"=>"#226D68"], 
+                    ".nav" => ["color"=>"#ECF8F6"],
+                    ".header" => ["background-color"=>"#18534F"],
+                    ".footer" => ["background-color"=>"#18534F"] ];
+                $this->changeValueCss($json,$selectorsWithValues);
+                break;
+                case 'sakura':
+            $selectorsWithValues = [
+                ".paragraph" => ["color" => "#000000","font-family"=>"Cambria, Cochin, Georgia, Times, 'Times New Roman', serif"], 
+                ".titre" => ["color" => "#ff66c4","font-family"=>"Verdana, Geneva, Tahoma, sans-serif"], 
+                ".body" => ["background-color"=>"#ffffff"], 
+                ".nav" => ["color"=>"#ffffff"],
+                ".header" => ["background-color"=>"#0F056B"],
+                ".footer" => ["background-color"=>"#0F056B"] ];
+                $this->changeValueCss($json,$selectorsWithValues);
+                break;
+            default:
+                
+                break;
+        }
     }
 }

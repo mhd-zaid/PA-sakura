@@ -2,6 +2,7 @@
 switch ($apparenceData["Css"]) {
     case 'electro':
         echo '<link rel="stylesheet" type="text/css" href="/Public/css/site-theme-electro.css">';
+
         break;
     case 'music':
         echo '<link rel="stylesheet" type="text/css" href="/Public/css/site-theme-music.css">';
