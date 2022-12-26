@@ -6,7 +6,11 @@
   security: 0
   isAdmin: 0
 
-
+/installation:
+  controller: Main 
+  action: install
+  security: 0
+  isAdmin: 0
 
 /se-connecter:
   controller: User
