@@ -404,6 +404,11 @@
   security: 0
   isAdmin: 0
 
+/post:
+  controller: Site
+  action: showSinglePost
+  security: 0
+
 /site/page?id={id}:
   controller: Site
   action: getPage

@@ -7,6 +7,9 @@ RewriteRule ^article-add/([0-9]+)$ article-read?id=$1
 RewriteRule ^page-add/([0-9]+)$ page-read?id=$1
 RewriteRule ^page-add/(.*)$ page-add?Slug=$1
 
+RewriteRule ^post/(.*)$ post?Slug=$1
+RewriteRule ^post/([0-9]+)$ post?id=$1
+
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
 

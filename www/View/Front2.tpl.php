@@ -13,7 +13,7 @@
 			<div class="container">
 				<div class="row">
 					<div>
-						<a href="">Sakura CMS</a>
+						<a href="/site">Sakura CMS</a>
 					</div>
 					<!--- Catégories à afficher -->
 					<div>

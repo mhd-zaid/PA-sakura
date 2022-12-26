@@ -195,6 +195,13 @@ class Article extends DatabaseDriver
         
 	}
 
+    public function selectSingleArticle(Int $id)
+	{
+		$sql = "SELECT * FROM $this->table WHERE Id = $id";
+		return $result = $this->pdo->query($sql)->fetchAll();
+        
+	}
+
     public function createArticleForm(){
         $user = new User();
         $category = new Category();

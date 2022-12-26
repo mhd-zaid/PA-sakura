@@ -10,7 +10,7 @@
 			<img src='/uploads/{$post['Image_Name']}' alt=''>
 			<div class='content-box'> 
 			<h2>
-				<a href='#' class='titre'>{$post['Slug']}</a>
+				<a href='/post/{$post['Id']}' class='titre'>{$post['Slug']}</a>
 			</h2>
 			<p class='paragraph'><span></span> Posted on {$post['Date_Created']}</p>
 			<p class='paragraph'>{$post['Content']}</p>
