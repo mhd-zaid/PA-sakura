@@ -14,7 +14,7 @@ class Jwt{
 		$secret = base64_encode('Za1234');
 		$signature = hash_hmac('sha256',$header.".".$playload,$secret);
 
-        $this->token = $header.".".$playload.".".$signature;
+        $this->token = $header.".".$playload.".".$signature.".".uniqid();
     }
 
     public function getToken(){

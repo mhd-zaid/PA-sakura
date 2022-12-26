@@ -15,9 +15,7 @@ class View{
 	{
 		$this->setTempalte($template);
 		$this->setView($view);
-		if ($this->template === "Back") {
-			$this->assign('User',new User());
-		}
+		$this->assign('User',new User());
 		
 	}
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Model\User as UserModel;
+use App\Model\Site;
 use App\Core\Verificator;
 use App\Core\SendMail;
 use App\Core\Jwt;
@@ -36,6 +37,7 @@ class User{
 	public function register(): void
 	{
 		$user = new UserModel();
+		$site = new Site();
 		$registerForm = $user->registerForm();
 		
 
@@ -44,23 +46,24 @@ class User{
 			$verificator = new Verificator($registerForm, $_POST);
 			$verificator->verificatorAddUser($registerForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-			if(empty($configFormErrors)){
-				$verification = $user->checkEmailExist($_POST['email']); 
-				if($verification){
-					$user->setFirstname($_POST['firstname']);
-					$user->setLastname($_POST['lastname']);
-					$user->setEmail($_POST['email']);
-					$user->setPassword($_POST['password']);
-					$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
-					$user->setToken($token->getToken());
-					$token = $user->getToken();
-					$user->save();
-					$servername = $_SERVER['HTTP_HOST'];
-					$email = $_POST['email'];
-					new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
-				}else{
-					$configFormErrors[] = "Cette email est déjà associé à un autre compte.";
-				}
+			if(empty($configFormErrors)){	
+				$user->setFirstname($_POST['firstname']);
+				$user->setLastname($_POST['lastname']);
+				$user->setEmail($_POST['email']);
+				$user->setPassword($_POST['password']);
+				$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
+				$user->setToken($token->getToken());
+				$token = $user->getToken();
+				$user->setRole(0);
+				$user->save();
+				$site->setName($_POST['site']);
+				$site->save();
+				$servername = $_SERVER['HTTP_HOST'];
+				$email = $_POST['email'];
+				new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
+				$_SESSION['flash-success'] = "Un email de vérification vous à été envoyé";
+				header("Location: /se-connecter");
+				exit();
 			}
 
 		}
@@ -71,7 +74,6 @@ class User{
 
 	public function logout(): void
 	{
-		session_start();
 		session_destroy();
 		header("Location: /");
 		die();
@@ -142,30 +144,6 @@ class User{
 		$user = new UserModel();
 		$user->checkTokenEmail($_GET['verify_key'],$_GET['email']);
 		echo 'Email vérifié';
-	}
-
-
-	public function edit(): void
-	{
-		session_start();
-		if(!isset($_SESSION['email'])){
-			header("Location: /se-connecter");
-		}else{
-			echo "Afficher edit user";
-		}
-	}
-
-
-
-
-	public function list(): void
-	{
-		session_start();
-		if(!isset($_SESSION['email'])){
-			header("Location: /se-connecter");
-		}else{
-			$v = new View("User/List", "Back");
-		}
 	}
 
 }

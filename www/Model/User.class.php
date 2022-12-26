@@ -228,6 +228,15 @@ class User extends DatabaseDriver
                                     "confirm"=>"password",
                                     "error"=>"Votre mot de passe de confirmation ne correspond pas"
                                 ],
+                    "site"=>[
+                                    "type"=>"text",
+                                    "label"=>"Nom du site",
+                                    "class"=>"ipt-form-entry",
+                                    "min"=>2,
+                                    "max"=>75,
+                                    "required"=>true,
+                                    "error"=>"Le nom de votre site doit faire entre 2 et 75 caractères"
+                                ],            
 
                 ]
             ];
@@ -527,7 +536,6 @@ class User extends DatabaseDriver
         if($queryPrepared->rowCount() > 0){
             $data = $queryPrepared->fetch();
             if(password_verify($pwd,$data['Password'])){
-                session_start();
                 $_SESSION['email'] = $data['Email'];
                 $_SESSION['firstname'] = $data['Firstname'];
                 $_SESSION['lastname'] = $data['Lastname'];
@@ -542,13 +550,13 @@ class User extends DatabaseDriver
                 $this->setToken($token->getToken());
                 $this->setRole(intval($data['Role']));
                 $token = $this->getToken();
+                $this->save();
                 if($data['Status'] == 0){
                     $servername = $_SERVER['HTTP_HOST'];
                     new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
                 }else{
                     setcookie("JWT",$token,time()+(60*60*2));
                     setcookie("Email",$data['Email'],time()+(60*60*2));
-                    $this->save();
                     header("Location: /tableau-de-bord");
                     die();
                 }
