@@ -221,13 +221,8 @@ CREATE TABLE `sakura_page` (
 -- Déchargement des données de la table `sakura_page`
 --
 
-<<<<<<< HEAD:www/dump_with_data.sql
 INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_Created`, `Date_Updated`) VALUES
 (1, 'My 1st page', '<h2>First Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'first-page', '2022-11-21', '2022-11-21 09:57:20'),
-=======
-INSERT INTO `sakura_page` (`Id`, `Title`, `Content`, `Active`, `User_Id`, `Description`, `Date_publi`, `Date_modif`) VALUES
-(1, 'My 1st page', '<h2>First Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'first-page', '2022-12-24', '2022-12-24 12:42:10'),
->>>>>>> 12000aa (fix (Apparence)):dump_with_data.sql
 (2, 'My 2nd page', '<h2>Second Page</h2><p>Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem</p>', 0, 1, 'my-second-page', '2022-11-20', '2022-11-21 09:54:51'),
 (3, 'My 3rd page', '<h2>Third Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'third-page', '2022-11-21', '2022-11-21 09:55:17'),
 (4, 'My 4th page', '<h2>Fourth Page</h2><p>Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum <a href=\"/site/page?id=2\">Lorem Ipsum</a></p>', 0, 1, 'fourth-page', '2022-11-21', '2022-11-21 09:44:01'),
@@ -418,13 +413,10 @@ ALTER TABLE `sakura_article`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
-<<<<<<< HEAD:www/dump_with_data.sql
 -- AUTO_INCREMENT pour la table `sakura_category`
 
 
 --
-=======
->>>>>>> 12000aa (fix (Apparence)):dump_with_data.sql
 -- AUTO_INCREMENT pour la table `sakura_chapter`
 --
 -- ALTER TABLE `sakura_chapter`
