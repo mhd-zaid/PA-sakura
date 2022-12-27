@@ -152,7 +152,7 @@
 
             <div id="col-appearance">
                 <div class="row">
-                    <form id="form" action="/apparence" method="POST" class="col col-12 appearance-set">
+                    <form action="/apparence" method="POST" class="col col-12 appearance-set">
                         <div class="col col-12">
                             <input class="reset" type="reset" name="reset"><br>
                         </div>
@@ -312,7 +312,7 @@
                 </div>
                 <hr>
 
-                <input id="electro" type="submit" value="electro" name="electro"><br>
+                <input type="submit" value="electro" name="electro"><br>
                 <input type="submit" value="music" name="music"><br>
                 <input type="submit" value="sakura" name="sakura"><br>
                 </form>

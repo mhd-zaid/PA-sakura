@@ -109,7 +109,7 @@ switch ($apparenceData["Css"]) {
 <script>
     $().ready(function() {
         let colorPicker;
-        window.addEventListener("load", startup, false);
+        window.addEventListener("load", startup(), false);
     })
 
     function startup() {
