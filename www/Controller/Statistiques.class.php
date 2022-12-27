@@ -8,27 +8,6 @@ use DateTime;
 
 class Statistiques{
 
-	public function index(): void
-	{	
-		$idSession = session_id();
-		$stat = new statsModel();
-		if(!$stat->existSession($idSession)){
-			$stat->setSession($idSession);
-			$objectDate = date_format(new DateTime(),"Y-m-d" );	
-			$stat->setDate($objectDate);
-			$stat->save();
-		}
-		else{
-			$stat->setId($stat->findIdBySession($idSession));
-			$stat->setSession($idSession);
-			$objectDate = date_format(new DateTime(),"Y-m-d" );	
-			$stat->setDate($objectDate);
-			$stat->save();
-		}
-		$v = new View("Page/Statistiques", "Back");
-
-	}
-
 	public function stats(): void
 	{
 		$dates = ['today', 'yesterday', 'week', 'month', 'months', 'year'];

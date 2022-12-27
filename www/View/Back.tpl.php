@@ -113,14 +113,6 @@
                         </div>
                     </div>
                 </a>
-                <a href="/tableau-de-bord">
-                    <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/analytics-1.svg" alt="Dashboard"></div>
-                        <div class="col col-7 flex-col flex-col-center">
-                            <p class="menu-label">Statistiques</p>
-                        </div>
-                    </div>
-                </a>
                 <a href="/parametres">
                     <div class="row">
                         <div class="col col-3"><img src="Public/img/Back/settings-1.svg" alt="Dashboard"></div>

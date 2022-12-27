@@ -82,6 +82,12 @@
   security: 0
   isAdmin: 0
 
+/stats:
+  controller: Statistiques
+  action: stats
+  security: 0
+  isAdmin: 0
+
 
 
 ### PROFIL ###
@@ -134,19 +140,6 @@
  action: condition
  security: 0
  isAdmin: 0
-
-### Statistiques ###
-/statistiques:
-  controller: Statistiques
-  action: index
-  security: 0
-  isAdmin: 0
-
-/stats:
-  controller: Statistiques
-  action: stats
-  security: 0
-  isAdmin: 0
 
 ### Parameters ####
 /parametres:

@@ -1,93 +1,81 @@
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-</div>
+<section class="grid">
+    <div class="row">
+        <h1 class="h1-section-back">Tableau de bord</h1>
+    </div>
+    <div class="row">
+        <p class="p-section-back">Visualisez en direct les statistiques de votre entreprise </p>
+    </div>
+</section>
 
-<!-- Content Row -->
-<div class="row">
+<div class="grid box-statistiques">
+    <div class="flex-row">
+        <select id="choices-stats">
+            <option value="current">Vu sur l'Année courante</option>
+            <option value="year-1">Vu sur les années précendentes</option>
+        </select>
+    </div>
 
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-primary shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                            Earnings (Monthly)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
+    <div class="grid">
+        <div class="flex-row">
+            <div class="flex-col col-12 statistique-case">
+                <p>Nombre visiteur</p>
+                <div id="chartdiv">
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Earnings (Annual)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Styles -->
+    <style>
+        #chartdiv {
+            width: 40%;
+        }
+    </style>
 
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-info shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                        </div>
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                            </div>
-                            <div class="col">
-                                <div class="progress progress-sm mr-2">
-                                    <div class="progress-bar bg-info" role="progressbar"
-                                        style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $().ready(function() {
+            $("#choices-stats").trigger("change");
+        })
+        var myChart = null;
+        $("#choices-stats").on("change", function() {
+            let datas = null;
+            if (myChart != null) {
+                myChart.destroy();
+            }
+            $.ajax({
+                url: "/stats?year=" + this.value,
+                dataType: "json"
+            }).done(function(data) {
+                var d = new Date();
+                const ctx = document.getElementById('myChart');
+                if ($("#choices-stats").val() === "current") {
+                    myChart =
+                        new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Aujourd\'hui', 'Hier', 'Semaine', 'Mois', '3 Mois', 'Année'],
+                                datasets: [{
+                                    data: data,
+                                    borderWidth: 1
+                                }]
+                            }
+                        });
 
-    <!-- Pending Requests Card Example -->
-    <div class="col-xl-3 col-md-6 mb-4">
-        <div class="card border-left-warning shadow h-100 py-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                            Pending Requests</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                } else {
+                    myChart =
+                        new Chart(ctx, {
+                            type: 'doughnut',
+                            data: {
+                                labels: ['Année ' + d.getFullYear(), 'Année ' + (d.getFullYear() - 1).toString(), 'Année ' + (d.getFullYear() - 2).toString(), 'Année ' + (d.getFullYear() - 3).toString()],
+                                datasets: [{
+                                    data: data,
+                                    borderWidth: 1
+                                }]
+                            }
+                        });
+                }
+            });
+        })
+    </script>
