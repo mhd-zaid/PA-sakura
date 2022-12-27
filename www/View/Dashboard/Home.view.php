@@ -7,6 +7,7 @@
     </div>
 </section>
 
+
 <div class="grid box-statistiques">
     <div class="flex-row">
         <select id="choices-stats">
