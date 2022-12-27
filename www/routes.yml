@@ -398,29 +398,8 @@
   controller: Apparence
   action: index
   security: 0
-
-/apparence-theme:
-  controller: Apparence
-  action: editTheme
-  security: 0
   isAdmin: 0
-
-/apparence-page:
-  controller: Apparence
-  action: editPage
-  security: 0
-  isAdmin: 0
-
-/apparence-menu:
-  controller: Apparence
-  action: editMenu
-  security: 0
-  isAdmin: 0
-
-/apparence-h1:
-  controller: Apparence
-  action: editH1
-  security: 0
+  
   ### GRID & COMPONENTS ###
 
 /grid:
