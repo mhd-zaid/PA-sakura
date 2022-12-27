@@ -314,14 +314,6 @@
   action: signaler
   security: 0
   isAdmin: 0
-
-  ### EXTENSION ###
-
-/extension:
-  controller: Extension
-  action: index
-  security: 0
-  isAdmin: 0
  
   ### PAGE ###
 

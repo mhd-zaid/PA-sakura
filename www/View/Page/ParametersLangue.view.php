@@ -1,4 +1,4 @@
-<div class="container-fluid container-fluid-parameters">
+<div class="container-fluid ">
     <h1>Paramètres > Langues</h1>
     <section class="grid grid-rounded language-language">
         <div class="row">

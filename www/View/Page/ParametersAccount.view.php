@@ -1,4 +1,4 @@
-<div class="container-fluid container-fluid-parameters">
+<div class="container-fluid ">
     <h1>Paramètres&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Gestion du site</h1>
     <section class="grid grid-rounded parametres-compte">
         <div class="row">
@@ -17,7 +17,7 @@
                         <iconify-icon icon="ci:mail" width="40"></iconify-icon>
                     </div>
                     <div class="col">
-                        <p><?= $site[0]["Email"] ?>]</p>
+                        <p><?= $site[0]["Email"] ?></p>
                     </div>
                 </div>
                 <div class="row flex-row flex-row-align-center">

@@ -1,4 +1,4 @@
-<div class="container-fluid container-fluid-parameters">
+<div class="container-fluid ">
     <h1>Paramètres&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Gestion des utilisateurs&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Invitation</h1>
     <section class="grid grid-rounded">
         <div class="row">

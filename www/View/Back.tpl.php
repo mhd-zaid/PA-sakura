@@ -21,33 +21,34 @@
 
 <body>
 
-<div class="grid grid-back">
-    <div class="row row-header">
-        <?php $userData = $User->getUser($_COOKIE['JWT']); ?>
-        <header id="col-header" class="col col-12 col-md-12 col-md-6">
-            <div class="row">
-                <div id="logo-site" class="col flex-col flex-col-align-center">
-                    <img src="/Public/img/Back/mini-logo.svg" alt="logo-site">
-                </div>
-                <div class="col visitLink">
-                    <a href="#" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
-                </div>
-                <div class="col helpLink">
-                    <a href="#">Aide</a>
-                </div>
-                <div class="col dropdownMenu">
-                    <img class="photo-profil icon" src="/Public\img\Back\avatar.svg" alt="">
-                    <button class="dropbtnMenu">
-                        <?= ucfirst($userData['Firstname'])." ".strtoupper($userData['Lastname']); 
-                        ?>
-                    </button>
-                    <div class="dropdownMenu-content" id="myDropdownMenu">
-                        <a href="/parametres-compte">Paramètre du compte</a>
-                        <a href="/parametres-users">Gérer les utilisateurs</a>
-                        <a href="/parametres-support">Assistance</a>
-                        <a href="/se-deconnecter">Se déconnecter</a>
+    <div class="grid grid-back">
+        <div class="row row-header">
+            <?php $userData = $User->getUser($_COOKIE['JWT']); ?>
+            <header id="col-header" class="col col-12 col-md-12 col-md-6">
+                <div class="row">
+                    <div id="logo-site" class="col flex-col flex-col-align-center">
+                        <img src="/Public/img/Back/mini-logo.svg" alt="logo-site">
                     </div>
-                </div>
+                    <div class="col visitLink">
+                        <a href="#" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
+                    </div>
+                    <div class="col helpLink">
+                        <a href="#">Aide</a>
+                    </div>
+                    <div class="col dropdown">
+                        <button class="dropbtn">
+                            <img class="photo-profil icon" src="/Public\img\Back\avatar.svg" alt="">
+                            <?= ucfirst($userData['Firstname']) . " " . strtoupper($userData['Lastname']); ?>
+                        </button>
+                        <div class="dropdown-content">
+                            <a href="/parametres-compte">Paramètre du compte</a>
+                            <?php if($userData['Role'] == 1): ?>
+                            <a href="/parametres-users">Gérer les utilisateurs</a>
+                            <?php endif ?>
+                            <a href="/parametres-support">Assistance</a>
+                            <a href="/se-deconnecter">Se déconnecter</a>
+                        </div>
+                    </div>
             </header>
 
         </div>
@@ -117,14 +118,6 @@
                         <div class="col col-3"><img src="Public/img/Back/analytics-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Statistiques</p>
-                        </div>
-                    </div>
-                </a>
-                <a href="/tableau-de-bord">
-                    <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/extension-1.svg" alt="Dashboard"></div>
-                        <div class="col col-7 flex-col flex-col-center">
-                            <p class="menu-label">Extension</p>
                         </div>
                     </div>
                 </a>
@@ -270,7 +263,7 @@
                     </div>
                 </div>
                 <hr>
-                
+
                 <!-- Apparence haeder -->
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">
@@ -289,7 +282,7 @@
                     </div>
                 </div>
                 <hr>
-                
+
                 <!-- Apparence footer -->
                 <div id="label" class="row appearance">
                     <div class="menu-label col col-7 flex-col flex-col-center">

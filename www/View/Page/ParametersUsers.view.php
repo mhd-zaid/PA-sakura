@@ -1,4 +1,4 @@
-<div class="container-fluid container-fluid-parameters">
+<div class="container-fluid ">
     <section class="grid">
         <div class="row">
             <div class="col">
@@ -30,5 +30,3 @@
     </div>
 </section>
 </div>
-
-<?php include 'View/Components/parameters-menu.php';?>

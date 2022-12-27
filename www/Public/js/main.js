@@ -4,11 +4,6 @@ $().ready(function () {
         var menu = document.getElementById("main-nav");
         menu.classList.toggle("visible");
     });
-    $(".dropdownMenu").on("click", function () {
-        console.log("ouverture du menu");
-        var dropdown = document.getElementById("myDropdownMenu");
-        dropdown.classList.toggle("show");
-    });
 
     //Session flash
     $("#close-flash").on("click", function () {
@@ -78,16 +73,6 @@ $().ready(function () {
         }
     };
 });
-
-//Dropdown (BackTpl)
-function dropdown() {
-    var dropdown = $(".menu-page-dropdown");
-    if (dropdown.css("display") == "none") {
-        dropdown.css("display", "flex");
-    } else {
-        dropdown.css("display", "none");
-    }
-}
 
 //Drag and Drop (Navigation)
 function dragAndDrop(target) {
