@@ -407,7 +407,7 @@ class User extends DatabaseDriver
                             ],
                 "confirmationpassword" =>[
                                 "type"=>"password",
-                                "label"=>"Tapez votre mot de passe pour tout changement",
+                                "label"=>"Mot de passe actuel",
                                 "class"=>"ipt-form-entry",
                                 "required"=>true,
                                 "pass"=>"pass",
@@ -704,5 +704,14 @@ class User extends DatabaseDriver
         $data = $queryPrepared->fetch();
         return $data['Lastname'].' '.$data['Firstname'];
         }
+
+    public function isSuperAdminExist()
+    {
+        $sql = "SELECT count(*) FROM ".$this->table." WHERE Role = 0";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+        $data = $queryPrepared->fetch();
+        return $data[0];
+    }
 
 }

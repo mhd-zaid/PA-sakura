@@ -10,66 +10,69 @@ use App\Core\SendMail;
 use App\Core\Jwt;
 
 
-class User{
+class User
+{
 
 	public function login(): void
 	{
 		$user = new UserModel();
 		$loginForm = $user->loginForm();
 
-		if( !empty($_POST) )
-		{
+		if (!empty($_POST)) {
 			$verificator = new Verificator($loginForm, $_POST);
 			$verificator->verificatorConnexion($loginForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-			if(empty($configFormErrors)){
-				$verification = $user->checkLogin($_POST['email'],$_POST['password']);
-				if(!$verification){
+			if (empty($configFormErrors)) {
+				$verification = $user->checkLogin($_POST['email'], $_POST['password']);
+				if (!$verification) {
 					$configFormErrors[] = 'Email ou mot de passe incorrect';
 				}
 			}
-		}		
+		}
 		$v = new View("Auth/Login", "Front");
 		$v->assign("configForm", $loginForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
+		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
 
 	public function register(): void
 	{
+
 		$user = new UserModel();
-		$site = new Site();
-		$registerForm = $user->registerForm();
-		
+		if ($user->isSuperAdminExist() != 0) {
+			$_SESSION["flash-error"] = "Veuillez contacter l'administrateur du site pour vous inscrire.";
+			header("Location: /se-connecter");
+		} else {
+			$site = new Site();
+			$registerForm = $user->registerForm();
 
-		if( !empty($_POST) )
-		{
-			$verificator = new Verificator($registerForm, $_POST);
-			$verificator->verificatorAddUser($registerForm, $_POST);
-			$configFormErrors = $verificator->getMsg();
-			if(empty($configFormErrors)){	
-				$user->setFirstname($_POST['firstname']);
-				$user->setLastname($_POST['lastname']);
-				$user->setEmail($_POST['email']);
-				$user->setPassword($_POST['password']);
-				$token = new Jwt([$user->getFirstname(),$user->getLastname(),$user->getEmail()]);
-				$user->setToken($token->getToken());
-				$token = $user->getToken();
-				$user->setRole(0);
-				$user->save();
-				$site->setName($_POST['site']);
-				$site->save();
-				$servername = $_SERVER['HTTP_HOST'];
-				$email = $_POST['email'];
-				new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>","Inscription réussite, confirmer votre email","Une erreur s'est produite, merci de réesayer plus tard");
-				$_SESSION['flash-success'] = "Un email de vérification vous à été envoyé";
-				header("Location: /se-connecter");
-				exit();
+			if (!empty($_POST)) {
+				$verificator = new Verificator($registerForm, $_POST);
+				$verificator->verificatorAddUser($registerForm, $_POST);
+				$configFormErrors = $verificator->getMsg();
+				if (empty($configFormErrors)) {
+					$user->setFirstname($_POST['firstname']);
+					$user->setLastname($_POST['lastname']);
+					$user->setEmail($_POST['email']);
+					$user->setPassword($_POST['password']);
+					$token = new Jwt([$user->getFirstname(), $user->getLastname(), $user->getEmail()]);
+					$user->setToken($token->getToken());
+					$token = $user->getToken();
+					$user->setRole(0);
+					$user->save();
+					$site->setName($_POST['site']);
+					$site->save();
+					$servername = $_SERVER['HTTP_HOST'];
+					$email = $_POST['email'];
+					new sendMail($_POST['email'], "VERIFICATION EMAIL", "<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>", "Inscription réussite, confirmer votre email", "Une erreur s'est produite, merci de réesayer plus tard");
+					$_SESSION['flash-success'] = "Un email de vérification vous à été envoyé";
+					header("Location: /se-connecter");
+					exit();
+				}
 			}
-
+			$v = new View("Auth/Register", "Front");
+			$v->assign("configForm", $registerForm);
+			$v->assign("configFormErrors", $configFormErrors ?? []);
 		}
-		$v = new View("Auth/Register", "Front");
-		$v->assign("configForm", $registerForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
 	}
 
 	public function logout(): void
@@ -83,71 +86,65 @@ class User{
 	{
 		$user = new UserModel();
 		$forgotPasswdForm = $user->forgotPasswdForm();
-		if( !empty($_POST) )
-		{
+		if (!empty($_POST)) {
 			$data = [];
 			isset($_POST['email']) ? array_push($data, $_POST['email']) : '';
 			$verificator = new Verificator($forgotPasswdForm, $data);
 			$verificator->verificatorForgotPassword($forgotPasswdForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
-			
-			if(empty($configFormErrors)){
+
+			if (empty($configFormErrors)) {
 				$verification = $user->checkForgotPasswd($_POST['email']);
-				if(!$verification){
+				if (!$verification) {
 					$configFormErrors[] = "Cette email n'est associé à aucun compte.";
-				}else{
+				} else {
 					$servername = $_SERVER['HTTP_HOST'];
 					$email = $_POST['email'];
 					$token = $user->checkForgotPasswd($_POST['email']);
-					new sendMail($_POST['email'],"CHANGEMENT DE MDP","<a href='http://$servername/reinitialisation-mot-de-passe?token=$token&email=$email'>Nouveau mot de passe</a>","Un email à été envoyer pour la réinitialisation du mot de passe","Une erreur s'est produite, merci de réesayer plus tard");
+					new sendMail($_POST['email'], "CHANGEMENT DE MDP", "<a href='http://$servername/reinitialisation-mot-de-passe?token=$token&email=$email'>Nouveau mot de passe</a>", "Un email à été envoyer pour la réinitialisation du mot de passe", "Une erreur s'est produite, merci de réesayer plus tard");
 					// $_SESSION["flash-success"] = "Un email vous à été envoyer pour la réinitialisation de votre mot de passe";
-                	// header("Location: /se-connecter");
-               	 	// exit();				
+					// header("Location: /se-connecter");
+					// exit();				
 				}
 			}
 		}
 		$v = new View("Auth/ForgotPasswd", "Front");
 		$v->assign("configForm", $forgotPasswdForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
+		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
 
-	public function resetPasswd(){
-		if(!empty($_GET['token']) && !empty($_GET['email'])){
+	public function resetPasswd()
+	{
+		if (!empty($_GET['token']) && !empty($_GET['email'])) {
 			$user = new UserModel();
 			$resetPasswdForm = $user->resetPasswdForm();
 
-			if( !empty($_POST) )
-			{
+			if (!empty($_POST)) {
 				$verificator = new Verificator($resetPasswdForm, $_POST);
 				$verificator->verificatorResetPassword($resetPasswdForm, $_POST);
 				$configFormErrors = $verificator->getMsg();
-				if(empty($configFormErrors)){
-					$verification = $user->checkTokenPasswd($_GET['email'],$_GET['token'],$_POST['password']);
-					if(!$verification){
+				if (empty($configFormErrors)) {
+					$verification = $user->checkTokenPasswd($_GET['email'], $_GET['token'], $_POST['password']);
+					if (!$verification) {
 						$configFormErrors[] = "Une erreur s'est produite. ";
-					}else{
+					} else {
 						header("Location: /se-connecter");
 					}
 				}
 			}
-				$v = new View("Auth/ResetPasswd", "Front");
-				$v->assign("configForm", $resetPasswdForm);
-				$v->assign("configFormErrors", $configFormErrors??[]);
-		}else{
+			$v = new View("Auth/ResetPasswd", "Front");
+			$v->assign("configForm", $resetPasswdForm);
+			$v->assign("configFormErrors", $configFormErrors ?? []);
+		} else {
 			header("Location: /mot-de-passe-oublie");
 			die();
 		}
-		
 	}
 
-	public function confirmMail(){
+	public function confirmMail()
+	{
 		$user = new UserModel();
-		$user->checkTokenEmail($_GET['verify_key'],$_GET['email']);
+		$user->checkTokenEmail($_GET['verify_key'], $_GET['email']);
 		echo 'Email vérifié';
 	}
-
 }
-
-
-
-

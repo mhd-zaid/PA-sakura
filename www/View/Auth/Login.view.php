@@ -14,7 +14,6 @@
             <br>
             <p><a href="/mot-de-passe-oublie">Mot de passe oublié ?</a></p>
             <br>
-            <p><a href="/s-inscrire">Créer un nouveau compte</a></p>
         </div>
     </div>
 </section>

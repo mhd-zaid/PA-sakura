@@ -43,4 +43,3 @@
         </div>
     </section>
 </div>
-<?php include 'View/Components/parameters-menu.php';?>
