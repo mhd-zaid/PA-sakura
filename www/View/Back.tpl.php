@@ -154,9 +154,6 @@
                 <div class="row">
                     <form action="/apparence" method="POST" class="col col-12 appearance-set">
                         <div class="col col-12">
-                            <input class="reset" type="reset" name="reset"><br>
-                        </div>
-                        <div class="col col-12">
                             <input type="submit" name="submit">
                         </div>
                 </div>
@@ -341,85 +338,6 @@
 
     </div>
 
-<<<<<<< HEAD
-
-    <div id="row-nav-main" class="row row-nav-main">
-
-        <nav id="col-nav">
-            <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/dashboard-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Accueil</p></div>
-            </div></a>
-            <a href="/page"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/page-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Page</p></div>
-            </div></a>
-            <a href="/article"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/page-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Articles</p></div>
-            </div></a>
-            <a href="/media"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/article-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Médias</p></div>
-            </div></a>
-            <a href="/commentaire"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/media1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Commentaires</p></div>
-            </div></a>
-            <a href="/navigation"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/comments1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Navigation</p></div>
-            </div></a>
-            <a href="/apparence"><div class="row">
-                <div class="col col-3"><img src="Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Apparence</p></div>
-            </div></a>
-            <a href="/statistiques"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/analytics-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Statistiques</p></div>
-            </div></a>
-            <a href="/tableau-de-bord"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/extension-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Extension</p></div>
-            </div></a>
-            <a href="/parametres"><div class="row">
-                <div class="col col-3"><img src="/Public/img/Back/settings-1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Paramètres</p></div>
-            </div></a>
-            <a href="/se-deconnecter"><div id="disconnect" class="row">
-                <div class="col col-3"><img src="/Public/img/Back/logout1.svg" alt="Dashboard"></div>
-                <div class="col col-7 flex-col flex-col-center"><p class="menu-label">Déconnexion</p></div>
-            </div></a>
-        </nav>
-        
-        <main id="col-main" class="col">
-            <?php require $this->view; ?>
-        </main>
-        <?php if(isset($_SESSION["flash-success"]) || isset($_SESSION["flash-error"])){
-            if(isset($_SESSION["flash-success"])){
-                $msg=$_SESSION["flash-success"];
-                unset($_SESSION["flash-success"]);
-                echo("<div id='flash-msg' class='row flash flash-success'>");
-                echo("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
-                echo("<p class='center-text plain'>{$msg}</p>");
-                echo("</div>");
-            }else{
-                $msg=$_SESSION["flash-error"];
-                unset($_SESSION["flash-error"]);
-                echo("<div id='flash-msg' class='row flash flash-error'>");
-                echo("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
-                echo("<p class='center-text plain'>{$msg}</p>");
-                echo("</div>");
-            }
-        }?>
-        
-
-    </div>
-
-</div>
-
-=======
->>>>>>> 5301997 (init Apparence)
 </body>
 
 </html>

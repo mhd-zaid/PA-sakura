@@ -1,26 +1,22 @@
 .paragraph{
-	color:#000000;
-	font-family:Cambria;
-	 Cochin;
-	 Georgia;
+	color:#D6955B;
+	font-family:'Times New Roman';
 	 Times;
-	 
+	 serif
 }
 .titre{
-	color:#ff66c4;
-	font-family:Verdana;
-	 Geneva;
-	 Tahoma;
+	color:#FEEAA1;
+	font-family:Helvetica;
 	 sans-serif
 }
 .body{
-	background-color:#c64600
+	background-color:#226D68
 }
 .nav{
-	color:#ffffff
+	color:#ECF8F6
 }
 .header{
-	background-color:#0f056b
+	background-color:#18534F
 }
 .footer{
-	background-color:#0f056b}
+	background-color:#18534F}

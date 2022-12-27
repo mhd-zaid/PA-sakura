@@ -12,3 +12,5 @@ server/
 db_data/ibdata1
 db_data/*
 .prettierrc
+workspace.xml
+www/.idea/workspace.xml
