@@ -64,8 +64,10 @@ class Apparence extends DatabaseDriver
     }
 
     public function select(){
-        $sql = "SELECT  * FROM ".$this->table. " WHERE Active = 1";
-        $result = $this->pdo->query($sql);
+        //$sql = "SELECT  * FROM ".$this->table. " WHERE Active = 1";
+        //$result = $this->pdo->query($sql);
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Active = 1");
+        $result = $sql->execute();
         $data = $result->fetch();
         return $data;
     }
