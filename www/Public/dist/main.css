@@ -532,6 +532,22 @@ header {
   text-decoration: none;
 }
 
+.item-comment {
+  padding: 3% 0;
+}
+.item-comment input {
+  margin-bottom: 2%;
+}
+.item-comment .textarea-comments {
+  min-height: 150px;
+  width: 100%;
+}
+.item-comment .button-comment {
+  align-items: center;
+  padding: 9px 16px;
+  box-shadow: 0 1px 2px rgba(36, 57, 141, 0.4);
+}
+
 .content {
   text-align: center;
   font-weight: bold;

@@ -34,3 +34,20 @@ header{
     }
     
 }
+
+.item-comment{
+    padding: 3% 0;
+
+    input{
+        margin-bottom: 2%;
+    }
+    .textarea-comments{
+        min-height: 150px;
+        width: 100%;
+    }
+    .button-comment{
+        align-items: center;
+        padding: 9px 16px;
+        box-shadow: 0 1px 2px rgb(36 57 141 / 40%)
+    }
+}
