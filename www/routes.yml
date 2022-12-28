@@ -104,13 +104,6 @@
   security: 0
   isAdmin: 0
 
-  
-/profil-langue:
- controller: Profil
- action: manageLanguage
- security: 0
- isAdmin: 0
-
 /profil-gestion-des-comptes:
  controller: Profil
  action: manageAccount
@@ -166,12 +159,6 @@
   security: 0
   isAdmin: 0
 
-/parametres-langue:
-  controller: Parameters
-  action: parametersLangue
-  security: 0
-  isAdmin: 0
-
 /parametres-users:
   controller: Parameters
   action: parametersUsers
@@ -207,9 +194,15 @@
   security: 0
   isAdmin: 0
 
-/parametres-langue:
+/parametres-affichage:
   controller: Parameters
-  action: parametersLangue
+  action: parametersAppearance
+  security: 0
+  isAdmin: 0
+
+/set-appearance:
+  controller: Parameters
+  action: setAppearance
   security: 0
   isAdmin: 0
 

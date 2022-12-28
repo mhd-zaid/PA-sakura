@@ -3,8 +3,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-<section class="grid">
-    <div class="row">
+<section class="grid grid-rounded">
+    <div class="row page-header">
         <div class="col col-12">
             <h1 class="h1-section-back">Catégorie</h1>
             <?php 

@@ -1,4 +1,4 @@
-<section class="grid">
+<section class="grid page-header">
     <div class="row">
         <h1 class="h1-section-back">Menu</h1>
     </div>
@@ -6,14 +6,12 @@
         <p class="p-section-back">Créer ou modifier vos propres menus</p>
     </div>
 </section>
-<?php 
-        $this->includeComponent("form-create-navigation", $configForm);
-        ?>
-            <?php foreach ($configFormErrors as $error ):?>
-            <div>
-                <p><?= $error ?> </p>
-            </div>
-        <?php endforeach;?>
+<?php $this->includeComponent("form-create-navigation", $configForm); ?>
+<?php foreach ($configFormErrors as $error) : ?>
+    <div>
+        <p><?= $error ?> </p>
+    </div>
+<?php endforeach; ?>
 
 <script>
     $(document).ready(function() {

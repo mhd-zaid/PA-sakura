@@ -10,12 +10,12 @@
 	<?php if($config['user']['Role']=== 1): ?>
 	<?php if(!empty($config['article']) && $config['article']['Active'] === 0): ?> <input type="submit" class="cta-button btn--pink" name="publish" value="<?= "Publier" ?>"><?php endif; ?>
 	<?php if(!empty($config['article']) && $config['article']['Active'] === 1): ?> <input type="submit" class="cta-button btn--pink" name="unpublish" value="<?= "Dépublier" ?>"><?php endif; ?>
-	<?php endif;?>
-		<h1 class="h1-section-back">Création d'un article</h1>
-	<div> 
-	<?php 	
-		foreach ($firstElem as $name => $configInput):?>
 		<div>
+		<?php endif;?>
+			<h1 class="h1-section-back">Création d'un article</h1>
+		<div> 
+		<?php 	
+		foreach ($firstElem as $name => $configInput):?>
 			<p><?= $configInput["label"] ?>
 			<input name="<?= $name ?>" 
 					class=""
@@ -26,8 +26,8 @@
 					<?php endif;?>
 
 			></p>
-			</div>
-	<?php endforeach;?> 
+			<?php endforeach;?> 
+		</div>
 
 	<?php 
 		foreach ($sixthElem as $name => $configInput):?>

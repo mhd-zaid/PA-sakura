@@ -96,6 +96,7 @@ class Main{
 				$_SESSION["flash-error"] = "Impossible d'établir une connexion avec la base de données";
 			}
 			if(empty($configFormErrors)){
+				$_SESSION['isDarkModeEnable']="light";
 				$configData = file_get_contents(__DIR__."/../config-sample.php");
 				$configData = str_replace(['db_host','db_name','db_user','db_passwd'],[$_POST['db_host'],$_POST['db_name'],$_POST['db_user'],$_POST['db_passwd']],$configData);
 				\file_put_contents(__DIR__."/../config.php",$configData);

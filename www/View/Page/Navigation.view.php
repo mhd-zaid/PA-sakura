@@ -1,4 +1,4 @@
-<section class="grid">
+<section class="grid page-header">
     <div class="row">
         <h1 class="h1-section-back">Navigation</h1>
     </div>

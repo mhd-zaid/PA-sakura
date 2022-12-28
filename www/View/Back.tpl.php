@@ -18,8 +18,11 @@
     <script type="text/javascript" src="../Public/js/dataTable.js"></script>
 
 </head>
-
-<body>
+<?php if (isset($_SESSION['isDarkModeEnable']) && $_SESSION['isDarkModeEnable'] === "dark" ) : ?>
+<body data-theme="dark">
+<?php else: ?>
+<body data-theme="light">
+<?php endif ?>
 
     <div class="grid grid-back">
         <div class="row row-header">
@@ -42,8 +45,8 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="/parametres-compte">Paramètre du compte</a>
-                            <?php if($userData['Role'] == 1): ?>
-                            <a href="/parametres-users">Gérer les utilisateurs</a>
+                            <?php if ($userData['Role'] == 1) : ?>
+                                <a href="/parametres-users">Gérer les utilisateurs</a>
                             <?php endif ?>
                             <a href="/parametres-support">Assistance</a>
                             <a href="/se-deconnecter">Se déconnecter</a>
@@ -139,7 +142,8 @@
                 <div class="row">
                     <form action="/apparence" method="POST" class="col col-12 appearance-set">
                         <div class="col col-12">
-                            <input type="submit" name="submit">
+                            <input class="btn--pink-rounded"0
+                             type="submit" name="submit">
                         </div>
                 </div>
                 <hr>
@@ -294,9 +298,9 @@
                 </div>
                 <hr>
 
-                <input type="submit" value="electro" name="electro"><br>
-                <input type="submit" value="music" name="music"><br>
-                <input type="submit" value="sakura" name="sakura"><br>
+                <input class="btn--pink-rounded" type="submit" value="electro" name="electro"><br>
+                <input class="btn--pink-rounded" type="submit" value="music" name="music"><br>
+                <input class="btn--pink-rounded" type="submit" value="sakura" name="sakura"><br>
                 </form>
             </div>
 
@@ -323,6 +327,6 @@
 
     </div>
 
-</body>
+    </body>
 
 </html>
