@@ -15,7 +15,7 @@ class Article extends DatabaseDriver
     protected $user_id;
     protected $image_name;
     protected $active = 0;
-    private $date_created;
+    protected $date_created;
 	private $date_updated;
     protected $rewrite_Url;
     protected $categories;

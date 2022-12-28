@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Mon site</title>
 	<meta name="description" content="Ceci est ma page">
-	<link rel="stylesheet" href="../Public/dist/main.css">
+	<link rel="stylesheet" href="../Public/css/main.css">
 </head>
 
 <body class="sk-body-front body">

@@ -16,16 +16,23 @@
 		?>
 		<div class="item-comment">
 			<h4>Commentaire</h4>
-			<form action="/action_page.php">
-				
+			<form action="" method="POST">
 				<label for="fname">Pseudo:</label><br>
-				<input type="text" id="fname" name="fname"><br>
+				<input type="text" id="fname" name="author"><br>
 				<label for="lname">E-mail:</label><br>
-				<input type="text" id="lcomment" name="lcomment"><br>
+				<input type="text" id="lcomment" name="email"><br>
 				<label for="lcomment">Your Message:</label><br>
-				<input type="textarea" id="lcomment" name="lcomment" class="textarea-comments"><br>
-				<input class="button-comment" type="submit" value="Submit">
+				<input type="textarea" id="lcomment" name="content" class="textarea-comments"><br>
+				<input class="button-comment" name="add-comment" type="submit" value="Submit">
 			</form>
 		</div>
+		<?php
+		foreach($comments as $comment) {
+			echo $comment['Content'];
+			echo $comment['Email'];
+		}
+
+
+		?>
 	</div>
 </div>

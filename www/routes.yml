@@ -266,13 +266,25 @@
 
 /commentaire:
   controller: Commentaire
-  action: index
+  action: showComments
   security: 0
   isAdmin: 0
 
 /commentaire-add:
   controller: Commentaire
   action: saveComment
+  security: 0
+  isAdmin: 0
+
+/comment-delete:
+  controller: Commentaire
+  action: deleteComment
+  security: 0
+  isAdmin: 0
+
+/comment-approve:
+  controller: Commentaire
+  action: approveComment
   security: 0
   isAdmin: 0
   
