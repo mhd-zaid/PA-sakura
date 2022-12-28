@@ -67,10 +67,9 @@ class Stats extends DatabaseDriver
 
     public function existSession(String $session): bool
     {
-        $sql = "SELECT Session FROM $this->table WHERE Session=:session";
         $params = ['session'=>$session];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Session=:session")->params($params);
+        $queryPrepared = $sql->execute();
         $data = $queryPrepared->fetch();
         if ($data["Session"] == $session ){
             return true;
@@ -82,11 +81,9 @@ class Stats extends DatabaseDriver
 
 	public function findIdBySession(string $session) : int
 	{
-		//recup L'id par une requete sql avec l'ip
-        $sql = "SELECT Id FROM $this->table WHERE Session=:session";
         $params = ['session'=>$session];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Session=:session")->params($params);
+        $queryPrepared = $sql->execute();
         $data = $queryPrepared->fetch();
         return $data["Id"];
 	}
@@ -153,23 +150,21 @@ class Stats extends DatabaseDriver
             case 'year-1':
             case 'year-2':
             case 'year-3':
-                $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Year(Date) = Year(:date)";
                 $params = ['date'=>$todaydate];
-                $queryPrepared = $this->pdo->prepare($sql);
-                $queryPrepared->execute($params);
+                $sql = ($this->queryBuilder)->select("COUNT(Id)")->from($this->table)->where("Year(Date) = Year(:date)")->params($params);
+                $queryPrepared = $sql->execute();
                 $data = $queryPrepared->fetch();
                 return $data[0];
             default:
                 if(empty($compareDate)){
-                    $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Date=:date";
                     $params = ['date'=>$todaydate];
+                    $sql = ($this->queryBuilder)->select("COUNT(Id)")->from($this->table)->where("Date = :date")->params($params);
         
                 }else{
-                    $sql = "SELECT COUNT(Id) FROM ".$this->table." WHERE Date between :compareDate AND :date";
                     $params = ['date'=>$todaydate,'compareDate'=>$compareDate];
+                    $sql = ($this->queryBuilder)->select("COUNT(Id)")->from($this->table)->where("Date between :compareDate AND :date")->params($params);
                 }
-                $queryPrepared = $this->pdo->prepare($sql);
-                $queryPrepared->execute($params);
+                $queryPrepared = $sql->execute();
                 $data = $queryPrepared->fetch();
                 break;
         }

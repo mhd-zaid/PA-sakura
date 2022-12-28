@@ -195,8 +195,10 @@ class Comment extends DatabaseDriver
     }
 
     public function findCommentById(Int $id){
-        $sql = "SELECT * FROM $this->table WHERE id = $id";
-        $result = $this->pdo->query($sql);
+        //$sql = "SELECT * FROM $this->table WHERE id = $id";
+        //$result = $this->pdo->query($sql);
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("id = $id");
+        $result = $sql->execute();
         $data = $result->fetch();
         return $data;
     }

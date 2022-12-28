@@ -2,6 +2,7 @@
 
 namespace App\Core;
 use App\Vendor\DataTable\SSP;
+use App\Core\QueryBuilder;
 use App\Model\User;
 use App\Model\Article;
 use App\Model\Comment;
@@ -16,6 +17,7 @@ abstract class DatabaseDriver
 
 	protected $pdo;
 	protected $table;
+    protected $queryBuilder;
     private static $instance;
 
     
@@ -45,7 +47,7 @@ abstract class DatabaseDriver
 		}catch(\Exception $e){
 			die("Erreur SQL ".$e->getMessage());
 		}
-
+        $this->queryBuilder = new QueryBuilder($this->pdo);
 		$CalledClassExploded = explode("\\", get_called_class());
 		$this->table = strtolower("sakura_".end($CalledClassExploded));
 	}
@@ -78,8 +80,8 @@ abstract class DatabaseDriver
 
 	public function select()
 	{
-		$sql = "SELECT * FROM ".$this->table;
-        $result = $this->pdo->query($sql);
+        $sql = ($this->queryBuilder)->select()->from($this->table);
+        $result = $sql->execute();
         $data = $result->fetchAll();
 		return $data;
 	}
@@ -128,33 +130,39 @@ abstract class DatabaseDriver
 
 	public function isUnique(String $context, String $data){
 		if($context === 'Title'){
-			$sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
+			//$sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
 			$params = ['Title'=>$data];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title = :Title")->params($params);
 		}
 		if($context === 'slug'){
-			$sql = "SELECT * FROM ".$this->table." WHERE slug = :slug";
+			//$sql = "SELECT * FROM ".$this->table." WHERE slug = :slug";
 			$params = ['slug'=>$data];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("slug = :slug")->params($params);
 		}
 
 		if($context === 'Email'){
 			$user = new User();
 			$userInfo = $user->getUser($_COOKIE['JWT']);
-			$sql = "SELECT * FROM ".$this->table." WHERE Email = :Email AND Id!= :id";
+			//$sql = "SELECT * FROM ".$this->table." WHERE Email = :Email AND Id!= :id";
 			$params = ['Email'=>$data, "id"=>$userInfo['Id']];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("Email = :Email")->andWhere("Id != :id")->params($params);
 		}
 
-        $queryPrepared = $this->pdo->prepare($sql);
-		$queryPrepared->execute($params);
+        //$queryPrepared = $this->pdo->prepare($sql);
+		//$queryPrepared->execute($params);
+        $queryPrepared = $sql->execute();
         $result = $queryPrepared->fetch();
 
         $numberRow = $queryPrepared->rowCount();
         if($numberRow > 0){
             if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
 
-				$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
+				//$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
 				$params = ['Slug'=>$_GET['Slug']];
-				$queryPrepared = $this->pdo->prepare($sql);
-				$queryPrepared->execute($params);
+                $sql = ($this->queryBuilder)->select()->from($this->table)->where("Slug = :Slug")->params($params);
+				// $queryPrepared = $this->pdo->prepare($sql);
+				// $queryPrepared->execute($params);
+                $queryPrepared = $sql->execute();
 				$dataSlug = $queryPrepared->fetch();
 
                 if($dataSlug['Id'] == $result['Id']){
@@ -163,10 +171,12 @@ abstract class DatabaseDriver
                     return false;
                 }
             }elseif(isset($_GET['id']) && !empty($_GET['id'])){
-                $sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
+                //$sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
 				$params = ['Id'=>$_GET['id']];
-				$queryPrepared = $this->pdo->prepare($sql);
-				$queryPrepared->execute($params);
+                $sql = ($this->queryBuilder)->select()->from($this->table)->where("Id = :Id")->params($params);
+				// $queryPrepared = $this->pdo->prepare($sql);
+				// $queryPrepared->execute($params);
+                $queryPrepared = $sql->execute();
 				$dataSlug = $queryPrepared->fetch();
 
                 if($dataSlug['Id'] == $result['Id']){
@@ -185,19 +195,23 @@ abstract class DatabaseDriver
 	public function find(){
         if(!empty($_GET['Slug'])){
             $slug = $_GET['Slug'];
-            $sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
+            //$sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
             $params = ['Slug'=>$slug];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("Slug =:Slug")->params($params);
+            // $queryPrepared = $this->pdo->prepare($sql);
+            // $queryPrepared->execute($params);
+            $queryPrepared = $sql->execute();
             $data = $queryPrepared->fetch();
             if(empty($data)){
                 header("Location: /pages");
             }
         }elseif(!empty($_GET['id'])){
-            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
+            //$sql = "SELECT * FROM ".$this->table." WHERE id =:id";
             $params = ['id'=>$_GET['id']];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("id =:id")->params($params);
+            // $queryPrepared = $this->pdo->prepare($sql);
+            // $queryPrepared->execute($params);
+            $queryPrepared = $sql->execute();
             $data = $queryPrepared->fetch();
             if(empty($data)){
                 header("Location: /pages");
@@ -209,10 +223,12 @@ abstract class DatabaseDriver
     }
 
 	public function findRewriteUrl(){ 
-        $sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
+        //$sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
         $params = ['Rewrite_Url'=>'1'];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
+        $sql = ($this->queryBuilder)->select("Rewrite_Url")->from($this->table)->where("Rewrite_Url =:Rewrite_Url")->params($params);
+        // $queryPrepared = $this->pdo->prepare($sql);
+        // $queryPrepared->execute($params);
+        $queryPrepared = $sql->execute();
         $result = $queryPrepared->fetch();
         return $queryPrepared->rowCount();
     }
@@ -241,10 +257,12 @@ abstract class DatabaseDriver
     }
 
 	public function isExist($value){
-        $sql = "SELECT * FROM " .$this->table. " WHERE Title=:title";
+        //$sql = "SELECT * FROM " .$this->table. " WHERE Title=:title";
         $params = ['title'=>$value];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title=:title")->params($params);
+        $queryPrepared = $sql->execute();
+        // $queryPrepared = $this->pdo->prepare($sql);
+        // $queryPrepared->execute($params);
 
         if($queryPrepared->rowCount() > 0 ){
             return true;
