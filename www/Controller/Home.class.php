@@ -12,7 +12,7 @@ class Home {
     {
         $post = new ArticleModel();
         $category = new CategoryModel();
-        $allPosts = $post->selectAllLimit($_COOKIE['Id']);
+        $allPosts = $post->selectAllLimit();
         $allCategories = $category->selectAllLimit();
         $v = new View("Site/Home", "Front2");
         $v->assign("posts", $allPosts);
