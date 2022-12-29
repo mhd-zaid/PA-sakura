@@ -14,20 +14,25 @@ class Apparence
         $site = new Site();
         $css =  json_decode(file_get_contents(__DIR__ . "/../Public/css/site.json"));
         $selectorsWithValues = [".paragraph" => [], ".titre" => [], ".body" => [], ".nav" => []];
-        if (isset($_POST['submit'])) {
-            $selectorsWithValues[".paragraph"] = ["color" => $_POST["paragraphe-color"], "font-family" => $_POST["paragraphe-font-family"]];
-            $selectorsWithValues[".titre"] = ["color" => $_POST["titre-color"], "font-family" => $_POST["titre-font-family"]];
-            $selectorsWithValues[".body"] = ["background-color" => $_POST["body-background-color"]];
-            $selectorsWithValues[".header"] = ["background-color" => $_POST["header-background-color"]];
-            $selectorsWithValues[".footer"] = ["background-color" => $_POST["footer-background-color"]];
-            $selectorsWithValues[".nav"] = ["color" => $_POST["nav-color"]];
-            $this->changeValueCss($css, $selectorsWithValues);
-            $apparence->setId(1);
-            $apparence->setCss(file_get_contents(__DIR__ . "/../Public/css/site-theme-x.css"));
-            $apparence->setActive(1);
-            $apparence->save();
-            $apparence->updateActive(1);
-            $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
+        $configFormErrors = [];
+        if(!empty($_POST)){
+            if(empty($configFormErrors)){
+                if (isset($_POST['submit'])) {
+                    $selectorsWithValues[".paragraph"] = ["color" => $_POST["paragraphe-color"], "font-family" => $_POST["paragraphe-font-family"]];
+                    $selectorsWithValues[".titre"] = ["color" => $_POST["titre-color"], "font-family" => $_POST["titre-font-family"]];
+                    $selectorsWithValues[".body"] = ["background-color" => $_POST["body-background-color"]];
+                    $selectorsWithValues[".header"] = ["background-color" => $_POST["header-background-color"]];
+                    $selectorsWithValues[".footer"] = ["background-color" => $_POST["footer-background-color"]];
+                    $selectorsWithValues[".nav"] = ["color" => $_POST["nav-color"]];
+                    $this->changeValueCss($css, $selectorsWithValues);
+                    $apparence->setId(1);
+                    $apparence->setCss(file_get_contents(__DIR__ . "/../Public/css/site-theme-x.css"));
+                    $apparence->setActive(1);
+                    $apparence->save();
+                    $apparence->updateActive(1);
+                    $_SESSION["flash-success"] = "Thèmes mis à jour avec succés. Visualisez les modifications sur votre site.";
+                }
+            }
         }
         
         if(isset($_POST["electro"])){
@@ -62,6 +67,7 @@ class Apparence
         $v->assign("css", get_object_vars($css));
         $v->assign("apparenceData", $apparence->select());
         $v->assign("site", $site->select());
+        $v->assign("configFormErrors", $configFormErrors??[]);
     }
 
     public function changeValueCss($cssJson, $selectorsWithNewValues)

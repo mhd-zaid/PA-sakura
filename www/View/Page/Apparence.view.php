@@ -15,6 +15,11 @@ switch ($apparenceData["Css"]) {
         break;
 }
 ?>
+<?php foreach ($configFormErrors as $error ):?>
+                    <div>
+                        <p><?= $error ?> </p>
+                    </div>
+                <?php endforeach;?>
 <section class="body">
     <header class="header">
         <div class="row">
