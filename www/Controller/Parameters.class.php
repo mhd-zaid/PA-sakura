@@ -53,12 +53,26 @@ class Parameters
 	public function parametersUpdateSite()
 	{
 		$site = new Site();
+		$siteInfo = $site->select();
 		$siteUpdateForm = $site->updateSiteForm();
-		if (!empty($_POST)) {
-			if (isset($_POST['submit'])) {
+		if(!empty($_POST)){
+			if(isset($_POST['submit'])){
+					$target_dir = __DIR__."/../uploads"; //défini le path de notre dossier upload
+					if (!is_dir($target_dir)) { //si upload n'existe pas
+						mkdir($target_dir, 0777);
+					}
+					$file = $_FILES['logo']['name'];//récupère le nom du fichier
+					$file_extension = strrchr($file,".");//récupère l'extension
+					$extension_allow = array('.JPG','.jpg','.png','.PNG','.JPEG','.jpeg');//extension prise en charge
+					if(in_array($file_extension,$extension_allow)){//si extension est prise en charge
+						$temp_file = $_FILES['logo']['tmp_name'];  
+						copy($temp_file, $target_dir."/".$file); //copie l'image dans upload
+					}
+
+
 				$site->setId(1);
 				$site->setName($_POST['name']);
-				$site->setLogo("manga.jpg");
+				!empty($_FILES['logo']['name']) ? $site->setLogo($_FILES['logo']['name']) : $site->setLogo($siteInfo[0]['Logo']);
 				$site->setAddress($_POST["address"]);
 				$site->setEmail($_POST["email"]);
 				$site->setNumber($_POST['number']);

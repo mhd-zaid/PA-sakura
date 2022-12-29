@@ -4,12 +4,14 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Model\Apparence as ApparenceModel;
+use App\Model\Site;
 
 class Apparence
 {
     public function index()
     {
         $apparence = new ApparenceModel();
+        $site = new Site();
         $css =  json_decode(file_get_contents(__DIR__ . "/../Public/css/site.json"));
         $selectorsWithValues = [".paragraph" => [], ".titre" => [], ".body" => [], ".nav" => []];
         if (isset($_POST['submit'])) {
@@ -59,6 +61,7 @@ class Apparence
         $v = new View("Page/Apparence", "Back");
         $v->assign("css", get_object_vars($css));
         $v->assign("apparenceData", $apparence->select());
+        $v->assign("site", $site->select());
     }
 
     public function changeValueCss($cssJson, $selectorsWithNewValues)
