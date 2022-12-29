@@ -420,15 +420,4 @@
   controller: Site
   action: showSinglePost
   security: 0
-
-/site/page?id={id}:
-  controller: Site
-  action: getPage
-  security: 0
-  isAdmin: 0
-
-/site/page?name:
-  controller: Site
-  action: getPage
-  security: 0
   isAdmin: 0

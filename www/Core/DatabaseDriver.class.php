@@ -101,7 +101,7 @@ abstract class DatabaseDriver
 				$arrColumns[] = ['db' => $key, 'dt' => $key];
 			}
 		$user = new User();
-		if((get_class($this) == Article::class) || (get_class($this) == Comment::class) || (get_class($this) == Page::class)){
+		if((get_class($this) == Article::class) || (get_class($this) == Page::class)){
 
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'Id', $arrColumns);
 
@@ -121,7 +121,7 @@ abstract class DatabaseDriver
 				}
 			}
 			echo json_encode($dataTable);
-		}elseif((get_class($this) == Category::class) || get_class($this) === User::class){
+		}elseif((get_class($this) == Category::class) || get_class($this) === User::class || get_class($this) == Comment::class){
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id', $arrColumns);
 			echo json_encode($dataTable);
 		}

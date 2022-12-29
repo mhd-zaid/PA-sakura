@@ -114,18 +114,6 @@ class Comment extends DatabaseDriver
         return $this->comment_post_id;
     }
     
-    public function getActive(): ?int
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param null $content
-     */
-    public function setActive(Int $active): void
-    {
-        $this->active = $active;
-    }
 
     public function getArticleId(): ?int
     {
