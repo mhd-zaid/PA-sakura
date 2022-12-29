@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('../dist');
+mix.setPublicPath('../css');
 
 // mix.babel([
 //  '../src/js/vendor/jquery-3.6.0.min.js',
