@@ -36,10 +36,17 @@ header{
 }
 
 .item-comment{
-    padding: 3% 0;
+    padding: 2% 2%;
+    background-color: azure;
+    border-radius: 15px;
 
+    label{
+        font-weight: 700;
+    }
     input{
         margin-bottom: 2%;
+        border-radius: 5px;
+        border: 1px solid black;
     }
     .textarea-comments{
         min-height: 150px;
@@ -49,4 +56,42 @@ header{
         align-items: center;
         padding: 9px 16px;
     }
+}
+
+.item-singleComment{
+    margin: 2% 0;
+    .item-duo{
+
+        display: flex;
+        .item-mail{
+            margin-right: 2%;
+        }
+        .item-date{
+            opacity: 0.5;
+            color: gray;
+        }
+
+    }
+
+    .button {
+        align-items: center;
+        padding: 9px 16px;
+        margin: 2% 0;
+    }
+    .pos{
+        margin-right: 2%;
+        background-color: greenyellow;
+    }
+    .neg{
+        background-color: red;
+    }
+
+    .item-signal{
+        text-decoration: none;
+        color: black;
+        border: solid red 2px;
+        padding: 0.5%;
+        margin: 1% 0;
+    }
+    
 }

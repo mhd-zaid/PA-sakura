@@ -26,13 +26,26 @@
 				<input class="button-comment" name="add-comment" type="submit" value="Submit">
 			</form>
 		</div>
-		<?php
-		foreach($comments as $comment) {
-			echo $comment['Content'];
-			echo $comment['Email'];
-		}
+		<hr>
+
+		<div class="item-singleComment">
+			<?php
+			foreach($comments as $comment) {
+				echo "<div class='item-duo'> <p class ='item-mail'> {$comment['Email']} </p> <p class ='item-date'> {$comment['Date_Created']} </p> </div>"; 
+				echo "<br>";
+				echo "<div class='item-content'> {$comment['Content']} </div>"; 
+				echo "<button class='button pos' type='submit' value='positif'>+1</button>"; 
+				echo "<button class='button neg' type='submit' value='negatif'>-1</button>"; 
+				echo "<br>";
+
+				echo "<a href='#' class='item-signal'>Signaler</a>"; 
+
+				echo "<hr>";
+
+			}
 
 
-		?>
+			?>
+		</div>
 	</div>
 </div>
