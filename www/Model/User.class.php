@@ -673,10 +673,11 @@ class User extends DatabaseDriver
         $data = $queryPrepared->fetch();
         
         if($queryPrepared->rowCount() > 0 && $data['Token']==$token){
-            $sql = "UPDATE " .$this->table. " SET status=:status where email=:email";
+            //$sql = "UPDATE " .$this->table. " SET status=:status where email=:email";
             $params = ['email'=>$email, 'status'=>1];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
+            ($this->queryBuilder)->update(["status=:status"])->from($this->table)->where("email=:email")->params($params)->execute();
+            // $queryPrepared = $this->pdo->prepare($sql);
+            // $queryPrepared->execute($params);
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
             die();
