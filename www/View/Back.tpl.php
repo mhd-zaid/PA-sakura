@@ -62,7 +62,7 @@
             <nav id="col-nav">
                 <a href="/tableau-de-bord">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/dashboard-1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/dashboard-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Accueil</p>
                         </div>
@@ -70,7 +70,7 @@
                 </a>
                 <a href="/pages">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/page-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Page</p>
                         </div>
@@ -78,7 +78,7 @@
                 </a>
                 <a href="/article">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/page-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Articles</p>
                         </div>
@@ -86,7 +86,7 @@
                 </a>
                 <a href="/media">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/article-1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/article-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Médias</p>
                         </div>
@@ -94,7 +94,7 @@
                 </a>
                 <a href="/commentaire">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/media1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/media1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Commentaires</p>
                         </div>
@@ -102,7 +102,7 @@
                 </a>
                 <a href="/navigation">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/comments1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/comments1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Navigation</p>
                         </div>
@@ -110,7 +110,7 @@
                 </a>
                 <a href="/apparence">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/appearance-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Apparence</p>
                         </div>
@@ -118,7 +118,7 @@
                 </a>
                 <a href="/parametres">
                     <div class="row">
-                        <div class="col col-3"><img src="Public/img/Back/settings-1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/settings-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Paramètres</p>
                         </div>
@@ -126,7 +126,7 @@
                 </a>
                 <a href="/se-deconnecter">
                     <div id="disconnect" class="row">
-                        <div class="col col-3"><img src="Public/img/Back/logout1.svg" alt="Dashboard"></div>
+                        <div class="col col-3"><img src="/Public/img/Back/logout1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
                             <p class="menu-label">Déconnexion</p>
                         </div>

@@ -63,18 +63,18 @@ abstract class DatabaseDriver
 
 		if(is_null($this->getId())){
 			// INSERT INTO esgi_user (firstname,lastname,email,pwd,status) VALUES (:firstname,:lastname,:email,:pwd,:status) ;
-			$sql = "INSERT INTO ".$this->table. " (".implode(",", array_keys($columns) ) .") VALUES (:".implode(",:", array_keys($columns) ) .") ;";
+			//$sql = "INSERT INTO ".$this->table. " (".implode(",", array_keys($columns) ) .") VALUES (:".implode(",:", array_keys($columns) ) .") ;";
+            $sql = ($this->queryBuilder)->from($this->table)->insert(array_keys($columns));
 		}else{
 
 			foreach($columns as $column=>$value){
 				$sqlUpdate[] = $column."=:".$column;
 			}
 
-			$sql = "UPDATE ".$this->table. " SET  ".implode(",",$sqlUpdate)."  WHERE id=".$this->getId();
+			//$sql = "UPDATE ".$this->table. " SET  ".implode(",",$sqlUpdate)."  WHERE id=".$this->getId();
+            $sql = ($this->queryBuilder)->update($sqlUpdate)->from($this->table)->where("id=".$this->getId());
 		}
-
-		$queryPrepared = $this->pdo->prepare($sql);
-		$queryPrepared->execute($columns);
+		$sql->params($columns)->execute();
 
 	}
 
@@ -234,24 +234,24 @@ abstract class DatabaseDriver
     }
 
 	public function updateRewriteUrl(Int $choice){
-        $sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
+        //$sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
         $params = ['Rewrite_Url'=>$choice];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
+        $sql = ($this->queryBuilder)->update(["Rewrite_Url = :Rewrite_Url"])->from($this->table)->params($params);
+        $sql->execute();
+        // $queryPrepared = $this->pdo->prepare($sql);
+        // $queryPrepared->execute($params);
     }
 
 	public function delete():void{
         if(!empty($_GET['Slug'])){
             $slug = $_GET['Slug'];
-            $sql = "DELETE  FROM ".$this->table." WHERE Slug =:Slug";
             $params = ['Slug'=>$slug];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
+            $sql = ($this->queryBuilder)->delete()->from($this->table)->where("Slug =:Slug")->params($params);
+            $sql->execute();
         }elseif(!empty($_GET['id'])){
-            $sql = "DELETE  FROM ".$this->table." WHERE id =:id";
             $params = ['id'=>$_GET['id']];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
+            $sql = ($this->queryBuilder)->delete()->from($this->table)->where("Id =:id")->params($params);
+            $sql->execute();
         }else{
         }
     }

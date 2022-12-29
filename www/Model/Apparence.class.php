@@ -75,12 +75,18 @@ class Apparence extends DatabaseDriver
     
     public function updateActive(Int $id): void
     {
-        $sql = "UPDATE {$this->table} SET Active = 0";
-        $this->pdo->query($sql);
+        //$sql = "UPDATE {$this->table} SET Active = 0";
+        //$this->pdo->query($sql);
 
-        $sql1 = $this->pdo->prepare("UPDATE {$this->table} SET Active = 1 WHERE id = :id");
-        $sql1->bindValue("id", $id);
-        $sql1->execute();
+        // $sql1 = $this->pdo->prepare("UPDATE {$this->table} SET Active = 1 WHERE id = :id");
+        // $sql1->bindValue("id", $id);
+        // $sql1->execute();
+
+        $sql =  ($this->queryBuilder)->update(["Active = :Active"])->from($this->table)->params(["Active"=>0]);
+        $sql->execute();
+
+        $sql =  ($this->queryBuilder)->update(["Active = :Active"])->from($this->table)->where("id = :id")->params(["Active"=>1,"id"=>$id]);
+        $sql->execute();
     }
 
 }

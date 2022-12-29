@@ -4,7 +4,10 @@ namespace App\Core;
 
 class QueryBuilder
 {
-    private $select;
+    private $select = [];
+    private $delete;
+    private $insert;
+    private $update;
 	private $from;
     private $where;
     private $params;
@@ -24,7 +27,32 @@ class QueryBuilder
 
     public function select(string ...$columns)
     {
-        $this->select = $columns;
+        if (!empty($columns)) {
+            $this->select = $columns;
+        }else{
+            $this->select = ['*'];
+        }
+
+        return $this;
+    }
+
+    public function delete()
+    {
+        $this->delete = ['DELETE'];
+
+        return $this;
+    }
+
+    public function insert(array $columns)
+    {
+        $this->insert = "INSERT INTO ". $this->from." (".implode(",",$columns).") VALUES (:".implode(",:",$columns).")";
+
+        return $this;
+    }
+
+    public function update(array $update)
+    {
+        $this->update = $update;
 
         return $this;
     }
@@ -60,32 +88,47 @@ class QueryBuilder
     public function execute()
     {
         $query = $this->__toString();
-
         if (!empty($this->params)) {
             $statement = $this->pdo->prepare($query);
             $statement->execute($this->params);
-
+            $this->reset();
             return $statement;
         }
-
+        $this->reset();
         return $this->pdo->query($query);
+    }
+
+    public function reset()
+    {
+        $this->select = [];
+        $this->delete = [];
+        $this->from = [];
+        $this->where = [];
+        $this->params = [];
     }
 
     public function __toString()
     {
-        $query = ['SELECT'];
-        if (!empty($this->select)) {
-            $query[] = implode(",",$this->select); 
+        if (!empty($this->insert)) {
+            $query = [$this->insert];
         }else{
-            $query[] = '*';
-        }
-        
-        $query[] = 'FROM';
-        $query[] = $this->from;
-        
-        if (!empty($this->where)) {
-            $query[] = 'WHERE';
-            $query[] = $this->where;
+            if (!empty($this->select)) {
+                $query = ['SELECT'];
+                $query[] = implode(",",$this->select); 
+                $query[] = 'FROM';
+                $query[] = $this->from;
+            }elseif(!empty($this->delete)){
+                $query = $this->delete;
+            }elseif (!empty($this->update)) {
+                $query = ['UPDATE'];
+                $query[] = $this->from;
+                $query[] = "SET";
+                $query[] = implode(",",$this->update);
+            }
+            if (!empty($this->where)) {
+                $query[] = 'WHERE';
+                $query[] = $this->where;
+            }
         }
 
         return implode(" ",$query);
