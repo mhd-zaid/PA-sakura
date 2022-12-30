@@ -56,17 +56,35 @@ class Parameters
 		$siteInfo = $site->select();
 		$siteUpdateForm = $site->updateSiteForm();
 		if(!empty($_POST)){
+			$data = [];
+            isset($_FILES['logo']) ? array_push($data, $_FILES["logo"]) : '';
+            isset($_POST['name']) ? array_push($data, $_POST["name"]) : '';
+            isset($_POST['email']) ? array_push($data, $_POST["email"]) : '';
+            isset($_POST['number']) ? array_push($data, '0'.$_POST["number"]) : '';
+            isset($_POST['address']) ? array_push($data, $_POST["address"]) : '';
+
+            $verificator = new Verificator($siteUpdateForm, $data);
+			$verificator->verificatorUpdateSite($siteUpdateForm, $_POST);
+			$configFormErrors = $verificator->getMsg();
+
+            if(empty($configFormErrors)){
+
 			if(isset($_POST['submit'])){
+
 					$target_dir = __DIR__."/../uploads"; //défini le path de notre dossier upload
 					if (!is_dir($target_dir)) { //si upload n'existe pas
 						mkdir($target_dir, 0777);
 					}
-					$file = $_FILES['logo']['name'];//récupère le nom du fichier
-					$file_extension = strrchr($file,".");//récupère l'extension
-					$extension_allow = array('.JPG','.jpg','.png','.PNG','.JPEG','.jpeg');//extension prise en charge
-					if(in_array($file_extension,$extension_allow)){//si extension est prise en charge
-						$temp_file = $_FILES['logo']['tmp_name'];  
-						copy($temp_file, $target_dir."/".$file); //copie l'image dans upload
+					if(!empty($_FILES['logo']['name'])){
+						$file = $_FILES['logo']['name'];//récupère le nom du fichier
+						$file_extension = strrchr($file,".");//récupère l'extension
+						$extension_allow = array('.JPG','.jpg','.png','.PNG','.JPEG','.jpeg');//extension prise en charge
+						if(in_array($file_extension,$extension_allow)){//si extension est prise en charge
+							$temp_file = $_FILES['logo']['tmp_name'];  
+							copy($temp_file, $target_dir."/".$file); //copie l'image dans upload
+						}else{
+							$configFormErrors[] = "Les formats acceptés sont : .jpg, .png, .jpeg";
+						}
 					}
 
 
@@ -76,15 +94,19 @@ class Parameters
 				$site->setAddress($_POST["address"]);
 				$site->setEmail($_POST["email"]);
 				$site->setNumber($_POST['number']);
+				if(empty($configFormErrors)){
 				$site->save();
 				$_SESSION["flash-success"] = "Information du site mise à jour.";
 				header("Location: /parametres");
-				exit();
+                exit();
+				}
 			}
 		}
-		$v = new View("Page/SiteInformation", "Back");
+		}
+        $v = new View("Page/SiteInformation", "Back");
 		$v->assign("configForm", $siteUpdateForm);
-	}
+		$v->assign("configFormErrors", $configFormErrors??[]);
+    }
 
 	public function parametersAccountManagement()
 	{
