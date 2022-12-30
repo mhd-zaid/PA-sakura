@@ -6,15 +6,15 @@
 		foreach ($posts as $post) {
 			$post['Content'] = substr($post['Content'], 0, 150);
 			echo "<div class='col-md-8 '>
-			<div class='item-article'> 
-			<img src='/uploads/{$post['Image_Name']}' alt=''>
-			<div class='content-box'> 
-			<h2>
+			<div class='item-article row'> 
+			<img class='col col-3' src='/uploads/{$post['Image_Name']}' alt='' style='padding: 0'>
+			<div class='content-box col col-9'> 
+			<h2 class='title'>
 				<a href='/post/{$post['Id']}' class='titre'>{$post['Slug']}</a>
 			</h2>
 			<p class='paragraph'><span></span> Posted on {$post['Date_Created']}</p>
-			<p class='paragraph'>{$post['Content']}</p>
-			<a href='#'>Read More</a>
+			<p class='paragraph'>" . strip_tags($post['Content']) . "</p>
+			<a href='#' class='paragraph'>Read More</a>
 			</div>
 			</div>
 			<hr>
