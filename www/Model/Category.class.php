@@ -33,7 +33,7 @@ class Category extends DatabaseDriver
     }
 
 
-    public function getTitre(): ?String
+    public function getTitle(): ?String
     {
         return $this->title;
     }
@@ -41,7 +41,7 @@ class Category extends DatabaseDriver
     /**
      * @param null $content
      */
-    public function setTitre(String $title): void
+    public function setTitle(String $title): void
     {
         $this->title = strip_tags($title);
     }
@@ -69,13 +69,6 @@ class Category extends DatabaseDriver
                 ]
             ];
 
-    }
-
-    public function getCategories(){
-        $sql = "SELECT * FROM ".$this->table."";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
     }
 }
 

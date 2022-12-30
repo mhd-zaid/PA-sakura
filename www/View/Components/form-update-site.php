@@ -1,4 +1,4 @@
-<form method="<?= $config["config"]["method"]??"GET" ?>" action="<?= $config["config"]["action"]??"" ?>">
+<form enctype="multipart/form-data" method="<?= $config["config"]["method"]??"GET" ?>" action="<?= $config["config"]["action"]??"" ?>">
 
 	<?php 
 		$firstElem=array_slice($config["inputs"], 0, 1);
@@ -8,7 +8,9 @@
 		$fifthElem=array_slice($config["inputs"], 4, 1);
 	?>
 		<h1 class="h1-section-back">Information de votre site</h1>
+
 	<div> 
+
 	<?php 	
 		foreach ($firstElem as $name => $configInput):?>
 		<div>

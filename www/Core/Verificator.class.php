@@ -280,6 +280,33 @@ class Verificator
 		}
 	}
 
+	public function verificatorUpdateSite($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+
+			if(empty($this->msg) && isset($configInput["type"]) && $configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+
+			if(empty($this->msg) && isset($configInput["type"]) && $configInput["type"]=="number" && !self::checkNumber($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+		}
+	}
+
+	public function verificatorInstalleur($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+		}
+	}
+
 	public function getMsg(): array
 	{
 		return $this->msg;
@@ -304,6 +331,11 @@ class Verificator
 	public static function checkEmail(String $email): bool
 	{
 		return filter_var($email, FILTER_VALIDATE_EMAIL);
+	}
+
+	public static function checkNumber(String $number): bool
+	{
+		return preg_match("^0\d{9}$^", $number);
 	}
 
 
