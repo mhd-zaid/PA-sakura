@@ -10,6 +10,9 @@ RewriteRule ^page-add/(.*)$ page-add?Slug=$1
 RewriteRule ^post/(.*)$ post?Slug=$1
 RewriteRule ^post/([0-9]+)$ post?id=$1
 
+RewriteRule ^page/(.*)$ page?Slug=$1
+RewriteRule ^page/([0-9]+)$ page?id=$1
+
 RewriteRule ^comment-delete/([0-9]+)$ comment-delete?id=$1
 
 RewriteRule ^comment-approve/([0-9]+)$ comment-approve?approve=$1

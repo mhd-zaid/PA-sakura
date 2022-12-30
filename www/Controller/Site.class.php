@@ -63,6 +63,21 @@ class Site{
         }
     }
 
+	public function showSinglePage(): void
+    {	
+        $page = new Page();
+		$pageData = null;
+        if (isset($_GET['id'])) {
+            $pageData = $page->find($_GET['id']);
+        }
+		if (isset($_GET['Slug'])) {
+			$pageData = $page->find($_GET['Slug']);
+		}
+
+		$v = new View("Site/Page", "Front2");
+        $v->assign("the_page", $pageData);
+    }
+
 
     
 }

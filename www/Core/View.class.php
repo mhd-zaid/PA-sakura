@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Model\User;
 use App\Model\Page;
 use App\Model\Menu;
+use App\Model\Site;
 
 class View{
 
@@ -25,9 +26,12 @@ class View{
 			case 'Front2':
 				$menu = new Menu();
 				$page = new Page();
+				$site = new Site();
+				$site = $site->select();
 				$menu = $menu->getMainMenu();
 				$this->assign('menu',$menu);
 				$this->assign('page',$page);
+				$this->assign('site',$site);
 			default:
 
 				break;

@@ -421,3 +421,9 @@
   action: showSinglePost
   security: 0
   isAdmin: 0
+
+/page:
+  controller: Site
+  action: showSinglePage
+  security: 0
+  isAdmin: 0

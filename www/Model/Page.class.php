@@ -226,4 +226,12 @@ class Page extends DatabaseDriver
         $data = $result->fetch();
 		return $data;
     }
+
+    public function getPageById($id)
+    {
+        $sql = "SELECT * FROM ".$this->table. " WHERE Title = $id ";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetch();
+		return $data;
+    }
 }

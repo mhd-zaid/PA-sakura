@@ -18,7 +18,6 @@ class Home {
         $v = new View("Site/Home", "Front2");
         $v->assign("posts", $allPosts);
         $v->assign("categories", $allCategories);
-        $v->assign("categories", $allCategories);
     }
 
 

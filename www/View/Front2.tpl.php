@@ -2,8 +2,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Mon site</title>
-	<meta name="description" content="Ceci est ma page">
+	<?php if (isset($the_page)):?>
+		<title><?= $the_page['Title']?></title>
+		<meta name="description" content="<?= $the_page['Description']?>">
+	<?php else:?>
+		<title><?= $site[0]['Name']?></title>
+		<meta name="description" content="Ceci est ma page">
+	<?php endif;?>
 	<link rel="stylesheet" href="../Public/css/main.css">
 	<?php
 
@@ -32,7 +37,7 @@
 			<div class="container">
 				<div class="row">
 					<div>
-						<a href="/site">Sakura CMS</a>
+						<a href="/site"><?= $site[0]['Name']?></a>
 					</div>
 					<!--- Catégories à afficher -->
 					<div>
@@ -41,7 +46,7 @@
 							$content=explode( ",", $menu["Content"]);
 							foreach ($content as $value) {
 								echo('<li>');
-								echo('<div class="col"><a href=/site/'. $page->getPageByTitle($value)['Slug'].'>'.$value.'</a></div>');
+								echo('<div class="col"><a href=/page/'. $page->getPageByTitle($value)['Slug'].'>'.$value.'</a></div>');
 								echo('</li>');
 						}
 						?>
