@@ -16,6 +16,34 @@ class Apparence
         $selectorsWithValues = [".paragraph" => [], ".titre" => [], ".body" => [], ".nav" => []];
         $configFormErrors = [];
         if(!empty($_POST)){
+            if(count($_POST) !== 9) $configFormErrors[] = 'Tentative de hack';
+            $color = [];
+            isset($_POST['titre-color']) ? array_push($color, $_POST['titre-color']) : '';
+            isset($_POST['paragraphe-color']) ? array_push($color, $_POST['paragraphe-color']) : '';
+            isset($_POST['nav-color']) ? array_push($color, $_POST['nav-color']) : '';
+            isset($_POST['body-background-color']) ? array_push($color, $_POST['titre-color']) : '';
+            isset($_POST['header-background-color']) ? array_push($color, $_POST['header-background-color']) : '';
+            isset($_POST['footer-background-color']) ? array_push($color, $_POST['footer-background-color']) : '';
+            if(count($color)!== 6) $configFormErrors[] = 'Couleurs manquantes.';
+
+            foreach($color as $col){
+                if (!preg_match("/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/", $col)) {
+                    $configFormErrors[] = "La couleur $col n'est pas valide.";
+                }
+            }
+
+            $fonts = ["arial", "helvetica", "cambria", "courier", "georgia", "optima", "palatino", "tahoma", "times", "verdana"];
+            $fontsCompare = [];
+            isset($_POST['titre-font-family']) ? array_push($fontsCompare, $_POST['titre-font-family']) : '';
+            isset($_POST['paragraphe-font-family']) ? array_push($fontsCompare, $_POST['paragraphe-font-family']) : '';
+
+            if(count($fontsCompare)!== 2) $configFormErrors[] = 'Fonts manquantes.';
+            foreach($fontsCompare as $font){
+                if(!in_array($font, $fonts)){
+                    $configFormErrors[] = "Fonts inconnus $font";
+                }
+            }
+
             if(empty($configFormErrors)){
                 if (isset($_POST['submit'])) {
                     $selectorsWithValues[".paragraph"] = ["color" => $_POST["paragraphe-color"], "font-family" => $_POST["paragraphe-font-family"]];
