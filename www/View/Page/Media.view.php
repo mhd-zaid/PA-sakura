@@ -17,7 +17,7 @@
                     <input type="file" name="photo" id="photo">
                 </div>
                 <div class="col">
-                    <input type="submit" value="Upload Image" name="submit" class="cta-button btn--pink">
+                    <input type="submit" value="Ajouter" name="submit" class="cta-button btn--pink">
                 </div>
                 <div class="col">
                 <input type="submit" value="Delete Image" name="delete" id="del-media-img" class="cta-button btn--pink">

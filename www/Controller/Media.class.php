@@ -26,6 +26,11 @@ class Media{
             }else{
                 $configFormErrors[] = "Les extensions autorisés sont : .jpg, .png, .jpeg";
             }
+            if(empty($configFormErrors)){
+                $_SESSION["flash-success"] = "Image ajouté.";
+                header('Location: /media');
+                exit();
+            }
         }
     }
         
@@ -40,6 +45,11 @@ class Media{
                     unlink($target_dir);
                 }else{
                     $configFormErrors[] = "Ce fichier n'existe pas.";
+            }
+            if(empty($configFormErrors)){
+            $_SESSION["flash-success"] = "Image supprimer";
+            header('Location: /media');
+            exit();
             }
             }
         }
