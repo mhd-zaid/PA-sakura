@@ -70,13 +70,6 @@ class Category extends DatabaseDriver
             ];
 
     }
-
-    public function getCategories(){
-        $sql = "SELECT * FROM ".$this->table."";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
-    }
 }
 
 ?>

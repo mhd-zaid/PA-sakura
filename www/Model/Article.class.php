@@ -191,6 +191,7 @@ class Article extends DatabaseDriver
 
     public function createArticleForm(){
         $user = new User();
+        $category = new Category();
         $userInfo = $user->getUser($_COOKIE['JWT']);
 
         return [
@@ -201,7 +202,7 @@ class Article extends DatabaseDriver
                         ],
 
            "article"=>$this->find(),
-           "category"=>$this->selectAllCategories(),
+           "category"=>$category->select(),
            "user"=>$userInfo, 
 
            "textarea"=>[
@@ -294,11 +295,5 @@ class Article extends DatabaseDriver
                 ]
             ];
 
-    }
-    
-    public function selectAllCategories(){
-        $categories = new Category();
-        $data = $categories->getCategories();
-        return $data;
     }
 }
