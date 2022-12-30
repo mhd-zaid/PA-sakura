@@ -53,7 +53,7 @@ class Site extends DatabaseDriver
     //abstract public function setId($id);
     public function setName(String $name): void
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
     }
 
     /**
@@ -93,7 +93,7 @@ class Site extends DatabaseDriver
      /**
      * @param mixed $title
      */
-    public function setNumber(?int $number): void
+    public function setNumber(string $number): void
     {
         $this->number = $number;
     }
@@ -108,7 +108,7 @@ class Site extends DatabaseDriver
      */
     public function setAddress(string $address): void
     {
-        $this->address = $address;
+        $this->address = strip_tags($address);
     }
 
     /**
@@ -162,23 +162,22 @@ class Site extends DatabaseDriver
                                 "type"=>"email",
                                 "label"=>"Email",
                                 "class"=>"ipt-form-entry",
-                                "required"=>true,
+                                "required"=>false,
                                 "error"=>"Votre email est incorrect."
                             ],
                 "number"=>[
-                                "type"=>"text",
+                                "type"=>"number",
                                 "label"=>"Numéro de téléphone",
                                 "class"=>"ipt-form-entry",
                                 "min"=>10,
-                                "max"=>10,
-                                "required"=>true,
-                                "error"=>"Mauvais numéro de téléphone."
+                                "required"=>false,
+                                "error"=>"Le numéro de téléphone doit contenir 10 chiffres et commencer par 0."
                             ],
                 "address"=>[
                                 "type"=>"text",
                                 "label"=>"Addresse",
                                 "class"=>"ipt-form-entry",
-                                "required"=>true,
+                                "required"=>false,
                                 "error"=>"Addresse invalide."
                 ],
             ]

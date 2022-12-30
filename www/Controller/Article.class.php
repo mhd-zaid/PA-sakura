@@ -87,7 +87,7 @@ class Article{
                 exit();
             } 
             if(isset($_POST['publish'])){
-                if($userData['Role'] === 1){
+                if($userData['Role'] === 1 || $userData['Role'] === 0){
                 $article->setActive(1);
                 $article->save();
                 $_SESSION["flash-success"] = "L'article a été publié avec succés";
@@ -100,7 +100,7 @@ class Article{
                 }
             }  
             if(isset($_POST['unpublish'])){
-                if($userData['Role'] === 1){
+                if($userData['Role'] === 1 || $userData['Role'] === 0){
                 $article->setActive(0);
                 $article->save();
                 $_SESSION["flash-success"] = "L'article a été retiré avec succés";

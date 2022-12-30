@@ -4,6 +4,11 @@
             <?php 
                 $this->includeComponent("form-update-site", $configForm);
                 ?>
+                <?php foreach ($configFormErrors as $error ):?>
+                    <div>
+                        <p><?= $error ?> </p>
+                    </div>
+                <?php endforeach;?>
         </div>
     </div>
 </section>

@@ -80,15 +80,14 @@ class Main{
                             ],
             ]
         ];
-		$v = new View("Install/Installation", "Front");
-		$v->assign("configForm", $installForm);
-		$v->assign("configFormErrors", $configFormErrors??[]);
 
 		if(!empty($_POST) )
 		{
 			$verificator = new Verificator($installForm, $_POST);
-
+			$verificator->verificatorInstalleur($installForm, $_POST);
 			$configFormErrors = $verificator->getMsg();
+
+			if(empty($configFormErrors)){
 			try{
 				new \PDO("mysql:host=".$_POST['db_host'].";dbname=".$_POST['db_name'].";port=3306" ,$_POST['db_user'] ,$_POST['db_passwd']);
 				
@@ -107,6 +106,9 @@ class Main{
 				$queryPrepared->execute();
 				header("Location: /s-inscrire");
 			}
+			$v = new View("Install/Installation", "Front");
+			$v->assign("configForm", $installForm);
+			$v->assign("configFormErrors", $configFormErrors??[]);
 		}
 	}
 }

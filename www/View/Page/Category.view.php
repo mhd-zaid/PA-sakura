@@ -21,8 +21,7 @@
             <tr>
                 <th></th>
                 <th>Id</th>
-                <th>Titre</th>
-                <th></th>
+                <th>Title</th>
             </tr>
         </thead>
     </table>

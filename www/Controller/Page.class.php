@@ -67,7 +67,10 @@ class Page
             }
             if(isset($_POST['submit'])){
                 $page->save();
+                if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "La page a été modifié avec succés";
+                else $_SESSION["flash-success"] = "La page a été crée avec succés";
                 header("Location: /page");
+                exit();
             }   
             if(isset($_POST['delete'])){
                 
@@ -94,24 +97,34 @@ class Page
                 }
             }
                 $page->delete();
+                $_SESSION["flash-success"] = "La page a été supprimer avec succés";
                 header("Location: /page");
+                exit();
             } 
             if(isset($_POST['publish'])){
-                if($userData['Role'] === 1){
+                if($userData['Role'] === 1 || $userData['Role'] === 0){
                 $page->setActive(1);
                 $page->save();
+                $_SESSION["flash-success"] = "La page a été publié avec succés";
                 $_GET['Slug'] ? header('Location: /page-add/'.$_GET['Slug']) : header('Location: /page-add/'.$_GET['id']);
+                exit();
                 }else{
-                    header("Location: /tableau-de-bord");
+                    $_SESSION["flash-error"] = "Vous n'êtes pas autorisé à faire cela.";
+                    header("Location: /page");
+                    exit();                
                 }
             }  
             if(isset($_POST['unpublish'])){
-                if($userData['Role'] === 1){
+                if($userData['Role'] === 1 || $userData['Role'] === 0){
                 $page->setActive(0);
                 $page->save();
+                $_SESSION["flash-success"] = "La page a été retiré avec succés";
                 $_GET['Slug'] ? header('Location: /page-add/'.$_GET['Slug']) : header('Location: /page-add/'.$_GET['id']);
+                exit();
                 }else{
-                    header("Location: /tableau-de-bord");
+                    $_SESSION["flash-error"] = "Vous n'êtes pas autorisé à faire cela.";
+                    header("Location: /page");
+                    exit();                
                 }
             }  
         }

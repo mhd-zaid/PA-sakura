@@ -53,24 +53,60 @@ class Parameters
 	public function parametersUpdateSite()
 	{
 		$site = new Site();
+		$siteInfo = $site->select();
 		$siteUpdateForm = $site->updateSiteForm();
-		if (!empty($_POST)) {
-			if (isset($_POST['submit'])) {
+		if(!empty($_POST)){
+			$data = [];
+            isset($_FILES['logo']) ? array_push($data, $_FILES["logo"]) : '';
+            isset($_POST['name']) ? array_push($data, $_POST["name"]) : '';
+            isset($_POST['email']) ? array_push($data, $_POST["email"]) : '';
+            isset($_POST['number']) ? array_push($data, '0'.$_POST["number"]) : '';
+            isset($_POST['address']) ? array_push($data, $_POST["address"]) : '';
+
+            $verificator = new Verificator($siteUpdateForm, $data);
+			$verificator->verificatorUpdateSite($siteUpdateForm, $_POST);
+			$configFormErrors = $verificator->getMsg();
+
+            if(empty($configFormErrors)){
+
+			if(isset($_POST['submit'])){
+
+					$target_dir = __DIR__."/../uploads"; //défini le path de notre dossier upload
+					if (!is_dir($target_dir)) { //si upload n'existe pas
+						mkdir($target_dir, 0777);
+					}
+					if(!empty($_FILES['logo']['name'])){
+						$file = $_FILES['logo']['name'];//récupère le nom du fichier
+						$file_extension = strrchr($file,".");//récupère l'extension
+						$extension_allow = array('.JPG','.jpg','.png','.PNG','.JPEG','.jpeg');//extension prise en charge
+						if(in_array($file_extension,$extension_allow)){//si extension est prise en charge
+							$temp_file = $_FILES['logo']['tmp_name'];  
+							copy($temp_file, $target_dir."/".$file); //copie l'image dans upload
+						}else{
+							$configFormErrors[] = "Les formats acceptés sont : .jpg, .png, .jpeg";
+						}
+					}
+
+
 				$site->setId(1);
 				$site->setName($_POST['name']);
-				$site->setLogo("manga.jpg");
+				!empty($_FILES['logo']['name']) ? $site->setLogo($_FILES['logo']['name']) : $site->setLogo($siteInfo[0]['Logo']);
 				$site->setAddress($_POST["address"]);
 				$site->setEmail($_POST["email"]);
 				$site->setNumber($_POST['number']);
+				if(empty($configFormErrors)){
 				$site->save();
 				$_SESSION["flash-success"] = "Information du site mise à jour.";
 				header("Location: /parametres");
-				exit();
+                exit();
+				}
 			}
 		}
-		$v = new View("Page/SiteInformation", "Back");
+		}
+        $v = new View("Page/SiteInformation", "Back");
 		$v->assign("configForm", $siteUpdateForm);
-	}
+		$v->assign("configFormErrors", $configFormErrors??[]);
+    }
 
 	public function parametersAccountManagement()
 	{
@@ -93,7 +129,9 @@ class Parameters
 				$profil->setStatus($profilUpdateForm['profil']['Status']);
 				$profil->setToken($profilUpdateForm['profil']['Token']);
 				$profil->save();
-				header("Location: /tableau-de-bord");
+				$_SESSION["flash-success"] = "Vos informations ont été mises à jours avec succès.";
+                header("Location: /parametres");
+                exit();
 			}
 		}
 
@@ -153,10 +191,15 @@ class Parameters
 			if (empty($configFormErrors)) {
 				if (isset($_POST['update'])) {
 					$user->updateUserRole($userInformation);
+					$_SESSION["flash-success"] = "Utilisateur mis à jour.";
+                	header("Location: /parametres-users");
+                	exit();
 				}
 				if (isset($_POST['delete'])) {
 					$user->delete();
-					header('Location: /parametres-users');
+					$_SESSION["flash-success"] = "Utilisateur supprimé.";
+                	header("Location: /parametres-users");
+                	exit();				
 				}
 			}
 		}
@@ -181,7 +224,9 @@ class Parameters
 				if (isset($_POST['save'])) {
 					$article->updateRewriteUrl($_POST['choice']);
 					$page->updateRewriteUrl($_POST['choice']);
-					header('Location: /parametres ');
+					$_SESSION["flash-success"] = "Choix sauvegardé.";
+                	header("Location: /parametres");
+                	exit();
 				}
 			}
 		}

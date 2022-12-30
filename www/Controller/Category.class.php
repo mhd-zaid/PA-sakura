@@ -39,7 +39,7 @@ class Category{
                 $category->setId($_GET['id']);
             }
 
-            $category->setTitre($_POST['titre']);
+            $category->setTitle($_POST['titre']);
             $data = $article->select();
             $search = $dataCategory['Titre'];
 
@@ -62,6 +62,10 @@ class Category{
                 }
             }
             $category->save();
+            if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "La catégorie a été modifié avec succés";
+            else $_SESSION["flash-success"] = "La catégorie a été crée avec succés";
+            header("Location: /category");
+            exit();
             header("Location: /category");
         }
     }
@@ -94,7 +98,9 @@ class Category{
                 }
             }
             $category->delete();
+            $_SESSION["flash-success"] = "La catégorie a été supprimer avec succés";
             header("Location: /category");
+            exit();
         }
         $v=new View("Page/EditCategory", "Back");
         $v->assign("configForm", $form);

@@ -246,7 +246,7 @@ function DataTableCategory() {
         class: "category_id",
       },
       {
-        data: "Title",
+        data: "title",
         class: "category_titre",
       },
     ],
