@@ -39,7 +39,7 @@ class Category{
                 $category->setId($_GET['id']);
             }
 
-            $category->setTitre($_POST['titre']);
+            $category->setTitle($_POST['titre']);
             $data = $article->select();
             $search = $dataCategory['Titre'];
 
