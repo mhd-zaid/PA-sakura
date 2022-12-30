@@ -4,6 +4,7 @@ namespace App\Core;
 
 use App\Model\User;
 use App\Model\Page;
+use App\Model\Menu;
 
 class View{
 
@@ -17,6 +18,19 @@ class View{
 		$this->setView($view);
 		if($template === "Back") {
 			$this->assign('User',new User());
+		}
+		switch ($template) {
+			case 'Back':
+				$this->assign('User',new User());
+			case 'Front2':
+				$menu = new Menu();
+				$page = new Page();
+				$menu = $menu->getMainMenu();
+				$this->assign('menu',$menu);
+				$this->assign('page',$page);
+			default:
+
+				break;
 		}
 		
 	}

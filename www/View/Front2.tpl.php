@@ -18,8 +18,14 @@
 					<!--- Catégories à afficher -->
 					<div>
 						<ul>
-
-							<li><a href="/tableau-de-bord">Admin</a></li> 
+							<?php
+							$content=explode( ",", $menu["Content"]);
+							foreach ($content as $value) {
+								echo('<li>');
+								echo('<div class="col"><a href=/site/'. $page->getPageByTitle($value)['Slug'].'>'.$value.'</a></div>');
+								echo('</li>');
+						}
+						?>
 						</ul>
 					</div>
 				</div>
