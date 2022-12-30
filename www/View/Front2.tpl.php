@@ -5,6 +5,25 @@
 	<title>Mon site</title>
 	<meta name="description" content="Ceci est ma page">
 	<link rel="stylesheet" href="../Public/css/main.css">
+	<?php
+
+		$theme=new App\Model\Apparence();
+		$theme=$theme->select();
+		switch($theme["Css"]){
+			case "electro" :
+				echo('<link rel="stylesheet" href="../Public/css/site-theme-electro.css">');
+				break;
+			case "music" :
+				echo('<link rel="stylesheet" href="../Public/css/site-theme-music.css">');
+				break;
+			case "sakura" :
+				echo('<link rel="stylesheet" href="../Public/css/site-theme-sakura.css">');
+				break;
+			default :
+				echo('<link rel="stylesheet" href="../Public/css/site-theme-x.css">');
+				break;
+		};
+	?>
 </head>
 
 <body class="sk-body-front body">
