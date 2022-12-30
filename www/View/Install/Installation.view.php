@@ -7,6 +7,11 @@
         </div>
        <div>
        <?php $this->includeComponent("form", $configForm); ?>
+       <?php foreach ($configFormErrors as $error ):?>
+                    <div>
+                        <p><?= $error ?> </p>
+                    </div>
+                <?php endforeach;?>
        </div>
     </div>
 </section>
