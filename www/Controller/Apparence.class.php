@@ -16,6 +16,9 @@ class Apparence
         $selectorsWithValues = [".paragraph" => [], ".titre" => [], ".body" => [], ".nav" => []];
         $configFormErrors = [];
         if(!empty($_POST)){
+
+            if (isset($_POST['submit'])) {
+
             if(count($_POST) !== 9) $configFormErrors[] = 'Tentative de hack';
             $color = [];
             isset($_POST['titre-color']) ? array_push($color, $_POST['titre-color']) : '';
@@ -45,7 +48,6 @@ class Apparence
             }
 
             if(empty($configFormErrors)){
-                if (isset($_POST['submit'])) {
                     $selectorsWithValues[".paragraph"] = ["color" => $_POST["paragraphe-color"], "font-family" => $_POST["paragraphe-font-family"]];
                     $selectorsWithValues[".titre"] = ["color" => $_POST["titre-color"], "font-family" => $_POST["titre-font-family"]];
                     $selectorsWithValues[".body"] = ["background-color" => $_POST["body-background-color"]];

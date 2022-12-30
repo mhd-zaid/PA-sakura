@@ -142,8 +142,7 @@
                 <div class="row">
                     <form action="/apparence" method="POST" class="col col-12 appearance-set">
                         <div class="col col-12">
-                            <input class="btn--pink-rounded"0
-                             type="submit" name="submit">
+                            <input type="submit" name="submit" class="cta-button btn--pink">
                         </div>
                 </div>
                 <hr>
@@ -298,9 +297,9 @@
                 </div>
                 <hr>
 
-                <input class="btn--pink-rounded" type="submit" value="electro" name="electro"><br>
-                <input class="btn--pink-rounded" type="submit" value="music" name="music"><br>
-                <input class="btn--pink-rounded" type="submit" value="sakura" name="sakura"><br>
+                <input type="submit" value="electro" name="electro" class="cta-button btn--pink"><br><br>
+                <input type="submit" value="music" name="music" class="cta-button btn--pink"><br><br>
+                <input type="submit" value="sakura" name="sakura" class="cta-button btn--pink"><br>
                 </form>
             </div>
 
