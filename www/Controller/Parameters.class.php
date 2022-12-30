@@ -129,7 +129,9 @@ class Parameters
 				$profil->setStatus($profilUpdateForm['profil']['Status']);
 				$profil->setToken($profilUpdateForm['profil']['Token']);
 				$profil->save();
-				header("Location: /tableau-de-bord");
+				$_SESSION["flash-success"] = "Vos informations ont été mises à jours avec succès.";
+                header("Location: /parametres");
+                exit();
 			}
 		}
 
@@ -189,10 +191,15 @@ class Parameters
 			if (empty($configFormErrors)) {
 				if (isset($_POST['update'])) {
 					$user->updateUserRole($userInformation);
+					$_SESSION["flash-success"] = "Utilisateur mis à jour.";
+                	header("Location: /parametres-users");
+                	exit();
 				}
 				if (isset($_POST['delete'])) {
 					$user->delete();
-					header('Location: /parametres-users');
+					$_SESSION["flash-success"] = "Utilisateur supprimé.";
+                	header("Location: /parametres-users");
+                	exit();				
 				}
 			}
 		}
@@ -217,7 +224,9 @@ class Parameters
 				if (isset($_POST['save'])) {
 					$article->updateRewriteUrl($_POST['choice']);
 					$page->updateRewriteUrl($_POST['choice']);
-					header('Location: /parametres ');
+					$_SESSION["flash-success"] = "Choix sauvegardé.";
+                	header("Location: /parametres");
+                	exit();
 				}
 			}
 		}
