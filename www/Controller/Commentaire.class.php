@@ -48,44 +48,24 @@ class Commentaire
         }
     }
 
+    public function unapproveComment(): void
+    {
+        if (isset($_GET['unapprove'])) {
+            $comment = new CommentModel();
+            $data = $comment->findCommentById($_GET['unapprove']);
+            $comment->setId($_GET['unapprove']);
+            $comment->setStatus("unapprove");
+            $comment->setAuthor($data['Author']);
+            $comment->setContent($data['Content']);
+            $today = date("Y-m-d");
+			$comment->setDateCreated($today);
+            $comment->setEmail($data['Email']);
+            $comment->setCommentPostId($data['Comment_Post_Id']);
+            $comment->save();
+            header("Location: /commentaire");
+        }
+    }
 
-    // public function saveComment(): void
-    // {
-    //     $comment = new CommentModel();
-    //     //On regarde si l'id du commentaire existe 
-    //     //si existe alors nous sommes dans un edit
-    //     //si non nous somme dans la création
-    //     if (isset($_GET['id']) || !empty($_GET['id'])) {
-    //         $data = $comment->findCommentById($_GET["id"]);
-    //         //Id -> vient de la bdd
-    //         $comment->setId($data["Id"]);
-    //     }
-    //     if (isset($_POST['submit'])) {
-    //         if (isset($_POST['editor']) && !empty($_POST['editor'])) {
-    //             $comment->setContent($_POST['editor']);
-    //             if (!($this->checkComment($comment->getContent()))) {
-    //                 $comment->setActive(intval($_POST['active']));
-    //                 if($comment->getActive() == 1){
-    //                     $comment->setNbrSignalement(0);
-    //                 }
-    //                 $comment->setArticleId(1);
-    //                 //save permet d'enregistrer dans la base de donner 
-    //                 $comment->save();
-    //                 header("Location: /Commentaire");
-    //             } else {
-    //                 echo "Votre commentaire contient un mot banni !";
-    //             }
-    //         }
-    //     }
-    //     if (isset($_POST['delete'])) {
-    //         if (isset($_POST['editor']) && !empty($_POST['editor'])) {
-    //             $comment->delete($_GET["id"]);
-    //             header("Location: /Commentaire");
-    //         }
-    //     }
-    //     $v = new View("Page/EditCommentaire", "Back");
-    //     $v->assign("data", $data ?? []);
-    // }
 
 
     public function motsbannis(): void

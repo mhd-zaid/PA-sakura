@@ -172,6 +172,13 @@ function DataTableComment() {
     window.location.replace("/comment-approve/" + id);
   });
 
+  $("#table_comments tbody").on("click", "tr td.comment_unapprouve", function () {
+    var tr = $(this).closest("tr");
+    var row = table.row(tr);
+    var id = row.data().Id;
+    window.location.replace("/comment-unapprove/" + id);
+  });
+
   $("#table_comments tbody").on("click", "tr td.comment_delete", function () {
     var tr = $(this).closest("tr");
     var row = table.row(tr);

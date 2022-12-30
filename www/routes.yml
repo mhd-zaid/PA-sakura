@@ -287,6 +287,12 @@
   action: approveComment
   security: 0
   isAdmin: 0
+
+/comment-unapprove:
+  controller: Commentaire
+  action: unapproveComment
+  security: 0
+  isAdmin: 0
   
 /commentaire-edition:
  controller: Commentaire

@@ -17,6 +17,8 @@ RewriteRule ^comment-delete/([0-9]+)$ comment-delete?id=$1
 
 RewriteRule ^comment-approve/([0-9]+)$ comment-approve?approve=$1
 
+RewriteRule ^comment-unapprove/([0-9]+)$ comment-unapprove?unapprove=$1
+
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d 
 
