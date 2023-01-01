@@ -89,16 +89,3 @@
         </div>
     </div>
 </section>
-
-
-<div>
-    <div>
-        <img src="" alt="">
-        <img src="" alt="">
-    </div>
-    <div>
-        <img src="" alt="">
-        <img src="" alt="">
-    </div>
-</div>
-

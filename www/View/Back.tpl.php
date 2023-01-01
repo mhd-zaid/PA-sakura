@@ -33,7 +33,7 @@
                         <img src="/Public/img/Back/mini-logo.svg" alt="logo-site">
                     </div>
                     <div class="col visitLink">
-                        <a href="#" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
+                        <a href="/site" id="visit" class="cta-button-back  btn-pink"> Visiter le site</a>
                     </div>
                     <div class="col helpLink">
                         <a href="#">Aide</a>
