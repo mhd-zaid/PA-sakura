@@ -6,6 +6,7 @@ use App\Core\View;
 use App\Model\Article as ArticleModel;
 use App\Model\User;
 use App\Core\Verificator;
+use App\Core\Notification\ModifyNotification;
 
 class Article
 {
@@ -71,10 +72,9 @@ class Article
 
             if(isset($_POST['submit'])){
                 $article->save();
-                if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "L'article a été modifié avec succés";
-                else $_SESSION["flash-success"] = "L'article a été crée avec succés";
-                header("Location: /article");
-                exit();
+                $modify = new ModifyNotification();
+                $article->subscribeToNotification($modify);
+                $article->update();
             }   
             if(isset($_POST['deleteImage'])){
                 $article->setImageName("");
@@ -83,6 +83,7 @@ class Article
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
                 exit();
             } 
+
             if(isset($_POST['delete'])){
                 $article->delete();
                 $_SESSION["flash-success"] = "L'article a été supprimer avec succés";

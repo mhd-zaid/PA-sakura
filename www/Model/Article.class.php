@@ -5,6 +5,7 @@ namespace App\Model;
 use App\Core\DatabaseDriver;
 use App\Model\Category;
 use App\Model\User;
+use App\Core\Observer;
 
 class Article extends DatabaseDriver
 {
@@ -20,6 +21,7 @@ class Article extends DatabaseDriver
     protected $rewrite_Url;
     protected $categories;
     protected $description;
+    public static $notification = [];
 
 	public function __construct()
 	{
@@ -308,5 +310,15 @@ class Article extends DatabaseDriver
                 ]
             ];
 
+    }
+
+    public function subscribeToNotification(Observer $notif){
+        array_push(static::$notification, $notif);
+    }
+
+    public function update(){
+        foreach(static::$notification as $observer){
+            $observer->alert();
+        }
     }
 }
