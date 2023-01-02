@@ -6,6 +6,8 @@ use App\Core\View;
 use App\Model\Page;
 use App\Model\Article as ArticleModel;
 use App\Model\Comment as CommentModel;
+use App\Model\Stats as statsModel;
+use App\Controller\Commentaire as CommentaireController;
 
 
 class Site{
@@ -37,23 +39,66 @@ class Site{
 	public function saveComment(): void
 	{
 		if (isset($_POST['add-comment'])) {
+			$commentaire = new CommentaireController();
+			if(!($commentaire->checkComment($_POST["content"]))){
+				$comment = new CommentModel();
+				$comment->setAuthor($_POST['author']);
+				$comment->setContent($_POST['content']);
+				$comment->setEmail($_POST['email']);
+				$today = date("Y-m-d");
+				$comment->setDateCreated($today);
+				$comment->setCommentPostId($_GET['id']);
+				$comment->setNbrSignalement(0);
+				$comment->save();
+				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
+				exit();
+			}
+			else{
+				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
+				exit();
+			}
+		}
+
+
+		if (isset($_POST['signaler-comment'])){
 			$comment = new CommentModel();
-			$comment->setAuthor($_POST['author']);
-            $comment->setContent($_POST['content']);
-            $comment->setEmail($_POST['email']);
+			$commentData = $comment->findCommentById($_POST['signaler-id']);
+            
+            if(in_array($_POST['signaler-id'],$_SESSION["messages_reported"])){
+              $_SESSION["flash-error"] = "Vous avez déjà signalé ce commentaire";
+			  exit();
+			}
+			
+			$comment->setNbrSignalement($commentData['Nombre_signalement'] + 1); 
+
+			array_push($_SESSION["messages_reported"], $_POST['signaler-id']);
+			
+			if($comment->getNbrSignalement() === 5){
+				$comment->setStatus("unapprove");
+				exit();
+			}
+            $comment->setId($_POST['signaler-id']);
+			$comment->setAuthor($commentData['Author']);
+            $comment->setContent($commentData['Content']);
+            $comment->setEmail($commentData['Email']);
+			$comment->setStatus("approved");
 			$today = date("Y-m-d");
 			$comment->setDateCreated($today);
 			$comment->setCommentPostId($_GET['id']);
 			$comment->save();
-			header("Location: /site");
+			$_SESSION["flash-success"] = "Vous avez bien signalé ce commentaire";
+			exit();
 		}
 	}
-
 	public function showSinglePost(): void
     {	
+		if(!isset($_SESSION["messages_reported"])){
+			$_SESSION["messages_reported"] = [];
+		}
         $post = new ArticleModel();
 		$comment = new CommentModel();
         if (isset($_GET['id'])) {
+			
             $postData = $post->selectSingleArticle($_GET['id']);
 			$comments = $comment->selectpApprovedComments($_GET['id']);
             $v = new View("Site/SingleArticle", "Front2");

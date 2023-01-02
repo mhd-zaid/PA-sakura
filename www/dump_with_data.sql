@@ -1,3 +1,4 @@
+-- SQLBook: Code
 -- phpMyAdmin SQL Dump
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
@@ -121,20 +122,24 @@ CREATE TABLE `sakura_category` (
 --
 
 CREATE TABLE `sakura_comment` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `Id` int(11) NOT NULL,
   `Content` varchar(255) DEFAULT NULL,
-  `Active` tinyint(1) NOT NULL,
-  `Nbr_Signalement` int(11) NOT NULL,
-  `Article_Id` int(11) NOT NULL
+  `Status` varchar(255) NOT NULL,
+  `Comment_Post_Id` int(11) NOT NULL,
+  `Author` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Date_Created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+ALTER TABLE `sakura_comment`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  ADD PRIMARY KEY (`Id`);
 --
 -- Déchargement des données de la table `sakura_comment`
 --
 
-INSERT INTO `sakura_comment` (`Id`, `Content`, `Active`, `Nbr_Signalement`, `Article_Id`) VALUES
-(1, 'Nouveau commentaire', 0, 5, 1),
-(2, 'Commentaire', 0, 0, 1);
+INSERT INTO `sakura_comment` (`Id`, `Content`, `Status`, `Comment_Post_Id`, `Author`, `Email`, `Date_Created`) VALUES
+(5, 'blabla', 'approved', 3, 'aeae', 'zaidmouhamad@gmail.com', '2022-12-29 00:00:00');
 
 -- --------------------------------------------------------
 

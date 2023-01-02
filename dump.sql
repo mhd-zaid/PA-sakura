@@ -74,9 +74,12 @@ CREATE TABLE `sakura_chapter` (
 CREATE TABLE `sakura_comment` (
   `Id` int(11) NOT NULL,
   `Content` varchar(255) DEFAULT NULL,
-  `Active` tinyint(1) NOT NULL,
-  `Nbr_Signalement` int(11) NOT NULL,
-  `Article_Id` int(11) NOT NULL,
+  `Status` varchar(255) NOT NULL,
+  `Comment_Post_Id` int(11) NOT NULL,
+  `Author` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Date_Created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Nombre_signalement` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------

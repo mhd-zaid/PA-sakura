@@ -20,4 +20,16 @@ $().ready(function() {
         $(this).html(initials);
         $(this).css('background-color',colours[i]);
     });
+    //Session flash
+    $("#close-flash").on("click", function () {
+        var flash = document.getElementById("flash-msg");
+        var container = document.getElementById("row-nav-main");
+        container.removeChild(flash);
+    });
+    setTimeout(function () {
+        var flash = document.getElementById("flash-msg");
+        var container = document.getElementById("row-nav-main");
+        container.removeChild(flash);
+    }, 7000);
+    
 })

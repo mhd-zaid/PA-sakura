@@ -134,6 +134,10 @@ function DataTableComment() {
         class: "comment_date_created",
       },
       {
+        data: "nombre_signalement",
+        class: "comment_nombre_signalement",
+      },
+      {
         class: "comment_approuve",
         orderable: false,
         data: null,

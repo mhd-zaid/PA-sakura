@@ -23,6 +23,7 @@
                 <th>Email</th>
                 <th>Status</th>
                 <th>Date Created</th>
+                <th>Nombre de signalement</th>
                 <th>Approuve</th>
                 <th>Unapprove</th>
                 <th>Delete</th>

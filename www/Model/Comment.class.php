@@ -15,6 +15,7 @@ class Comment extends DatabaseDriver
     protected $status = "unapproved";
     protected $date_created;
     protected $comment_post_id;
+    protected $nombre_signalement;
 
 
 
@@ -114,31 +115,15 @@ class Comment extends DatabaseDriver
         return $this->comment_post_id;
     }
     
-
-    public function getArticleId(): ?int
-    {
-        return $this->article_id;
-    }
-
-    /**
-     * @param null $content
-     */
-    public function setArticleId(Int $article_id): void
-    {
-        $this->article_id = $article_id;
-    }
-    
     public function getNbrSignalement(): ?int
     {
-        return $this->nbr_signalement;
+        return $this->nombre_signalement;
     }
 
-    /**
-     * @param null $content
-     */
-    public function setNbrSignalement(Int $nbr_signalement): void
+    public function setNbrSignalement(Int $nombre_signalement): void
     {
-        $this->nbr_signalement = $nbr_signalement;
+
+        $this->nombre_signalement = $nombre_signalement;
     }
 
     public function createMotBanForm(){

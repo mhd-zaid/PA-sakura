@@ -43,6 +43,7 @@ class Commentaire
 			$comment->setDateCreated($today);
             $comment->setEmail($data['Email']);
             $comment->setCommentPostId($data['Comment_Post_Id']);
+            $comment->setNbrSignalement(0);
             $comment->save();
             header("Location: /commentaire");
         }
@@ -61,6 +62,7 @@ class Commentaire
 			$comment->setDateCreated($today);
             $comment->setEmail($data['Email']);
             $comment->setCommentPostId($data['Comment_Post_Id']);
+            $comment->setNbrSignalement(0);
             $comment->save();
             header("Location: /commentaire");
         }
@@ -129,20 +131,29 @@ class Commentaire
         $v->assign("data", $data ?? []);
     }
 
-    // public function signaler(): void
-    // {
-    //     $comment = new CommentModel();
-    //     $commentData = $comment->findCommentById($_GET['id']);
-    //     $comment->setId($commentData['Id']);
-    //     $comment->setContent($commentData['Content']);
-    //     $comment->setArticleId($commentData['Article_Id']);
-    //     $comment->setNbrSignalement($commentData['Nbr_Signalement']+1);
-    //     if($commentData['Nbr_Signalement'] >= 20){
-    //         $comment->setActive(0);
-    //     }else{
-    //         $comment->setActive($commentData['Active']);
-    //     }
-    //     $comment->save();
-    //     $v = new View("Page/Commentaire", "Back");
-    // }
+    public function signaler(): void
+    {
+        var_dump("salute");
+        $comment = new CommentModel();
+        $commentData = $comment->findCommentById($_GET['id']);
+
+        $comment->setId($commentData['Id']);
+        $comment->setContent($commentData['Content']);
+        $comment->setArticleId($commentData['Article_Id']);
+        $comment->setNbrSignalement($commentData['Nbr_Signalement']+1);
+        // $comment = new CommentModel();
+        // $comment = $comment->findCommentById(1);
+        // $comment->incrementReportComment($_GET['id']); 
+        // if($comment->getNumberReportCommentById($_GET['id'])["Nombre_signalement"] === 5){
+        //    echo "salut";
+        //     $comment->setStatus("unapprove");
+        // }
+        // if($commentData['Nbr_Signalement'] >= 20){
+        //     $comment->setActive(0);
+        // }else{
+        //     $comment->setActive($commentData['Active']);
+        // }
+        $comment->save();
+		header("Location: /site");
+    }
 }

@@ -65,7 +65,10 @@
 					echo "<div class='item-content'>";
 					echo "<p> {$comment['Content']} </p>";
 					echo "</div><br>";
-					echo "<a href='#' class='item-signal'>Signaler</a>";
+					echo "<form action='' method='POST'>";
+					echo "<input class='button-comment' name='signaler-id' type='hidden' value='{$comment['Id']}'>";
+					echo "<input class='button-comment' name='signaler-comment' type='submit' value='Signaler'>";
+					echo "</form> ";
 					echo "</div>";
 				}
 				?>
