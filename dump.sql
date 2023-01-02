@@ -28,8 +28,12 @@ SET time_zone = "+00:00";
 --
 CREATE TABLE `sakura_site` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(255) DEFAULT NULL,
-  `Description` text
+  `Logo` varchar(255) DEFAULT NULL,
+  `Name` varchar(50) DEFAULT NULL,
+  `Email` varchar(255) DEFAULT NULL,
+  `Number` varchar(20) DEFAULT NULL,
+  `Address` varchar(100) DEFAULT NULL,
+  `Date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
