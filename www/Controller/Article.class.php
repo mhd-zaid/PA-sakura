@@ -6,16 +6,15 @@ use App\Core\View;
 use App\Model\Article as ArticleModel;
 use App\Model\User;
 use App\Core\Verificator;
+use App\Core\Notification\ModifyNotification;
+use App\Core\Notification\DeleteNotification;
 
-class Article
-{
-    public function index()
-    {
-        $v = new View("Page/Article", "Back");
+class Article{
+    public function index(){
+        $v=new View("Page/Article", "Back");
     }
 
-    public function saveArticle()
-    {
+    public function saveArticle(){
         $user = new User();
         $userData = $user->getUser($_COOKIE['JWT']);
         if($userData['Role'] !== 3){
@@ -23,13 +22,13 @@ class Article
             $form = $article->createArticleForm();
 
             //Cas d'un update car slug ou id renseigné
-            if (isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])) {
+            if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
                 //récupère l'article courant
                 $data = $article->find();
                 $article->setUserId($data['User_Id']);
                 $article->setActive($data["Active"]);
                 //Vérification de sécurité
-                if ($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1) {
+                if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
                     $article->setId($data["Id"]);
                 }else{
                     $_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
@@ -83,6 +82,7 @@ class Article
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
                 exit();
             } 
+
             if(isset($_POST['delete'])){
                 $article->delete();
                 $_SESSION["flash-success"] = "L'article a été supprimer avec succés";

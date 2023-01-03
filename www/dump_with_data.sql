@@ -128,7 +128,8 @@ CREATE TABLE `sakura_comment` (
   `Comment_Post_Id` int(11) NOT NULL,
   `Author` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
-  `Date_Created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `Date_Created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Nombre_signalement` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `sakura_comment`

@@ -4,6 +4,9 @@ namespace App\Model;
 
 use App\Core\DatabaseDriver;
 use DateTime;
+use App\Core\Observer;
+use App\Core\Notification\AddNotification;
+use App\Core\Notification\ModifyNotification;
 
 class Comment extends DatabaseDriver
 {
@@ -16,8 +19,7 @@ class Comment extends DatabaseDriver
     protected $date_created;
     protected $comment_post_id;
     protected $nombre_signalement;
-
-
+    public static $notification = [];
 
 	public function __construct()
 	{
@@ -167,6 +169,25 @@ class Comment extends DatabaseDriver
     {
         $sql = "SELECT * FROM $this->table";
 		return $result = $this->pdo->query($sql)->fetchAll();
+    }
+
+    public function subscribeToNotification(Observer $notif){
+        array_push(static::$notification, $notif);
+    }
+
+    public function update(?int $id = null){
+        foreach(static::$notification as $observer){
+            switch(get_class($observer)){
+                case AddNotification::class:
+                    $observer->alert("Ajout d'un commentaire", "Un nouveau commentaire a ete ajoute.");
+                    break;
+                case ModifyNotification::class:
+                    $observer->alert("Signalement", "Le commentaire avec l'id $id a ete signale.");
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
 
