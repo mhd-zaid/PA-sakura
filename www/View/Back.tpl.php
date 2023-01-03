@@ -45,7 +45,7 @@
                         </button>
                         <div class="dropdown-content">
                             <a href="/parametres-compte">Paramètre du compte</a>
-                            <?php if ($userData['Role'] == 1) : ?>
+                            <?php if ($userData['Role'] == 1 || $userData['Role'] == 0) : ?>
                                 <a href="/parametres-users">Gérer les utilisateurs</a>
                             <?php endif ?>
                             <a href="/parametres-support">Assistance</a>
