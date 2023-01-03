@@ -60,26 +60,22 @@ class QueryBuilder
 
     public function where(string $condition)
     {
-        $this->where = $condition;
+        $this->where = [$condition];
 
         return $this;
     }
 
-    public function andWhere(string ...$conditions)
+    public function andWhere(string $condition)
     {
-        foreach ($conditions as $condition) {
-            $this->where = array_merge($this->where,"AND $condition");
-        }
+
+        array_push($this->where,"AND ".$condition);
 
         return $this; 
     }
 
-    public function orWhere(string ...$conditions)
+    public function orWhere(string $condition)
     {
-        foreach ($conditions as $condition) {
-            
-            $this->where = array_merge($this->where,"OR $condition");
-        }
+        array_push($this->where,"OR ".$condition);
         
         return $this;
     }
@@ -140,7 +136,7 @@ class QueryBuilder
             }
             if (!empty($this->where)) {
                 $query[] = 'WHERE';
-                $query[] = $this->where;
+                $query[] = implode(" ",$this->where);
             }elseif(!empty($this->limit)){
                 $query[] = 'LIMIT';
                 $query[] = $this->limit;
