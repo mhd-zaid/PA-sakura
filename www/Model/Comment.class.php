@@ -77,11 +77,11 @@ class Comment extends DatabaseDriver
     }
 
     /**
-     * @param null $content
+     * @param mixed $content
      */
-    public function setContent(String $content): void
+    public function setContent(?String $content): void
     {
-        $this->content = $content;
+        $this->content = strip_tags($content);
     }
 
     public function getStatus(): ?String

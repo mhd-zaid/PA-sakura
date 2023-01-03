@@ -97,12 +97,6 @@
   security: 0
   isAdmin: 0
 
-/profil-notification:
-  controller: Profil
-  action: manageNotification
-  security: 0
-  isAdmin: 0
-
 /profil-gestion-des-comptes:
  controller: Profil
  action: manageAccount

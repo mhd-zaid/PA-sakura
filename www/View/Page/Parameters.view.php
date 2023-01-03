@@ -34,22 +34,6 @@
     <div class="row flex-row flex-row-center">
         <div class="col col-12 box-parameters">
             <div class="col-12 box-title">
-                <h2> Communication</h2>
-            </div>
-            <div class="col-12 box-choices">
-                <h3> Gérer les informations relatives à vos sites</h3>
-                <ul class="flex-col">
-                    <li class="choices-parameters"><a href="/parametres"><img src="Public/img/Back/Parameters/Notification.svg" alt="Notification">Notification</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="grid grid-rounded list-parameters">
-    <div class="row flex-row flex-row-center">
-        <div class="col col-12 box-parameters">
-            <div class="col-12 box-title">
                 <h2> Aide</h2>
             </div>
             <div class="col-12 box-choices">
