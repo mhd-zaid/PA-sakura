@@ -6,7 +6,7 @@
 		$thirdElem=array_slice($config["inputs"], 2, 1);
 		$sixthElem=array_slice($config["inputs"], 2, 1);
 	?>
-	<?php if($config['user']['Role']=== 1): ?>
+	<?php if($config['user']['Role']=== 1 || $config['user']['Role']=== 0): ?>
 	<?php if(!empty($config['page']) && $config['page']['Active'] === 0): ?> <input type="submit" class="cta-button btn--pink" name="publish" value="<?= "Publier" ?>"><?php endif; ?>
 	<?php if(!empty($config['page']) && $config['page']['Active'] === 1): ?> <input type="submit" class="cta-button btn--pink" name="unpublish" value="<?= "Dépublier" ?>"><?php endif; ?>
 	<?php endif;?>

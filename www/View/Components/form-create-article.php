@@ -7,9 +7,9 @@
 	$sixthElem = array_slice($config["inputs"], 3, 1);
 	$fifthElem = array_slice($config["inputs"], 5, 1);
 	?>
-	<?php if ($config['user']['Role'] === 1) : ?>
-		<?php if (!empty($config['article']) && $config['article']['Active'] === 0) : ?> <input type="submit" class="cta-button btn--pink" name="publish" value="<?= "Publier" ?>"><?php endif; ?>
-		<?php if (!empty($config['article']) && $config['article']['Active'] === 1) : ?> <input type="submit" class="cta-button btn--pink" name="unpublish" value="<?= "Dépublier" ?>"><?php endif; ?>
+	<?php if($config['user']['Role']=== 1 || $config['user']['Role']=== 0 ): ?>
+	<?php if(!empty($config['article']) && $config['article']['Active'] === 0): ?> <input type="submit" class="cta-button btn--pink" name="publish" value="<?= "Publier" ?>"><?php endif; ?>
+	<?php if(!empty($config['article']) && $config['article']['Active'] === 1): ?> <input type="submit" class="cta-button btn--pink" name="unpublish" value="<?= "Dépublier" ?>"><?php endif; ?>
 		<div>
 		<?php endif; ?>
 		<h1 class="h1-section-back">Création d'un article</h1>

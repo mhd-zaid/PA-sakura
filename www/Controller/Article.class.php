@@ -17,9 +17,8 @@ class Article{
     public function saveArticle(){
         $user = new User();
         $userData = $user->getUser($_COOKIE['JWT']);
-        if($userData['Role'] !== 3){
-            $article = new ArticleModel();
-            $form = $article->createArticleForm();
+        $article = new ArticleModel();
+        $form = $article->createArticleForm();
 
             //Cas d'un update car slug ou id renseigné
             if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
@@ -28,7 +27,7 @@ class Article{
                 $article->setUserId($dataArticle['User_Id']);
                 $article->setActive($dataArticle["Active"]);
                 //Vérification de sécurité
-                if($userData['Id'] === $dataArticle['User_Id'] || $userData['Role'] === 1){
+                if($userData['Id'] === $dataArticle['User_Id'] || $userData['Role'] === 1 || $userData['Role'] === 0){
                     $article->setId($dataArticle["Id"]);
                 }else{
                     $_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
@@ -122,7 +121,6 @@ class Article{
             }  
         }
         } 
-    }
 
         $v=new View("Page/EditArticle", "Back");
         $v->assign("configForm", $form);
