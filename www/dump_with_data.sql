@@ -122,7 +122,7 @@ CREATE TABLE `sakura_category` (
 --
 
 CREATE TABLE `sakura_comment` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `Content` varchar(255) DEFAULT NULL,
   `Status` varchar(255) NOT NULL,
   `Comment_Post_Id` int(11) NOT NULL,
@@ -132,9 +132,6 @@ CREATE TABLE `sakura_comment` (
   `Nombre_signalement` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ALTER TABLE `sakura_comment`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-  ADD PRIMARY KEY (`Id`);
 --
 -- Déchargement des données de la table `sakura_comment`
 --

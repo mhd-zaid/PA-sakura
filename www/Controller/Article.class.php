@@ -24,12 +24,12 @@ class Article{
             //Cas d'un update car slug ou id renseigné
             if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
                 //récupère l'article courant
-                $data = $article->find();
-                $article->setUserId($data['User_Id']);
-                $article->setActive($data["Active"]);
+                $dataArticle = $article->find();
+                $article->setUserId($dataArticle['User_Id']);
+                $article->setActive($dataArticle["Active"]);
                 //Vérification de sécurité
-                if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
-                    $article->setId($data["Id"]);
+                if($userData['Id'] === $dataArticle['User_Id'] || $userData['Role'] === 1){
+                    $article->setId($dataArticle["Id"]);
                 }else{
                     $_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
                     http_response_code(401);
@@ -63,7 +63,12 @@ class Article{
             $article->setContent($_POST['editor']);
             $article->setSlug($_POST['slug']);
             $article->setTitle($_POST['titre']);
-            $article->setImageName($_POST['imageName']);
+            if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){ 
+                if(!empty($_POST['imageName'])) $article->setImageName($_POST['imageName']);
+                else $article->setImageName($dataArticle['Image_Name']); 
+            }else{
+                $article->setImageName($_POST['imageName']);
+            }
             $article->setCategories($_POST['list']);
             $article->setRewriteUrl($choice);
             $article->setDescription($_POST['metadescription']);
