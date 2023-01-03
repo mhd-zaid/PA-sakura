@@ -33,7 +33,7 @@ class Page
                 if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
                     $page->setId($data["Id"]);
                 }else{
-                    header("Location: /page");
+                    header("Location: /pages");
                 }
             }else{
                 $page->setUserId($userData["Id"]);
@@ -69,7 +69,7 @@ class Page
                 $page->save();
                 if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "La page a été modifié avec succés";
                 else $_SESSION["flash-success"] = "La page a été crée avec succés";
-                header("Location: /page");
+                header("Location: /pages");
                 exit();
             }   
             if(isset($_POST['delete'])){
@@ -98,7 +98,7 @@ class Page
             }
                 $page->delete();
                 $_SESSION["flash-success"] = "La page a été supprimer avec succés";
-                header("Location: /page");
+                header("Location: /pages");
                 exit();
             } 
             if(isset($_POST['publish'])){

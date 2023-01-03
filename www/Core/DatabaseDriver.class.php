@@ -191,7 +191,7 @@ abstract class DatabaseDriver
             $queryPrepared->execute($params);
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                header("Location: /page");
+                header("Location: /pages");
             }
         }elseif(!empty($_GET['id'])){
             $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
@@ -200,7 +200,7 @@ abstract class DatabaseDriver
             $queryPrepared->execute($params);
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                header("Location: /page");
+                header("Location: /pages");
             }
         }else{
             return null;

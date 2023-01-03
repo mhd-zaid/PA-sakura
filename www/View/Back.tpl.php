@@ -68,7 +68,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="/page">
+                <a href="/pages">
                     <div class="row">
                         <div class="col col-3"><img src="Public/img/Back/page-1.svg" alt="Dashboard"></div>
                         <div class="col col-7 flex-col flex-col-center">
