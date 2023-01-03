@@ -53,7 +53,7 @@ class Comment extends DatabaseDriver
      */
     public function setAuthor(String $author): void
     {
-        $this->author = $author;
+        $this->author = strip_tags($author);
     }
 
     public function getEmail(): ?String
