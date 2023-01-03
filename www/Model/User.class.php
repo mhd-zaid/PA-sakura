@@ -643,6 +643,16 @@ class User extends DatabaseDriver
         }
     }
 
+    public function getSuperAdmin():array
+    {
+        $sql = "SELECT * FROM " .$this->table. " WHERE Role=:role";
+        $params = ['role'=>0];
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute($params);
+        $data = $queryPrepared->fetch();
+        return $data;
+    }
+
     public function checkTokenEmail(string $token,string $email):void
     {
         $sql = "SELECT Token FROM " .$this->table.  " WHERE status=:status AND email=:email";

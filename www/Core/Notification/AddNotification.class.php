@@ -5,9 +5,8 @@ use App\Core\Observer;
 use App\Core\SendMail;
 use App\Model\User;
 
-
 //Observer
- class ModifyNotification implements Observer{
+ class AddNotification implements Observer{
     public function alert(String $object, String $message){
         $admin = new User();
         $admin = $admin->getSuperAdmin()['Email'];

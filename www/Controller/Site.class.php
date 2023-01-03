@@ -8,7 +8,10 @@ use App\Model\Article as ArticleModel;
 use App\Model\Comment as CommentModel;
 use App\Model\Stats as statsModel;
 use App\Controller\Commentaire as CommentaireController;
-
+use App\Core\Notification\ModifyNotification;
+use App\Core\Notification\DeleteNotification;
+use App\Core\Notification\AddNotification;
+use App\Core\SendMail;
 
 class Site{
 
@@ -50,6 +53,9 @@ class Site{
 				$comment->setCommentPostId($_GET['id']);
 				$comment->setNbrSignalement(0);
 				$comment->save();
+				$add = new AddNotification();
+				$comment->subscribeToNotification($add);
+                $comment->update();
 				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
 				exit();
 			}
@@ -86,6 +92,9 @@ class Site{
 			$comment->setDateCreated($today);
 			$comment->setCommentPostId($_GET['id']);
 			$comment->save();
+			$signaler = new ModifyNotification();
+			$comment->subscribeToNotification($signaler);
+			$comment->update($_POST['signaler-id']);
 			$_SESSION["flash-success"] = "Vous avez bien signalé ce commentaire";
 			exit();
 		}
