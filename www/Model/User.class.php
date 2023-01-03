@@ -654,11 +654,10 @@ class User extends DatabaseDriver
 
     public function getSuperAdmin():array
     {
-        $sql = "SELECT * FROM " .$this->table. " WHERE Role=:role";
+        //$sql = "SELECT * FROM " .$this->table. " WHERE Role=:role";
         $params = ['role'=>0];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
-        $data = $queryPrepared->fetch();
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Role=:role")->params($params)->execute();
+        $data = $sql->fetch();
         return $data;
     }
 

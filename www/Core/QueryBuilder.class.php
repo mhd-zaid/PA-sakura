@@ -11,6 +11,7 @@ class QueryBuilder
 	private $from;
     private $where;
     private $params;
+    private $limit;
     private $pdo;
 
 
@@ -64,16 +65,21 @@ class QueryBuilder
         return $this;
     }
 
-    public function andWhere(string ...$condition)
+    public function andWhere(string ...$conditions)
     {
-        $this->where = array_merge($this->where,"AND $condition");
+        foreach ($conditions as $condition) {
+            $this->where = array_merge($this->where,"AND $condition");
+        }
 
         return $this; 
     }
 
-    public function orWhere(string ...$condition)
+    public function orWhere(string ...$conditions)
     {
-        $this->where = array_merge($this->where,"OR $condition");
+        foreach ($conditions as $condition) {
+            
+            $this->where = array_merge($this->where,"OR $condition");
+        }
         
         return $this;
     }
@@ -82,6 +88,13 @@ class QueryBuilder
     {
         $this->params = $params;
         
+        return $this;
+    }
+
+    public function limit(int $limit)
+    {
+        $this->limit = $limit;
+
         return $this;
     }
 
@@ -128,6 +141,9 @@ class QueryBuilder
             if (!empty($this->where)) {
                 $query[] = 'WHERE';
                 $query[] = $this->where;
+            }elseif(!empty($this->limit)){
+                $query[] = 'LIMIT';
+                $query[] = $this->limit;
             }
         }
 

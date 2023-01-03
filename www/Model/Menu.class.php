@@ -185,9 +185,9 @@ class Menu extends DatabaseDriver
 
     public function getMainMenu()
     {
-        $sql = "SELECT * FROM ".$this->table. " WHERE Main = 1";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
+        //$sql = "SELECT * FROM ".$this->table. " WHERE Main = 1";
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Main = 1")->execute();
+        $data = $sql->fetchAll();
 		return $data[0];
     }
 }
