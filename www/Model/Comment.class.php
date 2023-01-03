@@ -153,6 +153,47 @@ class Comment extends DatabaseDriver
 
     }
 
+    public function formCommentaire(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Envoyer"
+                            ],
+                "inputs"=> [
+                    "author"=>[
+                        "type"=>"text",
+                        "label"=>"Pseudo",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Pseudo inccorect."
+                    ],
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"E-mail",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"E-mail inccorect."
+                    ],
+                    "content"=>[
+                        "type"=>"text",
+                        "label"=>"Message",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>200,
+                        "required"=>true,
+                        "error"=>"Le message doit faire entre 2 et 25 caractères."
+                    ],
+                ]
+            ];
+
+    }
+
     public function findCommentById(Int $id){
         $sql = "SELECT * FROM $this->table WHERE id = $id";
         $result = $this->pdo->query($sql);

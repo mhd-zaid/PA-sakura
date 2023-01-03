@@ -12,6 +12,7 @@ use App\Core\Notification\ModifyNotification;
 use App\Core\Notification\DeleteNotification;
 use App\Core\Notification\AddNotification;
 use App\Core\SendMail;
+use App\Core\Verificator;
 
 class Site{
 
@@ -41,7 +42,7 @@ class Site{
 
 	public function saveComment(): void
 	{
-		if (isset($_POST['add-comment'])) {
+		if (isset($_POST['submit'])) {
 			$commentaire = new CommentaireController();
 			if(!($commentaire->checkComment($_POST["content"]))){
 				$comment = new CommentModel();
@@ -57,10 +58,12 @@ class Site{
 				$comment->subscribeToNotification($add);
                 $comment->update();
 				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
+				header('Location: /site');
 				exit();
 			}
 			else{
 				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
+				header('Location: /site');
 				exit();
 			}
 		}
@@ -100,22 +103,38 @@ class Site{
 		}
 	}
 	public function showSinglePost(): void
-    {	
+    {
 		if(!isset($_SESSION["messages_reported"])){
 			$_SESSION["messages_reported"] = [];
 		}
         $post = new ArticleModel();
 		$comment = new CommentModel();
+
+		$formComment = $comment->formCommentaire();
+
+		if(!empty($_POST)){
+		$data = [];
+		isset($_POST['author']) ? array_push($data, $_POST["author"]) : '';
+		isset($_POST['content']) ? array_push($data, $_POST["content"]) : '';
+		isset($_POST['email']) ? array_push($data, $_POST["email"]) : '';
+		$verificator = new Verificator($formComment, $data);
+		$configFormErrors = $verificator->getMsg();
+		if(empty($configFormErrors)){
+			if(isset($_POST['submit'])){
+				$this->saveComment();
+			}
+		}
+	}
         if (isset($_GET['id'])) {
-			
             $postData = $post->selectSingleArticle($_GET['id']);
 			$comments = $comment->selectpApprovedComments($_GET['id']);
-            $v = new View("Site/SingleArticle", "Front2");
-            $v->assign("post", $postData);
-			$v->assign("comments", $comments);
-			$this->saveComment();
         }
-    }
+	$v = new View("Site/SingleArticle", "Front2");
+	$v->assign("post", $postData);
+	$v->assign("comments", $comments);
+	$v->assign("configForm", $formComment);
+	$v->assign("configFormErrors", $configFormErrors??[]);
+}
 
 	public function showSinglePage(): void
     {	
