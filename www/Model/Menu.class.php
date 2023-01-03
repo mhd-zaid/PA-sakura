@@ -173,4 +173,12 @@ class Menu extends DatabaseDriver
         }
         // die();
     }
+
+    public function getMainMenu()
+    {
+        $sql = "SELECT * FROM ".$this->table. " WHERE Main = 1";
+        $result = $this->pdo->query($sql);
+        $data = $result->fetchAll();
+		return $data[0];
+    }
 }

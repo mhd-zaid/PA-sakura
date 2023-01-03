@@ -27,7 +27,6 @@ class Routing{
 			|| empty($this->routes[$uri]["action"])){
 			die("Page 404");
 		}
-
 		$this->controller = $this->routes[$uri]["controller"];//Main
 		$this->action = $this->routes[$uri]["action"]; //index
 		

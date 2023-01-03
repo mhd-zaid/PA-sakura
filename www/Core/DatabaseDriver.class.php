@@ -59,7 +59,6 @@ abstract class DatabaseDriver
 		$classVars = get_class_vars(get_class());
 		$columns = array_diff_key($objectVars, $classVars);
 
-
 		if(is_null($this->getId())){
 			// INSERT INTO esgi_user (firstname,lastname,email,pwd,status) VALUES (:firstname,:lastname,:email,:pwd,:status) ;
 			$sql = "INSERT INTO ".$this->table. " (".implode(",", array_keys($columns) ) .") VALUES (:".implode(",:", array_keys($columns) ) .") ;";
@@ -85,6 +84,12 @@ abstract class DatabaseDriver
 		return $data;
 	}
 
+	public function selectAll()
+	{
+		$sql = "SELECT * FROM $this->table";
+		return $result = $this->pdo->query($sql)->fetchAll();
+	}
+
 	public function serverProcessing(){
 
 		$objectVars = get_object_vars($this);
@@ -95,7 +100,7 @@ abstract class DatabaseDriver
 				$arrColumns[] = ['db' => $key, 'dt' => $key];
 			}
 		$user = new User();
-		if((get_class($this) == Article::class) || (get_class($this) == Comment::class) || (get_class($this) == Page::class)){
+		if((get_class($this) == Article::class) || (get_class($this) == Page::class)){
 
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'Id', $arrColumns);
 
@@ -115,7 +120,7 @@ abstract class DatabaseDriver
 				}
 			}
 			echo json_encode($dataTable);
-		}elseif((get_class($this) == Category::class) || get_class($this) === User::class){
+		}elseif((get_class($this) == Category::class) || get_class($this) === User::class || get_class($this) == Comment::class){
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id', $arrColumns);
 			echo json_encode($dataTable);
 		}
@@ -186,7 +191,7 @@ abstract class DatabaseDriver
             $queryPrepared->execute($params);
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                header("Location: /page");
+                header("Location: /pages");
             }
         }elseif(!empty($_GET['id'])){
             $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
@@ -195,7 +200,7 @@ abstract class DatabaseDriver
             $queryPrepared->execute($params);
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                header("Location: /page");
+                header("Location: /pages");
             }
         }else{
             return null;

@@ -22,8 +22,6 @@
                 <th></th>
                 <th>Id</th>
                 <th>Titre</th>
-                <!-- <th>Illustration</th> -->
-                <th></th>
             </tr>
         </thead>
     </table>

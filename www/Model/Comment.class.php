@@ -3,16 +3,21 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
-
+use DateTime;
 
 class Comment extends DatabaseDriver
 {
 
 	private $id = null;
-	protected $content;
-    protected $active = 0;
-    protected $article_id;
-    protected $nbr_signalement = 0;
+	protected $author;
+    protected $content;
+    protected $email;
+    protected $status = "unapproved";
+    protected $date_created;
+    protected $comment_post_id;
+    protected $nombre_signalement;
+
+
 
 	public function __construct()
 	{
@@ -36,6 +41,34 @@ class Comment extends DatabaseDriver
     }
 
 
+    public function getAuthor(): ?String
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param null $author
+     */
+    public function setAuthor(String $author): void
+    {
+        $this->author = $author;
+    }
+
+    public function getEmail(): ?String
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param null $email
+     */
+    public function setEmail(String $email): void
+    {
+        $this->email = $email;
+    }
+    
+
+
     public function getContent(): ?String
     {
         return $this->content;
@@ -48,44 +81,49 @@ class Comment extends DatabaseDriver
     {
         $this->content = $content;
     }
-    
-    public function getActive(): ?int
+
+    public function getStatus(): ?String
     {
-        return $this->active;
+        return $this->status;
     }
 
     /**
      * @param null $content
      */
-    public function setActive(Int $active): void
+    public function setStatus(String $status): void
     {
-        $this->active = $active;
+        $this->status = $status;
     }
 
-    public function getArticleId(): ?int
+    public function setDateCreated(String $date_created): void
     {
-        return $this->article_id;
+        $this->date_created = $date_created;
     }
 
-    /**
-     * @param null $content
-     */
-    public function setArticleId(Int $article_id): void
+    public function getDateCreated(): ?String
     {
-        $this->article_id = $article_id;
+        return $this->date_created;
+    }
+
+    public function setCommentPostId(Int $comment_post_id): void
+    {
+        $this->comment_post_id = $comment_post_id;
+    }
+
+    public function getCommentPostId(): ?Int
+    {
+        return $this->comment_post_id;
     }
     
     public function getNbrSignalement(): ?int
     {
-        return $this->nbr_signalement;
+        return $this->nombre_signalement;
     }
 
-    /**
-     * @param null $content
-     */
-    public function setNbrSignalement(Int $nbr_signalement): void
+    public function setNbrSignalement(Int $nombre_signalement): void
     {
-        $this->nbr_signalement = $nbr_signalement;
+
+        $this->nombre_signalement = $nombre_signalement;
     }
 
     public function createMotBanForm(){
@@ -118,6 +156,17 @@ class Comment extends DatabaseDriver
         $result = $this->pdo->query($sql);
         $data = $result->fetch();
         return $data;
+    }
+
+    public function selectpApprovedComments(Int $id){
+        $sql = "SELECT * FROM $this->table WHERE comment_post_id = $id AND status = 'approved'";
+		return $result = $this->pdo->query($sql)->fetchAll();
+    }
+
+    public function selectAll()
+    {
+        $sql = "SELECT * FROM $this->table";
+		return $result = $this->pdo->query($sql)->fetchAll();
     }
 }
 

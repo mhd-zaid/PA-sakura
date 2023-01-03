@@ -15,7 +15,7 @@ class Article extends DatabaseDriver
     protected $user_id;
     protected $image_name;
     protected $active = 0;
-    private $date_created;
+    protected $date_created;
 	private $date_updated;
     protected $rewrite_Url;
     protected $categories;
@@ -188,6 +188,19 @@ class Article extends DatabaseDriver
         $categories = array_unique(explode(',', $categories));
         $this->categories = strip_tags(implode(',', $categories));
     }
+    public function selectAllLimit()
+	{
+		$sql = "SELECT * FROM $this->table LIMIT 10";
+		return $result = $this->pdo->query($sql)->fetchAll();
+        
+	}
+
+    public function selectSingleArticle(Int $id)
+	{
+		$sql = "SELECT * FROM $this->table WHERE Id = $id";
+		return $result = $this->pdo->query($sql)->fetchAll();
+        
+	}
 
     public function createArticleForm(){
         $user = new User();

@@ -1,5 +1,4 @@
 #Main
-
 /:
   controller: Main 
   action: index
@@ -267,13 +266,31 @@
 
 /commentaire:
   controller: Commentaire
-  action: index
+  action: showComments
   security: 0
   isAdmin: 0
 
 /commentaire-add:
   controller: Commentaire
   action: saveComment
+  security: 0
+  isAdmin: 0
+
+/comment-delete:
+  controller: Commentaire
+  action: deleteComment
+  security: 0
+  isAdmin: 0
+
+/comment-approve:
+  controller: Commentaire
+  action: approveComment
+  security: 0
+  isAdmin: 0
+
+/comment-unapprove:
+  controller: Commentaire
+  action: unapproveComment
   security: 0
   isAdmin: 0
   
@@ -303,7 +320,7 @@
  
   ### PAGE ###
 
-/page:
+/pages:
   controller: Page
   action: index
   security: 0
@@ -396,5 +413,23 @@
 /datatable:
   controller: DataTable
   action: index
+  security: 0
+  isAdmin: 0
+
+/site:
+  controller: Home
+  action: showPosts
+  security: 0
+  isAdmin: 0
+
+/post:
+  controller: Site
+  action: showSinglePost
+  security: 0
+  isAdmin: 0
+
+/page:
+  controller: Site
+  action: showSinglePage
   security: 0
   isAdmin: 0

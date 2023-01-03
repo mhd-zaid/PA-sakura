@@ -557,6 +557,7 @@ class User extends DatabaseDriver
                 }else{
                     setcookie("JWT",$token,time()+(60*60*2));
                     setcookie("Email",$data['Email'],time()+(60*60*2));
+                    $this->save();
                     header("Location: /tableau-de-bord");
                     die();
                 }

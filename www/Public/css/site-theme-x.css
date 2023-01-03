@@ -1,26 +1,24 @@
 .paragraph{
-	color:#000000;
-	font-family:Cambria;
-	 Cochin;
-	 Georgia;
-	 Times;
-	 
-}
-.titre{
-	color:#8fbdd6;
+	color:#F4CFDF;
 	font-family:Verdana;
 	 Geneva;
 	 Tahoma;
 	 sans-serif
 }
+.titre{
+	color:#F7F6CF;
+	font-family:'Courier New';
+	 Courier;
+	 monospace
+}
 .body{
-	background-color:#ffffff
+	background-color:#5784BA
 }
 .nav{
-	color:#ffffff
+	color:#000000
 }
 .header{
-	background-color:#0f056b
+	background-color:#B6D8F2
 }
 .footer{
-	background-color:#0f056b}
+	background-color:#B6D8F2}

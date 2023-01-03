@@ -66,32 +66,61 @@ switch ($apparenceData["Css"]) {
     </section>
 
     <section style="padding: 0px 50px;">
-        <div class="row">
-            <div class="col col-12">
-
-                <div class="row">
-                    <div class="col">
-                        <h1 class="titre">Commentaires</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-2">
-                        <p class="paragraph" style="margin: 0;">Pseudo</p>
-                    </div>
-                    <div class="col col-10">
-                        <input type="text" name="" id="" placeholder="Saisissez votre pseudo..." disabled style="width: 100%">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col col-2">
-                        <p class="paragraph" style="margin: 0;">Message</p>
-                    </div>
-                    <div class="col col-10">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="Saisissez votre message..." disabled style="width: 100%"></textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="item-comment">
+			<div class="row">
+				<div class="col col-12">
+					<div class="row">
+						<div class="col">
+							<h1>Commentaires</h1>
+						</div>
+					</div>
+					<form action="" method="POST">
+						<div class="row">
+							<div class="col col-2">
+								<p style="margin: 0;">Pseudo</p>
+							</div>
+							<div class="col col-10">
+								<input type="text" id="fname" name="author" placeholder="Saisissez votre pseudo..." style="width: 100%">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col col-2">
+								<p style="margin: 0;">E-mail</p>
+							</div>
+							<div class="col col-10">
+								<input type="text" id="lcomment" name="email" placeholder="Saisissez votre e-mail..." style="width: 100%">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col col-2">
+								<p style="margin: 0;">Message</p>
+							</div>
+							<div class="col col-10">
+								<textarea id="lcomment" name="content" class="textarea-comments" cols="30" rows="10" placeholder="Saisissez votre message..." style="width: 100%"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col">
+								<input class="button-comment" name="add-comment" type="submit" value="Envoyer">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+            <div class="row">
+				<div class="item-singleComment col col-12">
+					<div class='item-duo'>
+						<div class='initial-avatar' comment-author='Makan KAMISSOKO'>NP</div>
+						<p class='item-author'> Makan KAMISSOKO </p>
+						<p class='item-date'> 2023-01-01 00:00:00 </p>
+					</div><br>
+					<div class='item-content'>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam omnis nostrum qui dicta eius sit quas ex aperiam accusamus provident numquam deleniti, fugit quia ratione mollitia nemo nam dolore hic!</p>
+					</div><br>
+					<a href='#' class='item-signal'>Signaler</a>
+				</div>
+			</div>
+		</div>
     </section>
 
     <footer class="footer">
