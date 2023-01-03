@@ -80,7 +80,6 @@ class Main
 				],
 			]
 		];
-
 		if (!empty($_POST)) {
 			$verificator = new Verificator($installForm, $_POST);
 			$verificator->verificatorInstalleur($installForm, $_POST);
@@ -104,11 +103,11 @@ class Main
 					$queryPrepared->execute();
 					header("Location: /s-inscrire");
 				}
-				$v = new View("Install/Installation", "Front");
-				$v->assign("configForm", $installForm);
-				$v->assign("configFormErrors", $configFormErrors ?? []);
 			}
 		}
+		$v = new View("Install/Installation", "Front");
+		$v->assign("configForm", $installForm);
+		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
 
 	public function download()
