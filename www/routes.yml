@@ -433,3 +433,9 @@
   action: showSinglePage
   security: 0
   isAdmin: 0
+
+/sakura:
+  controller: Main
+  action: download
+  security: 0
+  isAdmin: 0

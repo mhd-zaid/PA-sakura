@@ -110,4 +110,17 @@ class Main
 			}
 		}
 	}
+
+	public function download()
+	{
+		$file = __DIR__."/../test.zip";
+		$fileContent = file_get_contents($file);
+		header("Content-type: application/zip"); 
+		header("Content-Disposition: attachment; filename=sakura");
+		header("Content-length: " . filesize($file));
+		header("Content: $file ");
+		header("Pragma: no-cache"); 
+		header("Expires: 0"); 
+		readfile("$file");
+	}
 }

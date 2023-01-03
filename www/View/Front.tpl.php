@@ -23,6 +23,7 @@
 					<li><a href="/#features">Fonctionnalités</a></li>
 					<li><a href="/#section-contact">Contact</a></li>
 					<li><button><a href="/se-connecter">Connexion</a></button></li>
+					<li><button><a href="/sakura">Obtenir Sakura</a></button></li>
 				</ul>
 			</nav>
 		</div>
