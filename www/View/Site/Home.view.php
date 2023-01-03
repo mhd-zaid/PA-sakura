@@ -1,6 +1,6 @@
 <div class="container relative">
 
-	<div class="row flex-row-center">
+	<div class="row flex-row-center body-item">
 		<!-- Blog Entries Column (REPEAT THAT) -->
 		<?php
 		foreach ($posts as $post) {

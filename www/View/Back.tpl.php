@@ -140,10 +140,8 @@
 
             <div id="col-appearance">
                 <div class="row">
-                    <form action="/apparence" method="POST" class="col col-12 appearance-set">
-                        <div class="col col-12">
+                    <form action="/apparence" method="POST" class="plain appearance-set">
                             <input type="submit" name="submit" class="cta-button btn--pink">
-                        </div>
                 </div>
                 <hr>
 
@@ -167,7 +165,7 @@
                         <label for="titre-font-family">Font-family</label><br>
                     </div>
                     <div class="row">
-                        <select name="titre-font-family" id="titrefontFamily" value='<?= $css[".titre"]->{"font-family"} ?>'>
+                        <select class="plain" name="titre-font-family" id="titrefontFamily" value='<?= $css[".titre"]->{"font-family"} ?>'>
                             <option value='<?= $css[".titre"]->{"font-family"} ?>' selected hidden><?= ucfirst($css[".titre"]->{"font-family"}) ?></option>
                             <option value="arial">Arial</option>
                             <option value="cambria">Cambria</option>
@@ -204,7 +202,7 @@
                         <label for="paragraphe-font-family">Font-family</label><br>
                     </div>
                     <div class="row">
-                        <select name="paragraphe-font-family" id="paragraphefontFamily" value='<?= $css[".paragraph"]->{"font-family"} ?>'>
+                        <select class="plain" name="paragraphe-font-family" id="paragraphefontFamily" value='<?= $css[".paragraph"]->{"font-family"} ?>'>
                             <option value='<?= $css[".paragraph"]->{"font-family"} ?>' selected hidden><?= ucfirst($css[".paragraph"]->{"font-family"}) ?></option>
                             <option value="arial">Arial</option>
                             <option value="cambria">Cambria</option>

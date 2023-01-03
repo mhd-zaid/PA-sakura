@@ -2,6 +2,9 @@ $().ready(function() {
     $('.content-box p').addClass('paragraph');
     $('.content-box h1,.content-box h2,.content-box h3,.content-box h4,.content-box h5,.content-box h6').addClass('titre');
 
+    $('.content-page p').addClass('paragraph');
+    $('.content-page h1,.content-page h2,.content-page h3,.content-page h4,.content-page h5,.content-page h6').addClass('titre');
+
     $('.initial-avatar').each(function(){
         var colours = [
             "#1abc9c", "#2ecc71", "#3498db", "#9b59b6", "#34495e", "#16a085", "#27ae60", "#2980b9", "#8e44ad", "#2c3e50", 
@@ -9,7 +12,6 @@ $().ready(function() {
         ]
         let i = Math.floor(Math.random() * colours.length);
         let authorName = $(this).attr('comment-author').toUpperCase().split(' ');
-        console.log(authorName);
         if (authorName.length == 1) {
             initials = authorName[0] ? authorName[0].charAt(0):'?';
         } else if(authorName.length == 2){

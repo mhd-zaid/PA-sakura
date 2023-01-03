@@ -1,0 +1,44 @@
+.sk-body-front{  
+  margin-bottom: 200px;
+
+  header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    .sk-navbar{
+      .site-name{
+        text-decoration: none;
+        color: white;
+        margin-right: 60px ;
+      }
+      ul{
+        display: flex;
+        align-items: center;
+        margin: 0;
+    
+        li{
+          list-style: none;
+    
+          a{
+            text-decoration: none;
+            color: white;
+    
+          }
+        }
+      }
+    
+    }
+  }
+
+    .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 35px;
+    }
+  
+
+}

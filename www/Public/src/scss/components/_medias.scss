@@ -40,6 +40,10 @@
   }
 }
 
+#delete-img{
+  display: none;
+}
+
 .art-media {
   gap: $gutter;
   &-img {

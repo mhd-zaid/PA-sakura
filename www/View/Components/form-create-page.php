@@ -13,58 +13,64 @@
 		<h1 class="h1-section-back">Création d'une Page</h1>
 	<div> 
 	<?php if($config['page']['Main'] == 1): ?>
-	<label for="checkbox">Page d'accueil<input type="checkbox" name="checkbox" id="checkbox" checked></label>
+		<div class="row flex-col-align-center">
+			<label class="col col-2" for="checkbox">Page d'accueil</label>
+			<input type="checkbox" name="checkbox" id="checkbox" checked>
+		</div>
 	<?php endif; ?>
 
 	<?php if($config['page']['Main'] == 0) : ?>
-	<label for="checkbox">Page d'accueil<input type="checkbox" name="checkbox" id="checkbox"></label>
+		<div class="row flex-col-align-center">
+	<label class="col col-2" for="checkbox">Page d'accueil</label>
+	<input type="checkbox" name="checkbox" id="checkbox">
+		</div>
 	<?php endif; ?>
 
 	<?php 	
 		foreach ($firstElem as $name => $configInput):?>
-		<div>
-			<p><?= $configInput["label"] ?>
+		<div class="row flex-col-align-center">
+			<p class="col col-2"><?= $configInput["label"] ?></p>
 			<input name="<?= $name ?>" 
-					class=""
+					class="col col-2"
 					type="<?= $configInput["type"]??"text" ?>"
 					value="<?= !empty($config["page"]['Title']) ? $config["page"]['Title'] : '' ?>"
 					<?php if(!empty($configInput["required"])): ?>
 						required="required"
 					<?php endif;?>
 
-			></p>
-			</div>
+			>
+		</div>
 	<?php endforeach;?> 
 
     <?php 	
 		foreach ($secondElem as $name => $configInput):?>
-		<div>
-			<p><?= $configInput["label"] ?>
+		<div class="row flex-col-align-center">
+			<p class="col col-2"><?= $configInput["label"] ?></p>
 			<input name="<?= $name ?>" 
-					class=""
+					class="col col-2"
 					type="<?= $configInput["type"]??"text" ?>"
 					value="<?= !empty($config["page"]['Description']) ? $config["page"]['Description'] : '' ?>"
 					<?php if(!empty($configInput["required"])): ?>
 						required="required"
 					<?php endif;?>
 
-			></p>
+			>
 			</div>
 	<?php endforeach;?> 
 
 	<?php 
 		foreach ($sixthElem as $name => $configInput):?>
-		<div>
-			<p><?= $configInput["label"] ?>
+		<div class="row flex-col-align-center">
+			<p class="col col-2"><?= $configInput["label"] ?></p>
 			<input name="<?= $name ?>" 
-					class=""
+					class="col col-2"
 					type="<?= $configInput["type"]??"text" ?>"
 					value="<?= !empty($config["page"]['Slug']) ? $config["page"]['Slug'] : ''  ?>"
 					<?php if(!empty($configInput["required"])): ?>
 						required="required"
 					<?php endif;?>
 
-			></p>
+			>
 			</div>
 	<?php endforeach;?>
 

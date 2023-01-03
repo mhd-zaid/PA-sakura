@@ -121,4 +121,8 @@ class Main
 		header("Expires: 0"); 
 		readfile("$file");
 	}
+
+	public function pageNotFound(){
+		$v = new View("Site/404");
+	}
 }

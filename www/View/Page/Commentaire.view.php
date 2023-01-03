@@ -6,11 +6,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col col-2 flex-col flex-col-center"><a href="/commentaire-mots-bannis"> <p class="filter">Mot bannis</p></a></div>
+        <div class="col col-2 flex-col flex-col-center"><a href="/commentaire-mots-bannis" id="comment_banned"> <p class="filter">Mot bannis</p></a></div>
 
     </div>
 </section>
 
+<!-- TODO
+Modifier le format de l'heure -->
 <section class="grid grid-rounded">
     <div class="row">
         <div class="col col-12 col-xs-">
