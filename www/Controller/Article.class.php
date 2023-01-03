@@ -7,6 +7,7 @@ use App\Model\Article as ArticleModel;
 use App\Model\User;
 use App\Core\Verificator;
 use App\Core\Notification\ModifyNotification;
+use App\Core\Notification\DeleteNotification;
 
 class Article
 {
@@ -86,9 +87,9 @@ class Article
 
             if(isset($_POST['delete'])){
                 $article->delete();
-                $_SESSION["flash-success"] = "L'article a été supprimer avec succés";
-                header("Location: /article");
-                exit();
+                $modify = new DeleteNotification();
+                $article->subscribeToNotification($modify);
+                $article->update();
             } 
             if(isset($_POST['publish'])){
                 if($userData['Role'] === 1 || $userData['Role'] === 0){
