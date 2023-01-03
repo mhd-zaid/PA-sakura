@@ -204,14 +204,12 @@ class Comment extends DatabaseDriver
     }
 
     public function selectpApprovedComments(Int $id){
-        $sql = "SELECT * FROM $this->table WHERE comment_post_id = $id AND status = 'approved'";
-		return $result = $this->pdo->query($sql)->fetchAll();
-    }
+        //$sql = "SELECT * FROM $this->table WHERE comment_post_id = $id AND status = 'approved'";
+        $params = ["comment_post_id"=> $id,"status" => 'approved'];
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("comment_post_id = :comment_post_id")->andWhere("status = :status")
+            ->params($params)->execute();
 
-    public function selectAll()
-    {
-        $sql = "SELECT * FROM $this->table";
-		return $result = $this->pdo->query($sql)->fetchAll();
+		return $sql;
     }
 
     public function subscribeToNotification(Observer $notif){
