@@ -173,21 +173,21 @@ function DataTableComment() {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/comment-approve/" + id);
+    window.location.replace("/comment-approve?id=" + id);
   });
 
   $("#table_comments tbody").on("click", "tr td.comment_unapprouve", function () {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/comment-unapprove/" + id);
+    window.location.replace("/comment-unapprove?id=" + id);
   });
 
   $("#table_comments tbody").on("click", "tr td.comment_delete", function () {
     var tr = $(this).closest("tr");
     var row = table.row(tr);
     var id = row.data().Id;
-    window.location.replace("/comment-delete/" + id);
+    window.location.replace("/comment-delete?id=" + id);
   });
 }
 

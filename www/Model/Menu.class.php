@@ -30,7 +30,7 @@ class Menu extends DatabaseDriver
     /**
      * @param null $id
      */
-    //abstract public function setId($id);
+
     public function setId(Int $id): void
     {
         $this->id = $id;
@@ -48,7 +48,6 @@ class Menu extends DatabaseDriver
      * @param null $id
      */
 
-    //abstract public function setId($id);
     public function setActive(Int $active): void
     {
         $this->active = $active;
@@ -143,42 +142,30 @@ class Menu extends DatabaseDriver
     {
         if ($id == null) $id = $this->pdo->lastInsertId();
 
-        $sql = "UPDATE {$this->table} SET Main = 0";
-        $this->pdo->query($sql);
+        ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->params(["Main"=>0])->execute();
 
-        $sql1 = $this->pdo->prepare("UPDATE {$this->table} SET Main = 1 WHERE id = :id");
-        $sql1->bindValue("id", $id);
-        $sql1->execute();
-        $this->pdo->query($sql1);
+        ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->where("id = :id")->params(["Main"=>1,"id"=>$id])->execute();
     }
     
     public function updateContent(String $oldTitle, String $newTitle): void
     {
-        //TO-DO:
-        // - récupérer tout les menus
-        $sql = $this->pdo->prepare("SELECT Id FROM {$this->table} WHERE Content LIKE :oldTitle");
-        $sql->bindValue("oldTitle", "%{$oldTitle}%");
-        $sql->execute();
-        $menusId=$sql->fetchAll();
+
+        $sql = ($this->queryBuilder)->select("Id")->from($this->table)->where("Content LIKE :oldTitle")->params(["oldTitle" =>"%{$oldTitle}%"]);
+        $menusId=$sql->execute()->fetchAll();
         foreach ($menusId as $key => $value) {
-            $req = "UPDATE {$this->table} SET Content = REPLACE(Content, :oldTitle, :newTitle) WHERE Id = :id ";
-            $sqlUpdate = $this->pdo->prepare($req);
-            $sqlUpdate->bindValue("oldTitle", $oldTitle);
-            $sqlUpdate->bindValue("newTitle", $newTitle);
-            $sqlUpdate->bindValue("id", $value['Id']);
-            $sqlUpdate->execute();
-            $this->pdo->query($sqlUpdate);
-            print_r($sqlUpdate);
-            // continue;
+            ($this->queryBuilder)->update(["Content = REPLACE(Content, :oldTitle, :newTitle)"])->from($this->table)->where("Id = :id")
+                ->params([
+                    "oldTitle"=>$oldTitle,
+                    "newTitle" =>$newTitle,
+                    "id" => $value['Id']
+                ])->execute();
         }
-        // die();
     }
 
     public function getMainMenu()
     {
-        $sql = "SELECT * FROM ".$this->table. " WHERE Main = 1";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Main = 1")->execute();
+        $data = $sql->fetchAll();
 		return $data[0];
     }
 }

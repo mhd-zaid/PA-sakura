@@ -174,7 +174,7 @@ class Article extends DatabaseDriver
     }
 
      /**
-     * @return null
+     * @return null | string
      */
     public function getCategories(): ?string
     {
@@ -182,25 +182,18 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param null $id
+     * @param string $categories
      */
-    //abstract public function setId($id);
     public function setCategories(String $categories): void
     {
         $categories = array_unique(explode(',', $categories));
         $this->categories = strip_tags(implode(',', $categories));
     }
-    public function selectAllLimit()
-	{
-		$sql = "SELECT * FROM $this->table LIMIT 10";
-		return $result = $this->pdo->query($sql)->fetchAll();
-        
-	}
 
     public function selectSingleArticle(Int $id)
 	{
-		$sql = "SELECT * FROM $this->table WHERE Id = $id";
-		return $result = $this->pdo->query($sql)->fetchAll();
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Id = $id")->execute();
+		return $sql->fetchAll();
         
 	}
 

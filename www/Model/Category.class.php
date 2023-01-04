@@ -75,10 +75,4 @@ class Category extends DatabaseDriver
     {
         $this->title = $title;
     }
-
-    public function selectAllLimit()
-	{
-		$sql = "SELECT * FROM $this->table LIMIT 4";
-		return $result = $this->pdo->query($sql)->fetchAll();
-	}
 }

@@ -221,17 +221,17 @@ class Page extends DatabaseDriver
 
     public function getPageByTitle($title)
     {
-        $sql = "SELECT * FROM ".$this->table. " WHERE Title = '$title' ";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $title])->execute();
+
+        $data = $sql->fetch();
 		return $data;
     }
 
     public function getPageById($id)
     {
-        $sql = "SELECT * FROM ".$this->table. " WHERE Title = $id ";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $id])->execute();
+
+        $data = $sql->fetch();
 		return $data;
     }
 }

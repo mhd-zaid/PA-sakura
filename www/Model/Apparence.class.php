@@ -17,7 +17,7 @@ class Apparence extends DatabaseDriver
 
 
     /**
-     * @return null
+     * @return null | int
      */
     public function getId(): ?int
     {
@@ -37,7 +37,7 @@ class Apparence extends DatabaseDriver
      */
     public function getCss(): ?string
     {
-        return $this->title;
+        return $this->css;
     }
 
     /**
@@ -64,8 +64,8 @@ class Apparence extends DatabaseDriver
     }
 
     public function select(){
-        $sql = "SELECT  * FROM ".$this->table. " WHERE Active = 1";
-        $result = $this->pdo->query($sql);
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Active = 1");
+        $result = $sql->execute();
         $data = $result->fetch();
         return $data;
     }
@@ -73,12 +73,11 @@ class Apparence extends DatabaseDriver
     
     public function updateActive(Int $id): void
     {
-        $sql = "UPDATE {$this->table} SET Active = 0";
-        $this->pdo->query($sql);
+        $sql =  ($this->queryBuilder)->update(["Active = :Active"])->from($this->table)->params(["Active"=>0]);
+        $sql->execute();
 
-        $sql1 = $this->pdo->prepare("UPDATE {$this->table} SET Active = 1 WHERE id = :id");
-        $sql1->bindValue("id", $id);
-        $sql1->execute();
+        $sql =  ($this->queryBuilder)->update(["Active = :Active"])->from($this->table)->where("id = :id")->params(["Active"=>1,"id"=>$id]);
+        $sql->execute();
     }
 
 }
