@@ -75,12 +75,4 @@ class Category extends DatabaseDriver
     {
         $this->title = $title;
     }
-
-    public function selectAllLimit()
-	{
-		//$sql = "SELECT * FROM $this->table LIMIT 4";
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->limit(4)->execute();
-
-		return $sql->fetchAll();
-	}
 }

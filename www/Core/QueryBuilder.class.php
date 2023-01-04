@@ -128,6 +128,8 @@ class QueryBuilder
                 $query[] = $this->from;
             }elseif(!empty($this->delete)){
                 $query = $this->delete;
+                $query[] = 'FROM';
+                $query[] = $this->from;
             }elseif (!empty($this->update)) {
                 $query = ['UPDATE'];
                 $query[] = $this->from;
