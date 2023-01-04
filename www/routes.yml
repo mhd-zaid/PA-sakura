@@ -300,3 +300,10 @@
   action: pageNotFound
   security: 0
   isAdmin: 0
+  security: 0
+
+###SITEMAP
+/sitemap:
+  controller: SiteMap
+  action: index
+  security: 0

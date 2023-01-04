@@ -280,5 +280,16 @@ abstract class DatabaseDriver
         }
 
         return $text;
+    }
+    
+	public function getAllPostActive():array{
+        $params = ['active'=>1];
+        $sql = ($this->queryBuilder)->select("Slug")->from($this->table)->where("Active=:active")->params($params)->execute();
+		$data =  $sql->fetchAll();
+		$arraySlug = [];
+		foreach($data as $k=>$v){
+			$arraySlug[] = $v[0];
+		}
+		return $arraySlug;
 	}
 }
