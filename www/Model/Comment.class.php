@@ -221,6 +221,13 @@ class Comment extends DatabaseDriver
             }
         }
     }
+
+    public function findCommentById(int $id)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Id = $id")->execute();
+
+        return $sql->fetch();
+    }
 }
 
 ?>

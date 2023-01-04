@@ -31,15 +31,6 @@
   security: 0
   isAdmin: 0
 
-
-/home:
-  controller: Main
-  action: admin
-  security: 0
-  isAdmin: 0
-
-
-
 /confirmation-mail:
   controller: User
   action: confirmMail
@@ -60,21 +51,6 @@
   security: 0
   isAdmin: 0
 
-
-/modifier-utilisateur:
-  controller: User
-  action: edit
-  security: 0
-  isAdmin: 0
-
-
-/utilisateurs:
-  controller: User
-  action: list
-  security: 0
-  isAdmin: 0
-
-
 /tableau-de-bord:
   controller: Admin
   action: dashboard
@@ -86,46 +62,6 @@
   action: stats
   security: 0
   isAdmin: 0
-
-
-
-### PROFIL ###
-
-/profil:
-  controller: Profil
-  action: index
-  security: 0
-  isAdmin: 0
-
-/profil-gestion-des-comptes:
- controller: Profil
- action: manageAccount
- security: 0
- isAdmin: 0
-
-/profil-securite:
-  controller: Profil
-  action: manageSecurity
-  security: 0
-  isAdmin: 0
-  
-/profil-contact:
- controller: Profil
- action: manageContact
- security: 0
- isAdmin: 0
-
-/profil-aide-et-support:
- controller: Profil
- action: help
- security: 0
- isAdmin: 0
- 
-/profil-conditions-generale-d-utilisation:
- controller: Profil
- action: condition
- security: 0
- isAdmin: 0
 
 ### Parameters ####
 /parametres:
@@ -181,12 +117,6 @@
   security: 0
   isAdmin: 0
 
-/parametres-support:
-  controller: Parameters
-  action: parametersSupport
-  security: 0
-  isAdmin: 0
-
 /parametres-affichage:
   controller: Parameters
   action: parametersAppearance
@@ -196,18 +126,6 @@
 /set-appearance:
   controller: Parameters
   action: setAppearance
-  security: 0
-  isAdmin: 0
-
-/parametres-users:
-  controller: Parameters
-  action: parametersUsers
-  security: 0
-  isAdmin: 0
-
-/parametres-compte:
-  controller: Parameters
-  action: parametersAccount
   security: 0
   isAdmin: 0
 
@@ -236,10 +154,6 @@
   action: readArticle
   security: 0
   isAdmin: 0
-
-# /article-edition/{id}:
-# controller: Article
-# action: editArticle
 
 
 ### CATEGORY ###
@@ -287,12 +201,6 @@
   action: unapproveComment
   security: 0
   isAdmin: 0
-  
-/commentaire-edition:
- controller: Commentaire
- action: saveComment
- security: 0
- isAdmin: 0
 
 /commentaire-mots-bannis:
  controller: Commentaire
