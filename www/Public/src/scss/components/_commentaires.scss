@@ -5,6 +5,16 @@
     color: $white;
 }
 
+#table_comments{
+    .comment_approuve, .comment_unapprouve, .comment_delete{
+        cursor: pointer;
+    }
+}
+
+#comment_banned{
+    text-decoration: none;
+}
+
 .commentaire-commentaire{
     & .commentaire-publication{
         height: 100%;

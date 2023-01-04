@@ -82,14 +82,14 @@ class Article{
             if(isset($_POST['deleteImage'])){
                 $article->setImageName("");
                 $article->save();
-                $_SESSION["flash-success"] = "Image supprimer";
+                $_SESSION["flash-success"] = "Image supprimé";
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
                 exit();
             } 
 
             if(isset($_POST['delete'])){
                 $article->delete();
-                $_SESSION["flash-success"] = "L'article a été supprimer avec succés";
+                $_SESSION["flash-success"] = "L'article a été supprimé avec succés";
                 header("Location: /article");
                 exit();
             } 

@@ -20,6 +20,9 @@ switch ($apparenceData["Css"]) {
                         <p><?= $error ?> </p>
                     </div>
                 <?php endforeach;?>
+
+<!-- TODO : Modifier la taille de la sidebar apparence => 250px 
+-->
 <section class="body">
     <header class="header">
         <div class="row">

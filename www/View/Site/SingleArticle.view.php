@@ -1,9 +1,8 @@
 <div class="container relative">
 
-	<div class="row flex-row-center">
+	<div class="row flex-row-center body-item">
 		<!-- Blog Entries Column (REPEAT THAT) -->
 		<?php
-
 		echo "<div class='col-md-8 '>
 			<div class='item-article'> ";
 		if ($post[0]['Image_Name'] != "UndefinedImage.jpg")	echo "<img class='article-thumbnails' src='/uploads/{$post[0]['Image_Name']}' alt=''>";

@@ -299,7 +299,7 @@
   security: 0
   isAdmin: 0
 
-### DATA TABLE
+### DATA TABLE ###
 /datatable:
   controller: DataTable
   action: index
@@ -327,5 +327,13 @@
 /sakura:
   controller: Main
   action: download
+  security: 0
+  isAdmin: 0
+
+### 404 ###
+
+/page-not-found:
+  controller: Main
+  action: pageNotFound
   security: 0
   isAdmin: 0

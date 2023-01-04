@@ -36,10 +36,11 @@ $().ready(function () {
     //Display appearance sidebar
     var currentLocation = window.location.pathname;
     if (currentLocation == "/apparence") {
-        $("#col-main").css("width", "calc(100% - 170px - 170px)");
+        $("#col-main").css("width", "calc(100% - 250px - 170px)");
         $("#col-appearance").css("display", "block");
         $("#col-main").css("transition", "revert");
     } else {
+        console.log("not apparence");
         var row = document.getElementById("row-nav-main");
         var child = document.getElementById("col-appearance");
         row.removeChild(child);

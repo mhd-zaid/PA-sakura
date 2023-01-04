@@ -49,7 +49,7 @@ section {
   & p {
     font-size: 1.5em;
   }
-  & section{
+  & section {
     margin: 0;
   }
 }
@@ -96,6 +96,13 @@ section {
   text-align: center;
 }
 
+.dataTables_length{
+  margin-bottom: 25px;
+}
+.dataTables_info, .dataTables_paginate{
+  margin-top: 25px;
+}
+
 @mixin object-bg($bg) {
   background-color: $bg;
   &:hover {
@@ -116,7 +123,7 @@ section {
     background-color: #18191d;
 
     //Dashboard
-    .statistique-case{
+    .statistique-case {
       background-color: #2a2b3140;
     }
 

@@ -16,6 +16,23 @@
     }
 }
 
+#modal-image{
+    overflow-x: scroll;
+    border: 1px solid black;
+    margin: 50px 0px;
+    fieldset{
+        border: none;
+        flex-wrap: nowrap;
+        label{
+            
+            img{
+                width: 75px;
+                height: 100px;
+            }
+        }
+    }
+}
+
 .article-article{
     & .article-publication{
         height: 100%;
@@ -51,6 +68,12 @@
         font-size: 1em;
     }
 }
+#container-category, #openFile{
+    margin-bottom:15px ;
+    
+}
+
+
 
 .row:has(> .article-elmt){
     & img{
