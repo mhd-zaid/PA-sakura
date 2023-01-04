@@ -155,7 +155,7 @@ class Verificator
 	}
 
 	public function verificatorEditionNavigation($configForm, $data):void{
-		$remove = ["titre", "default_menu", "slt-del-page", "publish"];
+		$remove = ["titre", "default_menu", "slt-del-page", "publish","unpublish"];
         $content = array_diff_key($_POST, array_flip($remove));
 		foreach($configForm["inputs"] as $name=>$configInput){
 

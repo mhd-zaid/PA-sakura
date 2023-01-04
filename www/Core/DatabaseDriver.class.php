@@ -62,8 +62,6 @@ abstract class DatabaseDriver
 		$columns = array_diff_key($objectVars, $classVars);
 
 		if(is_null($this->getId())){
-			// INSERT INTO esgi_user (firstname,lastname,email,pwd,status) VALUES (:firstname,:lastname,:email,:pwd,:status) ;
-			//$sql = "INSERT INTO ".$this->table. " (".implode(",", array_keys($columns) ) .") VALUES (:".implode(",:", array_keys($columns) ) .") ;";
             $sql = ($this->queryBuilder)->from($this->table)->insert(array_keys($columns));
 		}else{
 
@@ -71,7 +69,6 @@ abstract class DatabaseDriver
 				$sqlUpdate[] = $column."=:".$column;
 			}
 
-			//$sql = "UPDATE ".$this->table. " SET  ".implode(",",$sqlUpdate)."  WHERE id=".$this->getId();
             $sql = ($this->queryBuilder)->update($sqlUpdate)->from($this->table)->where("id=".$this->getId());
 		}
 		$sql->params($columns)->execute();
@@ -124,12 +121,12 @@ abstract class DatabaseDriver
 
 	public function isUnique(String $context, String $data){
 		if($context === 'Title'){
-			//$sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
+	
 			$params = ['Title'=>$data];
             $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title = :Title")->params($params);
 		}
 		if($context === 'slug'){
-			//$sql = "SELECT * FROM ".$this->table." WHERE slug = :slug";
+
 			$params = ['slug'=>$data];
             $sql = ($this->queryBuilder)->select()->from($this->table)->where("slug = :slug")->params($params);
 		}
@@ -137,13 +134,11 @@ abstract class DatabaseDriver
 		if($context === 'Email'){
 			$user = new User();
 			$userInfo = $user->getUser($_COOKIE['JWT']);
-			//$sql = "SELECT * FROM ".$this->table." WHERE Email = :Email AND Id!= :id";
+			
 			$params = ['Email'=>$data, "id"=>$userInfo['Id']];
             $sql = ($this->queryBuilder)->select()->from($this->table)->where("Email = :Email")->andWhere("Id != :id")->params($params);
 		}
 
-        //$queryPrepared = $this->pdo->prepare($sql);
-		//$queryPrepared->execute($params);
         $queryPrepared = $sql->execute();
         $result = $queryPrepared->fetch();
 
@@ -151,11 +146,9 @@ abstract class DatabaseDriver
         if($numberRow > 0){
             if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
 
-				//$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
 				$params = ['Slug'=>$_GET['Slug']];
                 $sql = ($this->queryBuilder)->select()->from($this->table)->where("Slug = :Slug")->params($params);
-				// $queryPrepared = $this->pdo->prepare($sql);
-				// $queryPrepared->execute($params);
+				
                 $queryPrepared = $sql->execute();
 				$dataSlug = $queryPrepared->fetch();
 
@@ -165,11 +158,10 @@ abstract class DatabaseDriver
                     return false;
                 }
             }elseif(isset($_GET['id']) && !empty($_GET['id'])){
-                //$sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
+                
 				$params = ['Id'=>$_GET['id']];
                 $sql = ($this->queryBuilder)->select()->from($this->table)->where("Id = :Id")->params($params);
-				// $queryPrepared = $this->pdo->prepare($sql);
-				// $queryPrepared->execute($params);
+				
                 $queryPrepared = $sql->execute();
 				$dataSlug = $queryPrepared->fetch();
 
@@ -189,26 +181,25 @@ abstract class DatabaseDriver
 	public function find(){
         if(!empty($_GET['Slug'])){
             $slug = $_GET['Slug'];
-            //$sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
+            
             $params = ['Slug'=>$slug];
             $sql = ($this->queryBuilder)->select()->from($this->table)->where("Slug =:Slug")->params($params);
-            // $queryPrepared = $this->pdo->prepare($sql);
-            // $queryPrepared->execute($params);
+
             $queryPrepared = $sql->execute();
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                header("Location: /pages");
+                $_SESSION['flash-error'] = "La ressource demander n'a pas été trouver";
+                header("Location: /tableau-de-bord");
             }
         }elseif(!empty($_GET['id'])){
-            //$sql = "SELECT * FROM ".$this->table." WHERE id =:id";
             $params = ['id'=>$_GET['id']];
             $sql = ($this->queryBuilder)->select()->from($this->table)->where("id =:id")->params($params);
-            // $queryPrepared = $this->pdo->prepare($sql);
-            // $queryPrepared->execute($params);
+
             $queryPrepared = $sql->execute();
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                header("Location: /pages");
+                $_SESSION['flash-error'] = "La ressource demander n'a pas été trouver";
+                header("Location: /tableau-de-bord");
             }
         }else{
             return null;
@@ -217,23 +208,21 @@ abstract class DatabaseDriver
     }
 
 	public function findRewriteUrl(){ 
-        //$sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
+
         $params = ['Rewrite_Url'=>'1'];
         $sql = ($this->queryBuilder)->select("Rewrite_Url")->from($this->table)->where("Rewrite_Url =:Rewrite_Url")->params($params);
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
+
         $queryPrepared = $sql->execute();
         $result = $queryPrepared->fetch();
         return $queryPrepared->rowCount();
     }
 
 	public function updateRewriteUrl(Int $choice){
-        //$sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
+
         $params = ['Rewrite_Url'=>$choice];
         $sql = ($this->queryBuilder)->update(["Rewrite_Url = :Rewrite_Url"])->from($this->table)->params($params);
         $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
+
     }
 
 	public function delete():void{
@@ -245,18 +234,18 @@ abstract class DatabaseDriver
         }elseif(!empty($_GET['id'])){
             $params = ['id'=>$_GET['id']];
             $sql = ($this->queryBuilder)->delete()->from($this->table)->where("Id =:id")->params($params);
+            var_dump($sql->__toString());
             $sql->execute();
         }else{
         }
     }
 
 	public function isExist($value){
-        //$sql = "SELECT * FROM " .$this->table. " WHERE Title=:title";
+
         $params = ['title'=>$value];
         $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title=:title")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
+
 
         if($queryPrepared->rowCount() > 0 ){
             return true;
@@ -264,30 +253,32 @@ abstract class DatabaseDriver
         return false;
     }
 
+    public function selectAllLimit()
+	{
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->limit(4)->execute();
+
+		return $sql->fetchAll();
+	}
+
 	public function slugify($text, string $divider = '-')
     {
-    // replace non letter or digits by divider
-    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
 
-    // transliterate
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
 
-    // remove unwanted characters
-    $text = preg_replace('~[^-\w]+~', '', $text);
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
 
-    // trim
-    $text = trim($text, $divider);
+        $text = preg_replace('~[^-\w]+~', '', $text);
 
-    // remove duplicate divider
-    $text = preg_replace('~-+~', $divider, $text);
+        $text = trim($text, $divider);
 
-    // lowercase
-    $text = strtolower($text);
+        $text = preg_replace('~-+~', $divider, $text);
 
-    if (empty($text)) {
-        return 'n-a';
-    }
+        $text = strtolower($text);
 
-	return $text;
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
 	}
 }

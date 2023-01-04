@@ -26,16 +26,18 @@ class Commentaire
     {
         if (isset($_GET['id']))
             $comment = new CommentModel();
-        $comment->delete($_GET['id']);
+        $comment->delete();
+        $_SESSION["flash-success"] = "Commentaire supprimer";
         header("Location: /commentaire");
+        exit();
     }
 
     public function approveComment(): void
     {
-        if (isset($_GET['approve'])) {
+        if (isset($_GET['id'])) {
             $comment = new CommentModel();
-            $data = $comment->findCommentById($_GET['approve']);
-            $comment->setId($_GET['approve']);
+            $data = $comment->find();
+            $comment->setId($_GET['id']);
             $comment->setStatus("approved");
             $comment->setAuthor($data['Author']);
             $comment->setContent($data['Content']);
@@ -45,16 +47,18 @@ class Commentaire
             $comment->setCommentPostId($data['Comment_Post_Id']);
             $comment->setNbrSignalement(0);
             $comment->save();
+            $_SESSION["flash-success"] = "Commentaire approuver";
             header("Location: /commentaire");
+            exit();
         }
     }
 
     public function unapproveComment(): void
     {
-        if (isset($_GET['unapprove'])) {
+        if (isset($_GET['id'])) {
             $comment = new CommentModel();
-            $data = $comment->findCommentById($_GET['unapprove']);
-            $comment->setId($_GET['unapprove']);
+            $data = $comment->find();
+            $comment->setId($_GET['id']);
             $comment->setStatus("unapprove");
             $comment->setAuthor($data['Author']);
             $comment->setContent($data['Content']);
@@ -64,7 +68,9 @@ class Commentaire
             $comment->setCommentPostId($data['Comment_Post_Id']);
             $comment->setNbrSignalement(0);
             $comment->save();
+            $_SESSION["flash-success"] = "Commentaire désapprouver";
             header("Location: /commentaire");
+            exit();
         }
     }
 
@@ -130,30 +136,4 @@ class Commentaire
         $v = new View("Page/Commentaire", "Back");
         $v->assign("data", $data ?? []);
     }
-
-    // public function signaler(): void
-    // {
-    //     var_dump("salute");
-    //     $comment = new CommentModel();
-    //     $commentData = $comment->findCommentById($_GET['id']);
-
-    //     $comment->setId($commentData['Id']);
-    //     $comment->setContent($commentData['Content']);
-    //     $comment->setArticleId($commentData['Article_Id']);
-    //     $comment->setNbrSignalement($commentData['Nbr_Signalement']+1);
-    //     // $comment = new CommentModel();
-    //     // $comment = $comment->findCommentById(1);
-    //     // $comment->incrementReportComment($_GET['id']); 
-    //     // if($comment->getNumberReportCommentById($_GET['id'])["Nombre_signalement"] === 5){
-    //     //    echo "salut";
-    //     //     $comment->setStatus("unapprove");
-    //     // }
-    //     // if($commentData['Nbr_Signalement'] >= 20){
-    //     //     $comment->setActive(0);
-    //     // }else{
-    //     //     $comment->setActive($commentData['Active']);
-    //     // }
-    //     $comment->save();
-	// 	header("Location: /site");
-    // }
 }

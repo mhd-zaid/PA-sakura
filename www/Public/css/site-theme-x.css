@@ -1,22 +1,19 @@
 .paragraph{
-	color:#D6955B;
-	font-family:'Times New Roman';
-	 Times;
-	 serif
+	color:#f4cfdf;
+	font-family:arial
 }
 .titre{
-	color:#FEEAA1;
-	font-family:Helvetica;
-	 sans-serif
+	color:#f7f6cf;
+	font-family:cambria
 }
 .body{
-	background-color:#226D68
+	background-color:#5784ba
 }
 .nav{
 	color:#ECF8F6
 }
 .header{
-	background-color:#18534F
+	background-color:#b6d8f2
 }
 .footer{
-	background-color:#18534F}
+	background-color:#b6d8f2}

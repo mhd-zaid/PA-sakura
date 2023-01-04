@@ -35,25 +35,45 @@
 </head>
 
 <body class="sk-body-front body">
-
 	<header id="site-header-site" class="header">
 		<div class="container">
 			<div class="logo-site">
 				<a class="site-name nav" href="/site"><?= $site[0]['Name'] ?></a>
 			</div>
-			<button id="menu-button-site"></button>
-			<nav id="main-nav-site" class="sk-navbar nav">
+			<!--- Catégories à afficher -->
+			<div>
 				<ul>
 					<?php
 					$content = explode(",", $menu["Content"]);
 					foreach ($content as $value) {
 						echo ('<li>');
-						echo ('<div class="col"><a href=/page/' . $page->getPageByTitle($value)['Slug'] . '>' . $value . '</a></div>');
+						echo ('<div class="col"><a href=/page/');
+						if ($page->findRewriteUrl() > 0) {
+							echo $page->getPageByTitle($value)['Id'];
+						} else {
+							echo $page->getPageByTitle($value)['Slug'];
+						}
+						echo ('>' . $value . '</a></div>');
 						echo ('</li>');
 					}
 					?>
 				</ul>
-			</nav>
+			</div>
+		</div>
+		</div>
+		<button id="menu-button-site"></button>
+		<nav id="main-nav-site" class="sk-navbar nav">
+			<ul>
+				<?php
+				$content = explode(",", $menu["Content"]);
+				foreach ($content as $value) {
+					echo ('<li>');
+					echo ('<div class="col"><a href=/page/' . $page->getPageByTitle($value)['Slug'] . '>' . $value . '</a></div>');
+					echo ('</li>');
+				}
+				?>
+			</ul>
+		</nav>
 		</div>
 	</header>
 

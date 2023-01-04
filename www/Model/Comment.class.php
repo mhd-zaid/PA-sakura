@@ -49,7 +49,7 @@ class Comment extends DatabaseDriver
     }
 
     /**
-     * @param null $author
+     * @param string $author
      */
     public function setAuthor(String $author): void
     {
@@ -193,18 +193,9 @@ class Comment extends DatabaseDriver
             ];
 
     }
+    
+    public function selectApprovedComments(Int $id){
 
-    public function findCommentById(Int $id){
-        //$sql = "SELECT * FROM $this->table WHERE id = $id";
-        //$result = $this->pdo->query($sql);
-        $sql = ($this->queryBuilder)->select()->from($this->table)->where("id = $id");
-        $result = $sql->execute();
-        $data = $result->fetch();
-        return $data;
-    }
-
-    public function selectpApprovedComments(Int $id){
-        //$sql = "SELECT * FROM $this->table WHERE comment_post_id = $id AND status = 'approved'";
         $params = ["comment_post_id"=> $id,"status" => 'approved'];
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("comment_post_id = :comment_post_id")->andWhere("status = :status")
             ->params($params)->execute();

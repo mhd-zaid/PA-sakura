@@ -16,30 +16,6 @@ use App\Core\Verificator;
 
 class Site{
 
-	public function getMainPage(): void
-	{	
-		$page = new Page();
-        $page = $page->findPageById(1);
-        $v = new View("Site/Main","Site");
-        $v->assign("page",$page);
-	}
-
-	public function getPage(): void
-	{	
-		$page = new Page();
-		if (isset($_GET['id'])) {
-			$page = $page->findPageById(intval($_GET['id']));
-		}elseif (isset($_GET['name'])) {
-			echo "afficher page avec le nom";
-		}
-
-		if(empty($page)){
-			echo "404 page introuvable";
-		}
-        $v = new View("Site/Main","Site");
-        $v->assign("page",$page);
-	}
-
 	public function saveComment(): void
 	{
 		if (isset($_POST['submit'])) {
@@ -71,7 +47,7 @@ class Site{
 
 		if (isset($_POST['signaler-comment'])){
 			$comment = new CommentModel();
-			$commentData = $comment->findCommentById($_POST['signaler-id']);
+			$commentData = $comment->find($_POST['signaler-id']);
             
             if(in_array($_POST['signaler-id'],$_SESSION["messages_reported"])){
               $_SESSION["flash-error"] = "Vous avez déjà signalé ce commentaire";
@@ -127,7 +103,11 @@ class Site{
 	}
         if (isset($_GET['id'])) {
             $postData = $post->selectSingleArticle($_GET['id']);
-			$comments = $comment->selectpApprovedComments($_GET['id']);
+			$comments = $comment->selectApprovedComments($_GET['id']);
+            $v = new View("Site/SingleArticle", "Front2");
+            $v->assign("post", $postData);
+			$v->assign("comments", $comments);
+			$this->saveComment();
         }
 	$v = new View("Site/SingleArticle", "Front2");
 	$v->assign("post", $postData);
@@ -140,12 +120,7 @@ class Site{
     {	
         $page = new Page();
 		$pageData = null;
-        if (isset($_GET['id'])) {
-            $pageData = $page->find($_GET['id']);
-        }
-		if (isset($_GET['Slug'])) {
-			$pageData = $page->find($_GET['Slug']);
-		}
+        $pageData = $page->find();
 
 		$v = new View("Site/Page", "Front2");
         $v->assign("the_page", $pageData);

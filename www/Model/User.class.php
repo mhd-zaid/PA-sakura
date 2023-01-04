@@ -529,12 +529,9 @@ class User extends DatabaseDriver
 
     public function checkLogin(String $email, String $pwd)
     {
-        //$sql = "SELECT * FROM " .$this->table." WHERE email =:email";
         $params = ['email'=>$email];
         $sql = ($this->queryBuilder)->select()->from($this->table)->where("email =:email")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
 
         if($queryPrepared->rowCount() > 0){
             $data = $queryPrepared->fetch();
@@ -582,12 +579,9 @@ class User extends DatabaseDriver
     }
     public function checkForgotPasswd(string $email): ?string{
 
-        //$sql = "SELECT * FROM " .$this->table. " WHERE email =:email";
         $params = ['email'=>$email];
         $sql = ($this->queryBuilder)->select()->from($this->table)->where("email =:email")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
 
         if($queryPrepared->rowCount() > 0){
             $data = $queryPrepared->fetch();
@@ -613,12 +607,9 @@ class User extends DatabaseDriver
 
     public function checkTokenPasswd(string $email,string $token,string $password): bool
     {
-        //$sql = "SELECT * FROM " .$this->table. " WHERE email =:email AND token=:token";
         $params = ['email'=>$email, "token"=>$token];
         $sql = ($this->queryBuilder)->select()->from($this->table)->where("email =:email")->andWhere("token=:token")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
 
         if($queryPrepared->rowCount() > 0 ){
             $data = $queryPrepared->fetch();
@@ -638,12 +629,10 @@ class User extends DatabaseDriver
 
     public function checkToken(string $token,string $email):string
     {
-        //$sql = "SELECT Token FROM " .$this->table. " WHERE token=:token AND email=:email";
         $params = ['email'=>$email, 'token'=>$token];
         $sql = ($this->queryBuilder)->select("Token")->from($this->table)->where("token=:token")->andWhere("email=:email")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
+
         $data = $queryPrepared->fetch();
         if($queryPrepared->rowCount() > 0){
             return true;
@@ -654,7 +643,6 @@ class User extends DatabaseDriver
 
     public function getSuperAdmin():array
     {
-        //$sql = "SELECT * FROM " .$this->table. " WHERE Role=:role";
         $params = ['role'=>0];
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Role=:role")->params($params)->execute();
         $data = $sql->fetch();
@@ -663,20 +651,16 @@ class User extends DatabaseDriver
 
     public function checkTokenEmail(string $token,string $email):void
     {
-        //$sql = "SELECT Token FROM " .$this->table.  " WHERE status=:status AND email=:email";
+
         $params = ['email'=>$email, 'status'=>0];
         $sql = ($this->queryBuilder)->select("Token")->from($this->table)->where("status=:status")->andWhere("email=:email")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
+
         $data = $queryPrepared->fetch();
         
         if($queryPrepared->rowCount() > 0 && $data['Token']==$token){
-            //$sql = "UPDATE " .$this->table. " SET status=:status where email=:email";
             $params = ['email'=>$email, 'status'=>1];
             ($this->queryBuilder)->update(["status=:status"])->from($this->table)->where("email=:email")->params($params)->execute();
-            // $queryPrepared = $this->pdo->prepare($sql);
-            // $queryPrepared->execute($params);
         } else{
             echo "Le compte n'existe pas ou est déjà validé";
             die();
@@ -685,12 +669,9 @@ class User extends DatabaseDriver
 
     public function checkEmailExist($email):bool
     {
-        //$sql = "SELECT * FROM " .$this->table. " where email=:email";
         $params = ['email'=>$email];
         $sql = ($this->queryBuilder)->select()->from($this->table)->where("email =:email")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
         if($queryPrepared->rowCount() > 0){
             return false;
         }else{
@@ -699,12 +680,9 @@ class User extends DatabaseDriver
     }
     
     public function getUser($token){
-        //$sql = "SELECT * FROM ".$this->table." WHERE token =:token";
         $params = ['token'=>$token];
         $sql = ($this->queryBuilder)->select()->from($this->table)->where("token =:token")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
         $data = $queryPrepared->fetch();
         return $data;
     }
@@ -723,21 +701,15 @@ class User extends DatabaseDriver
     }
 
     public function getNameUserId($id){
-        //$sql = "SELECT Firstname, Lastname FROM ".$this->table." WHERE Id=:Id";
         $params = ['Id'=>$id];
         $sql = ($this->queryBuilder)->select("Firstname","Lastname")->from($this->table)->where("Id=:Id")->params($params);
         $queryPrepared = $sql->execute();
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute($params);
         $data = $queryPrepared->fetch();
         return $data['Lastname'].' '.$data['Firstname'];
         }
 
     public function isSuperAdminExist()
     {
-        //$sql = "SELECT count(*) FROM ".$this->table." WHERE Role = 0";
-        // $queryPrepared = $this->pdo->prepare($sql);
-        // $queryPrepared->execute();
         $sql = ($this->queryBuilder)->select("count(*)")->from($this->table)->where("Role = 0");
         $queryPrepared = $sql->execute();
         $data = $queryPrepared->fetch();

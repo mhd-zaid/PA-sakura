@@ -221,7 +221,6 @@ class Page extends DatabaseDriver
 
     public function getPageByTitle($title)
     {
-        //$sql = "SELECT * FROM ".$this->table. " WHERE Title = '$title' ";
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $title])->execute();
 
         $data = $sql->fetch();
@@ -230,7 +229,6 @@ class Page extends DatabaseDriver
 
     public function getPageById($id)
     {
-        //$sql = "SELECT * FROM ".$this->table. " WHERE Title = $id ";
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $id])->execute();
 
         $data = $sql->fetch();
