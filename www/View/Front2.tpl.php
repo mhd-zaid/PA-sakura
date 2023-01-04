@@ -15,29 +15,33 @@
 	<?php endif;?>
 	<link rel="stylesheet" href="../Public/css/main.css">
 	<?php
-
-	$theme = new App\Model\Apparence();
-	$theme = $theme->select();
-	switch ($theme["Css"]) {
-		case "electro":
-			echo ('<link rel="stylesheet" href="../Public/css/site-theme-electro.css">');
-			break;
-		case "music":
-			echo ('<link rel="stylesheet" href="../Public/css/site-theme-music.css">');
-			break;
-		case "sakura":
-			echo ('<link rel="stylesheet" href="../Public/css/site-theme-sakura.css">');
-			break;
-		default:
-			echo ('<link rel="stylesheet" href="../Public/css/site-theme-x.css">');
-			break;
-	};
+	if ($_SERVER['REQUEST_URI']!= "/installation" || $_SERVER['REQUEST_URI']!= "/se-connecter" || $_SERVER['REQUEST_URI']!= "/s-inscrire" ||
+		$_SERVER['REQUEST_URI']!= "/mot-de-passe-oublie" || $_SERVER['REQUEST_URI']!= "/reinitialisation-mot-de-passe") {
+		$theme = new App\Model\Apparence();
+		$theme = $theme->select();
+		switch ($theme["Css"]) {
+			case "electro":
+				echo ('<link rel="stylesheet" href="../Public/css/site-theme-electro.css">');
+				break;
+			case "music":
+				echo ('<link rel="stylesheet" href="../Public/css/site-theme-music.css">');
+				break;
+			case "sakura":
+				echo ('<link rel="stylesheet" href="../Public/css/site-theme-sakura.css">');
+				break;
+			default:
+				echo ('<link rel="stylesheet" href="../Public/css/site-theme-x.css">');
+				break;
+		};
+	}
 	?>
 	<script type="text/javascript" src="../Public/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="../Public/js/site.js"></script>
 </head>
 
 <body class="sk-body-front body">
+	<?php if ($_SERVER['REQUEST_URI']!= "/installation" || $_SERVER['REQUEST_URI']!= "/se-connecter" || $_SERVER['REQUEST_URI']!= "/s-inscrire" ||
+		$_SERVER['REQUEST_URI']!= "/mot-de-passe-oublie" || $_SERVER['REQUEST_URI']!= "/reinitialisation-mot-de-passe"): ?>
 	<header id="site-header-site" class="header">
 		<div class="container">
 			<div class="logo-site">
@@ -68,7 +72,7 @@
 			</nav>
 		</div>
 	</header>
-
+	<?php endif?>
 	<main>
 		<?php require $this->view; ?>
 		<!-- TODO : Régler affichage session flash

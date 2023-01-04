@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Core\Verificator;
-use App\Model\User as UserModel;
 
 class Main
 {
@@ -15,27 +14,7 @@ class Main
 		if (!file_exists(__DIR__ . "/../config.php")) {
 			header("Location: /installation");
 		} else {
-			$user = new UserModel();
-			$contactForm = $user->contactForm();
-
 			$v = new View("Front/Home", "Front");
-			$v->assign("configForm", $contactForm);
-			$v->assign("configFormErrors", $configFormErrors ?? []);
-
-			if (!empty($_POST)) {
-				$verificator = new Verificator($loginForm, $_POST);
-
-				$configFormErrors = $verificator->getMsg();
-
-				if (empty($configFormErrors)) {
-					$user->setFirstname($_POST['firstname']);
-					$user->setLastname($_POST['lastname']);
-					$user->setEmail($_POST['email']);
-					$user->setPwd($_POST['pwd']);
-					$user->setAddress($_POST['address']);
-					$user->save();
-				}
-			}
 		}
 	}
 
@@ -105,7 +84,7 @@ class Main
 				}
 			}
 		}
-		$v = new View("Install/Installation", "Front");
+		$v = new View("Install/Installation", "Front2");
 		$v->assign("configForm", $installForm);
 		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
@@ -120,9 +99,5 @@ class Main
 		header("Pragma: no-cache"); 
 		header("Expires: 0"); 
 		readfile("$file");
-	}
-
-	public function pageNotFound(){
-		$v = new View("Site/404");
 	}
 }

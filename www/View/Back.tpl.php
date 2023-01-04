@@ -40,7 +40,6 @@
                     </div>
                     <div class="col dropdown">
                         <button class="dropbtn">
-                            <img class="photo-profil icon" src="/Public\img\Back\avatar.svg" alt="">
                             <?= ucfirst($userData['Firstname']) . " " . strtoupper($userData['Lastname']); ?>
                         </button>
                         <div class="dropdown-content">
