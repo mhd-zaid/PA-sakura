@@ -10,7 +10,6 @@ class Menu extends DatabaseDriver
     private $id = null;
     protected $content;
     protected $title;
-    protected $active = 0;
     protected $main = 0;
 
     public function __construct()
@@ -34,23 +33,6 @@ class Menu extends DatabaseDriver
     public function setId(Int $id): void
     {
         $this->id = $id;
-    }
-
-    /**
-     * @return null
-     */
-    public function getActive(): ?int
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param null $id
-     */
-
-    public function setActive(Int $active): void
-    {
-        $this->active = $active;
     }
 
     /**
@@ -141,10 +123,12 @@ class Menu extends DatabaseDriver
     public function updateMain(Int $id = null): void
     {
         if ($id == null) $id = $this->pdo->lastInsertId();
+        else {
+            ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->params(["Main"=>0])->execute();
+    
+            ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->where("id = :id")->params(["Main"=>1,"id"=>$id])->execute();
+        }
 
-        ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->params(["Main"=>0])->execute();
-
-        ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->where("id = :id")->params(["Main"=>1,"id"=>$id])->execute();
     }
     
     public function updateContent(String $oldTitle, String $newTitle): void

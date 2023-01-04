@@ -35,7 +35,7 @@ class Parameters
 	{
 		$user = new UserModel();
 		$role = $user->getUser($_COOKIE['JWT']);
-		if ($role['Role'] !== 1) header("Location: /tableau-de-bord");
+		if ($role['Role'] !== 1 && $role['Role'] !== 0) header("Location: /tableau-de-bord");
 		$v = new View("Page/ParametersUsers", "Back");
 	}
 	public function parametersAccount()
@@ -168,10 +168,18 @@ class Parameters
 		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
 	public function parametersEditUser()
-	{
+	{	
+		if ($_GET['id'] == 1) {
+			$_SESSION['flash-error'] = "Vous n'avez pas le droit de editer le super administrateur";
+			header('Location: /parametres-users');
+			exit;
+		}elseif (empty($_GET['id'])) {
+			require "View/Site/404.view.php";
+			exit;
+		}
 		$user = new UserModel();
 		$role = $user->getUser($_COOKIE['JWT']);
-		if ($role['Role'] !== 1) header("Location: /tableau-de-bord");
+		if ($role['Role'] !== 1 && $role['Role'] !== 0) header("Location: /tableau-de-bord");
 		$userUpdateForm = $user->userUpdateForm();
 		$userInformation = $user->find();
 

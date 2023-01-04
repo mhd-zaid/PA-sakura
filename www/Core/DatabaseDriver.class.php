@@ -188,9 +188,8 @@ abstract class DatabaseDriver
             $queryPrepared = $sql->execute();
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                $_SESSION['flash-error'] = "La ressource demander n'a pas été trouver";
-                header("Location: /tableau-de-bord");
-                exit;
+                require "View/Site/404.view.php";
+                die;
             }
         }elseif(!empty($_GET['id'])){
             $params = ['id'=>$_GET['id']];
@@ -199,13 +198,11 @@ abstract class DatabaseDriver
             $queryPrepared = $sql->execute();
             $data = $queryPrepared->fetch();
             if(empty($data)){
-                $_SESSION['flash-error'] = "La ressource demander n'a pas été trouver";
-                header("Location: /tableau-de-bord");
-                exit;
+                require "View/Site/404.view.php";
+                die;
             }
         }else{
-            require "View/Site/404.view.php";
-            die;
+            return null;
         }
         return $data;
     }
