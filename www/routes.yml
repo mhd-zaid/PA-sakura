@@ -1,5 +1,5 @@
 #Main
-/:
+/site:
   controller: Main 
   action: index
   security: 0
@@ -306,7 +306,7 @@
   security: 0
   isAdmin: 0
 
-/site:
+/:
   controller: Site
   action: showPosts
   security: 0
