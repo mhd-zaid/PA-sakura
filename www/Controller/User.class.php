@@ -77,7 +77,8 @@ class User
 
 	public function logout(): void
 	{
-		session_destroy();
+		setcookie('JWT', null, -1);
+		setcookie('Email', null, -1);
 		header("Location: /");
 		die();
 	}

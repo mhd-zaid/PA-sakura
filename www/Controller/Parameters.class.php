@@ -17,10 +17,6 @@ class Parameters
 	{
 		$v = new View("Page/Parameters", "Back");
 	}
-	public function parametersSupport()
-	{
-		$v = new View("Page/ParametersSupport", "Back");
-	}
 	public function parametersAppearance()
 	{
 		$v = new View("Page/ParametersThemesMode", "Back");

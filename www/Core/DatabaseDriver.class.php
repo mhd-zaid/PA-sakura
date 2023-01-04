@@ -190,6 +190,7 @@ abstract class DatabaseDriver
             if(empty($data)){
                 $_SESSION['flash-error'] = "La ressource demander n'a pas été trouver";
                 header("Location: /tableau-de-bord");
+                exit;
             }
         }elseif(!empty($_GET['id'])){
             $params = ['id'=>$_GET['id']];
@@ -200,9 +201,11 @@ abstract class DatabaseDriver
             if(empty($data)){
                 $_SESSION['flash-error'] = "La ressource demander n'a pas été trouver";
                 header("Location: /tableau-de-bord");
+                exit;
             }
         }else{
-            return null;
+            require "View/Site/404.view.php";
+            die;
         }
         return $data;
     }
