@@ -114,6 +114,9 @@ class QueryBuilder
         $this->from = [];
         $this->where = [];
         $this->params = [];
+        $this->insert = [];
+        $this->update = [];
+        $this->limit = null;
     }
 
     public function __toString()

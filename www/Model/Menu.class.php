@@ -122,12 +122,13 @@ class Menu extends DatabaseDriver
 
     public function updateMain(Int $id = null): void
     {
-        if ($id == null) $id = $this->pdo->lastInsertId();
-        else {
-            ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->params(["Main"=>0])->execute();
-    
-            ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->where("id = :id")->params(["Main"=>1,"id"=>$id])->execute();
+        if ($id == null) {
+            $id = $this->pdo->lastInsertId();
         }
+    
+        ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->params(["Main"=>0])->execute();
+
+        ($this->queryBuilder)->update(["Main = :Main"])->from($this->table)->where("id = :id")->params(["Main"=>1,"id"=>$id])->execute();
 
     }
     

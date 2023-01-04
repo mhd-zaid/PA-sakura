@@ -40,15 +40,12 @@ class Navigation
                 $data = $menu->find();
 
                 $menu->setId($data["Id"]);
-                $dataActive = $data["Active"];
                 $dataMain = $data["Main"];
             }
-            isset($dataActive) ? "" : $dataActive = 0;
             isset($dataMain) ? "" : $dataMain = 0;
             $content = implode(",", $content);
             $menu->setTitle($_POST['titre']);
             $menu->setContent($content);
-            $menu->setActive($dataActive);
             $menu->setMain($dataMain);
             $menu->save();
             if (isset($_POST["default_menu"]) && isset($_GET["id"])) $menu->updateMain($_GET["id"]);
