@@ -234,4 +234,12 @@ class Page extends DatabaseDriver
         $data = $sql->fetch();
 		return $data;
     }
+
+    public function getMainPage()
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Main = 1")->execute();
+
+        $data = $sql->fetch();
+		return $data;
+    }
 }

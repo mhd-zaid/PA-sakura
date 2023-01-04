@@ -29,20 +29,3 @@
         </div>
     </div>
 </section>
-
-<section class="grid grid-rounded list-parameters">
-    <div class="row flex-row flex-row-center">
-        <div class="col col-12 box-parameters">
-            <div class="col-12 box-title">
-                <h2> Aide</h2>
-            </div>
-            <div class="col-12 box-choices">
-                <h3> Besoin d'aide</h3>
-                <ul class="flex-col">
-                    <li class="choices-parameters"><a href="/parametres-support"><img src="Public/img/Back/Parameters/Support.svg" alt="Support">Support</a></li>
-                    <li class="choices-parameters"><a href="/parametres-cgu"><img src="Public/img/Back/Parameters/CGU.svg" alt="CGU">CGU</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>

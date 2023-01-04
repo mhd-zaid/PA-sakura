@@ -35,7 +35,10 @@ class Site{
         $category = new CategoryModel();
         $allPosts = $post->selectAllLimit();
         $allCategories = $category->selectAllLimit();
+		$page = new Page();
+		$page = $page->getMainPage();
         $v = new View("Site/Home", "Front2");
+		$v->assign("mainPage",$page);
         $v->assign("posts", $allPosts);
         $v->assign("categories", $allCategories);
     }

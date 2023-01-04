@@ -1,7 +1,18 @@
 <div class="container relative">
 
+	<section class="relative content-page">
+		
+		<div class="row body-item">
+			<h1>
+				<?= $mainPage['Title']; ?>
+			</h1>
+		</div>
+
+		<div class="row">
+			<?= $mainPage['Content']; ?>
+		</div>
+	</section>
 	<div class="row flex-row-center body-item">
-		<!-- Blog Entries Column (REPEAT THAT) -->
 		<?php
 		foreach ($posts as $post) {
 			$post['Content'] = substr($post['Content'], 0, 150);
