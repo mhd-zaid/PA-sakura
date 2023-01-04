@@ -165,7 +165,7 @@ class Menu extends DatabaseDriver
     public function getMainMenu()
     {
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Main = 1")->execute();
-        $data = $sql->fetchAll();
-		return $data[0];
+        $data = $sql->fetch();
+		return $data;
     }
 }

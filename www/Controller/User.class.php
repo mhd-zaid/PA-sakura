@@ -29,7 +29,7 @@ class User
 				}
 			}
 		}
-		$v = new View("Auth/Login", "Front");
+		$v = new View("Auth/Login", "Front2");
 		$v->assign("configForm", $loginForm);
 		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
@@ -69,7 +69,7 @@ class User
 					exit();
 				}
 			}
-			$v = new View("Auth/Register", "Front");
+			$v = new View("Auth/Register", "Front2");
 			$v->assign("configForm", $registerForm);
 			$v->assign("configFormErrors", $configFormErrors ?? []);
 		}
@@ -108,7 +108,7 @@ class User
 				}
 			}
 		}
-		$v = new View("Auth/ForgotPasswd", "Front");
+		$v = new View("Auth/ForgotPasswd", "Front2");
 		$v->assign("configForm", $forgotPasswdForm);
 		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}
@@ -132,7 +132,7 @@ class User
 					}
 				}
 			}
-			$v = new View("Auth/ResetPasswd", "Front");
+			$v = new View("Auth/ResetPasswd", "Front2");
 			$v->assign("configForm", $resetPasswdForm);
 			$v->assign("configFormErrors", $configFormErrors ?? []);
 		} else {

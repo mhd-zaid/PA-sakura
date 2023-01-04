@@ -13,7 +13,7 @@
 	<header id="site-header">
 		<div class="container">
 			<div class="logo-site">
-				<a href="/" id="logo-image"><img src="Public/img/Front/Logo.svg" alt="Sakura"></a>
+				<a href="/site" id="logo-image"><img src="Public/img/Front/Logo.svg" alt="Sakura"></a>
 			</div>
 			<button id="menu-button"></button>
 			<nav id="main-nav">
