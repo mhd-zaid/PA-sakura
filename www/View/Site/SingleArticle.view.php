@@ -22,26 +22,26 @@
 					</div>
 					<form action="" method="POST">
 						<div class="row">
-							<div class="col col-2">
+							<div class="col col-2 col-sm-12">
 								<p style="margin: 0;">Pseudo</p>
 							</div>
-							<div class="col col-10">
+							<div class="col col-10 col-sm-12">
 								<input type="text" id="fname" name="author" placeholder="Saisissez votre pseudo..." style="width: 100%">
 							</div>
 						</div>
 						<div class="row">
-							<div class="col col-2">
+							<div class="col col-2 col-sm-12">
 								<p style="margin: 0;">E-mail</p>
 							</div>
-							<div class="col col-10">
+							<div class="col col-10 col-sm-12">
 								<input type="text" id="lcomment" name="email" placeholder="Saisissez votre e-mail..." style="width: 100%">
 							</div>
 						</div>
 						<div class="row">
-							<div class="col col-2">
+							<div class="col col-2 col-sm-12">
 								<p style="margin: 0;">Message</p>
 							</div>
-							<div class="col col-10">
+							<div class="col col-10 col-sm-12">
 								<textarea id="lcomment" name="content" class="textarea-comments" cols="30" rows="10" placeholder="Saisissez votre message..." style="width: 100%"></textarea>
 							</div>
 						</div>

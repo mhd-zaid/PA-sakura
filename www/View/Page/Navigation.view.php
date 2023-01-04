@@ -6,9 +6,8 @@
         <p class="p-section-back">Créer ou modifier vos propres menus</p>
     </div>
 </section>
-<!-- TODO
-Suppresion de menu
- -->
+<!-- TODO : Suppresion de menu 
+-->
 <section class="grid grid-rounded navigation-menu">
     <div class="row">
         <div class="col col-12">

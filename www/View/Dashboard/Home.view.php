@@ -10,7 +10,7 @@
 
 <div class="grid box-statistiques">
     <div class="flex-row">
-        <select id="choices-stats">
+        <select id="choices-stats" class="cta-button btn--white plain">
             <option value="current">Vu sur l'Année courante</option>
             <option value="year-1">Vu sur les années précendentes</option>
         </select>

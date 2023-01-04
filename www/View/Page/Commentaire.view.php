@@ -11,8 +11,8 @@
     </div>
 </section>
 
-<!-- TODO
-Modifier le format de l'heure -->
+<!-- TODO : Modifier le format de l'heure 
+-->
 <section class="grid grid-rounded">
     <div class="row">
         <div class="col col-12 col-xs-">

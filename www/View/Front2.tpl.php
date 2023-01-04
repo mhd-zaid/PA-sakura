@@ -35,44 +35,49 @@
 </head>
 
 <body class="sk-body-front body">
-	<header class="header">
-		<nav class="sk-navbar nav">
-			<ul>
-				<a class="site-name" href="/site"><?= $site[0]['Name'] ?></a>
-				<?php
-				$content = explode(",", $menu["Content"]);
-				foreach ($content as $value) {
-					echo ('<li>');
-					echo ('<div class="col"><a href=/page/' . $page->getPageByTitle($value)['Slug'] . '>' . $value . '</a></div>');
-					echo ('</li>');
-				}
-				?>
-			</ul>
-		</nav>
+
+	<header id="site-header-site" class="header">
+		<div class="container">
+			<div class="logo-site">
+				<a class="site-name nav" href="/site"><?= $site[0]['Name'] ?></a>
+			</div>
+			<button id="menu-button-site"></button>
+			<nav id="main-nav-site" class="sk-navbar nav">
+				<ul>
+					<?php
+					$content = explode(",", $menu["Content"]);
+					foreach ($content as $value) {
+						echo ('<li>');
+						echo ('<div class="col"><a href=/page/' . $page->getPageByTitle($value)['Slug'] . '>' . $value . '</a></div>');
+						echo ('</li>');
+					}
+					?>
+				</ul>
+			</nav>
+		</div>
 	</header>
 
 	<main>
-	<?php require $this->view; ?>
-	<!-- TODO
-	Régler affichage session flash
+		<?php require $this->view; ?>
+		<!-- TODO : Régler affichage session flash
 	-->
-	<?php if (isset($_SESSION["flash-success"]) || isset($_SESSION["flash-error"])) {
-		if (isset($_SESSION["flash-success"])) {
-			$msg = $_SESSION["flash-success"];
-			unset($_SESSION["flash-success"]);
-			echo ("<div id='flash-msg' class='row flash flash-success'>");
-			echo ("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
-			echo ("<p class='center-text plain'>{$msg}</p>");
-			echo ("</div>");
-		} else {
-			$msg = $_SESSION["flash-error"];
-			unset($_SESSION["flash-error"]);
-			echo ("<div id='flash-msg' class='row flash flash-error'>");
-			echo ("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
-			echo ("<p class='center-text plain'>{$msg}</p>");
-			echo ("</div>");
-		}
-	} ?>
+		<?php if (isset($_SESSION["flash-success"]) || isset($_SESSION["flash-error"])) {
+			if (isset($_SESSION["flash-success"])) {
+				$msg = $_SESSION["flash-success"];
+				unset($_SESSION["flash-success"]);
+				echo ("<div id='flash-msg' class='row flash flash-success'>");
+				echo ("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
+				echo ("<p class='center-text plain'>{$msg}</p>");
+				echo ("</div>");
+			} else {
+				$msg = $_SESSION["flash-error"];
+				unset($_SESSION["flash-error"]);
+				echo ("<div id='flash-msg' class='row flash flash-error'>");
+				echo ("<iconify-icon id='close-flash' icon='system-uicons:cross' style='color: black;' width='20'></iconify-icon>");
+				echo ("<p class='center-text plain'>{$msg}</p>");
+				echo ("</div>");
+			}
+		} ?>
 	</main>
 	<footer class="footer">
 		<p class="paragraph copyright"><?= $site[0]['Name'] ?> &copy; <?= date_format(new \DateTime($site[0]['Date_created']), "Y") ?></p>
