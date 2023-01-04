@@ -15,9 +15,10 @@ use App\Core\Verificator;
 
 class Site{
 
-	public function showPosts(): void
-    {
-        $idSession = session_id();
+	
+	public function index()
+	{
+		$idSession = session_id();
 		$stat = new Stats();
 		if (!$stat->existSession($idSession)) {
 			$stat->setSession($idSession);
@@ -31,14 +32,23 @@ class Site{
 			$stat->setDate($objectDate);
 			$stat->save();
 		}
+		$page = new Page();
+		$page = $page->getMainPage();
+		$v = new View("Site/Home", "Front2");
+		$v->assign("mainPage",$page);
+	}
+
+	public function showPosts(): void
+    {
+        
         $post = new ArticleModel();
         $category = new CategoryModel();
         $allPosts = $post->selectAllLimit();
         $allCategories = $category->selectAllLimit();
-		$page = new Page();
-		$page = $page->getMainPage();
-        $v = new View("Site/Home", "Front2");
-		$v->assign("mainPage",$page);
+		if (!empty($_POST['category-filter'])) {
+			$allPosts = $post->getPostFilter($_POST['category-filter']);
+		}
+        $v = new View("Site/Post-list", "Front2");
         $v->assign("posts", $allPosts);
         $v->assign("categories", $allCategories);
     }
@@ -61,13 +71,13 @@ class Site{
 				$comment->subscribeToNotification($add);
                 $comment->update();
 				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
-				header('Location: /site');
-				exit();
+				// header('Location: /site');
+				// exit();
 			}
 			else{
 				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
-				header('Location: /site');
-				exit();
+				// header('Location: /site');
+				// exit();
 			}
 		}
 		if(isset($_POST['signaler-comment']))

@@ -271,8 +271,14 @@
 
 /:
   controller: Site
+  action: index
+  security: 0
+  isAdmin: 0
+
+/post-list:
+  controller: Site
   action: showPosts
-  security: 1
+  security: 0
   isAdmin: 0
 
 /post:
@@ -302,7 +308,7 @@
   isAdmin: 0
   security: 0
 
-###SITEMAP
+### SITEMAP ###
 /sitemap:
   controller: SiteMap
   action: index

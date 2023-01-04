@@ -4,9 +4,6 @@ $().ready(function() {
         console.log("btn preview");
         var menu = document.getElementById("main-nav-site");
         menu.classList.toggle("visible");
-        // var menuColor = document.getElementsByClassName("header");
-        // console.log(menuColor);
-       // menu.style.backgroundColor="blue";
     });
 
     //Affectation du style
@@ -41,13 +38,13 @@ $().ready(function() {
     //Session flash
     $("#close-flash").on("click", function () {
         var flash = document.getElementById("flash-msg");
-        var container = document.getElementById("row-nav-main");
+        var container = document.getElementsByTagName("body");
         container.removeChild(flash);
     });
     setTimeout(function () {
-        var flash = document.getElementById("flash-msg");
-        var container = document.getElementById("row-nav-main");
-        container.removeChild(flash);
-    }, 7000);
+        $("#flash-msg").remove();
+    }, 3000);
+
+    // $('#select-category').on('change', func)
     
 })

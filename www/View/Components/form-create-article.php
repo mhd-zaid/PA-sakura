@@ -55,9 +55,6 @@
 			echo '</div>';
 
 			?>
-
-			<!-- TODO : Affichage des images 
-			-->
 			<?php if (!empty($config['article']['Image_Name'])) :  ?><img width="50px" src="/uploads/<?= $config['article']['Image_Name'] ?>" /><?php endif ?>
 			<div id="modal-image" class="" style="display:none;">
 				<input type="hidden" id="imageName" name="imageName" readonly="true" style="display:none" />
@@ -74,8 +71,6 @@
 								$img = "/uploads/" . $file;
 								echo '<div class="block-image col col-3 flex-col flex-col-align-center">';
 								echo "<input type='radio' name='imageName' value='$file' id='$file' >";
-
-							//	echo "<label for='$file'>$file";
 								echo "<label for='$file' >";
 								echo "<img src='$img' width='50px' id='$file' alt=''>";
 								echo "</label>";

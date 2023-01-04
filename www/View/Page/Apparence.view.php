@@ -20,34 +20,27 @@ switch ($apparenceData["Css"]) {
                         <p><?= $error ?> </p>
                     </div>
                 <?php endforeach;?>
-
-<!-- TODO : Modifier la taille de la sidebar apparence => 250px 
--->
 <section class="body">
     <header class="header">
-        <div class="row">
-            <div class="col col-2">
-                <img style="width: 75px;" src="../uploads/<?= $site[0]['Logo'] ?>" alt="Logo" width="50" height="50">
-            </div>
-            <div class="col col-10">
                 <nav class="nav row">
-                    <ul class="col col-12" style="margin: 0;display : flex">
-                        <div class="col col-3 center-text" style="cursor: pointer;">
-                            <li style="border-bottom: 2px solid white;list-style : none;padding-bottom: 5px;">ACTUALITÉS</li>
+                    <div class="col col-2 col-offset-1">
+                        <p style="cursor: pointer;"><?= $site[0]['Name'] ?></p>
+                    </div>
+                    <ul class="col col-9" style="margin: 0;display : flex">
+                        <div class="col col-2 center-text" style="cursor: pointer;">
+                            <li style="list-style : none;">ACTUALITÉS</li>
                         </div>
-                        <div class="col col-3 center-text" style="cursor: pointer;">
+                        <div class="col col-2 center-text" style="cursor: pointer;">
                             <li style="list-style: none">MANGAS</li>
                         </div>
-                        <div class="col col-3 center-text" style="cursor: pointer;">
+                        <div class="col col-2 center-text" style="cursor: pointer;">
                             <li style="list-style: none">ANIME</li>
                         </div>
-                        <div class="col col-3 center-text" style="cursor: pointer;">
+                        <div class="col col-2 center-text" style="cursor: pointer;">
                             <li style="list-style: none">PLANNING</li>
                         </div>
                     </ul>
                 </nav>
-            </div>
-        </div>
     </header>
 
     <section style="padding: 0px 50px;">

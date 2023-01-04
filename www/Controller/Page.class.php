@@ -90,7 +90,6 @@ class Page
                     $menuUpdate->setId($key['Id']);
                     $menuUpdate->setTitle($key['Title']);
                     $menuUpdate->setMain($key['Main']);
-                    $menuUpdate->setActive($key['Active']);
                     $menuUpdate->setContent(implode(',',$newArray));
                     $menuUpdate->save();
                 }

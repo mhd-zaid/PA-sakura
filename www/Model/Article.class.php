@@ -314,4 +314,11 @@ class Article extends DatabaseDriver
             $observer->alert();
         }
     }
+
+    public function getPostFilter(string $category)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("categories LIKE :category")->params(['category'=> "%{$category}%"])->execute();
+
+        return $sql->fetchAll();
+    }
 }
