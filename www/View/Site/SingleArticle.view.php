@@ -21,7 +21,7 @@
 							<h1>Commentaires</h1>
 						</div>
 					</div>
-					<form action="" method="POST">
+					<!-- <form action="" method="POST">
 						<div class="row">
 							<div class="col col-2">
 								<p style="margin: 0;">Pseudo</p>
@@ -51,7 +51,18 @@
 								<input class="button-comment" name="add-comment" type="submit" value="Envoyer">
 							</div>
 						</div>
-					</form>
+					</form> -->
+					<?php 
+						$this->includeComponent("form-create-comment", $configForm);
+						?>
+						 <?php foreach ($configFormErrors as $error ):?>
+							<div>
+								<p><?= $error ?> </p>
+							</div>
+						<?php endforeach;?>
+					<div class="col col-12">
+             
+        </div>
 				</div>
 			</div>
 			<div class="row">

@@ -53,7 +53,7 @@ class Comment extends DatabaseDriver
      */
     public function setAuthor(String $author): void
     {
-        $this->author = $author;
+        $this->author = strip_tags($author);
     }
 
     public function getEmail(): ?String
@@ -147,6 +147,47 @@ class Comment extends DatabaseDriver
                         "max"=>25,
                         "required"=>true,
                         "error"=>"Le mot banni doit faire entre 2 et 25 caractères."
+                    ],
+                ]
+            ];
+
+    }
+
+    public function formCommentaire(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Envoyer"
+                            ],
+                "inputs"=> [
+                    "author"=>[
+                        "type"=>"text",
+                        "label"=>"Pseudo",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Pseudo inccorect."
+                    ],
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"E-mail",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"E-mail inccorect."
+                    ],
+                    "content"=>[
+                        "type"=>"text",
+                        "label"=>"Message",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>200,
+                        "required"=>true,
+                        "error"=>"Le message doit faire entre 2 et 25 caractères."
                     ],
                 ]
             ];

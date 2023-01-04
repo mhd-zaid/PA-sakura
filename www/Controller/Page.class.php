@@ -19,9 +19,8 @@ class Page
     public function savePage(){
         $user = new User();
         $userData = $user->getUser($_COOKIE['JWT']);
-        if($userData['Role'] !== 3){
-            $page = new PageModel();
-            $form = $page->createPageForm();
+        $page = new PageModel();
+        $form = $page->createPageForm();
 
             //Cas d'un update car slug ou id renseigné
             if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
@@ -30,7 +29,7 @@ class Page
                 $page->setUserId($data['User_Id']);
                 $page->setActive($data["Active"]);
                 //Vérification de sécurité
-                if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
+                if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1 || $userData['Role'] === 0){
                     $page->setId($data["Id"]);
                 }else{
                     header("Location: /pages");
@@ -127,7 +126,6 @@ class Page
                     exit();                
                 }
             }  
-        }
         } 
     }
     $v=new View("Page/EditPage", "Back");
