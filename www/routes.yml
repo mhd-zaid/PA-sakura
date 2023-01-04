@@ -411,7 +411,7 @@
   isAdmin: 0
 
 /site:
-  controller: Home
+  controller: Site
   action: showPosts
   security: 0
   isAdmin: 0
