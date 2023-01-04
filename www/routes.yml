@@ -239,12 +239,6 @@
  action: editPage
  security: 0
  isAdmin: 0
- 
-/page/{id}:
- controller: Page
- action: showPage
- security: 0
- isAdmin: 0
 
   ### NAVIGATION ###
 
@@ -282,12 +276,6 @@
   action: addComment
   security: 0
   isAdmin: 0
-  
-/medias/{id}:
- controller: Media
- action: showMedia
- security: 0
- isAdmin: 0
 
   ### APPARENCES ###
 
