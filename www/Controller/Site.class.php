@@ -6,15 +6,39 @@ use App\Core\View;
 use App\Model\Page;
 use App\Model\Article as ArticleModel;
 use App\Model\Comment as CommentModel;
-use App\Model\Stats as statsModel;
+use App\Model\Category as CategoryModel;
+use App\Model\Stats ;
 use App\Controller\Commentaire as CommentaireController;
 use App\Core\Notification\ModifyNotification;
-use App\Core\Notification\DeleteNotification;
 use App\Core\Notification\AddNotification;
-use App\Core\SendMail;
 use App\Core\Verificator;
 
 class Site{
+
+	public function showPosts(): void
+    {
+        $idSession = session_id();
+		$stat = new Stats();
+		if (!$stat->existSession($idSession)) {
+			$stat->setSession($idSession);
+			$objectDate = date_format(new \DateTime(), "Y-m-d");
+			$stat->setDate($objectDate);
+			$stat->save();
+		} else {
+			$stat->setId($stat->findIdBySession($idSession));
+			$stat->setSession($idSession);
+			$objectDate = date_format(new \DateTime(), "Y-m-d");
+			$stat->setDate($objectDate);
+			$stat->save();
+		}
+        $post = new ArticleModel();
+        $category = new CategoryModel();
+        $allPosts = $post->selectAllLimit();
+        $allCategories = $category->selectAllLimit();
+        $v = new View("Site/Home", "Front2");
+        $v->assign("posts", $allPosts);
+        $v->assign("categories", $allCategories);
+    }
 
 	public function saveComment(): void
 	{
