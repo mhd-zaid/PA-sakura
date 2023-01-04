@@ -5,10 +5,10 @@
 		<?php
 		echo "<div class='col-md-8 '>
 			<div class='item-article'> ";
-		if ($post[0]['Image_Name'] != "UndefinedImage.jpg")	echo "<img class='article-thumbnails' src='/uploads/{$post[0]['Image_Name']}' alt=''>";
+		if ($post['Image_Name'] != "UndefinedImage.jpg")	echo "<img class='article-thumbnails' src='/uploads/{$post['Image_Name']}' alt=''>";
 		echo "<div class='content-box'> 
-			<p><span></span> Posted on {$post[0]['Date_Created']}</p>
-			<p>" . $post[0]['Content'] . "</p>
+			<p><span></span> Posted on {$post['Date_Created']}</p>
+			<p>" . $post['Content'] . "</p>
 			</div>
 			</div>";
 		?>

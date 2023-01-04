@@ -42,23 +42,34 @@
 </head>
 
 <body class="sk-body-front body">
-	<?php if (
-		$_SERVER['REQUEST_URI'] != "/installation" || $_SERVER['REQUEST_URI'] != "/se-connecter" || $_SERVER['REQUEST_URI'] != "/s-inscrire" ||
-		$_SERVER['REQUEST_URI'] != "/mot-de-passe-oublie" || $_SERVER['REQUEST_URI'] != "/reinitialisation-mot-de-passe"
-	) : ?>
-		<header id="site-header-site" class="header">
-			<div class="container">
-				<div class="logo-site">
-					<?php if (!empty($site)) : ?>
-						<a class="site-name nav" href="/"><?= $site[0]['Name'] ?></a>
-					<?php endif; ?>
-				</div>
-				<button id="menu-button-site"></button>
-				<nav id="main-nav-site" class="sk-navbar nav">
-					<ul>
-						<?php
+	<?php if ($_SERVER['REQUEST_URI']!= "/installation" || $_SERVER['REQUEST_URI']!= "/se-connecter" || $_SERVER['REQUEST_URI']!= "/s-inscrire" ||
+		$_SERVER['REQUEST_URI']!= "/mot-de-passe-oublie" || $_SERVER['REQUEST_URI']!= "/reinitialisation-mot-de-passe"): ?>
+	<header id="site-header-site" class="header">
+		<div class="container">
+			<div class="logo-site">
+				<?php if (!empty($site)):?>
+					<a class="site-name nav" href="/"><?= $site[0]['Name'] ?></a>
+				<?php endif; ?>
+			</div>
+			<button id="menu-button-site"></button>
+			<nav id="main-nav-site" class="sk-navbar nav">
+				<ul>
+				<?php
 						if (isset($_COOKIE['JWT'])) {
-							$userData = $User->getUser($_COOKIE['JWT']);
+							$userData = $User->getUser($_COOKIE['JWT']); }?>
+					<?php
+					if (!empty($menu)) {
+						$content = explode(",", $menu["Content"]);
+						foreach ($content as $value) {
+							echo ('<li>');
+							echo ('<div class="col"><a href=/page/');
+							if ($page->findRewriteUrl() > 0) {
+								echo $page->getPageByTitle($value)['Id'];
+							} else {
+								echo $page->getPageByTitle($value)['Slug'];
+							}
+							echo ('>' . $value . '</a></div>');
+							echo ('</li>');
 						}
 						if (!empty($menu)) {
 							$content = explode(",", $menu["Content"]);
@@ -78,6 +89,7 @@
 						if (isset($userData) && ($userData['Role'] == 1 || $userData['Role'] == 0 || $userData['Role'] == 2)) {
 							echo "<li><div class='col'><a href='/tableau-de-bord' class='nav'>Admin</a></div></li>";
 						}
+					}
 						?>
 
 					</ul>

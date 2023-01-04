@@ -10,7 +10,6 @@
 		<div class="row">
 			<?= $mainPage['Content']; ?>
 		</div>
-
 	</section>
 
 </div>

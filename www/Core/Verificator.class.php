@@ -177,7 +177,7 @@ class Verificator
 		}
 
 		if(empty($this->msg) && !empty($content) && !self::isPageExist($content)){
-			$this->msg[]="Ajouter des pages qui existent.";
+			$this->msg[]="Ajouter des pages qui existent ou qui sont publiés.";
 		}
 	}
 
@@ -383,7 +383,8 @@ class Verificator
 		foreach($list as $value){
 			$page = new Page();
 			$pageExist = $page->isExist($value);
-			if(!$pageExist){
+			$pageActive = $page->isActive($value);
+			if(!$pageExist || !$pageActive){
 				return false;
 			}
 		}
