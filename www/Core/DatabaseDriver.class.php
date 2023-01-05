@@ -113,10 +113,21 @@ abstract class DatabaseDriver
 				}
 			}
 			echo json_encode($dataTable);
-		}elseif((get_class($this) == Category::class) || get_class($this) === User::class || get_class($this) == Comment::class){
+		}elseif((get_class($this) == Category::class) || get_class($this) == Comment::class){
 			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id', $arrColumns);
 			echo json_encode($dataTable);
-		}
+		}elseif(get_class($this) === User::class){
+            $dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id', $arrColumns);
+            $newDataTable = [];
+            foreach($dataTable['data'] as $key=>&$data){
+                if($data['role'] == 3 || $data['role'] == 0){
+                    unset($dataTable['data'][$key]);
+                    $dataTable['data'] = array_values($dataTable['data']);
+                }
+                
+            }
+            echo json_encode($dataTable);
+        }
     }
 
 	public function isUnique(String $context, String $data){
@@ -313,4 +324,20 @@ abstract class DatabaseDriver
 		}
 		return $arraySlug;
 	}
+
+    public function getArticleOrPageByTitlte($title)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $title])->execute();
+
+        $data = $sql->fetch();
+		return $data;
+    }
+
+    public function getPageById($id)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $id])->execute();
+
+        $data = $sql->fetch();
+		return $data;
+    }
 }

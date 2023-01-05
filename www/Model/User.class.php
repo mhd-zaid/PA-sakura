@@ -527,6 +527,27 @@ class User extends DatabaseDriver
 
     }
 
+    public function subscribeNewsletterForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-reset-passwd",
+                                "submit"=>"S'abonner à la newsletter"
+                            ],
+                "inputs"=> [
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"Votre Email",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "error"=>"Email inccorect"
+                    ],
+                ]
+            ];
+
+    }
+
     public function checkLogin(String $email, String $pwd)
     {
         $params = ['email'=>$email];
@@ -551,10 +572,14 @@ class User extends DatabaseDriver
                 $this->setRole(intval($data['Role']));
                 $token = $this->getToken();
                 $this->save();
-                if($data['Status'] == 0){
+                if($data['Status'] == 0 && $data['Role'] !== 3){
                     $servername = $_SERVER['HTTP_HOST'];
                     new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
-                }else{
+                    return 2;
+                }elseif($data['Status'] == 0 && $data['Role'] == 3){
+                    return 3;
+                }
+                else{
                     setcookie("JWT",$token,time()+(60*60*2));
                     setcookie("Email",$data['Email'],time()+(60*60*2));
                     $this->save();

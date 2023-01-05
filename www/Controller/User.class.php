@@ -26,6 +26,10 @@ class User
 				$verification = $user->checkLogin($_POST['email'], $_POST['password']);
 				if (!$verification) {
 					$configFormErrors[] = 'Email ou mot de passe incorrect';
+				}elseif($verification == 2){
+					$configFormErrors[] = "Le compte n'a pas été vérifié, un email vous à été envoyer.";
+				}elseif($verification == 3){
+					$configFormErrors[] = "Votre rôle ne vous permet pas de vous connecter.";
 				}
 			}
 		}
@@ -103,9 +107,9 @@ class User
 					$email = $_POST['email'];
 					$token = $user->checkForgotPasswd($_POST['email']);
 					new sendMail($_POST['email'], "CHANGEMENT DE MDP", "<a href='http://$servername/reinitialisation-mot-de-passe?token=$token&email=$email'>Nouveau mot de passe</a>", "Un email à été envoyer pour la réinitialisation du mot de passe", "Une erreur s'est produite, merci de réesayer plus tard");
-					// $_SESSION["flash-success"] = "Un email vous à été envoyer pour la réinitialisation de votre mot de passe";
-					// header("Location: /se-connecter");
-					// exit();				
+					$_SESSION["flash-success"] = "Un email vous à été envoyer pour la réinitialisation de votre mot de passe";
+					header("Location: /se-connecter");
+					exit();				
 				}
 			}
 		}
@@ -129,7 +133,9 @@ class User
 					if (!$verification) {
 						$configFormErrors[] = "Une erreur s'est produite. ";
 					} else {
+						$_SESSION["flash-success"] = "Mot de passe modifié.";
 						header("Location: /se-connecter");
+						exit();	
 					}
 				}
 			}

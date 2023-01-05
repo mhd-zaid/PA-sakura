@@ -186,27 +186,27 @@ class Page extends DatabaseDriver
                                 "label"=>"Titre de la page",
                                 "class"=>"ipt-form-entry",
                                 "min"=>2,
-                                "max"=>25,
+                                "max"=>50,
                                 "required"=>true,
-                                "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                                "error"=>"Le titre doit faire entre 2 et 50 caractères"
                             ],
                 "metadescription"=>[
                                 "type"=>"text",
                                 "label"=>"Metadescription",
                                 "class"=>"ipt-form-entry",
                                 "min"=>2,
-                                "max"=>25,
+                                "max"=>150,
                                 "required"=>true,
-                                "error"=>"Les metadescriptions sont obligatoires"
+                                "error"=>"Les metadescriptions sont obligatoires et doivent faire entre 2 et 150 caractères."
                 ],
                 "slug"=>[
                                 "type"=>"text",
                                 "label"=>"Slug",
                                 "class"=>"ipt-form-entry",
                                 "min"=>2,
-                                "max"=>25,
+                                "max"=>50,
                                 "required"=>true,
-                                "error"=>"Le slug doit faire entre 2 et 25 caractères"
+                                "error"=>"Le slug doit faire entre 2 et 50 caractères"
                             ],
                 "editor"=>[
                     "type"=>"hidden",
@@ -217,22 +217,6 @@ class Page extends DatabaseDriver
             ]
         ];
 
-    }
-
-    public function getPageByTitle($title)
-    {
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $title])->execute();
-
-        $data = $sql->fetch();
-		return $data;
-    }
-
-    public function getPageById($id)
-    {
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $id])->execute();
-
-        $data = $sql->fetch();
-		return $data;
     }
 
     public function getMainPage()

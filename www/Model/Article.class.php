@@ -73,7 +73,7 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param mixed $firstname
+     * @param mixed $content
      */
     public function setContent(String $content): void
     {
@@ -86,7 +86,7 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed $slug
      */
     public function setSlug(String $slug): void
     {   
@@ -224,9 +224,9 @@ class Article extends DatabaseDriver
                                 "label"=>"Titre de l'article",
                                 "class"=>"ipt-form-entry",
                                 "min"=>2,
-                                "max"=>25,
+                                "max"=>50,
                                 "required"=>true,
-                                "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                                "error"=>"Le titre doit faire entre 2 et 50 caractères"
                             ],
                 "imageName"=>[
                                 "type"=>"hidden",
@@ -263,9 +263,9 @@ class Article extends DatabaseDriver
                     "label"=>"Metadescription",
                     "class"=>"ipt-form-entry",
                     "min"=>2,
-                    "max"=>25,
+                    "max"=>50,
                     "required"=>true,
-                    "error"=>"Les metadescriptions sont obligatoires"
+                    "error"=>"Les metadescriptions sont obligatoires et doivent faire entre 2 et 50 caractères."
                 ],
             ]
         ];

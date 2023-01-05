@@ -160,6 +160,9 @@ class Parameters
 				$servername = $_SERVER['HTTP_HOST'];
 				$email = $_POST['email'];
 				new sendMail($_POST['email'], "VERIFICATION EMAIL", "<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>", "Inscription réussite, confirmer votre email", "Une erreur s'est produite, merci de réesayer plus tard");
+				$_SESSION["flash-success"] = "Le nouvel utilisateur à bien été ajouté, il doit désormais valider son email.";
+				header("Location: /parametres-users");
+				exit();	
 			}
 		}
 
@@ -182,6 +185,11 @@ class Parameters
 		if ($role['Role'] !== 1 && $role['Role'] !== 0) header("Location: /tableau-de-bord");
 		$userUpdateForm = $user->userUpdateForm();
 		$userInformation = $user->find();
+		if($userInformation['Role'] === 3){
+			$_SESSION["flash-error"] = "Vous ne pouvez pas editer un abonné.";
+			header('Location: /parametres-users');
+			exit;
+		}
 
 		if (!empty($_POST)) {
 			$data = [];

@@ -65,7 +65,7 @@ class Menu extends DatabaseDriver
      */
     public function setTitle(String $title): void
     {
-        $this->title = $title;
+        $this->title = strip_tags($title);
     }
 
     /**

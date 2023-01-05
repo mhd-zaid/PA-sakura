@@ -10,31 +10,37 @@
             <input type="submit" class="col col-2">
         </form>
         <?php
-        foreach ($posts as $post) {
-            $post['Content'] = substr($post['Content'], 0, 150);
-            echo "<div class='col-md-8 '>
+        foreach ($posts as $post): 
+            $post['Content'] = substr($post['Content'], 0, 150);?> 
+             <div class='col-md-8 '>
 			<div class='item-article row'> 
-			<div class='col col-3 col-sm-12 col-md-12'>";
+			<div class='col col-3 col-sm-12 col-md-12'>
+            <?php
             if (empty($post['Image_Name'])) {
                 echo "<img class='article-thumbnails' src='/uploads/UndefinedImage.jpg' alt=''>";
             } else {
                 echo "<img class='article-thumbnails' src='/uploads/{$post['Image_Name']}' alt=''>";
-            }
-            echo "</div>
+            } ?>
+            </div>
 			<div class='content-box col col-9'> 
 			<h2 class='title'>
-				<a href='/post/{$post['Id']}' class='titre'>{$post['Slug']}</a>
+				<a href='/post/<?php
+                    if ($article->findRewriteUrl() > 0) {
+                        echo $article->getArticleOrPageByTitlte($post['Title'])['Id'];
+                    } else {
+                        echo $article->getArticleOrPageByTitlte($post['Title'])['Slug'];
+                    }
+                ?>
+                'class='titre'><?= $post['Slug'] ?></a>
 			</h2>
-			<p class='paragraph'><span></span> Posted on {$post['Date_Created']}</p>
-			<p class='paragraph'>" . strip_tags($post['Content']) . "</p>
-			<a href='/post/{$post['Id']}' class='paragraph'>Read More</a>
+			<p class='paragraph'><span></span> Posted on <?= $post['Date_Created']?></p>
+			<p class='paragraph'> <?= strip_tags($post['Content'])?></p>
+			<a href='/post/<?= $post['Id'] ?> 'class='paragraph'>Read More</a>
 			</div>
 			</div>
 			<hr>
 			</div>
-			";
-        }
-        ?>
+            <?php endforeach;?>
 
     </div>
 </div>

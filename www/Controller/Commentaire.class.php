@@ -89,7 +89,7 @@ class Commentaire
 
             if(empty($configFormErrors)){
                 if (isset($_POST['submit'])) {
-                        file_put_contents(getcwd() . "/banWords.txt", "\n".strip_tags($_POST['word']),FILE_APPEND);
+                        file_put_contents(getcwd() . "/banWords.txt",strip_tags($_POST['word'])."\n",FILE_APPEND);
                 }
             }
         }
