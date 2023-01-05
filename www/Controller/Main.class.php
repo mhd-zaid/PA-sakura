@@ -11,11 +11,9 @@ class Main
 
 	public function index(): void
 	{
-		if (!file_exists(__DIR__ . "/../config.php")) {
-			header("Location: /installation");
-		} else {
-			$v = new View("Front/Home", "Front");
-		}
+		
+		$v = new View("Front/Home", "Front");
+
 	}
 
 	public function install(): void

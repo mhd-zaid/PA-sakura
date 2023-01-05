@@ -18,24 +18,29 @@ class Site{
 	
 	public function index()
 	{
-		$idSession = session_id();
-		$stat = new Stats();
-		if (!$stat->existSession($idSession)) {
-			$stat->setSession($idSession);
-			$objectDate = date_format(new \DateTime(), "Y-m-d");
-			$stat->setDate($objectDate);
-			$stat->save();
+		if (!file_exists(__DIR__ . "/../config.php")) {
+			header("Location: /installation");
 		} else {
-			$stat->setId($stat->findIdBySession($idSession));
-			$stat->setSession($idSession);
-			$objectDate = date_format(new \DateTime(), "Y-m-d");
-			$stat->setDate($objectDate);
-			$stat->save();
+			$idSession = session_id();
+			$stat = new Stats();
+			if (!$stat->existSession($idSession)) {
+				$stat->setSession($idSession);
+				$objectDate = date_format(new \DateTime(), "Y-m-d");
+				$stat->setDate($objectDate);
+				$stat->save();
+			} else {
+				$stat->setId($stat->findIdBySession($idSession));
+				$stat->setSession($idSession);
+				$objectDate = date_format(new \DateTime(), "Y-m-d");
+				$stat->setDate($objectDate);
+				$stat->save();
+			}
+			$page = new Page();
+			$page = $page->getMainPage();
+			
+			$v = new View("Site/Home", "Front2");
+			$v->assign("mainPage",$page);
 		}
-		$page = new Page();
-		$page = $page->getMainPage();
-		$v = new View("Site/Home", "Front2");
-		$v->assign("mainPage",$page);
 	}
 
 	public function showPosts(): void
