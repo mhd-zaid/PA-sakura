@@ -317,7 +317,7 @@ class Article extends DatabaseDriver
 
     public function getPostFilter(string $category)
     {
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("categories LIKE :category")->params(['category'=> "%{$category}%"])->execute();
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("categories LIKE :category")->andWhere("Active = 1")->params(['category'=> "%{$category}%"])->execute();
 
         return $sql->fetchAll();
     }

@@ -16,12 +16,10 @@
 
 
 -- Listage de la structure de la base pour sakura
-DROP DATABASE IF EXISTS `sakura`;
 CREATE DATABASE IF NOT EXISTS `sakura` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `sakura`;
 
 -- Listage de la structure de table sakura. sakura_apparence
-DROP TABLE IF EXISTS `sakura_apparence`;
 CREATE TABLE IF NOT EXISTS `sakura_apparence` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Css` longtext NOT NULL,
@@ -32,7 +30,6 @@ CREATE TABLE IF NOT EXISTS `sakura_apparence` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_article
-DROP TABLE IF EXISTS `sakura_article`;
 CREATE TABLE IF NOT EXISTS `sakura_article` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Content` text,
@@ -52,7 +49,6 @@ CREATE TABLE IF NOT EXISTS `sakura_article` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_category
-DROP TABLE IF EXISTS `sakura_category`;
 CREATE TABLE IF NOT EXISTS `sakura_category` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(255) DEFAULT NULL,
@@ -62,7 +58,6 @@ CREATE TABLE IF NOT EXISTS `sakura_category` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_comment
-DROP TABLE IF EXISTS `sakura_comment`;
 CREATE TABLE IF NOT EXISTS `sakura_comment` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Content` varchar(255) DEFAULT NULL,
@@ -78,7 +73,6 @@ CREATE TABLE IF NOT EXISTS `sakura_comment` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_menu
-DROP TABLE IF EXISTS `sakura_menu`;
 CREATE TABLE IF NOT EXISTS `sakura_menu` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(50) NOT NULL,
@@ -91,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `sakura_menu` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_page
-DROP TABLE IF EXISTS `sakura_page`;
 CREATE TABLE IF NOT EXISTS `sakura_page` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Title` varchar(255) DEFAULT NULL,
@@ -110,7 +103,6 @@ CREATE TABLE IF NOT EXISTS `sakura_page` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_site
-DROP TABLE IF EXISTS `sakura_site`;
 CREATE TABLE IF NOT EXISTS `sakura_site` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Logo` varchar(255) DEFAULT NULL,
@@ -125,7 +117,6 @@ CREATE TABLE IF NOT EXISTS `sakura_site` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_stats
-DROP TABLE IF EXISTS `sakura_stats`;
 CREATE TABLE IF NOT EXISTS `sakura_stats` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Session` varchar(255) NOT NULL,
@@ -136,7 +127,6 @@ CREATE TABLE IF NOT EXISTS `sakura_stats` (
 -- Les données exportées n'étaient pas sélectionnées.
 
 -- Listage de la structure de table sakura. sakura_user
-DROP TABLE IF EXISTS `sakura_user`;
 CREATE TABLE IF NOT EXISTS `sakura_user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Firstname` varchar(25) DEFAULT NULL,

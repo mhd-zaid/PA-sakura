@@ -47,7 +47,6 @@
                             <?php if ($userData['Role'] == 1 || $userData['Role'] == 0) : ?>
                                 <a href="/parametres-users">Gérer les utilisateurs</a>
                             <?php endif ?>
-                            <a href="/parametres-support">Assistance</a>
                             <a href="/se-deconnecter">Se déconnecter</a>
                         </div>
                     </div>
