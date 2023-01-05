@@ -9,7 +9,7 @@ class Category extends DatabaseDriver
 {
 
 	private $id = null;
-	protected $titre;
+	protected $title;
 
 	public function __construct()
 	{
@@ -33,17 +33,17 @@ class Category extends DatabaseDriver
     }
 
 
-    public function getTitre(): ?String
+    public function getTitle(): ?String
     {
-        return $this->titre;
+        return $this->title;
     }
 
     /**
      * @param null $content
      */
-    public function setTitre(String $titre): void
+    public function setTitle(String $title): void
     {
-        $this->titre = $titre;
+        $this->title = strip_tags($title);
     }
 
     public function createCategoryForm(){
@@ -54,27 +54,25 @@ class Category extends DatabaseDriver
                                 "class"=>"form-register",
                                 "submit"=>"Enregistrer"
                             ],
-                "category"=>$this->select(),
+                "category"=>$this->find(),
 
                 "inputs"=> [
                     "titre"=>[
-                                    "type"=>"text",
-                                    "label"=>"Titre de la catégorie",
-                                    "class"=>"ipt-form-entry",
-                                    "required"=>true,
-                                    "error"=>"Votre titre est inccorect"
-                                ],
+                        "type"=>"text",
+                        "label"=>"Titre de l'article",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Le titre doit faire entre 2 et 25 caractères"
+                    ],
                 ]
             ];
 
     }
 
-    public function getCategories(){
-        $sql = "SELECT * FROM ".$this->table."";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
+    public function setCatTitle(string $title): void
+    {
+        $this->title = $title;
     }
 }
-
-?>

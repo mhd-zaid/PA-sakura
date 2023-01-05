@@ -15,25 +15,32 @@ class Category{
 
     public function saveCategory(){
         $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
+        $userData = $user->getUser($_COOKIE['JWT']);
         if($userData['Role'] !== 3){
             $category = new CategoryModel();
             $form = $category->createCategoryForm();
         }else{
             header("Location: /category");
         }
-
-        if(isset($_POST['submit'])){
+        if(!empty($_POST)){
+            $data =[];
+            isset($_POST['titre']) ? array_push($data, $_POST["titre"]) : '';
+            $verificator = new Verificator($form, $data);
+            $verificator->verificatorEditionCategory($form, $_POST);
+            $configFormErrors = $verificator->getMsg();
+            
+            if(empty($configFormErrors)){
+            if(isset($_POST['submit'])){
             $article = new Article();
             $category = new CategoryModel();
-            $dataCategory = $category->select();
+            $dataCategory = $category->find();
             //Cas d'un update
             if(isset($_GET['id']) && !empty($_GET['id'])){
                 $category->setId($_GET['id']);
             }
 
-            $category->setTitre($_POST['titre']);
-            $data = $article->selectAllCategoriesArticle();
+            $category->setTitle($_POST['titre']);
+            $data = $article->select();
             $search = $dataCategory['Titre'];
 
             foreach($data as $id=>$key ){
@@ -55,14 +62,20 @@ class Category{
                 }
             }
             $category->save();
+            if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "La catégorie a été modifié avec succés";
+            else $_SESSION["flash-success"] = "La catégorie a été crée avec succés";
+            header("Location: /category");
+            exit();
             header("Location: /category");
         }
+    }
+    }
 
         if(isset($_POST['delete'])){
             $article = new Article();
-            $data = $article->selectAllCategoriesArticle();
+            $data = $article->select();
             $category = new CategoryModel();
-            $dataCategory = $category->select();
+            $dataCategory = $category->find();
             $search = $dataCategory['Titre'];
 
 
@@ -84,11 +97,14 @@ class Category{
                     $articleUpdate->save();
                 }
             }
-            $category->delete($_GET['id']);
+            $category->delete();
+            $_SESSION["flash-success"] = "La catégorie a été supprimer avec succés";
             header("Location: /category");
+            exit();
         }
         $v=new View("Page/EditCategory", "Back");
         $v->assign("configForm", $form);
+        $v->assign("configFormErrors", $configFormErrors??[]);
     }
 
 }

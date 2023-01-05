@@ -6,6 +6,8 @@ use App\Core\View;
 use App\Model\Article as ArticleModel;
 use App\Model\User;
 use App\Core\Verificator;
+use App\Core\Notification\ModifyNotification;
+use App\Core\Notification\DeleteNotification;
 
 class Article{
     public function index(){
@@ -14,133 +16,114 @@ class Article{
 
     public function saveArticle(){
         $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
-        if($userData['Role'] !== 3){
-            $article = new ArticleModel();
-            $form = $article->createArticleForm();
+        $userData = $user->getUser($_COOKIE['JWT']);
+        $article = new ArticleModel();
+        $form = $article->createArticleForm();
 
             //Cas d'un update car slug ou id renseigné
             if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
                 //récupère l'article courant
-                $data = $article->findArticle();
+                $dataArticle = $article->find();
+                $article->setUserId($dataArticle['User_Id']);
+                $article->setActive($dataArticle["Active"]);
                 //Vérification de sécurité
-                if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1){
-                    $article->setId($data["Id"]);
+                if($userData['Id'] === $dataArticle['User_Id'] || $userData['Role'] === 1 || $userData['Role'] === 0){
+                    $article->setId($dataArticle["Id"]);
                 }else{
-                    header("Location: /tableau-de-bord");
+                    $_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
+                    http_response_code(401);
+                    header("Location: /article");
+                    exit();
                 }
+            }else{
+                $article->setUserId($userData["Id"]);
+                $article->setActive(0);
             }
 
-            $rewriteUrl = $article->findArticleRewriteUrl();
+            //Récupère le choix de réecriture d'URL
+            $rewriteUrl = $article->findRewriteUrl();
             $rewriteUrl > 0 ? $choice = 1 : $choice = 2;
 
             if(!empty($_POST)){
-            $verificator = new Verificator($form, $_POST);
+            $data = [];
+            isset($_POST['editor']) ? array_push($data, $_POST["editor"]) : '';
+            isset($_POST['titre']) ? array_push($data, $_POST["titre"]) : '';
+            isset($_POST['slug']) ? array_push($data, $_POST["slug"]) : '';
+            isset($_POST['imageName']) ? array_push($data, $_POST["imageName"]) : '';
+            isset($_POST['list']) ? array_push($data, $_POST["list"]) : '';
+            isset($_POST['description']) ? array_push($data, $_POST["description"]) : '';
+            isset($_POST['metadescription']) ? array_push($data, $_POST["metadescription"]) : '';
+            $verificator = new Verificator($form, $data);
 			$verificator->verificatorEditionArticle($form, $_POST);
 			$configFormErrors = $verificator->getMsg();
 
             if(empty($configFormErrors)){
-            if(isset($_POST['submit'])){
-                if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){  
-                    $data = $article->findArticle();              
-                    $dataUserId = $data["User_Id"];
-                    $dataActive = $data["Active"];
-                }
-                isset($dataUserId) ? "" : $dataUserId=$userData["Id"] ;
-                isset($dataActive) ? "" : $dataActive=0 ;
-                if(isset($_POST['editor']) && !empty($_POST['editor'])){
-                    $article->setContent($_POST['editor']);
-                    $article->setSlug($_POST['slug']);
-                    $article->setTitle($_POST['titre']);
-                    $article->setUserId($userData['Id']);
-                    $article->setImageName($_POST['imageName']);
-                    $article->setCategories($_POST['list']);
-                    $article->setRewriteUrl($choice);
-                    $article->save();
-                    header("Location: /article");
-                 }
-            }   
 
-            if(isset($_POST['deleteImage'])){
-                if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){    
-                    $data = $article->findArticle();            
-                    $dataUserId = $data["User_Id"];
-                    $dataActive = $data["Active"];
-                }
-                isset($dataUserId) ? "" : $dataUserId=$userData["Id"] ;
-                isset($dataActive) ? "" : $dataActive=0 ;
-                $article->setContent($_POST['editor']);
-                $article->setSlug($_POST['titre']);
-                $article->setUserId($userData['Id']);
-                $article->setImageName("");
-                $article->setActive($dataActive);
-                $article->setTitle($_POST['titre']);
-                $article->setRewriteUrl($data['Rewrite_Url']);
-                $article->setCategories($data['categories']);
+            $article->setContent($_POST['editor']);
+            $article->setSlug($_POST['slug']);
+            $article->setTitle($_POST['titre']);
+            if(isset($_GET['Slug']) && !empty($_GET['Slug']) || isset($_GET['id']) && !empty($_GET['id'])){ 
+                if(!empty($_POST['imageName'])) $article->setImageName($_POST['imageName']);
+                else $article->setImageName($dataArticle['Image_Name']); 
+            }else{
+                $article->setImageName($_POST['imageName']);
+            }
+            $article->setCategories($_POST['list']);
+            $article->setRewriteUrl($choice);
+            $article->setDescription($_POST['metadescription']);
+
+            if(isset($_POST['submit'])){
                 $article->save();
+                if (isset($_GET["id"]) || isset($_GET['Slug'])) $_SESSION["flash-success"] = "L'article a été modifié avec succés";
+                else $_SESSION["flash-success"] = "L'article a été crée avec succés";
                 header("Location: /article");
+                exit();
+            }   
+            if(isset($_POST['deleteImage'])){
+                $article->setImageName("");
+                $article->save();
+                $_SESSION["flash-success"] = "Image supprimé";
+                $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                exit();
             } 
+
             if(isset($_POST['delete'])){
-                $article->deleteArticle();
+                $article->delete();
+                $_SESSION["flash-success"] = "L'article a été supprimé avec succés";
                 header("Location: /article");
+                exit();
             } 
+            if(isset($_POST['publish'])){
+                if($userData['Role'] === 1 || $userData['Role'] === 0){
+                $article->setActive(1);
+                $article->save();
+                $_SESSION["flash-success"] = "L'article a été publié avec succés";
+                $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                exit();
+                }else{
+                    $_SESSION["flash-error"] = "Vous n'êtes pas autorisé à faire cela.";
+                    header("Location: /tableau-de-bord");
+                    exit();
+                }
+            }  
+            if(isset($_POST['unpublish'])){
+                if($userData['Role'] === 1 || $userData['Role'] === 0){
+                $article->setActive(0);
+                $article->save();
+                $_SESSION["flash-success"] = "L'article a été retiré avec succés";
+                $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
+                exit();
+                }else{
+                    $_SESSION["flash-error"] = "Vous n'êtes pas autorisé à faire cela.";
+                    header("Location: /tableau-de-bord");
+                    exit();
+                }
+            }  
         }
         } 
-        }else{
-            echo 'pas droit';
-        }
+
         $v=new View("Page/EditArticle", "Back");
         $v->assign("configForm", $form);
         $v->assign("configFormErrors", $configFormErrors??[]);
-    }
-    
-    public function readArticle(){
-        $user = new User();
-        $userData = $user->getUser(null,$_COOKIE['Email']);
-        $article = new ArticleModel();
-        
-        $data = $article->findArticle();
-        if(isset($_POST['submit'])){
-            $_GET['Slug'] ? header('Location: /article-add/'.$data["Slug"]) : header('Location: /article-add/'.$data["Id"]);
-        }  
-        if(isset($_POST['publish'])){
-            $article->setId($data['Id']);
-            $article->setContent($data['Content']);
-            $article->setSlug($data['Slug']);
-            $article->setUserId($data['User_Id']);
-            $article->setImageName($data['Image_Name']);
-            $article->setActive(1);
-            $article->setTitle($data['Slug']);
-            $article->setRewriteUrl($data['Rewrite_Url']);
-            $article->save();
-            $_GET['Slug'] ? header('Location: /article-read/'.$_GET['Slug']) : header('Location: /article-read/'.$_GET['id']);
-        }  
-        if(isset($_POST['unpublish'])){
-            $article->setId($data['Id']);
-            $article->setContent($data['Content']);
-            $article->setSlug($data['Slug']);
-            $article->setUserId($data['User_Id']);
-            $article->setImageName($data['Image_Name']);
-            $article->setActive(0);
-            $article->setTitle($data['Slug']);
-            $article->setRewriteUrl($data['Rewrite_Url']);
-            $article->save();
-            $_GET['Slug'] ? header('Location: /article-read/'.$_GET['Slug']) : header('Location: /article-read/'.$_GET['id']);
-        }  
-        $v=new View("Page/ReadArticle", "Back");
-        $v->assign("data", $data??[]);
-    }
-
-    public function manageArticle(){
-        $article = new ArticleModel();
-        $value = $article->findArticleRewriteUrl();
-        if(isset($_POST['save'])){
-            $article->updateRewriteUrl($_POST['choice']);
-            header('Location: /parametres-article ');
-        }
-        $v = new View("Page/ParametresManageArticle", "Back");
-        $v->assign("configForm", $value);
-        $v->assign("configFormErrors", $configFormErrors??[]);
-    }
-
+}
 }

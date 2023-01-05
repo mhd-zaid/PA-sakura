@@ -3,6 +3,9 @@
 @import "partials/globals";
 @import "components/form";
 @import "partials/grid";
+@import "partials/nav";
+@import "partials/preview";
+@import "partials/table";
 @import "components/content";
 @import "components/header";
 @import "components/footer";
@@ -23,5 +26,8 @@
 @import "components/filter";
 @import "components/image";
 @import "components/flash";
+@import "components/statistiques";
+@import "components/appearance";
+@import "components/404";
 
 // Ordre important

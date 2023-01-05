@@ -1,3 +1,4 @@
+gfdg
+alert(1)
 pute
-ok
-rr
+maxi pute

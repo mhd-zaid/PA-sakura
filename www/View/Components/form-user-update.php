@@ -1,54 +1,40 @@
 <form method="<?= $config["config"]["method"]??"GET" ?>" action="<?= $config["config"]["action"]??"" ?>">
 	<div>
 		<?php 
-			$textElem=array_slice($config["inputs"], 0, 2);
-			$radioElem=array_slice($config["inputs"], 5,3);
+			$radioElem=array_slice($config["inputs"], 0,1);
 		?>
-		
-		<?php foreach ($textElem as $name => $configInput):?>
-			<div class="row">
-				<div class="col col-3">
-					<p><?= $configInput["label"] ?></p>
-				</div>
-				<div class="col">
-					<input name="<?= $name ?>" 
-							class="<?= $configInput["class"]??"" ?>"
-							type="<?= $configInput["type"]??"text" ?>"
-							value="<?= $config["user"][ucfirst($name)] ?>"
-							<?php echo "disabled"; ?>
-							<?php if(!empty($configInput["required"])): ?>
-								required="required"
-							<?php endif;?>
-
-					>
-				</div>
-			</div>
-		<?php endforeach;?>
 	</div>
 
+	<div>
+		<p>Editer les droits de <?= $config['user']['Firstname'].' '.$config['user']['Lastname'] ?></p>
+	</div>
 	<?php 	
 		foreach ($radioElem as $name => $configInput):?>
-		<div class="row flex-row flew-row-align-center">
+		<?php foreach ($configInput as $key => $value):?>
+		<div class="row flex-row flex-row-align-center">
 			<div class="col">
-				<input name="<?= $configInput["elemName"]??"" ?>"
-						class="<?= $configInput["class"]??"" ?>"
-						type="<?= $configInput["type"]??"text" ?>"
-						value="<?= $configInput["value"]??"" ?>"
+				<input name="<?= $value["elemName"]??"" ?>"
+						class="<?= $value["class"]??"" ?>"
+						type="<?= $value["type"]??"text" ?>"
+						value="<?= $value["value"]??"" ?>"
+
 						<?php 
-						if($configInput["value"]==$config["user"]['Role']){
+						if($value["value"]==$config["user"]['Role']){
 							echo 'checked';
 						}
 						?>
 
-						<?php if(!empty($configInput["required"])): ?>
+						<?php if(!empty($value["required"])): ?>
 							required="required"
 						<?php endif;?>
+
 				>
 			</div>
 			<div class="col">
-				<p><?= $configInput["label"] ?></p>
+				<p><?= $value["label"] ?></p>
 			</div>
 		</div>
+	<?php endforeach;?>
 	<?php endforeach;?>
 
 	<div class="row">

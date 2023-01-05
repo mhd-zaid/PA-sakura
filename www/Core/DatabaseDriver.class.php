@@ -2,6 +2,7 @@
 
 namespace App\Core;
 use App\Vendor\DataTable\SSP;
+use App\Core\QueryBuilder;
 use App\Model\User;
 use App\Model\Article;
 use App\Model\Comment;
@@ -16,21 +17,37 @@ abstract class DatabaseDriver
 
 	protected $pdo;
 	protected $table;
+    protected $queryBuilder;
+    private static $instance;
 
+    
+    /**
+     * @return object
+     */
+    public static function getInstance(): object
+    {
+        if (is_null(self::$instance)) {
+			self::$instance = new \PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";port=3306" ,DB_USER ,DB_PASSWD,array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
+
+			self::$instance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+    		self::$instance->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
+        }
+        return self::$instance;
+    }
 
 	public function __construct()
 	{
-		//Connexion avec la bdd
+		if (file_exists(__DIR__."/../config.php")) {
+            include_once __DIR__."/../config.php";
+        }
+        //Connexion avec la bdd
 		try{
-			$this->pdo = new \PDO("mysql:host=database;dbname=sakura;port=3306" ,"usersql" ,"passwordsql",array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES latin1"));
+			$this->pdo = $this::getInstance();
 
-			$this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-    		$this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
-
-		}catch(Exception $e){
+		}catch(\Exception $e){
 			die("Erreur SQL ".$e->getMessage());
 		}
-
+        $this->queryBuilder = new QueryBuilder($this->pdo);
 		$CalledClassExploded = explode("\\", get_called_class());
 		$this->table = strtolower("sakura_".end($CalledClassExploded));
 	}
@@ -44,104 +61,95 @@ abstract class DatabaseDriver
 		$classVars = get_class_vars(get_class());
 		$columns = array_diff_key($objectVars, $classVars);
 
-
 		if(is_null($this->getId())){
-			// INSERT INTO esgi_user (firstname,lastname,email,pwd,status) VALUES (:firstname,:lastname,:email,:pwd,:status) ;
-			$sql = "INSERT INTO ".$this->table. " (".implode(",", array_keys($columns) ) .") VALUES (:".implode(",:", array_keys($columns) ) .") ;";
+            $sql = ($this->queryBuilder)->from($this->table)->insert(array_keys($columns));
 		}else{
 
 			foreach($columns as $column=>$value){
 				$sqlUpdate[] = $column."=:".$column;
 			}
 
-			$sql = "UPDATE ".$this->table. " SET  ".implode(",",$sqlUpdate)."  WHERE id=".$this->getId();
+            $sql = ($this->queryBuilder)->update($sqlUpdate)->from($this->table)->where("id=".$this->getId());
 		}
-
-		$queryPrepared = $this->pdo->prepare($sql);
-		$queryPrepared->execute($columns);
-
-	}
-
-	public function delete(int $id):void
-	{
-		$sql = "DELETE FROM $this->table where id=$id";
-		$queryPrepared = $this->pdo->prepare($sql);
-		$queryPrepared->execute();
+		$sql->params($columns)->execute();
 
 	}
 
 	public function select()
 	{
-		if(isset($_GET['id']) && !empty($_GET['id'])){
-		$sql = "SELECT * FROM ".$this->table." WHERE id =".$_GET['id'];
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
+        $sql = ($this->queryBuilder)->select()->from($this->table);
+        $result = $sql->execute();
+        $data = $result->fetchAll();
 		return $data;
-		}else{
-			return null;
-		}
-
 	}
 
 	public function serverProcessing(){
-		if(get_class($this) == User::class){
-			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
-			$i=0;
-			$result = [
-				'recordsTotal' =>$dataTable['recordsTotal'] ,
-				'recordsFiltered'=>$dataTable['recordsFiltered'],
-				'data'=>null
-			];
-			
-			foreach ($dataTable as $data => $value) {
-				if(array_key_exists($i,$dataTable['data'])){
-					if ($dataTable['data'][$i]['Role'] == 0) {
-						unset($dataTable['data'][$i]);
-					}else{
-						$result['data'][] = $dataTable['data'][$i];
-					}
-				}
-				$i++;
+
+		$objectVars = get_object_vars($this);
+		$classVars = get_class_vars(get_class());
+		$columns = array_diff_key($objectVars, $classVars);
+		$arrColumns = [['db' => 'Id', 'dt' => 'Id']];
+			foreach($columns as $key => $col){
+				$arrColumns[] = ['db' => $key, 'dt' => $key];
 			}
-			$result['recordsFiltered'] = $dataTable['recordsFiltered'];
-			echo json_encode($result);
-		}elseif((get_class($this) == Article::class) || (get_class($this) == Comment::class) || (get_class($this) == Page::class)){
-			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
-			$i=0;
-			foreach ($dataTable as $data => $value) {
-				preg_replace('/%u([0-9A-F]+)/', '&#x$1;', $dataTable['data'][$i]['Content']);
-				html_entity_decode($dataTable['data'][$i]['Content'], ENT_COMPAT, 'UTF-8');
-				if ($dataTable['data'][$i]['Active'] === 0) {
-					$dataTable['data'][$i]['Active'] = "Brouillon";
+		$user = new User();
+		if((get_class($this) == Article::class) || (get_class($this) == Page::class)){
+
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'Id', $arrColumns);
+
+			foreach ($dataTable['data'] as $data => &$value) {
+
+				preg_replace('/%u([0-9A-F]+)/', '&#x$1;', $value['content']);
+				html_entity_decode($value['content'], ENT_COMPAT, 'UTF-8');
+
+				if ($value['active'] == 0) {
+					$value['active'] = "Brouillon";
 				}
-				if($dataTable['data'][$i]['Active'] === 1){
-					$dataTable['data'][$i]['Active'] = "Publié";
+				if($value['active'] == 1){
+				   $value['active'] = "Publié";
+				}
+				if(isset($value['user_id'])){
+				$value['user_id'] = $user->getNameUserId($value['user_id']);
 				}
 			}
 			echo json_encode($dataTable);
-		}elseif((get_class($this) == Category::class)){
-			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id');
+		}elseif((get_class($this) == Category::class) || get_class($this) === User::class || get_class($this) == Comment::class){
+			$dataTable = SSP::simple( $_GET, $this->pdo, $this->table,'id', $arrColumns);
 			echo json_encode($dataTable);
 		}
     }
 
-	public function isTitleExist(String $title){
+	public function isUnique(String $context, String $data){
+		if($context === 'Title'){
+	
+			$params = ['Title'=>$data];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title = :Title")->params($params);
+		}
+		if($context === 'slug'){
 
-        $sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
-        $params = ['Title'=>$title];
-        $queryPrepared = $this->pdo->prepare($sql);
+			$params = ['slug'=>$data];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("slug = :slug")->params($params);
+		}
 
-		$queryPrepared->execute($params);
+		if($context === 'Email'){
+			$user = new User();
+			$userInfo = $user->getUser($_COOKIE['JWT']);
+			
+			$params = ['Email'=>$data, "id"=>$userInfo['Id']];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("Email = :Email")->andWhere("Id != :id")->params($params);
+		}
+
+        $queryPrepared = $sql->execute();
         $result = $queryPrepared->fetch();
 
         $numberRow = $queryPrepared->rowCount();
         if($numberRow > 0){
             if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
 
-				$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
 				$params = ['Slug'=>$_GET['Slug']];
-				$queryPrepared = $this->pdo->prepare($sql);
-				$queryPrepared->execute($params);
+                $sql = ($this->queryBuilder)->select()->from($this->table)->where("Slug = :Slug")->params($params);
+				
+                $queryPrepared = $sql->execute();
 				$dataSlug = $queryPrepared->fetch();
 
                 if($dataSlug['Id'] == $result['Id']){
@@ -150,10 +158,11 @@ abstract class DatabaseDriver
                     return false;
                 }
             }elseif(isset($_GET['id']) && !empty($_GET['id'])){
-                $sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
+                
 				$params = ['Id'=>$_GET['id']];
-				$queryPrepared = $this->pdo->prepare($sql);
-				$queryPrepared->execute($params);
+                $sql = ($this->queryBuilder)->select()->from($this->table)->where("Id = :Id")->params($params);
+				
+                $queryPrepared = $sql->execute();
 				$dataSlug = $queryPrepared->fetch();
 
                 if($dataSlug['Id'] == $result['Id']){
@@ -169,47 +178,139 @@ abstract class DatabaseDriver
         }
     }
 
-	public function isSlugExists(String $slug){
+	public function find(){
+        if(!empty($_GET['Slug'])){
+            $slug = $_GET['Slug'];
+            
+            $params = ['Slug'=>$slug];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("Slug =:Slug")->params($params);
 
-        $sql = "SELECT * FROM ".$this->table." WHERE Title = :Title";
-        $params = ['Title'=>$title];
-        $queryPrepared = $this->pdo->prepare($sql);
+            $queryPrepared = $sql->execute();
+            $data = $queryPrepared->fetch();
+            if(empty($data)){
+                require "View/Site/404.view.php";
+                die;
+            }
+        }elseif(!empty($_GET['id'])){
+            $params = ['id'=>$_GET['id']];
+            $sql = ($this->queryBuilder)->select()->from($this->table)->where("id =:id")->params($params);
 
-		$queryPrepared->execute($params);
-        $result = $queryPrepared->fetch();
-
-        $numberRow = $queryPrepared->rowCount();
-        if($numberRow > 0){
-            if(isset($_GET['Slug']) && !empty($_GET['Slug'])){
-
-				$sql = "SELECT * FROM ".$this->table." WHERE Slug = :Slug";
-				$params = ['Slug'=>$_GET['Slug']];
-				$queryPrepared = $this->pdo->prepare($sql);
-				$queryPrepared->execute($params);
-				$dataSlug = $queryPrepared->fetch();
-
-                if($dataSlug['Id'] == $result['Id']){
-                    return true;
-                }else{
-                    return false;
-                }
-            }elseif(isset($_GET['id']) && !empty($_GET['id'])){
-                $sql = "SELECT * FROM ".$this->table." WHERE Id = :Id";
-				$params = ['Id'=>$_GET['id']];
-				$queryPrepared = $this->pdo->prepare($sql);
-				$queryPrepared->execute($params);
-				$dataSlug = $queryPrepared->fetch();
-
-                if($dataSlug['Id'] == $result['Id']){
-                    return true;
-                }else{
-                    return false;
-                }
-            }else{
-                return false;
+            $queryPrepared = $sql->execute();
+            $data = $queryPrepared->fetch();
+            if(empty($data)){
+                require "View/Site/404.view.php";
+                die;
             }
         }else{
-            return true;
+            return null;
+        }
+        return $data;
+    }
+
+	public function findRewriteUrl(){ 
+
+        $params = ['Rewrite_Url'=>'1'];
+        $sql = ($this->queryBuilder)->select("Rewrite_Url")->from($this->table)->where("Rewrite_Url =:Rewrite_Url")->params($params);
+
+        $queryPrepared = $sql->execute();
+        $result = $queryPrepared->fetch();
+        return $queryPrepared->rowCount();
+    }
+
+	public function updateRewriteUrl(Int $choice){
+
+        $params = ['Rewrite_Url'=>$choice];
+        $sql = ($this->queryBuilder)->update(["Rewrite_Url = :Rewrite_Url"])->from($this->table)->params($params);
+        $sql->execute();
+
+    }
+
+	public function delete():void{
+        if(!empty($_GET['Slug'])){
+            $slug = $_GET['Slug'];
+            $params = ['Slug'=>$slug];
+            $sql = ($this->queryBuilder)->delete()->from($this->table)->where("Slug =:Slug")->params($params);
+            $sql->execute();
+        }elseif(!empty($_GET['id'])){
+            $params = ['id'=>$_GET['id']];
+            $sql = ($this->queryBuilder)->delete()->from($this->table)->where("Id =:id")->params($params);
+            var_dump($sql->__toString());
+            $sql->execute();
+        }else{
         }
     }
+
+	public function isExist($value){
+
+        $params = ['title'=>$value];
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title=:title")->params($params);
+        $queryPrepared = $sql->execute();
+
+
+        if($queryPrepared->rowCount() > 0 ){
+            return true;
+        }
+        return false;
+    }
+
+    public function isActive($value){
+
+        $params = ['title'=>$value];
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title=:title")->params($params);
+        $queryPrepared = $sql->execute();
+        $data = $queryPrepared->fetch();
+
+        if($data['Active']){
+            return true;
+        }
+        return false;
+    }
+
+    public function selectAllActive()
+	{
+        $params = ['active'=>1];
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Active=:active")->params($params)->execute();
+
+		return $sql->fetchAll();
+	}
+
+    public function getActivePage(){
+        $params = ['active'=>1];
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Active=:active")->params($params)->execute();
+		$data =  $sql->fetchAll();
+        return $data;
+    }
+
+	public function slugify($text, string $divider = '-')
+    {
+
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        $text = trim($text, $divider);
+
+        $text = preg_replace('~-+~', $divider, $text);
+
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
+    
+	public function getAllPostActive():array{
+        $params = ['active'=>1];
+        $sql = ($this->queryBuilder)->select("Slug")->from($this->table)->where("Active=:active")->params($params)->execute();
+		$data =  $sql->fetchAll();
+		$arraySlug = [];
+		foreach($data as $k=>$v){
+			$arraySlug[] = $v[0];
+		}
+		return $arraySlug;
+	}
 }

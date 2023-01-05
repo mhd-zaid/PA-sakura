@@ -4,7 +4,8 @@ namespace App\Model;
 
 use App\Core\DatabaseDriver;
 use App\Model\Category;
-
+use App\Model\User;
+use App\Core\Observer;
 
 class Article extends DatabaseDriver
 {
@@ -15,10 +16,12 @@ class Article extends DatabaseDriver
     protected $user_id;
     protected $image_name;
     protected $active = 0;
-    private $date_created;
+    protected $date_created;
 	private $date_updated;
     protected $rewrite_Url;
     protected $categories;
+    protected $description;
+    public static $notification = [];
 
 	public function __construct()
 	{
@@ -87,7 +90,7 @@ class Article extends DatabaseDriver
      */
     public function setSlug(String $slug): void
     {   
-        $newSlug = self::slugify($slug);
+        $newSlug = $this->slugify($slug);
         $this->slug = $newSlug;
     }
 
@@ -115,6 +118,17 @@ class Article extends DatabaseDriver
     public function setUserId(Int $user_id): void
     {
         $this->user_id = $user_id;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->content;
+    }
+
+
+    public function setDescription(String $description): void
+    {
+        $this->description = strip_tags($description);
     }
 
     public function getImageName(): ?String
@@ -160,7 +174,7 @@ class Article extends DatabaseDriver
     }
 
      /**
-     * @return null
+     * @return null | string
      */
     public function getCategories(): ?string
     {
@@ -168,15 +182,25 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param null $id
+     * @param string $categories
      */
-    //abstract public function setId($id);
     public function setCategories(String $categories): void
     {
-        $this->categories = $categories;
+        $categories = array_unique(explode(',', $categories));
+        $this->categories = strip_tags(implode(',', $categories));
     }
 
+    public function selectSingleArticle(Int $id)
+	{
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Id = $id")->execute();
+		return $sql->fetchAll();
+        
+	}
+
     public function createArticleForm(){
+        $user = new User();
+        $category = new Category();
+        $userInfo = $user->getUser($_COOKIE['JWT']);
 
         return [
             "config" => [
@@ -185,8 +209,9 @@ class Article extends DatabaseDriver
                             "submit"=>"Modifier"
                         ],
 
-           "article"=>$this->findArticle(),
-           "category"=>$this->selectAllCategories(),
+           "article"=>$this->find(),
+           "category"=>$category->select(),
+           "user"=>$userInfo, 
 
            "textarea"=>[
                 "class"=>"ckeditor",
@@ -203,21 +228,6 @@ class Article extends DatabaseDriver
                                 "required"=>true,
                                 "error"=>"Le titre doit faire entre 2 et 25 caractères"
                             ],
-                "openFile"=>[
-                                "type"=>"button",
-                                "value"=>"Ajouter une image",
-                                "id"=>"openFile",
-                                "class"=>"ipt-form-entry",
-                                "required"=>false,
-                                "error"=>"Votre nom doit faire entre 2 et 75 caractères"
-                            ],
-                "deleteImage"=>[
-                                "type"=>"button",
-                                "value"=>"Supprimer l'image",
-                                "class"=>"ipt-form-entry",
-                                "required"=>false,
-                                "error"=>"Votre email est incorrect"
-                            ],
                 "imageName"=>[
                                 "type"=>"hidden",
                                 "class"=>"ipt-form-entry",
@@ -227,6 +237,7 @@ class Article extends DatabaseDriver
               
                 "listCategorie"=>[
                                 "type"=>"hidden",
+                                "id"=>"list",
                                 "class"=>"ipt-form-entry",
                                 "required"=>false,
                                 "error"=>"Votre mot de passe doit faire plus de 8 caractères avec une minuscule une majuscule et un chiffre"
@@ -240,105 +251,74 @@ class Article extends DatabaseDriver
                                 "required"=>true,
                                 "error"=>"Le slug doit faire entre 2 et 25 caractères"
                             ],
+                "editor"=>[
+                    "type"=>"hidden",
+                    "class"=>"ipt-form-entry",
+                    "required"=>true,
+                    "error"=>"Veuillez ajouter du contenu."
+                ],
+
+                "metadescription"=>[
+                    "type"=>"text",
+                    "label"=>"Metadescription",
+                    "class"=>"ipt-form-entry",
+                    "min"=>2,
+                    "max"=>25,
+                    "required"=>true,
+                    "error"=>"Les metadescriptions sont obligatoires"
+                ],
             ]
         ];
 
     }
 
-    public function findArticleRewriteUrl(){ 
-        $sql = "SELECT Rewrite_Url FROM ".$this->table." WHERE Rewrite_Url =:Rewrite_Url";
-        $params = ['Rewrite_Url'=>'1'];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
-        $result = $queryPrepared->fetch();
-        return $queryPrepared->rowCount();
+    public function formManageUrl(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Modifier",
+                                "delete"=>"Supprimer"
+                            ],
+                "rewriteUrl"=>$this->findRewriteUrl(), 
+                            
+                "inputs"=> [    
+                    "choice"=>[
+                        "Slug"=>[
+                            "type"=>"radio",
+                            "label"=>"Slug",
+                            "class"=>"ipt-form-entry",
+                            "value"=>"2",
+                            "elemName"=>"choice"
+                        ],
+                        "Id"=>[
+                            "type"=>"radio",
+                            "label"=>"Id",
+                            "class"=>"ipt-form-entry",
+                            "value"=>"1",
+                            "elemName"=>"choice"
+                        ],
+                    ],
+                ]
+            ];
+
     }
 
-    public function findArticle(){
-        if(!empty($_GET['Slug'])){
-            $slug = $_GET['Slug'];
-            $sql = "SELECT * FROM ".$this->table." WHERE Slug =:Slug";
-            $params = ['Slug'=>$slug];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-            $data = $queryPrepared->fetch();
-            if(empty($data)){
-                header("Location: /article");
-            }
-        }elseif(!empty($_GET['id'])){
-            $sql = "SELECT * FROM ".$this->table." WHERE id =:id";
-            $params = ['id'=>$_GET['id']];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-            $data = $queryPrepared->fetch();
-            if(empty($data)){
-                header("Location: /article");
-            }
-        }else{
-            return null;
-        }
-        return $data;
+    public function subscribeToNotification(Observer $notif){
+        array_push(static::$notification, $notif);
     }
 
-    public function updateRewriteUrl(Int $choice){
-        $sql = "Update ".$this->table." SET Rewrite_Url=:Rewrite_Url";
-        $params = ['Rewrite_Url'=>$choice];
-        $queryPrepared = $this->pdo->prepare($sql);
-        $queryPrepared->execute($params);
-    }
-
-    public function deleteArticle():void{
-        if(!empty($_GET['Slug'])){
-            $slug = $_GET['Slug'];
-            $sql = "DELETE  FROM ".$this->table." WHERE Slug =:Slug";
-            $params = ['Slug'=>$slug];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-        }elseif(!empty($_GET['id'])){
-            $sql = "DELETE  FROM ".$this->table." WHERE id =:id";
-            $params = ['id'=>$_GET['id']];
-            $queryPrepared = $this->pdo->prepare($sql);
-            $queryPrepared->execute($params);
-        }else{
+    public function update(){
+        foreach(static::$notification as $observer){
+            $observer->alert();
         }
     }
-    public function selectAllCategories(){
-        $categories = new Category();
-        $data = $categories->getCategories();
-        return $data;
-    }
 
-    public function selectAllCategoriesArticle(){
-        $sql = "SELECT  * FROM ".$this->table;
-        $result = $this->pdo->query($sql);
-        $data = $result->fetchAll();
-        return $data;
-    }
-    
-    public function slugify($text, string $divider = '-')
+    public function getPostFilter(string $category)
     {
-    // replace non letter or digits by divider
-    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("categories LIKE :category")->params(['category'=> "%{$category}%"])->execute();
 
-    // transliterate
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-    // remove unwanted characters
-    $text = preg_replace('~[^-\w]+~', '', $text);
-
-    // trim
-    $text = trim($text, $divider);
-
-    // remove duplicate divider
-    $text = preg_replace('~-+~', $divider, $text);
-
-    // lowercase
-    $text = strtolower($text);
-
-    if (empty($text)) {
-        return 'n-a';
+        return $sql->fetchAll();
     }
-
-  return $text;
-}
 }

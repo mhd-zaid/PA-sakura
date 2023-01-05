@@ -1,21 +1,26 @@
-<section class="grid">
+<section class="grid page-header">
     <div class="row">
         <h1 class="h1-section-back">Liste des médias</h1>
     </div>
+    <?php foreach ($configFormErrors as $error ):?>
+                    <div>
+                        <p><?= $error ?> </p>
+                    </div>
+                <?php endforeach;?>
     <div class="row">
         <form action="/media" method="post" enctype="multipart/form-data" class="grid">
             <div class="row">
                 <div class="col">
-                    Select image to upload:
+                    Choissisez votre image à télécharger :
                 </div>
                 <div class="col">
                     <input type="file" name="photo" id="photo">
                 </div>
                 <div class="col">
-                    <input type="submit" value="Upload Image" name="submit">
+                    <input type="submit" value="Ajouter" name="submit" class="cta-button btn--pink">
                 </div>
                 <div class="col">
-                <input type="submit" value="Delete Image" name="delete" id="del-media-img">
+                <input type="submit" value="Delete Image" name="delete" id="del-media-img" class="cta-button btn--pink">
                 <input type="text" name="name-img" id="delete-img" value = "" readonly>
             </div>
             </div>

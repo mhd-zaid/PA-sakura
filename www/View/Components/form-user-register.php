@@ -3,7 +3,7 @@
 
 	<?php 
 		$textElem=array_slice($config["inputs"], 0, 5);
-		$radioElem=array_slice($config["inputs"], 5,3);
+		$radioElem=array_slice($config["inputs"], 5,1);
 	?>
 	
 	<?php 	
@@ -26,26 +26,28 @@
 		</div>
 	<?php endforeach;?>
 	</div>
-
+	
 	<?php 	
 		foreach ($radioElem as $name => $configInput):?>
+		<?php foreach ($configInput as $key => $value):?>
 		<div class="row flex-row flex-row-align-center">
 			<div class="col">
-				<input name="<?= $configInput["elemName"]??"" ?>"
-						class="<?= $configInput["class"]??"" ?>"
-						type="<?= $configInput["type"]??"text" ?>"
-						value="<?= $configInput["value"]??"" ?>"
+				<input name="<?= $value["elemName"]??"" ?>"
+						class="<?= $value["class"]??"" ?>"
+						type="<?= $value["type"]??"text" ?>"
+						value="<?= $value["value"]??"" ?>"
 
-						<?php if(!empty($configInput["required"])): ?>
+						<?php if(!empty($value["required"])): ?>
 							required="required"
 						<?php endif;?>
 
 				>
 			</div>
 			<div class="col">
-				<p><?= $configInput["label"] ?></p>
+				<p><?= $value["label"] ?></p>
 			</div>
 		</div>
+	<?php endforeach;?>
 	<?php endforeach;?>
 
 	<div class="row">

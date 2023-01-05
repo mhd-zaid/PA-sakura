@@ -1,4 +1,4 @@
-<section class="grid">
+<section class="grid page-header">
     <div class="row">
         <h1 class="h1-section-back">Navigation</h1>
     </div>
@@ -6,21 +6,21 @@
         <p class="p-section-back">Créer ou modifier vos propres menus</p>
     </div>
 </section>
-
 <section class="grid grid-rounded navigation-menu">
     <div class="row">
         <div class="col col-12">
             <div class="row">
-                <div class="col col-12 flex-col center-text"><h1>Menus</h1></div>
+                <div class="col col-12 flex-col"><h1>Menus</h1></div>
             </div>
             <div class="row">
-                <div class="col col-3 flex-col flex-col-align-center flex-col-center">
+                <div class="col col-3 flex-col flex-col-center">
                     <a href="/navigation-menu-add" class="navigation-link flex-row flex-row-align-center">Ajouter un menu&nbsp;&nbsp;&nbsp;<iconify-icon icon="ant-design:plus-circle-outlined" width="35"></iconify-icon></a>
                 </div>
             </div>
             <div class="row">
-                <div class="col col-offset-2 col-2"><b>Titre</b></div>
-                <div class="col col-offset-1"><b>Éléments du menu</b></div>
+                 <div class="col col-2 center-text"><b>Modification</b></div>
+                <div class="col col-3"><b>Titre</b></div>
+                <div class="col col-2"><b>Éléments du menu</b></div>
             </div>
 
             <?php foreach ($data as $key => $value) {

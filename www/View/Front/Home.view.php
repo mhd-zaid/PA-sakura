@@ -4,7 +4,7 @@
         <div class="intro">
             <h1 class="h1-section">Créez votre site<br>personalisé avec <span style="color :#FF66C4">Sakura<span></h1>            
             <p>Intégrez vos influences de l’animation japonaise !</p>
-            <button class ="cta-button cta-button--white"><a href="/s-inscrire">Créer votre site web</a></buttonpurple>
+            <button class ="cta-button cta-button--white"><a href="/sakura">Obtenir Sakura</a></buttonpurple>
         </div>
        <img src="Public/img/Front/image_JOJO.svg" alt="logo-hero" class="jotaro">
     </div>
@@ -72,33 +72,20 @@
                 sources du trafic.</p>
             </article> 
         </div>
-        <button class="cta-button cta-button--pink"><a href="/s-inscrire">Créer votre site web</a></button>
+        <!-- <button class="cta-button cta-button--pink"><a href="/s-inscrire">Créer votre site web</a></button> -->
     </div>
     
 </section>
 
 <!-- SECTION CONTACT -->
-<section id="section-contact">
+<!-- <section id="section-contact">
     <div class="container">
         <div>
             <h1 class="h1-simple">Contact</h1>
             <p>Une remarque ? une suggestion ? N’hésitez-pas à m’écrire</p><br>
-            <?php 
+            <!-?php 
                 $this->includeComponent("form-login", $configForm);
             ?><p>
         </div>
     </div>
-</section>
-
-
-<div>
-    <div>
-        <img src="" alt="">
-        <img src="" alt="">
-    </div>
-    <div>
-        <img src="" alt="">
-        <img src="" alt="">
-    </div>
-</div>
-
+</section> -->

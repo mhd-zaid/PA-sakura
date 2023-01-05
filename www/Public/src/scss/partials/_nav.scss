@@ -1,0 +1,100 @@
+.sk-body-front {
+  margin-bottom: 200px;
+ 
+  header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 60;
+    .container{
+    height: 5em;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    .site-name {
+      text-decoration: none;
+      margin-right: 60px;
+    }
+    .sk-navbar {
+      ul {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        li {
+          list-style: none;
+          a {
+            text-decoration: none;
+            
+          }
+        }
+      }
+      }
+    }
+  }
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  #menu-button-site,
+  .site-name {
+    z-index: 20;
+    position: relative;
+  }
+  #menu-button-site {
+    transition-duration: 0.3s;
+    transform: translateX(0px);
+  }
+  #main-nav-site {
+    // display: none;
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 101vh;
+    transition: left 1s;
+    justify-content: center;
+    align-items: center;
+    & ul {
+      z-index: 20;
+      flex-direction: column;
+      align-items: center;
+      & li a {
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  #menu-button-site {
+    z-index: 10;
+    border: none;
+    background-color: transparent;
+  }
+
+  #menu-button-site::before {
+    content: "";
+    display: block;
+    width: 5em;
+    height: 30px;
+    background-image: url("../img/Front/menu.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 1281px) {
+  #menu-button-site {
+    display: none;
+  }
+}

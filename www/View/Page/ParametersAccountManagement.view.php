@@ -1,4 +1,4 @@
-<div class="container-fluid container-fluid-parameters">
+<div class="container-fluid ">
     <h1>Paramètres&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Gestion du compte</h1>
     <section class="grid grid-rounded">
         <div class="row">
@@ -15,4 +15,3 @@
         </div>
     </section>
 </div>
-<?php include 'View/Components/parameters-menu.php';?>

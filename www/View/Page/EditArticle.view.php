@@ -4,9 +4,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <section class="grid">
-    <div class="row">
+    <div class="row page-header">
         <div class="col col-12">
-            <h1 class="h1-section-back">Création d'un article</h1>
             <?php 
                 $this->includeComponent("form-create-article", $configForm);
                 ?>

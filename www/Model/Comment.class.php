@@ -3,16 +3,23 @@
 namespace App\Model;
 
 use App\Core\DatabaseDriver;
-
+use DateTime;
+use App\Core\Observer;
+use App\Core\Notification\AddNotification;
+use App\Core\Notification\ModifyNotification;
 
 class Comment extends DatabaseDriver
 {
 
 	private $id = null;
-	protected $content;
-    protected $active = 0;
-    protected $article_id;
-    protected $nbr_signalement = 0;
+	protected $author;
+    protected $content;
+    protected $email;
+    protected $status = "unapproved";
+    protected $date_created;
+    protected $comment_post_id;
+    protected $nombre_signalement;
+    public static $notification = [];
 
 	public function __construct()
 	{
@@ -36,63 +43,190 @@ class Comment extends DatabaseDriver
     }
 
 
+    public function getAuthor(): ?String
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param string $author
+     */
+    public function setAuthor(String $author): void
+    {
+        $this->author = strip_tags($author);
+    }
+
+    public function getEmail(): ?String
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param null $email
+     */
+    public function setEmail(String $email): void
+    {
+        $this->email = $email;
+    }
+    
+
+
     public function getContent(): ?String
     {
         return $this->content;
     }
 
     /**
-     * @param null $content
+     * @param mixed $content
      */
-    public function setContent(String $content): void
+    public function setContent(?String $content): void
     {
-        $this->content = $content;
+        $this->content = strip_tags($content);
     }
-    
-    public function getActive(): ?int
+
+    public function getStatus(): ?String
     {
-        return $this->active;
+        return $this->status;
     }
 
     /**
      * @param null $content
      */
-    public function setActive(Int $active): void
+    public function setStatus(String $status): void
     {
-        $this->active = $active;
+        $this->status = $status;
     }
 
-    public function getArticleId(): ?int
+    public function setDateCreated(String $date_created): void
     {
-        return $this->article_id;
+        $this->date_created = $date_created;
     }
 
-    /**
-     * @param null $content
-     */
-    public function setArticleId(Int $article_id): void
+    public function getDateCreated(): ?String
     {
-        $this->article_id = $article_id;
+        return $this->date_created;
+    }
+
+    public function setCommentPostId(Int $comment_post_id): void
+    {
+        $this->comment_post_id = $comment_post_id;
+    }
+
+    public function getCommentPostId(): ?Int
+    {
+        return $this->comment_post_id;
     }
     
     public function getNbrSignalement(): ?int
     {
-        return $this->nbr_signalement;
+        return $this->nombre_signalement;
     }
 
-    /**
-     * @param null $content
-     */
-    public function setNbrSignalement(Int $nbr_signalement): void
+    public function setNbrSignalement(Int $nombre_signalement): void
     {
-        $this->nbr_signalement = $nbr_signalement;
+
+        $this->nombre_signalement = $nombre_signalement;
     }
 
-    public function findCommentById(Int $id){
-        $sql = "SELECT * FROM $this->table WHERE id = $id";
-        $result = $this->pdo->query($sql);
-        $data = $result->fetch();
-        return $data;
+    public function createMotBanForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Enregistrer"
+                            ],
+                "category"=>$this->find(),
+
+                "inputs"=> [
+                    "word"=>[
+                        "type"=>"text",
+                        "label"=>"Mot Banni",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Le mot banni doit faire entre 2 et 25 caractères."
+                    ],
+                ]
+            ];
+
+    }
+
+    public function formCommentaire(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-register",
+                                "submit"=>"Envoyer"
+                            ],
+                "inputs"=> [
+                    "author"=>[
+                        "type"=>"text",
+                        "label"=>"Pseudo",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"Pseudo inccorect."
+                    ],
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"E-mail",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>25,
+                        "required"=>true,
+                        "error"=>"E-mail inccorect."
+                    ],
+                    "content"=>[
+                        "type"=>"text",
+                        "label"=>"Message",
+                        "class"=>"ipt-form-entry",
+                        "min"=>2,
+                        "max"=>200,
+                        "required"=>true,
+                        "error"=>"Le message doit faire entre 2 et 25 caractères."
+                    ],
+                ]
+            ];
+
+    }
+    
+    public function selectApprovedComments(Int $id){
+
+        $params = ["comment_post_id"=> $id,"status" => 'approved'];
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("comment_post_id = :comment_post_id")->andWhere("status = :status")
+            ->params($params)->execute();
+
+		return $sql;
+    }
+
+    public function subscribeToNotification(Observer $notif){
+        array_push(static::$notification, $notif);
+    }
+
+    public function update(?int $id = null){
+        foreach(static::$notification as $observer){
+            switch(get_class($observer)){
+                case AddNotification::class:
+                    $observer->alert("Ajout d'un commentaire", "Un nouveau commentaire a ete ajoute.");
+                    break;
+                case ModifyNotification::class:
+                    $observer->alert("Signalement", "Le commentaire avec l'id $id a ete signale.");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public function findCommentById(int $id)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Id = $id")->execute();
+
+        return $sql->fetch();
     }
 }
 

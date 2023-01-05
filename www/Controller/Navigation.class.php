@@ -4,39 +4,47 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Model\Menu as MenuModel;
+use App\Core\Verificator;
 
 class Navigation
 {
     public function index()
     {
         $menu = new MenuModel();
-        $data = $menu->getMenus();
+        $data = $menu->select();
         $v = new View("Page/Navigation", "Back");
         $v->assign("data", $data ?? []);
     }
     public function saveMenu()
     {
         $menu = new MenuModel();
-        $pages = $menu->getExistingPages();
-        $remove = ["menu-title", "default_menu", "slt-del-page", "publish"];
+        $form = $menu->createNavigationForm();
+        $remove = ["titre", "default_menu", "slt-del-page", "publish"];
         $content = array_diff_key($_POST, array_flip($remove));
 
-        if (isset($_GET["id"])) $data = $menu->findMenuById($_GET["id"]);
+        if(!empty($_POST)){
+        $data = [];
+        isset($_POST['titre']) ? array_push($data, $_POST['titre']) : '';
+        $verificator = new Verificator($form, $data);
+        $verificator->verificatorEditionNavigation($form, $_POST);
+        $configFormErrors = $verificator->getMsg();
+
+        if(empty($configFormErrors)){
+
+        if (isset($_GET["id"])) $data = $menu->find();
 
         if (isset($_POST["publish"]) && !empty($_POST["publish"]) && !empty($content)) {
+
             if (isset($_GET['id']) && !empty($_GET['id'])) {
-                $data = $menu->findMenuById($_GET['id']);
+                $data = $menu->find();
 
                 $menu->setId($data["Id"]);
-                $dataActive = $data["Active"];
                 $dataMain = $data["Main"];
             }
-            isset($dataActive) ? "" : $dataActive = 0;
             isset($dataMain) ? "" : $dataMain = 0;
             $content = implode(",", $content);
-            $menu->setTitle($_POST['menu-title']);
+            $menu->setTitle($_POST['titre']);
             $menu->setContent($content);
-            $menu->setActive($dataActive);
             $menu->setMain($dataMain);
             $menu->save();
             if (isset($_POST["default_menu"]) && isset($_GET["id"])) $menu->updateMain($_GET["id"]);
@@ -47,9 +55,9 @@ class Navigation
             exit();
         }
         if (isset($_POST["unpublish"])) {
-            $menuDel = $menu->findMenuById($_GET["id"]);
+            $menuDel = $menu->find();
             if ($menuDel["Main"] == 0) {
-                $menu->deleteMenuById($_GET["id"]);
+                $menu->delete();
                 $_SESSION["flash-success"] = "Le menu a été supprimé avec succés";
                 header("Location: /navigation");
                 exit();
@@ -57,9 +65,13 @@ class Navigation
                 $_SESSION["flash-error"] = "Veuillez définir un autre menu par défault avant de supprimer celui ci.";
             }
         }
+    }
+    }
 
         $v = new View("Page/EditNavigationMenu", "Back");
         $v->assign("data", $data ?? []);
-        $v->assign("existingPages", $pages ?? []);
+        $v->assign("configForm", $form);
+        $v->assign("configFormErrors", $configFormErrors??[]);
+        
     }
 }

@@ -1,5 +1,5 @@
 <section class="grid">
-        <div class="row">
+        <div class="row page-header">
             <div class="col">
             <h1 class="h1-section-back">Liste des pages</h1>
             <h1 class="h-section-back">Gérer les pages de vos sites ici</h1>
@@ -12,7 +12,7 @@
     </div>
 </section>
 
-<section class="grid">
+<section class="grid grid-rounded">
     <div class="row">
         <div class="col col-12 col-xs-">
         <table id="table_pages" class="display hover order-column">
@@ -21,11 +21,8 @@
                 <th></th>
                 <th>Id</th>
                 <th>Title</th>
-                <th>date publi</th>
-                <th>date modification</th>
                 <th>Auteur</th>
                 <th>Publié</th>
-
             </tr>
         </thead>
         

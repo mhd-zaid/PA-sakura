@@ -20,7 +20,7 @@ mix.setPublicPath('../css');
 
 // mix.minify('../web/dist/main.js');
 
-mix.sass('../src/scss/main.scss', '../src/css').options({
+mix.sass('../src/scss/main.scss', '../css').options({
         processCssUrls: false
     });
 

@@ -1,4 +1,4 @@
-<div class="container-fluid container-fluid-parameters">
+<div class="container-fluid">
 <section>
     <h1>Components élèments d'édition</h1>
 </section>
@@ -238,4 +238,4 @@
         </div>
 </section>
 </div>
-<?php include 'View/Components/parameters-menu.php';?>
+
