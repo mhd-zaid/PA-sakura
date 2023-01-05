@@ -7,6 +7,7 @@ use App\Model\Page;
 use App\Model\Article as ArticleModel;
 use App\Model\Comment as CommentModel;
 use App\Model\Category as CategoryModel;
+use App\Model\User as UserModel;
 use App\Model\Stats ;
 use App\Controller\Commentaire as CommentaireController;
 use App\Core\Notification\ModifyNotification;
@@ -122,17 +123,28 @@ class Site{
         }
         $post = new ArticleModel();
         $comment = new CommentModel();
+		$user = new UserModel();
 
         $formComment = $comment->formCommentaire();
+		$formNewsletter = $user->subscribeNewsletterForm();
 
         if(!empty($_POST)){
 			$data = [];
 			isset($_POST['author']) ? array_push($data, $_POST["author"]) : '';
 			isset($_POST['content']) ? array_push($data, $_POST["content"]) : '';
 			isset($_POST['email']) ? array_push($data, $_POST["email"]) : '';
+
 			$verificator = new Verificator($formComment, $data);
 			$verificator->verificatorAddComment($formComment, $_POST);
 			$configFormErrors = $verificator->getMsg();
+
+			$dataNewsletter = [];
+			isset($_POST['email']) ? array_push($dataNewsletter, $_POST["email"]) : '';
+
+			$verificatorNewsletter = new Verificator($formNewsletter, $data);
+			$verificatorNewsletter->verificatorNewsletter($formNewsletter, $_POST);
+			$configFormErrorsNewsletter = $verificatorNewsletter->getMsg();
+
 			if(isset($_POST['signaler-comment']))
 			{
 				$this->saveComment();
@@ -140,6 +152,14 @@ class Site{
 			if(isset($_POST['submit'])){
 				if(empty($configFormErrors)){
 					$this->saveComment();
+				}
+			}
+			if(isset($_POST['newsletter'])){
+				if(!$user->checkEmailExist($_POST["email"])){
+					$configFormErrorsNewsletter[] = "Cette email est déjà abonné à la Newsletter.";
+				}
+				if(empty($configFormErrorsNewsletter)){
+					print_r("cc");
 				}
 			}
 		}
@@ -159,6 +179,12 @@ class Site{
 		$v->assign("post", $postData);
 		$v->assign("comments", $comments);
 		$v->assign("configForm", $formComment);
+		$v->assign("configFormNewsletter", $formNewsletter);
+
+		if(isset($_POST["newsletter"])){
+			$v->assign("configFormErrorsNewsletter", $configFormErrorsNewsletter);
+		}
+
 		if (isset($_POST['submit'])) {
 			$v->assign("configFormErrors", $configFormErrors??[]);
 		}

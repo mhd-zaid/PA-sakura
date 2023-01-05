@@ -527,6 +527,27 @@ class User extends DatabaseDriver
 
     }
 
+    public function subscribeNewsletterForm(){
+
+        return [
+                "config" => [
+                                "method"=>"POST",
+                                "class"=>"form-reset-passwd",
+                                "submit"=>"S'abonner à la newsletter"
+                            ],
+                "inputs"=> [
+                    "email"=>[
+                        "type"=>"email",
+                        "label"=>"Votre Email",
+                        "class"=>"ipt-form-entry",
+                        "required"=>true,
+                        "error"=>"Email inccorect"
+                    ],
+                ]
+            ];
+
+    }
+
     public function checkLogin(String $email, String $pwd)
     {
         $params = ['email'=>$email];

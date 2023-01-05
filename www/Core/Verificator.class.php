@@ -322,6 +322,14 @@ class Verificator
 		}
 	}
 
+	public function verificatorNewsletter($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+		}
+	}
+
 	public function getMsg(): array
 	{
 		return $this->msg;
