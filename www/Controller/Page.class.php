@@ -32,6 +32,7 @@ class Page
                 if($userData['Id'] === $data['User_Id'] || $userData['Role'] === 1 || $userData['Role'] === 0){
                     $page->setId($data["Id"]);
                 }else{
+                    $_SESSION["flash-error"] = "Vous n'avez pas le droit de consulter cette ressource.";
                     header("Location: /pages");
                 }
             }else{

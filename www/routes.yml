@@ -121,7 +121,7 @@
 /parametres-url:
   controller: Parameters
   action : manageUrl
-  security : 0
+  security : 1
   isAdmin: 1
 
  ### ARTICLE ###
@@ -159,13 +159,7 @@
   action: showComments
   security: 1
   isAdmin: 1
-
-/commentaire-add:
-  controller: Commentaire
-  action: saveComment
-  security: 1
-  isAdmin: 0
-
+  
 /comment-delete:
   controller: Commentaire
   action: deleteComment
@@ -246,7 +240,7 @@
   controller: Media
   action: index
   security: 1
-  isAdmin: 1
+  isAdmin: 0
 
 /ajout-medias:
   controller: Media
