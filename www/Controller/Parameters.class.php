@@ -185,6 +185,11 @@ class Parameters
 		if ($role['Role'] !== 1 && $role['Role'] !== 0) header("Location: /tableau-de-bord");
 		$userUpdateForm = $user->userUpdateForm();
 		$userInformation = $user->find();
+		if($userInformation['Role'] === 3){
+			$_SESSION["flash-error"] = "Vous ne pouvez pas editer un abonné.";
+			header('Location: /parametres-users');
+			exit;
+		}
 
 		if (!empty($_POST)) {
 			$data = [];
