@@ -57,6 +57,7 @@ class Main
 				],
 			]
 		];
+
 		if (!empty($_POST)) {
 			$verificator = new Verificator($installForm, $_POST);
 			$verificator->verificatorInstalleur($installForm, $_POST);
@@ -82,7 +83,8 @@ class Main
 				}
 			}
 		}
-		$v = new View("Install/Installation", "Front2");
+
+		$v = new View("Install/Installation", "FrontInstall");
 		$v->assign("configForm", $installForm);
 		$v->assign("configFormErrors", $configFormErrors ?? []);
 	}

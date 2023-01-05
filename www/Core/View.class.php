@@ -18,6 +18,8 @@ class View
 	{
 		$this->setTempalte($template);
 		$this->setView($view);
+		if (file_exists(__DIR__ . "/../config.php")) {
+		
 		switch ($template) {
 			case 'Back':
 				$this->assign('User', new User());
@@ -32,9 +34,9 @@ class View
 				$this->assign('page', $page);
 				$this->assign('site', $site);
 			default:
-
 				break;
 		}
+	}
 	}
 
 	//"Auth/Register"
