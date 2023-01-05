@@ -91,7 +91,7 @@ class Main
 
 	public function download()
 	{
-		$file = __DIR__."/../test.zip";
+		$file = __DIR__."/../sakura.zip";
 		header("Content: $file ");
 		header("Content-type: application/zip"); 
 		header("Content-Disposition: attachment; filename=sakura");
