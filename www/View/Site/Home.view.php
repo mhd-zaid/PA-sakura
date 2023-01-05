@@ -3,7 +3,7 @@
 
 		<div class="row body-item">
 			<h1>
-				<?= $mainPage['Title']; ?>
+				<?php $mainPage['Title']; ?>
 			</h1>
 		</div>
 
@@ -11,5 +11,4 @@
 			<?= $mainPage['Content']; ?>
 		</div>
 	</section>
-
 </div>

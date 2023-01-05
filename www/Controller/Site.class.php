@@ -49,7 +49,7 @@ class Site{
 			$allPosts = $post->getPostFilter($_POST['category-filter']);
 		}
 		$pageModel = new Page();
-        $v = new View("Site/Home", "Front2");
+        $v = new View("Site/Post-list", "Front2");
         $v->assign("posts", $allPosts);
 		$v->assign("page", $pageModel);
 		$v->assign("categories", $allCategories);
