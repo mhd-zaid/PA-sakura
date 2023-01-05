@@ -87,6 +87,7 @@ class Menu extends DatabaseDriver
     public function createNavigationForm(){
         $user = new User();
         $userInfo = $user->getUser($_COOKIE['JWT']);
+        $page = new PageModel();
 
         return [
             "config" => [
@@ -97,7 +98,7 @@ class Menu extends DatabaseDriver
 
            "navigation"=>$this->find(),
            "user"=>$userInfo, 
-           "existingPages"=>$this->getExistingPages(),
+           "existingPages"=>$page->getActivePage(),
             "inputs"=> [
                 "titre"=>[
                                 "type"=>"text",
@@ -112,14 +113,7 @@ class Menu extends DatabaseDriver
         ];
 
     }
-
-    public function getExistingPages()
-    {
-        $pages = new PageModel();
-        $data = $pages->select();
-        return $data;
-    }
-
+    
     public function updateMain(Int $id = null): void
     {
         if ($id == null) {

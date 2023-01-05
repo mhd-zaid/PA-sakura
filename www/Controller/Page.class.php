@@ -114,6 +114,26 @@ class Page
             }  
             if(isset($_POST['unpublish'])){
                 if($userData['Role'] === 1 || $userData['Role'] === 0){
+                    $menu = new Menu();
+                    $data = $menu->select();
+                    $dataPage = $page->find();
+                    $search = $dataPage['Title'];
+        
+                    foreach($data as $id=>$key ){
+                        if(preg_match("@$search@",$key['Content'])){
+        
+                            $replace = str_replace($search,'',$key['Content']);
+                            $array = explode(',',$replace);
+                            $newArray = array_filter($array);
+        
+                            $menuUpdate = new Menu();
+                            $menuUpdate->setId($key['Id']);
+                            $menuUpdate->setTitle($key['Title']);
+                            $menuUpdate->setMain($key['Main']);
+                            $menuUpdate->setContent(implode(',',$newArray));
+                            $menuUpdate->save();
+                        }
+                    }
                 $page->setActive(0);
                 $page->save();
                 $_SESSION["flash-success"] = "La page a été retiré avec succés";

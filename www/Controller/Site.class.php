@@ -43,14 +43,16 @@ class Site{
         
         $post = new ArticleModel();
         $category = new CategoryModel();
-        $allPosts = $post->selectAllLimit();
-        $allCategories = $category->selectAllLimit();
+		$allPosts = $post->selectAllActive();
+        $allCategories = $category->select();
 		if (!empty($_POST['category-filter'])) {
 			$allPosts = $post->getPostFilter($_POST['category-filter']);
 		}
-        $v = new View("Site/Post-list", "Front2");
+		$pageModel = new Page();
+        $v = new View("Site/Home", "Front2");
         $v->assign("posts", $allPosts);
-        $v->assign("categories", $allCategories);
+		$v->assign("page", $pageModel);
+		$v->assign("categories", $allCategories);
     }
 
 	public function saveComment(): void
@@ -139,10 +141,18 @@ class Site{
 				}
 			}
 		}
-		if (isset($_GET['id'])) {
-			$postData = $post->selectSingleArticle($_GET['id']);
-			$comments = $comment->selectApprovedComments($_GET['id']);
-		}
+			$postData = $post->find();
+			if(!$postData['Active']){
+				require "View/Site/404.view.php";
+				exit;
+			}
+			if(isset($_GET['id'])){
+				$comments = $comment->selectApprovedComments($_GET['id']);
+			}elseif(isset($_GET['Slug'])){
+				$article = new ArticleModel();
+				$article = $article->find();
+				$comments = $comment->selectApprovedComments($article['Id']);
+			}
 		$v = new View("Site/SingleArticle", "Front2");
 		$v->assign("post", $postData);
 		$v->assign("comments", $comments);
@@ -157,6 +167,10 @@ class Site{
         $page = new Page();
 		$pageData = null;
         $pageData = $page->find();
+		if(!$pageData['Active']){
+			require "View/Site/404.view.php";
+			exit;
+		}
 
 		$v = new View("Site/Page", "Front2");
         $v->assign("the_page", $pageData);

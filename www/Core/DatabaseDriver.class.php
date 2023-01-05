@@ -253,12 +253,33 @@ abstract class DatabaseDriver
         return false;
     }
 
-    public function selectAllLimit()
+    public function isActive($value){
+
+        $params = ['title'=>$value];
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Title=:title")->params($params);
+        $queryPrepared = $sql->execute();
+        $data = $queryPrepared->fetch();
+
+        if($data['Active']){
+            return true;
+        }
+        return false;
+    }
+
+    public function selectAllActive()
 	{
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->limit(4)->execute();
+        $params = ['active'=>1];
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Active=:active")->params($params)->execute();
 
 		return $sql->fetchAll();
 	}
+
+    public function getActivePage(){
+        $params = ['active'=>1];
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("Active=:active")->params($params)->execute();
+		$data =  $sql->fetchAll();
+        return $data;
+    }
 
 	public function slugify($text, string $divider = '-')
     {

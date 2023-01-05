@@ -19,7 +19,6 @@ class Navigation
     {
         $menu = new MenuModel();
         $form = $menu->createNavigationForm();
-        $pages = $menu->getExistingPages();
         $remove = ["titre", "default_menu", "slt-del-page", "publish"];
         $content = array_diff_key($_POST, array_flip($remove));
 
