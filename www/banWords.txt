@@ -1,4 +1,0 @@
-gfdg
-alert(1)
-pute
-maxi pute
