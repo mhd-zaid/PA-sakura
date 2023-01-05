@@ -26,6 +26,8 @@ class User
 				$verification = $user->checkLogin($_POST['email'], $_POST['password']);
 				if (!$verification) {
 					$configFormErrors[] = 'Email ou mot de passe incorrect';
+				}elseif($verification == 2){
+					$configFormErrors[] = "Le compte n'a pas été vérifié, un email vous à été envoyer.";
 				}
 			}
 		}

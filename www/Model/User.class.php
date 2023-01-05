@@ -554,6 +554,7 @@ class User extends DatabaseDriver
                 if($data['Status'] == 0){
                     $servername = $_SERVER['HTTP_HOST'];
                     new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
+                    return 2;
                 }else{
                     setcookie("JWT",$token,time()+(60*60*2));
                     setcookie("Email",$data['Email'],time()+(60*60*2));
