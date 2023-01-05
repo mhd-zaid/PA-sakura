@@ -160,6 +160,9 @@ class Parameters
 				$servername = $_SERVER['HTTP_HOST'];
 				$email = $_POST['email'];
 				new sendMail($_POST['email'], "VERIFICATION EMAIL", "<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verification email</a>", "Inscription réussite, confirmer votre email", "Une erreur s'est produite, merci de réesayer plus tard");
+				$_SESSION["flash-success"] = "Un email vous à été envoyer pour la réinitialisation de votre mot de passe";
+				header("Location: /se-connecter");
+				exit();	
 			}
 		}
 

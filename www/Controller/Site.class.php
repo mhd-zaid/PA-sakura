@@ -53,10 +53,10 @@ class Site{
 		if (!empty($_POST['category-filter'])) {
 			$allPosts = $post->getPostFilter($_POST['category-filter']);
 		}
-		$pageModel = new Page();
+		$article = new ArticleModel();
         $v = new View("Site/Post-list", "Front2");
         $v->assign("posts", $allPosts);
-		$v->assign("page", $pageModel);
+		$v->assign("article", $article);
 		$v->assign("categories", $allCategories);
     }
 
@@ -78,13 +78,9 @@ class Site{
 				$comment->subscribeToNotification($add);
                 $comment->update();
 				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
-				// header('Location: /site');
-				// exit();
 			}
 			else{
 				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
-				// header('Location: /site');
-				// exit();
 			}
 		}
 		if(isset($_POST['signaler-comment']))
@@ -135,6 +131,7 @@ class Site{
 			isset($_POST['content']) ? array_push($data, $_POST["content"]) : '';
 			isset($_POST['email']) ? array_push($data, $_POST["email"]) : '';
 			$verificator = new Verificator($formComment, $data);
+			$verificator->verificatorAddComment($formComment, $_POST);
 			$configFormErrors = $verificator->getMsg();
 			if(isset($_POST['signaler-comment']))
 			{

@@ -75,6 +75,14 @@ function DataTableArticle() {
         data: "title",
         class: "article_slug",
       },
+      {
+        data: "user_id",
+        class: "page_userid",
+      },
+      {
+        data: "active",
+        class: "page_active",
+      },
     ],
     order: [[1, "asc"]],
     pageLength: 5,
@@ -159,7 +167,6 @@ function DataTableComment() {
         data: null,
         defaultContent: "Delete",
       },
-      
     ],
     order: [[1, "asc"]],
   });
@@ -180,12 +187,16 @@ function DataTableComment() {
     window.location.replace("/comment-approve?id=" + id);
   });
 
-  $("#table_comments tbody").on("click", "tr td.comment_unapprouve", function () {
-    var tr = $(this).closest("tr");
-    var row = table.row(tr);
-    var id = row.data().Id;
-    window.location.replace("/comment-unapprove?id=" + id);
-  });
+  $("#table_comments tbody").on(
+    "click",
+    "tr td.comment_unapprouve",
+    function () {
+      var tr = $(this).closest("tr");
+      var row = table.row(tr);
+      var id = row.data().Id;
+      window.location.replace("/comment-unapprove?id=" + id);
+    }
+  );
 
   $("#table_comments tbody").on("click", "tr td.comment_delete", function () {
     var tr = $(this).closest("tr");

@@ -185,7 +185,7 @@ class Comment extends DatabaseDriver
                         "label"=>"Message",
                         "class"=>"ipt-form-entry",
                         "min"=>2,
-                        "max"=>200,
+                        "max"=>300,
                         "required"=>true,
                         "error"=>"Le message doit faire entre 2 et 25 caractères."
                     ],

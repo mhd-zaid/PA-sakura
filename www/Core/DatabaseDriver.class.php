@@ -313,4 +313,20 @@ abstract class DatabaseDriver
 		}
 		return $arraySlug;
 	}
+
+    public function getArticleOrPageByTitlte($title)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $title])->execute();
+
+        $data = $sql->fetch();
+		return $data;
+    }
+
+    public function getPageById($id)
+    {
+        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $id])->execute();
+
+        $data = $sql->fetch();
+		return $data;
+    }
 }

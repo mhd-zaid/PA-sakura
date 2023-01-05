@@ -73,7 +73,7 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param mixed $firstname
+     * @param mixed $content
      */
     public function setContent(String $content): void
     {
@@ -86,7 +86,7 @@ class Article extends DatabaseDriver
     }
 
     /**
-     * @param mixed $user_id
+     * @param mixed $slug
      */
     public function setSlug(String $slug): void
     {   

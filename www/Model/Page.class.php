@@ -219,22 +219,6 @@ class Page extends DatabaseDriver
 
     }
 
-    public function getPageByTitle($title)
-    {
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $title])->execute();
-
-        $data = $sql->fetch();
-		return $data;
-    }
-
-    public function getPageById($id)
-    {
-        $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Title = :Title")->params(["Title" => $id])->execute();
-
-        $data = $sql->fetch();
-		return $data;
-    }
-
     public function getMainPage()
     {
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where(" Main = 1")->execute();
