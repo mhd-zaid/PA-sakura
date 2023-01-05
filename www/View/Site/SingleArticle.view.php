@@ -52,6 +52,14 @@
 					?>
 				</div>
 			</div>
+			<?php
+				$this->includeComponent("form-create-newsletter", $configFormNewsletter);
+			?>
+			<?php if (isset($configFormErrorsNewsletter)) foreach ($configFormErrorsNewsletter as $error) : ?>
+						<div>
+							<p><?= $error ?> </p>
+						</div>
+					<?php endforeach; ?>
 		</div>
 	</div>
 </div>

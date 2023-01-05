@@ -20,7 +20,7 @@
                     <input type="submit" value="Ajouter" name="submit" class="cta-button btn--pink">
                 </div>
                 <div class="col">
-                <input type="submit" value="Delete Image" name="delete" id="del-media-img" class="cta-button btn--pink">
+                <input type="submit" value="Supprimer Image" name="delete" id="del-media-img" class="cta-button btn--pink">
                 <input type="text" name="name-img" id="delete-img" value = "" readonly>
             </div>
             </div>

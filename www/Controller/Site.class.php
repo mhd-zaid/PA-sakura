@@ -7,11 +7,13 @@ use App\Model\Page;
 use App\Model\Article as ArticleModel;
 use App\Model\Comment as CommentModel;
 use App\Model\Category as CategoryModel;
+use App\Model\User as UserModel;
 use App\Model\Stats ;
 use App\Controller\Commentaire as CommentaireController;
 use App\Core\Notification\ModifyNotification;
 use App\Core\Notification\AddNotification;
 use App\Core\Verificator;
+use App\Core\Jwt;
 
 class Site{
 
@@ -53,10 +55,10 @@ class Site{
 		if (!empty($_POST['category-filter'])) {
 			$allPosts = $post->getPostFilter($_POST['category-filter']);
 		}
-		$pageModel = new Page();
+		$article = new ArticleModel();
         $v = new View("Site/Post-list", "Front2");
         $v->assign("posts", $allPosts);
-		$v->assign("page", $pageModel);
+		$v->assign("article", $article);
 		$v->assign("categories", $allCategories);
     }
 
@@ -78,13 +80,9 @@ class Site{
 				$comment->subscribeToNotification($add);
                 $comment->update();
 				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
-				// header('Location: /site');
-				// exit();
 			}
 			else{
 				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
-				// header('Location: /site');
-				// exit();
 			}
 		}
 		if(isset($_POST['signaler-comment']))
@@ -126,16 +124,28 @@ class Site{
         }
         $post = new ArticleModel();
         $comment = new CommentModel();
+		$user = new UserModel();
 
         $formComment = $comment->formCommentaire();
+		$formNewsletter = $user->subscribeNewsletterForm();
 
         if(!empty($_POST)){
 			$data = [];
 			isset($_POST['author']) ? array_push($data, $_POST["author"]) : '';
 			isset($_POST['content']) ? array_push($data, $_POST["content"]) : '';
 			isset($_POST['email']) ? array_push($data, $_POST["email"]) : '';
+
 			$verificator = new Verificator($formComment, $data);
+			$verificator->verificatorAddComment($formComment, $_POST);
 			$configFormErrors = $verificator->getMsg();
+
+			$dataNewsletter = [];
+			isset($_POST['email']) ? array_push($dataNewsletter, $_POST["email"]) : '';
+
+			$verificatorNewsletter = new Verificator($formNewsletter, $data);
+			$verificatorNewsletter->verificatorNewsletter($formNewsletter, $_POST);
+			$configFormErrorsNewsletter = $verificatorNewsletter->getMsg();
+
 			if(isset($_POST['signaler-comment']))
 			{
 				$this->saveComment();
@@ -143,6 +153,22 @@ class Site{
 			if(isset($_POST['submit'])){
 				if(empty($configFormErrors)){
 					$this->saveComment();
+				}
+			}
+			if(isset($_POST['newsletter'])){
+				if(!$user->checkEmailExist($_POST["email"])){
+					$configFormErrorsNewsletter[] = "Cette email est déjà abonné à la Newsletter.";
+				}
+				if(empty($configFormErrorsNewsletter)){
+					$user->setFirstname('Abonne');
+					$user->setLastname('Abonne');
+					$user->setEmail($_POST['email']);
+					$user->setPassword('Abonne123');
+					$token = new Jwt([$user->getFirstname(), $user->getLastname(), $user->getEmail()]);
+					$user->setToken($token->getToken());
+					$user->setRole(3);
+					$user->save();
+					$_SESSION["flash-success"] = "Vous êtes inscrits à notre Newsletter.";
 				}
 			}
 		}
@@ -162,6 +188,12 @@ class Site{
 		$v->assign("post", $postData);
 		$v->assign("comments", $comments);
 		$v->assign("configForm", $formComment);
+		$v->assign("configFormNewsletter", $formNewsletter);
+
+		if(isset($_POST["newsletter"])){
+			$v->assign("configFormErrorsNewsletter", $configFormErrorsNewsletter);
+		}
+
 		if (isset($_POST['submit'])) {
 			$v->assign("configFormErrors", $configFormErrors??[]);
 		}

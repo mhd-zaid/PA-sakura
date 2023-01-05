@@ -299,7 +299,30 @@ class Verificator
 		}
 	}
 
+	public function verificatorAddComment($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+			if(empty($this->msg) && !empty($configInput["min"]) && !self::checkMinLength($data[$name], $configInput["min"])){
+				$this->msg[]=$configInput["error"];
+			}
+
+			if(empty($this->msg) && isset($configInput["type"]) && $configInput["type"]=="email" && !empty($configInput["required"]) && !self::checkEmail($data[$name])){
+				$this->msg[]=$configInput["error"];		
+			}
+		}
+	}
+
 	public function verificatorInstalleur($configForm, $data):void{
+		foreach($configForm["inputs"] as $name=>$configInput){
+			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
+				$this->msg[]="Le champs ".$name." est obligatoire";
+			}
+		}
+	}
+
+	public function verificatorNewsletter($configForm, $data):void{
 		foreach($configForm["inputs"] as $name=>$configInput){
 			if(empty($this->msg) && !empty($configInput["required"]) && empty($data[$name])){
 				$this->msg[]="Le champs ".$name." est obligatoire";

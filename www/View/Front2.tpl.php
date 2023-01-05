@@ -64,9 +64,9 @@
 							echo ('<li>');
 							echo ('<div class="col"><a href=/page/');
 							if ($page->findRewriteUrl() > 0) {
-								echo $page->getPageByTitle($value)['Id'];
+								echo $page->getArticleOrPageByTitlte($value)['Id'];
 							} else {
-								echo $page->getPageByTitle($value)['Slug'];
+								echo $page->getArticleOrPageByTitlte($value)['Slug'];
 							}
 							echo ('>' . $value . '</a></div>');
 							echo ('</li>');
