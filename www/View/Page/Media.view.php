@@ -8,7 +8,7 @@
                     </div>
                 <?php endforeach;?>
     <div class="row">
-        <form action="/media" method="post" enctype="multipart/form-data" class="grid">
+        <form action="/media" method="post" onsubmit="return confirm('Etes vous sûr de votre choix ?');" enctype="multipart/form-data" class="grid">
             <div class="row">
                 <div class="col">
                     Choissisez votre image à télécharger :

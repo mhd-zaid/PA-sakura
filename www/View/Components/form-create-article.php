@@ -1,4 +1,4 @@
-<form method="<?= $config["config"]["method"] ?? "GET" ?>" action="<?= $config["config"]["action"] ?? "" ?>">
+<form method="<?= $config["config"]["method"] ?? "GET" ?>" onsubmit="return confirm('Etes vous sûr de votre choix ?');" action="<?= $config["config"]["action"] ?? "" ?>">
 
 	<?php
 	$firstElem = array_slice($config["inputs"], 0, 1);
