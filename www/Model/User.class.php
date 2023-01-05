@@ -572,11 +572,14 @@ class User extends DatabaseDriver
                 $this->setRole(intval($data['Role']));
                 $token = $this->getToken();
                 $this->save();
-                if($data['Status'] == 0){
+                if($data['Status'] == 0 && $data['Role'] !== 3){
                     $servername = $_SERVER['HTTP_HOST'];
                     new sendMail($_POST['email'],"VERIFICATION EMAIL","<a href='http://$servername/confirmation-mail?verify_key=$token&email=$email'>Verify email</a>","Compte pas verifie, un email vous à été envoyer","Une erreur s'est produite merci de réesayer plus tard");
                     return 2;
-                }else{
+                }elseif($data['Status'] == 0 && $data['Role'] == 3){
+                    return 3;
+                }
+                else{
                     setcookie("JWT",$token,time()+(60*60*2));
                     setcookie("Email",$data['Email'],time()+(60*60*2));
                     $this->save();

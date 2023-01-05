@@ -28,6 +28,8 @@ class User
 					$configFormErrors[] = 'Email ou mot de passe incorrect';
 				}elseif($verification == 2){
 					$configFormErrors[] = "Le compte n'a pas été vérifié, un email vous à été envoyer.";
+				}elseif($verification == 3){
+					$configFormErrors[] = "Votre rôle ne vous permet pas de vous connecter.";
 				}
 			}
 		}
