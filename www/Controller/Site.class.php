@@ -13,6 +13,7 @@ use App\Controller\Commentaire as CommentaireController;
 use App\Core\Notification\ModifyNotification;
 use App\Core\Notification\AddNotification;
 use App\Core\Verificator;
+use App\Core\Jwt;
 
 class Site{
 
@@ -159,7 +160,15 @@ class Site{
 					$configFormErrorsNewsletter[] = "Cette email est déjà abonné à la Newsletter.";
 				}
 				if(empty($configFormErrorsNewsletter)){
-					print_r("cc");
+					$user->setFirstname('Abonne');
+					$user->setLastname('Abonne');
+					$user->setEmail($_POST['email']);
+					$user->setPassword('Abonne123');
+					$token = new Jwt([$user->getFirstname(), $user->getLastname(), $user->getEmail()]);
+					$user->setToken($token->getToken());
+					$user->setRole(3);
+					$user->save();
+					$_SESSION["flash-success"] = "Vous êtes inscrits à notre Newsletter.";
 				}
 			}
 		}
