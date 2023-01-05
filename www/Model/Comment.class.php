@@ -187,7 +187,7 @@ class Comment extends DatabaseDriver
                         "min"=>2,
                         "max"=>300,
                         "required"=>true,
-                        "error"=>"Le message doit faire entre 2 et 25 caractères."
+                        "error"=>"Le message doit faire entre 2 et 300 caractères."
                     ],
                 ]
             ];

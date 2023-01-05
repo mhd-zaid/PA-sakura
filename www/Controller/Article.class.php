@@ -104,7 +104,7 @@ class Article{
                 foreach($allUser as $user){
                     if($user['Role'] == 3){
                         $servername = $_SERVER['HTTP_HOST'];
-                        new sendMail($user['Email'],"Nouvelle Article","Bonjour, un nouvelle article a ete publie.","Email envoyer","Une erreur s'est produite merci de réesayer plus tard");
+                        new sendMail($user['Email'],"Nouvel Article","Bonjour, un nouvelle article a ete publie.","Email envoyer","Une erreur s'est produite merci de réesayer plus tard");
                     }
                 }
 

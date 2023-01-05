@@ -1,8 +1,7 @@
 <div id="parameter-users" class="container-fluid ">
     <section class="grid">
         <div class="row parameter-header">
-                <h1 class="h1-section-back">Paramètres&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Gestion des utilisateurs</h1>
-                <h1 class="h-section-back">Gérer les utilisateurs de vos sites ici</h1>
+                <h1 class="h1-section-back">Paramètres&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;Gestion des utilisateurs </h1>
         </div>
         <div class="row">
             <div class="col">

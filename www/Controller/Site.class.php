@@ -73,16 +73,21 @@ class Site{
 				$comment->setEmail($_POST['email']);
 				$today = date("Y-m-d");
 				$comment->setDateCreated($today);
-				$comment->setCommentPostId($_GET['id']);
+				$articleId = new ArticleModel();
+				$comment->setCommentPostId($articleId->find()['Id']);
 				$comment->setNbrSignalement(0);
 				$comment->save();
 				$add = new AddNotification();
 				$comment->subscribeToNotification($add);
                 $comment->update();
 				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
+				$_GET['Slug'] ? header('Location: /post/'.$_GET['Slug']) : header('Location: /post/'.$_GET['id']);
+				exit();
 			}
 			else{
 				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
+				$_GET['Slug'] ? header('Location: /post/'.$_GET['Slug']) : header('Location: /post/'.$_GET['id']);
+				exit();
 			}
 		}
 		if(isset($_POST['signaler-comment']))
