@@ -44,7 +44,7 @@ class Site{
         $post = new ArticleModel();
         $category = new CategoryModel();
 		$allPosts = $post->selectAllActive();
-        $allCategories = $category->select();
+        $allCategories = $category->selectLimit();
 		if (!empty($_POST['category-filter'])) {
 			$allPosts = $post->getPostFilter($_POST['category-filter']);
 		}
