@@ -71,20 +71,6 @@
 							echo ('>' . $value . '</a></div>');
 							echo ('</li>');
 						}
-						if (!empty($menu)) {
-							$content = explode(",", $menu["Content"]);
-							foreach ($content as $value) {
-								echo ('<li>');
-								echo ('<div class="col"><a href=/page/');
-								if ($page->findRewriteUrl() > 0) {
-									echo $page->getPageByTitle($value)['Id'];
-								} else {
-									echo $page->getPageByTitle($value)['Slug'];
-								}
-								echo ('>' . $value . '</a></div>');
-								echo ('</li>');
-							}
-						}
 						echo "<li><div class='col'><a href='/post-list' class='nav'>Blog</a></div></li>";
 						if (isset($userData) && ($userData['Role'] == 1 || $userData['Role'] == 0 || $userData['Role'] == 2)) {
 							echo "<li><div class='col'><a href='/tableau-de-bord' class='nav'>Admin</a></div></li>";

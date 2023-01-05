@@ -460,7 +460,8 @@ section {
 .relative {
   margin: auto; }
   .relative .body-item {
-    margin-top: 100px; }
+    margin-top: 100px;
+    width: 100%; }
   .relative .item-article {
     display: flex;
     align-items: flex-start;
@@ -630,7 +631,7 @@ tbody tr:last-of-type {
       background-color: white;
       display: none;
       position: absolute;
-      top: 66px;
+      top: 52px;
       width: 100%;
       box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
       z-index: 1; }
@@ -1502,16 +1503,6 @@ tr.details td.signaler {
 
 .delete-page-menu {
   display: none; }
-
-.badge {
-  border: 1px solid #FFF;
-  border-radius: 5px;
-  padding: 5px;
-  display: inline-block;
-  margin-left: 5px; }
-
-.like-comment-share {
-  margin-top: 10px; }
 
 .ck-editor__editable[role="textbox"] {
   /* editing area */
