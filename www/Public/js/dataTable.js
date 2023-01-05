@@ -134,6 +134,10 @@ function DataTableComment() {
         class: "comment_date_created",
       },
       {
+        data: "comment_post_id",
+        class: "article_related",  
+      },
+      {
         data: "nombre_signalement",
         class: "comment_nombre_signalement",
       },
@@ -188,6 +192,13 @@ function DataTableComment() {
     var row = table.row(tr);
     var id = row.data().Id;
     window.location.replace("/comment-delete?id=" + id);
+  });
+
+  $("#table_comments tbody").on("click", "tr td.article_related", function () {
+    var tr = $(this).closest("tr");
+    var row = table.row(tr);
+    var id = row.data().comment_post_id;
+    window.location.replace("/post/" + id);
   });
 }
 

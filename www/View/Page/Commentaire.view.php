@@ -25,6 +25,7 @@
                 <th>Email</th>
                 <th>Status</th>
                 <th>Date Created</th>
+                <th>Article Related</th>
                 <th>Nombre de signalement</th>
                 <th>Approuve</th>
                 <th>Unapprove</th>
