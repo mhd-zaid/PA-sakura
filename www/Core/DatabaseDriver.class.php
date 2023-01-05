@@ -94,10 +94,7 @@ abstract class DatabaseDriver
 
     public function selectLimit()
     {
-        $sql = ($this->queryBuilder)->select()->from($this->table)->limit(1, 2, 3, 4)->__toString();
-        var_dump($sql);
-        phpinfo();
-        die;
+        $sql = ($this->queryBuilder)->select()->from($this->table)->limit(1, 2, 3, 4);
         $result = $sql->execute();
         $data = $result->fetchAll();
         return $data;
