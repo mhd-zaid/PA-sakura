@@ -6,7 +6,7 @@
         </h1>
     </div>
 
-    <div class="row">
+    <div>
         <?= $the_page['Content']; ?>
     </div>
 </section>
