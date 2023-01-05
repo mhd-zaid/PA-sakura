@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\Article as ArticleModel;
 use App\Model\User;
+use App\Core\SendMail;
 use App\Core\Verificator;
 use App\Core\Notification\ModifyNotification;
 use App\Core\Notification\DeleteNotification;
@@ -97,6 +98,16 @@ class Article{
                 if($userData['Role'] === 1 || $userData['Role'] === 0){
                 $article->setActive(1);
                 $article->save();
+
+                $allUser = new User();
+                $allUser = $allUser->select();
+                foreach($allUser as $user){
+                    if($user['Role'] == 3){
+                        $servername = $_SERVER['HTTP_HOST'];
+                        new sendMail($user['Email'],"Nouvelle Article","Bonjour, un nouvelle article a ete publie.","Email envoyer","Une erreur s'est produite merci de réesayer plus tard");
+                    }
+                }
+
                 $_SESSION["flash-success"] = "L'article a été publié avec succés";
                 $_GET['Slug'] ? header('Location: /article-add/'.$_GET['Slug']) : header('Location: /article-add/'.$_GET['id']);
                 exit();
