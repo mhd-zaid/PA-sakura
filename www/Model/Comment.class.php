@@ -6,7 +6,6 @@ use App\Core\DatabaseDriver;
 use DateTime;
 use App\Core\Observer;
 use App\Core\Notification\AddNotification;
-use App\Core\Notification\ModifyNotification;
 
 class Comment extends DatabaseDriver
 {
@@ -15,7 +14,7 @@ class Comment extends DatabaseDriver
 	protected $author;
     protected $content;
     protected $email;
-    protected $status = "unapproved";
+    protected $status = "approved";
     protected $date_created;
     protected $comment_post_id;
     protected $nombre_signalement;
@@ -207,14 +206,11 @@ class Comment extends DatabaseDriver
         array_push(static::$notification, $notif);
     }
 
-    public function update(?int $id = null){
+    public function update(String $mail, string $namePost){
         foreach(static::$notification as $observer){
             switch(get_class($observer)){
                 case AddNotification::class:
-                    $observer->alert("Ajout d'un commentaire", "Un nouveau commentaire a ete ajoute.");
-                    break;
-                case ModifyNotification::class:
-                    $observer->alert("Signalement", "Le commentaire avec l'id $id a ete signale.");
+                    $observer->alert($mail, $namePost);
                     break;
                 default:
                     break;

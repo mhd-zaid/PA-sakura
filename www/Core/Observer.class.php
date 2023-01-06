@@ -4,5 +4,5 @@ namespace App\Core;
 //Observer
 
  interface Observer{
-    public function alert(string $object, string $message);
+    public function alert(string $mail, string $namePost);
  }

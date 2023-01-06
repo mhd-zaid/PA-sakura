@@ -9,9 +9,10 @@ use App\Model\Comment as CommentModel;
 use App\Model\Category as CategoryModel;
 use App\Model\Stats ;
 use App\Controller\Commentaire as CommentaireController;
-use App\Core\Notification\ModifyNotification;
 use App\Core\Notification\AddNotification;
 use App\Core\Verificator;
+use App\Model\ArticleUser;
+use App\Model\User as UserModel;
 
 class Site{
 
@@ -58,6 +59,15 @@ class Site{
 	public function saveComment(): void
 	{
 		if (isset($_POST['submit'])) {
+
+			//Ajout du user en BDD
+			$user = new UserModel();
+			$isEmailExist = $user->checkEmailExist($_POST['email']);
+			if($isEmailExist){
+				$user->setEmail($_POST['email']);
+				$user->save();
+			}
+
 			$commentaire = new CommentaireController();
 			if(!($commentaire->checkComment($_POST["content"]))){
 				$comment = new CommentModel();
@@ -69,12 +79,29 @@ class Site{
 				$comment->setCommentPostId($_GET['id']);
 				$comment->setNbrSignalement(0);
 				$comment->save();
+
+				$articleUser = new ArticleUser();
+				$user = $user->getUserByEmail($_POST['email']);
+				$articleUser->setUserId($user['Id']);
+				$articleUser->setArticleId($_GET['id']);
+				$articleUser->save();
+
+				$articleUser = new ArticleUser();
+				$articleUser = $articleUser->getUserByArticleId($_GET['id']);
+				$article = new ArticleModel();
+				$article = $article->find();
+				$emailSend = [];
 				$add = new AddNotification();
 				$comment->subscribeToNotification($add);
-                $comment->update();
-				$_SESSION["flash-success"] = "Votre commentaire est en cours de traitement.";
-				// header('Location: /site');
-				// exit();
+				foreach($articleUser as $value){
+					$user = new UserModel();
+					$userMail = $user->getUserById($value['idUser']);
+					if(($userMail['Email'] !== $_POST['email']) && (!in_array($userMail['Email'], $emailSend))){
+						array_push($emailSend, $userMail['Email']);
+						$comment->update($userMail['Email'], $article['Title']);
+					}
+				}
+				$_SESSION["flash-success"] = "Commentaire publié.";
 			}
 			else{
 				$_SESSION["flash-error"] = "Votre commentaire n'a pas pu être publié car il contient un mot banni";
@@ -107,9 +134,6 @@ class Site{
 				$comment->setDateCreated($today);
 				$comment->setCommentPostId($_GET['id']);
 				$comment->save();
-				$signaler = new ModifyNotification();
-				$comment->subscribeToNotification($signaler);
-				$comment->update($_POST['signaler-id']);
 				$_SESSION["flash-success"] = "Vous avez bien signalé ce commentaire";
 			}
 		}

@@ -686,6 +686,22 @@ class User extends DatabaseDriver
         $data = $queryPrepared->fetch();
         return $data;
     }
+
+    public function getUserByEmail($email){
+        $params = ['email'=>$email];
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Email =:email")->params($params);
+        $queryPrepared = $sql->execute();
+        $data = $queryPrepared->fetch();
+        return $data;
+    }
+
+    public function getUserById($id){
+        $params = ['Id'=>$id];
+        $sql = ($this->queryBuilder)->select()->from($this->table)->where("Id =:Id")->params($params);
+        $queryPrepared = $sql->execute();
+        $data = $queryPrepared->fetch();
+        return $data;
+    }
     
     public function updateUserRole(array $userInformation){
                 $this->setId($_GET['id']);

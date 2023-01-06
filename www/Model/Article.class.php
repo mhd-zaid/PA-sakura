@@ -305,16 +305,6 @@ class Article extends DatabaseDriver
 
     }
 
-    public function subscribeToNotification(Observer $notif){
-        array_push(static::$notification, $notif);
-    }
-
-    public function update(){
-        foreach(static::$notification as $observer){
-            $observer->alert();
-        }
-    }
-
     public function getPostFilter(string $category)
     {
         $sql = ($this->queryBuilder)->select("*")->from($this->table)->where("categories LIKE :category")->andWhere("Active = 1")->params(['category'=> "%{$category}%"])->execute();

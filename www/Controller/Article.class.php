@@ -6,8 +6,6 @@ use App\Core\View;
 use App\Model\Article as ArticleModel;
 use App\Model\User;
 use App\Core\Verificator;
-use App\Core\Notification\ModifyNotification;
-use App\Core\Notification\DeleteNotification;
 
 class Article{
     public function index(){
