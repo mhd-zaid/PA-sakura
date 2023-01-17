@@ -11,12 +11,12 @@ class SendMail{
             try {
                 $mail->SMTPDebug = 0;                      
                 $mail->isSMTP();                                            
-                $mail->Host       = 'smtp.outlook.com';                    
+                $mail->Host       = '';                    
                 $mail->SMTPAuth   = true;                                   
-                $mail->Username   = 'pa.sakura@outlook.fr';                     
-                $mail->Password   = 'sakura12345@';
-                $mail->SMTPSecure = 'STARTTLS';                                       
-                $mail->Port       = 587;              
+                $mail->Username   = '';                     
+                $mail->Password   = '';
+                $mail->SMTPSecure = '';                                       
+                $mail->Port       = ;              
             
                 $mail->From = "pa.sakura@outlook.fr";
                 $mail->FromName = "sakura";
